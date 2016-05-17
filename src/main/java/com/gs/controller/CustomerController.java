@@ -9,6 +9,8 @@ import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.service.AdminService;
 import com.gs.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +32,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Resource
     private CustomerService customerService;
@@ -80,6 +84,7 @@ public class CustomerController {
     @ResponseBody
     @RequestMapping("/list")
     public List<Customer> list() {
+        logger.info("显示所有客户信息");
         return customerService.query();
     }
 

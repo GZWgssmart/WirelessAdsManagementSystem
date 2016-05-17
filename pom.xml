@@ -36,7 +36,7 @@
 
     <properties>
         <mysql-version>5.1.36</mysql-version>
-        <logback-version>1.1.3</logback-version>
+        <logback-version>1.1.7</logback-version>
         <mybatis-version>3.3.0</mybatis-version>
         <mybatis-spring-version>1.2.3</mybatis-spring-version>
         <spring>4.2.6.RELEASE</spring>
@@ -49,6 +49,7 @@
         <jackson-version>1.9.13</jackson-version>
         <aspectj-version>1.8.8</aspectj-version>
         <fasterxml-version>2.7.4</fasterxml-version>
+        <logback-ext-spring-version>0.1.4</logback-ext-spring-version>
     </properties>
 
     <dependencies>
@@ -158,6 +159,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${fasterxml-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>${logback-ext-spring-version}</version>
         </dependency>
 
     </dependencies>
