@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.AdminDAO">
+
+    <resultMap id="adminResultMap" type="admin">
+        <id property="id" column="id" />
+    </resultMap>
+
+    <select id="queryById" parameterType="int"
+            resultType="admin">
+        <![CDATA[
+        select * from t_admin where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" resultType="list" resultMap="adminResultMap">
+        <![CDATA[
+        select * from t_amdin
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="adminResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_admin limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_admin;
+        ]]>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="admin">
+        <![CDATA[
+        insert into t_admin(email, password) values(#{email}, #{password})
+        ]]>
+    </insert>
+
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
+        <![CDATA[
+        insert into t_admin(email, password) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            <![CDATA[
+            (#{item.email}, #{item.password})
+            ]]>
+        </foreach>
+
+    </insert>
+</mapper>

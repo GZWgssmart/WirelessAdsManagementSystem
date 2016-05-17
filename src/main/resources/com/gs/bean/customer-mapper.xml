@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.CustomerDAO">
+
+    <resultMap id="customerResultMap" type="customer">
+        <id property="id" column="id" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <select id="queryById" parameterType="int"
+            resultType="customer">
+        <![CDATA[
+        select * from t_customer where id=#{id}
+        ]]>
+    </select>
+
+    <select id="queryByEmailPwd" parameterType="customer" resultType="customer">
+        <![CDATA[
+        select * from t_customer where email=#{email} and password = #{password}
+        ]]>
+    </select>
+
+    <select id="query" resultType="list" resultMap="customerResultMap">
+        <![CDATA[
+        select * from t_customer
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="customerResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_customer limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_customer;
+        ]]>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="customer">
+        <![CDATA[
+        insert into t_customer(id, email, password) values(uuid(), #{email}, #{password})
+        ]]>
+    </insert>
+
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
+        <![CDATA[
+        insert into t_customer(email, password) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            <![CDATA[
+            (#{item.email}, #{item.password})
+            ]]>
+        </foreach>
+
+    </insert>
+</mapper>
