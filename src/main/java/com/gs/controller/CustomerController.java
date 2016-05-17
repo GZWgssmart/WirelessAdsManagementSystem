@@ -9,14 +9,19 @@ import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.service.AdminService;
 import com.gs.service.CustomerService;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,9 +62,10 @@ public class CustomerController {
     }
 
     @RequestMapping("reg")
-    public String reg(Customer customer) {
+    public String reg(Customer customer, HttpSession session) {
         customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
         customerService.insert(customer);
+        session.setAttribute(Constants.SESSION_CUSTOMER, customer);
         return "redirect:home";
     }
 
@@ -124,6 +130,13 @@ public class CustomerController {
             System.out.println(customer);
         }
         return "redirect:/index";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
 }

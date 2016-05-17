@@ -5,6 +5,7 @@
     <resultMap id="customerResultMap" type="customer">
         <id property="id" column="id" />
         <result property="createTime" column="create_time" />
+        <result property="lastLoginTime" column="last_login_time" />
     </resultMap>
 
     <select id="queryById" parameterType="int"
@@ -40,7 +41,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="customer">
         <![CDATA[
-        insert into t_customer(id, email, password) values(uuid(), #{email}, #{password})
+        insert into t_customer(id, email, password, last_login_time) values(uuid(), #{email}, #{password}, #{lastLoginTime})
         ]]>
     </insert>
 

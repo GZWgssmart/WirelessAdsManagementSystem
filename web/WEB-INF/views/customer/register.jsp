@@ -20,6 +20,7 @@
     <form:form action="/customer/reg" method="post" modelAttribute="customer">
         邮箱：<form:input path="email" type="email" value="aaaa"/>
         密码：<form:password path="password" />
+        <form:input path="lastLoginTime" />
         <input type="submit" value="注册" />
     </form:form>
 </body>
