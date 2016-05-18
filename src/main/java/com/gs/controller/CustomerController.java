@@ -1,13 +1,10 @@
 package com.gs.controller;
 
-import com.gs.bean.Admin;
 import com.gs.bean.Customer;
-import com.gs.bean.User;
 import com.gs.common.Constants;
 import com.gs.common.bean.Pager;
 import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
-import com.gs.service.AdminService;
 import com.gs.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +41,7 @@ public class CustomerController {
             return "redirect:home";
         }
         customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
-        Customer c = customerService.queryByEmailPwd(customer);
+        Customer c = customerService.query(customer);
         if (c != null) {
             session.setAttribute(Constants.SESSION_CUSTOMER, customer);
             return "redirect:home";
@@ -82,10 +79,10 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public List<Customer> list() {
         logger.info("显示所有客户信息");
-        return customerService.query();
+        return customerService.queryAll();
     }
 
     @RequestMapping("index/{id}")
@@ -98,7 +95,7 @@ public class CustomerController {
 
     @RequestMapping("index")
     public String query(Model model) {
-        List<Customer> customers = customerService.query();
+        List<Customer> customers = customerService.queryAll();
         for (Customer customer : customers) {
             System.out.println(customer);
         }

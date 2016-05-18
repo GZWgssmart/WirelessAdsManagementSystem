@@ -28,7 +28,8 @@ CREATE TABLE t_customer (
   last_login_time DATETIME COMMENT '最近一次登录时间',
   last_update_time DATETIME COMMENT '最近一次修改时间',
   last_update_by_role VARCHAR(10) COMMENT '最近一次被哪个角色修改,可选admin或self',
-  last_update_by_admin VARCHAR(128) COMMENT '最近一次被哪个管理员修改'
+  last_update_by_admin VARCHAR(128) COMMENT '最近一次被哪个管理员修改',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '客户是否在可用状态'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 --为last_update_by_role添加检查约束,只能是admin或self
@@ -38,6 +39,9 @@ CHECK(last_update_by_role in ('admin', 'self'));
 --如果last_update_by_role为admin,则说明由管理员修改了客户信息,此时需要记录管理员id到last_update_by_admin字段
 ALTER TABLE t_customer ADD CONSTRAINT fk_last_update_by_admin
 FOREIGN KEY(last_update_by_admin) REFERENCES t_admin(id);
+
+ALTER TABLE t_customer ADD CONSTRAINT ck_customer_status
+CHECK (status in ('Y', 'N'));
 
 --t_resource_type资源类型表,每个用户的资源类型都不一样
 DROP TABLE IF EXISTS t_resource_type;

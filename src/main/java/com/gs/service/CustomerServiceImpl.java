@@ -21,8 +21,8 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDAO customerDAO;
 
     @Override
-    public List<Customer> query() {
-        return customerDAO.query();
+    public List<Customer> queryAll() {
+        return customerDAO.queryAll();
     }
 
     @Override
@@ -31,8 +31,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer queryByEmailPwd(Customer customer) {
-        return customerDAO.queryByEmailPwd(customer);
+    public Customer query(Customer customer) {
+        return customerDAO.query(customer);
     }
 
     @Override

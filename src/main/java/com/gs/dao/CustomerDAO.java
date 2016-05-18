@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerDAO extends BaseDAO<Customer,String> {
 
-    public Customer queryByEmailPwd(Customer customer);
-
 }

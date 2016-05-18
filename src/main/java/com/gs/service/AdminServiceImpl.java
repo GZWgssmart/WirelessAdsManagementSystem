@@ -19,13 +19,18 @@ public class AdminServiceImpl implements AdminService {
     private AdminDAO adminDAO;
 
     @Override
-    public List<Admin> query() {
-        return adminDAO.query();
+    public List<Admin> queryAll() {
+        return adminDAO.queryAll();
     }
 
     @Override
     public Admin queryById(String id) {
         return adminDAO.queryById(id);
+    }
+
+    @Override
+    public Admin query(Admin admin) {
+        return adminDAO.query(admin);
     }
 
     @Override

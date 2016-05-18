@@ -11,8 +11,9 @@ import java.util.List;
  */
 public interface AdminService {
 
-    public List<Admin> query();
+    public List<Admin> queryAll();
     public Admin queryById(String id);
+    public Admin query(Admin admin);
     public int insert(Admin admin);
     public int batchInsert(List<Admin> admins);
     public List<Admin> queryByPager(Pager pager);

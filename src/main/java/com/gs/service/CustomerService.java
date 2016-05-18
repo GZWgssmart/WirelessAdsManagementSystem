@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface CustomerService {
 
-    public List<Customer> query();
+    public List<Customer> queryAll();
     public Customer queryById(String id);
-    public Customer queryByEmailPwd(Customer customer);
+    public Customer query(Customer customer);
     public int insert(Customer customer);
     public int batchInsert(List<Customer> customers);
     public List<Customer> queryByPager(Pager pager);

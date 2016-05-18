@@ -13,7 +13,13 @@
         ]]>
     </select>
 
-    <select id="query" resultType="list" resultMap="adminResultMap">
+    <select id="query" parameterType="admin" resultType="admin">
+        <![CDATA[
+        select * from t_admin where email=#{email} and password = #{password}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="adminResultMap">
         <![CDATA[
         select * from t_amdin
         ]]>

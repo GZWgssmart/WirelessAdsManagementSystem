@@ -2,14 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_penggle_kaptcha_2_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jhlabs_filters_2_0_235_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WirelessAdsManagementSystem_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WirelessAdsManagementSystem_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_3.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WirelessAdsManagementSystem.iml" afterPath="$PROJECT_DIR$/WirelessAdsManagementSystem.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/ads_system.sql" afterPath="$PROJECT_DIR$/documents/ads_system.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,336 +72,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customer-mapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
+      <file leaf-file-name="CustomerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5">
-              <caret line="41" column="89" selection-start-line="41" selection-start-column="89" selection-end-line="41" selection-end-column="89" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
               <folding>
-                <marker date="1463488984000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
-                <marker date="1463488984000" expanded="true" signature="719:791" placeholder="select * fro..t_customer..." />
-                <marker date="1463488984000" expanded="true" signature="719:810" placeholder="select * fro..t_customer..." />
-                <marker date="1463488984000" expanded="true" signature="917:941" placeholder="select * fro..t_customer..." />
-                <marker date="1463488984000" expanded="true" signature="1115:1172" placeholder="select * fro..t_customer..." />
-                <marker date="1463488984000" expanded="true" signature="1267:1298" placeholder="select count..t_customer..." />
-                <marker date="1463488984000" expanded="true" signature="1444:1560" placeholder="insert into t_customer..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5185185">
-              <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MAVEN/groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" pinned="false" current-in-tab="false">
-        <entry file="uml://MAVEN/groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>MAVEN</ID>
-              <OriginalElement>groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT</OriginalElement>
-              <nodes>
-                <node x="0.0" y="0.0">groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT</node>
-                <node x="265.0" y="0.0">mysql:mysql-connector-java:jar:5.1.36</node>
-                <node x="265.0" y="40.0">ch.qos.logback:logback-classic:jar:1.1.7</node>
-                <node x="430.0" y="40.0">ch.qos.logback:logback-classic:jar:1.1.7/ch.qos.logback:logback-core:jar:1.1.7</node>
-                <node x="430.0" y="80.0">ch.qos.logback:logback-classic:jar:1.1.7/org.slf4j:slf4j-api:jar:1.7.20</node>
-                <node x="265.0" y="120.0">org.mybatis:mybatis:jar:3.3.0</node>
-                <node x="265.0" y="160.0">org.mybatis:mybatis-spring:jar:1.2.3</node>
-                <node x="265.0" y="200.0">org.springframework:spring-web:jar:4.2.6.RELEASE</node>
-                <node x="402.0" y="200.0">org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-aop:jar:4.2.6.RELEASE</node>
-                <node x="537.0" y="200.0">org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-aop:jar:4.2.6.RELEASE/aopalliance:aopalliance:jar:1.0</node>
-                <node x="402.0" y="240.0">org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-beans:jar:4.2.6.RELEASE</node>
-                <node x="402.0" y="280.0">org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-context:jar:4.2.6.RELEASE</node>
-                <node x="402.0" y="320.0">org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-core:jar:4.2.6.RELEASE</node>
-                <node x="265.0" y="360.0">org.springframework:spring-webmvc:jar:4.2.6.RELEASE</node>
-                <node x="428.0" y="360.0">org.springframework:spring-webmvc:jar:4.2.6.RELEASE/org.springframework:spring-expression:jar:4.2.6.RELEASE</node>
-                <node x="265.0" y="400.0">org.springframework:spring-orm:jar:4.2.6.RELEASE</node>
-                <node x="402.0" y="400.0">org.springframework:spring-orm:jar:4.2.6.RELEASE/org.springframework:spring-jdbc:jar:4.2.6.RELEASE</node>
-                <node x="402.0" y="440.0">org.springframework:spring-orm:jar:4.2.6.RELEASE/org.springframework:spring-tx:jar:4.2.6.RELEASE</node>
-                <node x="265.0" y="480.0">org.springframework:spring-test:jar:4.2.6.RELEASE</node>
-                <node x="265.0" y="520.0">junit:junit:jar:4.12</node>
-                <node x="358.0" y="520.0">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
-                <node x="265.0" y="560.0">com.cloudhopper.proxool:proxool:jar:0.9.1</node>
-                <node x="378.0" y="560.0">com.cloudhopper.proxool:proxool:jar:0.9.1/com.cloudhopper.proxool:proxool-cglib:jar:0.9.1</node>
-                <node x="378.0" y="600.0">com.cloudhopper.proxool:proxool:jar:0.9.1/commons-logging:commons-logging:jar:1.2</node>
-                <node x="378.0" y="640.0">com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3</node>
-                <node x="585.0" y="640.0">com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1</node>
-                <node x="735.0" y="640.0">com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/log4j:log4j:jar:1.2.11</node>
-                <node x="735.0" y="680.0">com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/javax.servlet:servlet-api:jar:2.3</node>
-                <node x="735.0" y="720.0">com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/geronimo-spec:geronimo-spec-javamail:jar:1.3.1-rc3</node>
-                <node x="735.0" y="760.0">com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/geronimo-spec:geronimo-spec-jms:jar:1.1-rc4</node>
-                <node x="265.0" y="800.0">commons-fileupload:commons-fileupload:jar:1.3.1</node>
-                <node x="462.0" y="800.0">commons-fileupload:commons-fileupload:jar:1.3.1/commons-io:commons-io:jar:2.2</node>
-                <node x="265.0" y="840.0">javax.servlet:jstl:jar:1.2</node>
-                <node x="265.0" y="880.0">org.apache.commons:commons-lang3:jar:3.4</node>
-                <node x="265.0" y="920.0">org.codehaus.jackson:jackson-mapper-lgpl:jar:1.9.13</node>
-                <node x="465.0" y="920.0">org.codehaus.jackson:jackson-mapper-lgpl:jar:1.9.13/org.codehaus.jackson:jackson-core-lgpl:jar:1.9.13</node>
-                <node x="265.0" y="960.0">org.aspectj:aspectjweaver:jar:1.8.8</node>
-                <node x="265.0" y="1000.0">com.fasterxml.jackson.core:jackson-databind:jar:2.7.4</node>
-                <node x="441.0" y="1000.0">com.fasterxml.jackson.core:jackson-databind:jar:2.7.4/com.fasterxml.jackson.core:jackson-annotations:jar:2.7.0</node>
-                <node x="441.0" y="1040.0">com.fasterxml.jackson.core:jackson-databind:jar:2.7.4/com.fasterxml.jackson.core:jackson-core:jar:2.7.4</node>
-                <node x="265.0" y="1080.0">org.logback-extensions:logback-ext-spring:jar:0.1.4</node>
-                <node x="265.0" y="1120.0">com.github.penggle:kaptcha:jar:2.3.2</node>
-                <node x="379.0" y="1120.0">com.github.penggle:kaptcha:jar:2.3.2/javax.servlet:javax.servlet-api:jar:3.1.0</node>
-                <node x="379.0" y="1160.0">com.github.penggle:kaptcha:jar:2.3.2/com.jhlabs:filters:jar:2.0.235-1</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="org.springframework:spring-orm:jar:4.2.6.RELEASE" target="org.springframework:spring-orm:jar:4.2.6.RELEASE/org.springframework:spring-jdbc:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/commons-logging:commons-logging:jar:1.2">
-                  <point x="0.0" y="0.0" />
-                  <point x="306.5" y="615.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/javax.servlet:servlet-api:jar:2.3">
-                  <point x="0.0" y="0.0" />
-                  <point x="645.0" y="695.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3" target="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.fasterxml.jackson.core:jackson-databind:jar:2.7.4" target="com.fasterxml.jackson.core:jackson-databind:jar:2.7.4/com.fasterxml.jackson.core:jackson-core:jar:2.7.4">
-                  <point x="0.0" y="0.0" />
-                  <point x="338.0" y="1055.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3">
-                  <point x="0.0" y="0.0" />
-                  <point x="306.5" y="655.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.github.penggle:kaptcha:jar:2.3.2" target="com.github.penggle:kaptcha:jar:2.3.2/com.jhlabs:filters:jar:2.0.235-1">
-                  <point x="0.0" y="0.0" />
-                  <point x="307.0" y="1175.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-aop:jar:4.2.6.RELEASE" target="org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-aop:jar:4.2.6.RELEASE/aopalliance:aopalliance:jar:1.0">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/geronimo-spec:geronimo-spec-jms:jar:1.1-rc4">
-                  <point x="0.0" y="0.0" />
-                  <point x="645.0" y="775.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="junit:junit:jar:4.12" target="junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/log4j:log4j:jar:1.2.11">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="commons-fileupload:commons-fileupload:jar:1.3.1" target="commons-fileupload:commons-fileupload:jar:1.3.1/commons-io:commons-io:jar:2.2">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="ch.qos.logback:logback-classic:jar:1.1.7" target="ch.qos.logback:logback-classic:jar:1.1.7/ch.qos.logback:logback-core:jar:1.1.7">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="ch.qos.logback:logback-classic:jar:1.1.7">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="55.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.springframework:spring-orm:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="415.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-web:jar:4.2.6.RELEASE" target="org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-context:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="318.5" y="295.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="ch.qos.logback:logback-classic:jar:1.1.7" target="ch.qos.logback:logback-classic:jar:1.1.7/org.slf4j:slf4j-api:jar:1.7.20">
-                  <point x="0.0" y="0.0" />
-                  <point x="332.5" y="95.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="com.fasterxml.jackson.core:jackson-databind:jar:2.7.4">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="1015.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.github.penggle:kaptcha:jar:2.3.2" target="com.github.penggle:kaptcha:jar:2.3.2/javax.servlet:javax.servlet-api:jar:3.1.0">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.mybatis:mybatis-spring:jar:1.2.3">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="175.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.aspectj:aspectjweaver:jar:1.8.8">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="975.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="commons-fileupload:commons-fileupload:jar:1.3.1">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="815.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-web:jar:4.2.6.RELEASE" target="org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-core:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="318.5" y="335.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.mybatis:mybatis:jar:3.3.0">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="135.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="mysql:mysql-connector-java:jar:5.1.36">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.codehaus.jackson:jackson-mapper-lgpl:jar:1.9.13" target="org.codehaus.jackson:jackson-mapper-lgpl:jar:1.9.13/org.codehaus.jackson:jackson-core-lgpl:jar:1.9.13">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.codehaus.jackson:jackson-mapper-lgpl:jar:1.9.13">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="935.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.springframework:spring-test:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="495.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.logback-extensions:logback-ext-spring:jar:0.1.4">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="1095.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="com.cloudhopper.proxool:proxool:jar:0.9.1">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="575.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.springframework:spring-web:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="215.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="junit:junit:jar:4.12">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="535.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="javax.servlet:jstl:jar:1.2">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="855.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.springframework:spring-webmvc:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="375.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/geronimo-spec:geronimo-spec-javamail:jar:1.3.1-rc3">
-                  <point x="0.0" y="0.0" />
-                  <point x="645.0" y="735.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="org.apache.commons:commons-lang3:jar:3.4">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="895.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.fasterxml.jackson.core:jackson-databind:jar:2.7.4" target="com.fasterxml.jackson.core:jackson-databind:jar:2.7.4/com.fasterxml.jackson.core:jackson-annotations:jar:2.7.0">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="com.cloudhopper.proxool:proxool:jar:0.9.1" target="com.cloudhopper.proxool:proxool:jar:0.9.1/com.cloudhopper.proxool:proxool-cglib:jar:0.9.1">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="groupId:WirelessAdsManagementSystem:1.0-SNAPSHOT" target="com.github.penggle:kaptcha:jar:2.3.2">
-                  <point x="0.0" y="0.0" />
-                  <point x="117.5" y="1135.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-webmvc:jar:4.2.6.RELEASE" target="org.springframework:spring-webmvc:jar:4.2.6.RELEASE/org.springframework:spring-expression:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-web:jar:4.2.6.RELEASE" target="org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-beans:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="318.5" y="255.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-web:jar:4.2.6.RELEASE" target="org.springframework:spring-web:jar:4.2.6.RELEASE/org.springframework:spring-aop:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="org.springframework:spring-orm:jar:4.2.6.RELEASE" target="org.springframework:spring-orm:jar:4.2.6.RELEASE/org.springframework:spring-tx:jar:4.2.6.RELEASE">
-                  <point x="0.0" y="0.0" />
-                  <point x="318.5" y="455.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="0.3322314049586777" x="-212.61194029850753" y="1212.3880597014925" />
-              <SelectedNodes>
-                <node>com.cloudhopper.proxool:proxool:jar:0.9.1/avalon-framework:avalon-framework-api:jar:4.3/avalon-logkit:avalon-logkit:jar:2.1/javax.servlet:servlet-api:jar:2.3</node>
-              </SelectedNodes>
-              <Categories />
-              <VISIBILITY>All</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125">
-              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AutoLoadListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/AutoLoadListener.java">
+      <file leaf-file-name="CustomerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/Config.java">
+      <file leaf-file-name="BaseDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="7" selection-end-column="3" />
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SingletonConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/SingletonConfig.java">
+      <file leaf-file-name="customer-mapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.25">
+              <caret line="21" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="21" selection-end-column="13" />
+              <folding>
+                <marker date="1463532052000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
+                <marker date="1463532052000" expanded="true" signature="709:781" placeholder="select * fro..t_customer..." />
+                <marker date="1463532052000" expanded="true" signature="709:800" placeholder="select * fro..t_customer..." />
+                <marker date="1463532052000" expanded="true" signature="910:934" placeholder="select * fro..t_customer..." />
+                <marker date="1463532052000" expanded="true" signature="1108:1165" placeholder="select * fro..t_customer..." />
+                <marker date="1463532052000" expanded="true" signature="1260:1291" placeholder="select count..t_customer..." />
+                <marker date="1463532052000" expanded="true" signature="1437:1553" placeholder="insert into t_customer..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin-mapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4814815">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <marker date="1463532098000" expanded="true" signature="402:438" placeholder="select * fro..t_user..." />
+                <marker date="1463532098000" expanded="true" signature="557:626" placeholder="select * fro..t_admin..." />
+                <marker date="1463532098000" expanded="true" signature="752:773" placeholder="select * fro..t_amdin..." />
+                <marker date="1463532098000" expanded="true" signature="944:998" placeholder="select * fro..t_user..." />
+                <marker date="1463532098000" expanded="true" signature="1093:1116" placeholder="select count..t_user..." />
+                <marker date="1463532098000" expanded="true" signature="1093:1121" placeholder="select count..t_admin..." />
+                <marker date="1463532098000" expanded="true" signature="1264:1330" placeholder="insert into t_user..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-              <folding />
+              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+              <folding>
+                <element signature="e#737#738#0" expanded="true" />
+                <element signature="e#787#788#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -402,20 +157,32 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+              <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
               <folding>
-                <element signature="e#637#638#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
+                <element signature="e#644#645#0" expanded="true" />
+                <element signature="e#688#689#0" expanded="true" />
+                <element signature="e#740#741#0" expanded="true" />
+                <element signature="e#785#786#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java">
+      <file leaf-file-name="AdminService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.87037">
+              <caret line="90" column="19" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -457,7 +224,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Admin.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/mybatis.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/ResourceType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Resource.java" />
@@ -466,28 +232,30 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/DeviceResource.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/jdbc.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/springmvc-servlet.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
-        <option value="$PROJECT_DIR$/documents/ads_system.sql" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/register.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" />
+        <option value="$PROJECT_DIR$/documents/ads_system.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
       </list>
     </option>
   </component>
@@ -555,10 +323,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="WirelessAdsManagementSystem" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -892,19 +656,20 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaCommon" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/WEB-INF/views/customer" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.gs.common.util" />
-      <recent name="com.gs.service" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/gs/bean" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/views" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gs.controller" />
+      <recent name="com.gs.common.util" />
+      <recent name="com.gs.service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/WEB-INF/views/customer" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.0.28">
@@ -1401,12 +1166,12 @@
       <updated>1463361563175</updated>
       <workItem from="1463361566949" duration="1042000" />
       <workItem from="1463362633958" duration="28970000" />
-      <workItem from="1463491111587" duration="5252000" />
+      <workItem from="1463491111587" duration="6923000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35264000" />
+    <option name="totallyTimeSpent" value="36935000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -1418,14 +1183,15 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13085622" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1438,7 +1204,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1486,14 +1251,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.057581574">
@@ -1572,14 +1329,6 @@
             <element signature="e#253#254#0" expanded="false" />
             <element signature="e#317#318#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/config/mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
-          <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1798,16 +1547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding>
-            <element signature="e#328#329#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1837,16 +1576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1896,21 +1625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-          <folding>
-            <marker date="1463486523000" expanded="true" signature="402:438" placeholder="select * fro..t_user..." />
-            <marker date="1463486523000" expanded="true" signature="561:582" placeholder="select * fro..t_amdin..." />
-            <marker date="1463486523000" expanded="true" signature="753:807" placeholder="select * fro..t_user..." />
-            <marker date="1463486523000" expanded="true" signature="902:925" placeholder="select count..t_user..." />
-            <marker date="1463486523000" expanded="true" signature="902:930" placeholder="select count..t_admin..." />
-            <marker date="1463486523000" expanded="true" signature="1073:1139" placeholder="insert into t_user..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/DateFormatUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1919,26 +1633,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1964,16 +1662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="28" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/config/spring-applicationContext.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1982,85 +1670,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-          <folding>
-            <element signature="e#859#860#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding>
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5">
-          <caret line="41" column="89" selection-start-line="41" selection-start-column="89" selection-end-line="41" selection-end-column="89" />
-          <folding>
-            <marker date="1463488984000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
-            <marker date="1463488984000" expanded="true" signature="719:791" placeholder="select * fro..t_customer..." />
-            <marker date="1463488984000" expanded="true" signature="719:810" placeholder="select * fro..t_customer..." />
-            <marker date="1463488984000" expanded="true" signature="917:941" placeholder="select * fro..t_customer..." />
-            <marker date="1463488984000" expanded="true" signature="1115:1172" placeholder="select * fro..t_customer..." />
-            <marker date="1463488984000" expanded="true" signature="1267:1298" placeholder="select count..t_customer..." />
-            <marker date="1463488984000" expanded="true" signature="1444:1560" placeholder="insert into t_customer..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2370,9 +1984,166 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5185185">
+        <state vertical-scroll-proportion="-81.875">
           <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7902098">
+          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+          <folding>
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+            <element signature="e#1141#1142#0" expanded="true" />
+            <element signature="e#1177#1178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+          <folding>
+            <marker date="1463531465000" expanded="true" signature="1324:1441" placeholder="ALTER TABLE t_customer..." />
+            <marker date="1463531465000" expanded="true" signature="5384:5523" placeholder="ALTER TABLE t_device_resource..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding>
+            <element signature="e#644#645#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#740#741#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.87037">
+          <caret line="90" column="19" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding>
+            <element signature="e#737#738#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.25">
+          <caret line="21" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <marker date="1463532052000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
+            <marker date="1463532052000" expanded="true" signature="709:781" placeholder="select * fro..t_customer..." />
+            <marker date="1463532052000" expanded="true" signature="709:800" placeholder="select * fro..t_customer..." />
+            <marker date="1463532052000" expanded="true" signature="910:934" placeholder="select * fro..t_customer..." />
+            <marker date="1463532052000" expanded="true" signature="1108:1165" placeholder="select * fro..t_customer..." />
+            <marker date="1463532052000" expanded="true" signature="1260:1291" placeholder="select count..t_customer..." />
+            <marker date="1463532052000" expanded="true" signature="1437:1553" placeholder="insert into t_customer..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/config/mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2962963">
+          <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4814815">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <marker date="1463532098000" expanded="true" signature="402:438" placeholder="select * fro..t_user..." />
+            <marker date="1463532098000" expanded="true" signature="557:626" placeholder="select * fro..t_admin..." />
+            <marker date="1463532098000" expanded="true" signature="752:773" placeholder="select * fro..t_amdin..." />
+            <marker date="1463532098000" expanded="true" signature="944:998" placeholder="select * fro..t_user..." />
+            <marker date="1463532098000" expanded="true" signature="1093:1116" placeholder="select count..t_user..." />
+            <marker date="1463532098000" expanded="true" signature="1093:1121" placeholder="select count..t_admin..." />
+            <marker date="1463532098000" expanded="true" signature="1264:1330" placeholder="insert into t_user..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -18,7 +18,8 @@ public interface BaseDAO<T, PK extends Serializable> {
     public int update(T t);
     public int updateById(PK id);
     public int batchUpdate(List<T> list);
-    public List<T> query();
+    public List<T> queryAll();
+    public T query(T t);
     public T queryById(PK id);
     public List<T> queryByPager(Pager pager);
     public int count();

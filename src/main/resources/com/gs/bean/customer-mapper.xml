@@ -15,13 +15,13 @@
         ]]>
     </select>
 
-    <select id="queryByEmailPwd" parameterType="customer" resultType="customer">
+    <select id="query" parameterType="customer" resultType="customer">
         <![CDATA[
         select * from t_customer where email=#{email} and password = #{password}
         ]]>
     </select>
 
-    <select id="query" resultType="list" resultMap="customerResultMap">
+    <select id="queryAll" resultType="list" resultMap="customerResultMap">
         <![CDATA[
         select * from t_customer
         ]]>
