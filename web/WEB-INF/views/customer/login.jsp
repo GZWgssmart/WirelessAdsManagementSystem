@@ -7,19 +7,74 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
+<%
+    String path = request.getContextPath();
+%>
+<!doctype html>
 <html>
-  <head>
-      <meta charset="utf-8" />
-    <title>客户登录</title>
-  </head>
-  <body>
-    <form:form action="/customer/login" method="post" modelAttribute="customer">
-        邮箱:<form:input path="email" />
-        密码：<form:password path="password" />
-        <input type="submit" value="登录" />
-        <a href="/customer/reg_page">注册</a>
-    </form:form>
+<head>
+    <title>客户登录-青岛宝瑞无线广告管理系统</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
+    <script src="<%=path %>/js/jquery.min.js"></script>
+    <script src="<%=path %>/js/jquery.form.js"></script>
+    <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
+    <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
 
-  </body>
+    <script>
+        function login() {
+            $.post("<%=path %>/customer/login",
+                    $("#login_form").serialize(),
+                    function (data) {
+                        var result = data.result;
+                        if(result == "success") {
+                            window.location.href = "<%=path %>/customer/home";
+                        } else {
+                            $("#errMsg").html(data.message);
+                        }
+                    }
+            );
+        }
+    </script>
+</head>
+<body>
+<div class="login_container">
+    <img class="login_logo" src="<%=path %>/images/logo.jpg" alt="公司图片" title="公司图片"/>
+
+    <div class="login_div">
+        <div class="easyui-panel" title="客户登录" style="width:240px;padding:10px;">
+            <div id="errMsg"></div>
+            <form:form id="login_form" method="post" modelAttribute="customer">
+                <table>
+                    <tr>
+                        <td>邮箱:</td>
+                        <td><input type="text" name="email" class="easyui-textbox"/></td>
+                    </tr>
+                    <tr>
+                        <td>密码:</td>
+                        <td><input type="password" name="password" class="easyui-textbox"/></td>
+                    </tr>
+                    <tr>
+                        <td>验证码:</td>
+                        <td><input type="text" name="checkCode" class="easyui-textbox"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><img src="<%=path %>/captcha" onclick="this.src='<%=path %>/captcha?time=Math.random();'"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" onclick="login();">登录</button>
+                        </td>
+                    </tr>
+                </table>
+            </form:form>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+</body>
 </html>

@@ -84,7 +84,7 @@
         </init-param>
         <init-param>
             <param-name>kaptcha.session.key</param-name>
-            <param-value>code</param-value>
+            <param-value>checkCode</param-value>
         </init-param>
         <init-param>
             <param-name>kaptcha.textproducer.char.string</param-name>

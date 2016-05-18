@@ -2,10 +2,12 @@ package com.gs.controller;
 
 import com.gs.bean.Customer;
 import com.gs.common.Constants;
+import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.service.CustomerService;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -35,29 +37,37 @@ public class CustomerController {
     @Resource
     private CustomerService customerService;
 
+    @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(Customer customer, HttpSession session) {
+    public ControllerResult login(Customer customer, @Param("checkCode")String checkCode, HttpSession session) {
         if (session.getAttribute(Constants.SESSION_CUSTOMER) != null) {
-            return "redirect:home";
+            return ControllerResult.getSuccessResult("登录成功");
         }
-        customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
-        Customer c = customerService.query(customer);
-        if (c != null) {
-            session.setAttribute(Constants.SESSION_CUSTOMER, customer);
-            return "redirect:home";
+        String codeInSession = (String) session.getAttribute(Constants.SESSION_CHECK_CODE);
+        if(checkCode != null && checkCode.equals(codeInSession)) {
+            customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
+            Customer c = customerService.query(customer);
+            if (c != null) {
+                session.setAttribute(Constants.SESSION_CUSTOMER, customer);
+                session.setAttribute(Constants.SESSION_USER_ROLE, Constants.SESSION_CUSTOMER);
+                return ControllerResult.getSuccessResult("登录成功");
+            } else {
+                return ControllerResult.getFailResult("登录失败,请检查邮箱或密码");
+            }
         } else {
-            return "redirect:/index";
+            return ControllerResult.getFailResult("验证码错误");
         }
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute(Constants.SESSION_CUSTOMER);
+        session.removeAttribute(Constants.SESSION_USER_ROLE);
         return "redirect:/index";
     }
 
     @RequestMapping(value = "reg_page", method = RequestMethod.GET)
-    public String toReg(Model model) {
+    public String toRegPage(Model model) {
         model.addAttribute(new Customer());
         return "customer/register";
     }
@@ -67,6 +77,7 @@ public class CustomerController {
         customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
         customerService.insert(customer);
         session.setAttribute(Constants.SESSION_CUSTOMER, customer);
+        session.setAttribute(Constants.SESSION_USER_ROLE, Constants.SESSION_CUSTOMER);
         return "redirect:home";
     }
 
@@ -75,14 +86,24 @@ public class CustomerController {
         if (session.getAttribute(Constants.SESSION_CUSTOMER) == null) {
             return "redirect:/index";
         }
-        return "customer/home";
+        return "home";
+    }
+
+    @RequestMapping("list_page")
+    public String toListPage() {
+        return "customer/customers";
     }
 
     @ResponseBody
     @RequestMapping("list")
-    public List<Customer> list() {
-        logger.info("显示所有客户信息");
-        return customerService.queryAll();
+    public List<Customer> list(HttpSession session) {
+        if (session.getAttribute(Constants.SESSION_ADMIN) != null) {
+            logger.info("显示所有客户信息");
+            return customerService.queryAll();
+        } else {
+            logger.info("管理员未登录，不能显示客户列表");
+            return null;
+        }
     }
 
     @RequestMapping("index/{id}")

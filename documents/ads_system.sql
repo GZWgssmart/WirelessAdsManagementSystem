@@ -12,8 +12,12 @@ CREATE TABLE t_admin(
   name VARCHAR(20) NOT NULL COMMENT '姓名',
   phone VARCHAR(11) NOT NULL COMMENT '手机号',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间',
-  last_login_time DATETIME COMMENT '最近一次登录时间'
+  last_login_time DATETIME COMMENT '最近一次登录时间',
+  role VARCHAR(20) NOT NULL COMMENT '管理员角色'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+ALTER TABLE t_admin ADD CONSTRAINT ck_admin_role
+CHECK (role in('super', 'normal'));
 
 --t_customer客户信息表
 DROP TABLE IF EXISTS t_customer;

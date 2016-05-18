@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+a:link, a:visited, a:active {
+    color:black;
+    text-decoration: none;
+}
+
+a:hover {
+    color:blue;
+    text-decoration: underline;
+}
+
+#errMsg {
+    color:red;
+}
+
+.login_container {
+    width:600px;
+    height:200px;
+    text-align: center;
+    margin:15% auto auto auto;
+}
+
+.login_logo {
+    width:60%;
+    height:200px;
+    float:left;
+    margin-right:20px;
+}
+
+.login_div {
+    width:35%;
+    height:100px;
+    float:left;
+}
+
+.login_div input {
+    width:160px;
+}
+
+.main_logo {
+    width:100px;
+    height:60px;
+}
+
+.north {
+    height: 60px;
+}
+
+.north.wel_msg {
+    float: right;
+    height:60px;
+    line-height:60px;
+    margin-right:50px;
+}
+
+.west {
+    width:200px;
+}
+
+.site_menu {
+    padding:10px;
+}
+
+
