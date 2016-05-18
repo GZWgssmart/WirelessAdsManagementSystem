@@ -50,6 +50,7 @@
         <aspectj-version>1.8.8</aspectj-version>
         <fasterxml-version>2.7.4</fasterxml-version>
         <logback-ext-spring-version>0.1.4</logback-ext-spring-version>
+        <kaptcha-version>2.3.2</kaptcha-version>
     </properties>
 
     <dependencies>
@@ -122,6 +123,12 @@
             <artifactId>proxool</artifactId>
             <version>${proxool-version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -165,6 +172,12 @@
             <groupId>org.logback-extensions</groupId>
             <artifactId>logback-ext-spring</artifactId>
             <version>${logback-ext-spring-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha-version}</version>
         </dependency>
 
     </dependencies>
