@@ -86,7 +86,7 @@ public class CustomerController {
         if (session.getAttribute(Constants.SESSION_CUSTOMER) == null) {
             return "redirect:/index";
         }
-        return "home";
+        return "customer/home";
     }
 
     @RequestMapping("list_page")

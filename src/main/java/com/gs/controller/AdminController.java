@@ -67,7 +67,7 @@ public class AdminController {
     public String logout(HttpSession session) {
         session.removeAttribute(Constants.SESSION_ADMIN);
         session.removeAttribute(Constants.SESSION_USER_ROLE);
-        return "redirect:/index";
+        return "redirect:login_page";
     }
 
     @RequestMapping(value = "add_page", method = RequestMethod.GET)
@@ -89,7 +89,7 @@ public class AdminController {
         if (session.getAttribute(Constants.SESSION_ADMIN) == null) {
             return "redirect:login_page";
         }
-        return "home";
+        return "admin/home";
     }
 
     @ResponseBody

@@ -32,12 +32,6 @@
 <div data-options="region:'west',split:true,title:'功能菜单'" class="west">
     <div class="easyui-accordion" data-options="border:false">
         <div title="用户管理" class="site_menu">
-            <c:if test="${sessionScope.userRole == 'admin'}">
-                <a href="javascript:void(0);" src="<%=path %>/customer/list_page" class="site-navi-tab">用户列表</a></p>
-                <a href="javascript:void(0);" src="add/AddUser_admin.jsp" class="site-navi-tab">用户注册</a></p>
-            </c:if>
-            <c:out value="${result }" />
-            <c:out value="${result }" />
             <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改资料</a></p>
             <a href="javascript:void(0);" src="easyui/demo/droppable1.html" class="site-navi-tab">修改密码</a></p>
         </div>
@@ -104,7 +98,9 @@
     </div>
 </div>
 
-<div data-options="region:'south',border:false">在此添加底部信息</div>
+<div data-options="region:'south',border:false">
+    青岛宝瑞无线广告管理系统V1.0&nbsp;&nbsp;地址：山东青岛&nbsp;&nbsp;技术支持:Wgssmart(QQ:847315251 微信:Wgssmart)
+</div>
 
 <div id="mm" class="easyui-menu">
     <div id="mm-tabupdate">刷新</div>
