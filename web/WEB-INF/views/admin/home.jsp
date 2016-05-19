@@ -85,7 +85,7 @@
             <a href="javascript:void(0);" src="easyui/demo/validatebox.html" class="site-navi-tab">添加信息</a></p>
         </div>
         <div title="系统管理" class="site_menu">
-            <a href="javascript:void(0);" src="list/ListUser_admin.jsp" class="site-navi-tab">管理员列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/admin/list_page" class="site-navi-tab">管理员列表</a></p>
             <a href="javascript:void(0);" src="add/AddUser_admin.jsp" class="site-navi-tab">新增管理员</a></p>
             <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">修改资料卡</a></p>
             <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">修改密码卡</a></p>

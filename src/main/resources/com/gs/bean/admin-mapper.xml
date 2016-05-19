@@ -4,6 +4,8 @@
 
     <resultMap id="adminResultMap" type="admin">
         <id property="id" column="id" />
+        <result property="createTime" column="create_time" />
+        <result property="lastLoginTime" column="last_login_time" />
     </resultMap>
 
     <select id="queryById" parameterType="int"
@@ -21,7 +23,7 @@
 
     <select id="queryAll" resultType="list" resultMap="adminResultMap">
         <![CDATA[
-        select * from t_amdin
+        select * from t_admin
         ]]>
     </select>
 
@@ -39,9 +41,21 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="admin">
         <![CDATA[
-        insert into t_admin(email, password) values(#{email}, #{password})
+        insert into t_admin(id, email, password, name, phone, role) values(uuid(), #{email}, #{password}, #{name}, #{phone}, #{role})
         ]]>
     </insert>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_admin set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_admin set status = 'Y' where id = #{id}
+        ]]>
+    </update>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
         <![CDATA[

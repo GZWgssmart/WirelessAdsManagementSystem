@@ -34,8 +34,12 @@ a:hover {
     float:left;
 }
 
-.login_div input {
-    width:160px;
+.input_small input, .input_small select {
+    width: 160px;
+}
+
+.input_big input, .input_big select {
+    width: 240px;
 }
 
 .main_logo {
@@ -59,6 +63,30 @@ a:hover {
 }
 
 .site_menu {
+    padding:10px;
+}
+
+.site_win_small {
+    width:400px;
+    height:200px;
+    padding:10px;
+}
+
+.site_win_normal {
+    width: 500px;
+    height:300px;
+    padding: 10px;
+}
+
+.site_win_big {
+    width:600px;
+    height:400px;
+    padding:10px;
+}
+
+.site_win_big_wider {
+    width: 800px;
+    height:400px;
     padding:10px;
 }
 

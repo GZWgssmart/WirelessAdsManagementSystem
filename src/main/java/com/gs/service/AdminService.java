@@ -15,6 +15,9 @@ public interface AdminService {
     public Admin queryById(String id);
     public Admin query(Admin admin);
     public int insert(Admin admin);
+    public int update(Admin admin);
+    public int inactive(String id);
+    public int active(String id);
     public int batchInsert(List<Admin> admins);
     public List<Admin> queryByPager(Pager pager);
     public int count();

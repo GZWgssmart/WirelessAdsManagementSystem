@@ -6,11 +6,18 @@ package com.gs.common.bean;
 public class Pager {
     private int pageSize;
     private int pageNo;
-    private int beginIndex;
-    private int endIndex;
 
     private int totalRecords;
-    private int totalPages;
+
+    public Pager() {
+
+    }
+
+    public Pager(int pageNo, int pageSize, int totalRecords) {
+        this.pageNo = pageNo;
+        this.pageSize = pageSize;
+        this.totalRecords = totalRecords;
+    }
 
     public int getPageSize() {
         return pageSize;
@@ -32,10 +39,6 @@ public class Pager {
         return (pageNo - 1) * pageSize;
     }
 
-    public int getEndIndex() {
-        return pageNo * pageSize;
-    }
-
     public int getTotalRecords() {
         return totalRecords;
     }
@@ -45,10 +48,7 @@ public class Pager {
     }
 
     public int getTotalPages() {
-        return totalPages;
+        return getTotalRecords() % pageSize == 0 ? getTotalRecords() / pageSize : getTotalRecords() / pageSize + 1;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
 }

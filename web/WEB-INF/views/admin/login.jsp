@@ -42,7 +42,7 @@
 <div class="login_container">
     <img class="login_logo" src="<%=path %>/images/logo.jpg" alt="公司图片" title="公司图片"/>
 
-    <div class="login_div">
+    <div class="login_div input_small">
         <div class="easyui-panel" title="管理员登录" style="width:240px;padding:10px;">
             <div id="errMsg"></div>
             <form:form id="login_form" method="post" modelAttribute="admin">

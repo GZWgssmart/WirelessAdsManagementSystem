@@ -39,6 +39,21 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public int update(Admin admin) {
+        return adminDAO.update(admin);
+    }
+
+    @Override
+    public int inactive(String id) {
+        return adminDAO.inactive(id);
+    }
+
+    @Override
+    public int active(String id) {
+        return adminDAO.active(id);
+    }
+
+    @Override
     public int batchInsert(List<Admin> admins) {
         return adminDAO.batchInsert(admins);
     }

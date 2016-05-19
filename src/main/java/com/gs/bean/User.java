@@ -15,6 +15,7 @@ public class User implements Serializable {
     private String phone;
     private Date createTime;
     private Date lastLoginTime;
+    private String status;
 
     public String getId() {
         return id;
@@ -70,5 +71,13 @@ public class User implements Serializable {
 
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

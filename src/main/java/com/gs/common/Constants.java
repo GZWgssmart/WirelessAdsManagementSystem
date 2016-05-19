@@ -7,7 +7,6 @@ public class Constants {
 
     public static final String SESSION_CUSTOMER = "customer";
     public static final String SESSION_ADMIN = "admin";
-    public static final String SESSION_USER_ROLE = "userRole";
     public static final String SESSION_CHECK_CODE = "checkCode";
 
 }

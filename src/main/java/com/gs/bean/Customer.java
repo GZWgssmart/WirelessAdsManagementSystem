@@ -11,7 +11,6 @@ public class Customer extends User {
     private Date lastUpdateTime;
     private String lastUpdateByRole;
     private String lastUpdateByAdmin;
-    private String status;
 
     public String getAddress() {
         return address;
@@ -45,11 +44,4 @@ public class Customer extends User {
         this.lastUpdateByAdmin = lastUpdateByAdmin;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

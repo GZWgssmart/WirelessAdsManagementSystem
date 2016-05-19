@@ -3,9 +3,8 @@ package com.gs.controller;
 import com.gs.bean.Customer;
 import com.gs.common.Constants;
 import com.gs.common.bean.ControllerResult;
-import com.gs.common.bean.Pager;
 import com.gs.common.util.EncryptUtil;
-import com.gs.common.util.PagerUtil;
+import com.gs.common.web.SessionUtil;
 import com.gs.service.CustomerService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -40,7 +39,7 @@ public class CustomerController {
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ControllerResult login(Customer customer, @Param("checkCode")String checkCode, HttpSession session) {
-        if (session.getAttribute(Constants.SESSION_CUSTOMER) != null) {
+        if (SessionUtil.isCustomerLogin(session)) {
             return ControllerResult.getSuccessResult("登录成功");
         }
         String codeInSession = (String) session.getAttribute(Constants.SESSION_CHECK_CODE);
@@ -49,7 +48,6 @@ public class CustomerController {
             Customer c = customerService.query(customer);
             if (c != null) {
                 session.setAttribute(Constants.SESSION_CUSTOMER, customer);
-                session.setAttribute(Constants.SESSION_USER_ROLE, Constants.SESSION_CUSTOMER);
                 return ControllerResult.getSuccessResult("登录成功");
             } else {
                 return ControllerResult.getFailResult("登录失败,请检查邮箱或密码");
@@ -62,7 +60,6 @@ public class CustomerController {
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute(Constants.SESSION_CUSTOMER);
-        session.removeAttribute(Constants.SESSION_USER_ROLE);
         return "redirect:/index";
     }
 
@@ -77,27 +74,31 @@ public class CustomerController {
         customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
         customerService.insert(customer);
         session.setAttribute(Constants.SESSION_CUSTOMER, customer);
-        session.setAttribute(Constants.SESSION_USER_ROLE, Constants.SESSION_CUSTOMER);
         return "redirect:home";
     }
 
     @RequestMapping("home")
     public String home(HttpSession session) {
-        if (session.getAttribute(Constants.SESSION_CUSTOMER) == null) {
+        if (SessionUtil.isCustomerLogin(session)) {
+            return "customer/home";
+        } else {
             return "redirect:/index";
         }
-        return "customer/home";
     }
 
     @RequestMapping("list_page")
-    public String toListPage() {
-        return "customer/customers";
+    public String toListPage(HttpSession session) {
+        if (SessionUtil.isAdminLogin(session)) {
+            return "customer/customers";
+        } else {
+            return "redirect:/admin/login_page";
+        }
     }
 
     @ResponseBody
     @RequestMapping("list")
     public List<Customer> list(HttpSession session) {
-        if (session.getAttribute(Constants.SESSION_ADMIN) != null) {
+        if (SessionUtil.isAdminLogin(session)) {
             logger.info("显示所有客户信息");
             return customerService.queryAll();
         } else {
@@ -138,19 +139,6 @@ public class CustomerController {
         int result = customerService.batchInsert(customers);
         for(int i = 0; i < result; i++) {
             System.out.println("Count: " + result + ", id: " + customers.get(i).getId());
-        }
-        return "redirect:/index";
-    }
-
-    @RequestMapping("page/{pageNo}")
-    public String queryByPager(@PathVariable("pageNo") int pageNo) {
-        int count = customerService.count();
-        Pager pager = PagerUtil.getPager(pageNo);
-        PagerUtil.rebuildPager(pager, count);
-        System.out.println("Total records: " + pager.getTotalRecords() + ", total pages: " + pager.getTotalPages());
-        List<Customer> customers = customerService.queryByPager(pager);
-        for(Customer customer : customers) {
-            System.out.println(customer);
         }
         return "redirect:/index";
     }
