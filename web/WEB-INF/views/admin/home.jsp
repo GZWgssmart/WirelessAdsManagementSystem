@@ -34,8 +34,6 @@
         <div title="用户管理" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/customer/list_page" class="site-navi-tab">用户列表</a></p>
             <a href="javascript:void(0);" src="add/AddUser_admin.jsp" class="site-navi-tab">用户注册</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改资料</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable1.html" class="site-navi-tab">修改密码</a></p>
         </div>
         <div title="资源管理" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>
@@ -85,10 +83,11 @@
             <a href="javascript:void(0);" src="easyui/demo/validatebox.html" class="site-navi-tab">添加信息</a></p>
         </div>
         <div title="系统管理" class="site_menu">
+            <c:if test="${sessionScope.admin.role == 'super' }">
             <a href="javascript:void(0);" src="<%=path %>/admin/list_page" class="site-navi-tab">管理员列表</a></p>
-            <a href="javascript:void(0);" src="add/AddUser_admin.jsp" class="site-navi-tab">新增管理员</a></p>
-            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">修改资料卡</a></p>
-            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">修改密码卡</a></p>
+            </c:if>
+            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">账号信息</a></p>
+            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">账号设置</a></p>
         </div>
     </div>
 </div>

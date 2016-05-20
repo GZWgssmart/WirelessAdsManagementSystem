@@ -3,7 +3,10 @@ package com.gs.controller;
 import com.gs.bean.Customer;
 import com.gs.common.Constants;
 import com.gs.common.bean.ControllerResult;
+import com.gs.common.bean.Pager;
+import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.EncryptUtil;
+import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.CustomerService;
 import org.apache.ibatis.annotations.Param;
@@ -39,7 +42,7 @@ public class CustomerController {
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ControllerResult login(Customer customer, @Param("checkCode")String checkCode, HttpSession session) {
-        if (SessionUtil.isCustomerLogin(session)) {
+        if (SessionUtil.isCustomer(session)) {
             return ControllerResult.getSuccessResult("登录成功");
         }
         String codeInSession = (String) session.getAttribute(Constants.SESSION_CHECK_CODE);
@@ -47,7 +50,7 @@ public class CustomerController {
             customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
             Customer c = customerService.query(customer);
             if (c != null) {
-                session.setAttribute(Constants.SESSION_CUSTOMER, customer);
+                session.setAttribute(Constants.SESSION_CUSTOMER, c);
                 return ControllerResult.getSuccessResult("登录成功");
             } else {
                 return ControllerResult.getFailResult("登录失败,请检查邮箱或密码");
@@ -79,7 +82,7 @@ public class CustomerController {
 
     @RequestMapping("home")
     public String home(HttpSession session) {
-        if (SessionUtil.isCustomerLogin(session)) {
+        if (SessionUtil.isCustomer(session)) {
             return "customer/home";
         } else {
             return "redirect:/index";
@@ -88,7 +91,7 @@ public class CustomerController {
 
     @RequestMapping("list_page")
     public String toListPage(HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isAdmin(session)) {
             return "customer/customers";
         } else {
             return "redirect:/admin/login_page";
@@ -98,11 +101,26 @@ public class CustomerController {
     @ResponseBody
     @RequestMapping("list")
     public List<Customer> list(HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isAdmin(session)) {
             logger.info("显示所有客户信息");
             return customerService.queryAll();
         } else {
             logger.info("管理员未登录，不能显示客户列表");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
+    public Pager4EasyUI<Customer> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示客户信息");
+            int total = customerService.count();
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<Customer> customers = customerService.queryByPager(pager);
+            return new Pager4EasyUI<Customer>(pager.getTotalRecords(), customers);
+        } else {
+            logger.info("管理员未登录，不能分页显示客户列表");
             return null;
         }
     }

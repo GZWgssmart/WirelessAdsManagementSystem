@@ -1,5 +1,6 @@
 package com.gs.common.web;
 
+import com.gs.bean.Admin;
 import com.gs.common.Constants;
 
 import javax.servlet.http.HttpSession;
@@ -9,11 +10,20 @@ import javax.servlet.http.HttpSession;
  */
 public class SessionUtil {
 
-    public static boolean isAdminLogin(HttpSession session) {
+    public static boolean isAdmin(HttpSession session) {
         return session.getAttribute(Constants.SESSION_ADMIN) != null;
     }
 
-    public static boolean isCustomerLogin(HttpSession session) {
+    public static boolean isSuperAdmin(HttpSession session) {
+        Object obj = session.getAttribute(Constants.SESSION_ADMIN);
+        if (obj == null) {
+            return false;
+        } else {
+            return ((Admin) obj).getRole().equals(Constants.SUPER_ADMIN);
+        }
+    }
+
+    public static boolean isCustomer(HttpSession session) {
         return session.getAttribute(Constants.SESSION_CUSTOMER) != null;
     }
 }

@@ -32,8 +32,8 @@
 <div data-options="region:'west',split:true,title:'功能菜单'" class="west">
     <div class="easyui-accordion" data-options="border:false">
         <div title="用户管理" class="site_menu">
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改资料</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable1.html" class="site-navi-tab">修改密码</a></p>
+            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">账号信息</a></p>
+            <a href="javascript:void(0);" src="easyui/demo/droppable1.html" class="site-navi-tab">账号设置</a></p>
         </div>
         <div title="资源管理" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>

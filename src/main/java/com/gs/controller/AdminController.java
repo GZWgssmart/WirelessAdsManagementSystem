@@ -49,7 +49,7 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ControllerResult login(Admin admin, @Param("checkCode")String checkCode, HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isAdmin(session)) {
             return ControllerResult.getSuccessResult("登录成功");
         }
         String codeInSession = (String) session.getAttribute(Constants.SESSION_CHECK_CODE);
@@ -57,7 +57,7 @@ public class AdminController {
             admin.setPassword(EncryptUtil.md5Encrypt(admin.getPassword()));
             Admin a = adminService.query(admin);
             if (a != null) {
-                session.setAttribute(Constants.SESSION_ADMIN, admin);
+                session.setAttribute(Constants.SESSION_ADMIN, a);
                 return ControllerResult.getSuccessResult("登录成功");
             } else {
                 return ControllerResult.getFailResult("登录失败,请检查邮箱或密码");
@@ -76,19 +76,19 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ControllerResult add(Admin admin, HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isSuperAdmin(session)) {
             admin.setPassword(EncryptUtil.md5Encrypt(admin.getPassword()));
             adminService.insert(admin);
             logger.info("成功添加管理员");
             return ControllerResult.getSuccessResult("成功添加管理员");
         } else {
-            return ControllerResult.getFailResult("添加管理员失败");
+            return ControllerResult.getFailResult("没有权限添加管理员");
         }
     }
 
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isAdmin(session)) {
             return "admin/home";
         } else {
             return "redirect:login_page";
@@ -97,7 +97,7 @@ public class AdminController {
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
     public String toListPage(HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isSuperAdmin(session)) {
             return "admin/admins";
         } else {
             return "redirect:login_page";
@@ -107,7 +107,7 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<Admin> list(HttpSession session) {
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isSuperAdmin(session)) {
             logger.info("显示所有管理员信息");
             return adminService.queryAll();
         } else {
@@ -118,8 +118,7 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "list_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Admin> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        logger.info("list pager");
-        if (SessionUtil.isAdminLogin(session)) {
+        if (SessionUtil.isSuperAdmin(session)) {
             logger.info("分页显示管理员信息");
             int total = adminService.count();
             Pager pager = PagerUtil.getPager(page, rows, total);
@@ -133,16 +132,24 @@ public class AdminController {
 
     @ResponseBody
     @RequestMapping(value = "inactive", method = RequestMethod.GET)
-    public ControllerResult inactive(@Param("id")String id) {
-        adminService.inactive(id);
-        return ControllerResult.getSuccessResult("冻结管理员成功");
+    public ControllerResult inactive(@Param("id")String id, HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session)) {
+            adminService.inactive(id);
+            return ControllerResult.getSuccessResult("冻结管理员成功");
+        } else {
+            return ControllerResult.getFailResult("没有权限冻结管理员");
+        }
     }
 
     @ResponseBody
     @RequestMapping(value = "active", method = RequestMethod.GET)
-    public ControllerResult active(@Param("id")String id) {
-        adminService.active(id);
-        return ControllerResult.getSuccessResult("已解除管理员冻结");
+    public ControllerResult active(@Param("id")String id, HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session)) {
+            adminService.active(id);
+            return ControllerResult.getSuccessResult("已解除管理员冻结");
+        } else {
+            return ControllerResult.getFailResult("没有权限激活管理员");
+        }
     }
 
     @RequestMapping("index/{id}")

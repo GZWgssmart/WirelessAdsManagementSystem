@@ -83,7 +83,7 @@
         }
     </script>
 </head>
-<body style="margin:0;padding:0;">
+<body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
         url:'<%=path %>/admin/list_pager',

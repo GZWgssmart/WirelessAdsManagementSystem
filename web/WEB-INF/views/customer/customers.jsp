@@ -32,7 +32,7 @@
 <body style="margin:0;padding:0;">
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
-        url:'<%=path %>/customer/list',
+        url:'<%=path %>/customer/list_pager',
         method:'get',
 				rownumbers:true,
 				singleSelect:true,

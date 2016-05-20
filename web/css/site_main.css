@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 a:link, a:visited, a:active {
     color:black;
     text-decoration: none;
@@ -88,6 +93,16 @@ a:hover {
     width: 800px;
     height:400px;
     padding:10px;
+}
+
+.site_table {
+    border-collapse: collapse;
+    border:1px dotted grey;
+}
+
+.site_table tr td {
+    padding: 5px;
+    border:1px dotted #ccc;
 }
 
 

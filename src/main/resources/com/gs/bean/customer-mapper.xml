@@ -17,7 +17,7 @@
 
     <select id="query" parameterType="customer" resultType="customer">
         <![CDATA[
-        select * from t_customer where email=#{email} and password = #{password}
+        select * from t_customer where email=#{email} and password = #{password} and status = 'Y'
         ]]>
     </select>
 

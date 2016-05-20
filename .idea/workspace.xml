@@ -2,32 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/bean/Pager4EasyUI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/ads_system.sql" afterPath="$PROJECT_DIR$/documents/ads_system.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/bean/Admin.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/bean/Admin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/bean/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/bean/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/common/bean/Pager.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/bean/Pager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/config/autoload.properties" afterPath="$PROJECT_DIR$/web/WEB-INF/config/autoload.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/login.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/login.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/site_main.css" afterPath="$PROJECT_DIR$/web/css/site_main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/site_easyui.js" afterPath="$PROJECT_DIR$/web/js/site_easyui.js" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+              <caret line="120" column="82" selection-start-line="120" selection-start-column="82" selection-end-line="120" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,71 +69,54 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="customers.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.25">
+              <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="admins.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.083333">
-              <caret line="88" column="40" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
+            <state vertical-scroll-proportion="-49.375">
+              <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PagerUtil.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44055945">
-              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PathUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PathUtil.java">
+      <file leaf-file-name="SessionUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+              <folding>
+                <element signature="e#256#257#0" expanded="true" />
+                <element signature="e#332#333#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8518519">
+              <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="autoload.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/config/autoload.properties">
+      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AutoLoadListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/AutoLoadListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.5">
-              <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SingletonConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/SingletonConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+            <state vertical-scroll-proportion="-11.875">
+              <caret line="35" column="102" selection-start-line="35" selection-start-column="102" selection-end-line="35" selection-end-column="102" />
               <folding />
             </state>
           </provider>
@@ -156,21 +125,41 @@
       <file leaf-file-name="admin-mapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.375">
-              <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+            <state vertical-scroll-proportion="-10.0">
+              <caret line="19" column="93" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
               <folding>
-                <marker date="1463651724000" expanded="true" signature="533:569" placeholder="select * fro..t_user..." />
-                <marker date="1463651724000" expanded="true" signature="688:757" placeholder="select * fro..t_admin..." />
-                <marker date="1463651724000" expanded="true" signature="883:904" placeholder="select * fro..t_amdin..." />
-                <marker date="1463651724000" expanded="true" signature="1075:1129" placeholder="select * fro..t_user..." />
-                <marker date="1463651724000" expanded="true" signature="1224:1247" placeholder="select count..t_user..." />
-                <marker date="1463651724000" expanded="true" signature="1224:1252" placeholder="select count..t_admin..." />
-                <marker date="1463651724000" expanded="true" signature="1395:1520" placeholder="insert into t_user..." />
-                <marker date="1463651724000" expanded="true" signature="1641:1655" placeholder="update t_adm..." />
-                <marker date="1463651724000" expanded="true" signature="1641:1669" placeholder="update t_adm..." />
-                <marker date="1463651724000" expanded="true" signature="1641:1685" placeholder="update t_adm..." />
-                <marker date="1463651724000" expanded="true" signature="1641:1689" placeholder="update t_adm..." />
-                <marker date="1463651724000" expanded="true" signature="1808:1856" placeholder="update t_adm..." />
+                <marker date="1463702782000" expanded="true" signature="533:569" placeholder="select * fro..t_user..." />
+                <marker date="1463702782000" expanded="true" signature="688:757" placeholder="select * fro..t_admin..." />
+                <marker date="1463702782000" expanded="true" signature="688:774" placeholder="select * fro..t_admin..." />
+                <marker date="1463702782000" expanded="true" signature="900:921" placeholder="select * fro..t_amdin..." />
+                <marker date="1463702782000" expanded="true" signature="1092:1146" placeholder="select * fro..t_user..." />
+                <marker date="1463702782000" expanded="true" signature="1241:1264" placeholder="select count..t_user..." />
+                <marker date="1463702782000" expanded="true" signature="1241:1269" placeholder="select count..t_admin..." />
+                <marker date="1463702782000" expanded="true" signature="1412:1537" placeholder="insert into t_user..." />
+                <marker date="1463702782000" expanded="true" signature="1658:1672" placeholder="update t_adm..." />
+                <marker date="1463702782000" expanded="true" signature="1658:1686" placeholder="update t_adm..." />
+                <marker date="1463702782000" expanded="true" signature="1658:1702" placeholder="update t_adm..." />
+                <marker date="1463702782000" expanded="true" signature="1658:1706" placeholder="update t_adm..." />
+                <marker date="1463702782000" expanded="true" signature="1825:1873" placeholder="update t_adm..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer-mapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.875">
+              <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+              <folding>
+                <marker date="1463702813000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
+                <marker date="1463702813000" expanded="true" signature="709:781" placeholder="select * fro..t_customer..." />
+                <marker date="1463702813000" expanded="true" signature="709:798" placeholder="select * fro..t_customer..." />
+                <marker date="1463702813000" expanded="true" signature="709:817" placeholder="select * fro..t_customer..." />
+                <marker date="1463702813000" expanded="true" signature="927:951" placeholder="select * fro..t_customer..." />
+                <marker date="1463702813000" expanded="true" signature="1125:1182" placeholder="select * fro..t_customer..." />
+                <marker date="1463702813000" expanded="true" signature="1277:1308" placeholder="select count..t_customer..." />
+                <marker date="1463702813000" expanded="true" signature="1454:1570" placeholder="insert into t_customer..." />
               </folding>
             </state>
           </provider>
@@ -180,10 +169,20 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="124" column="64" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
+              <caret line="120" column="34" selection-start-line="120" selection-start-column="34" selection-end-line="120" selection-end-column="34" />
               <folding>
-                <element signature="e#4591#4598#0" expanded="true" />
+                <element signature="e#4544#4551#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site_main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/site_main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -227,7 +226,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/common/bean/ControllerResult.java" />
         <option value="$PROJECT_DIR$/web/js/site_main.js" />
@@ -235,31 +233,32 @@
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/register.jsp" />
         <option value="dbtable:/77d28789/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_admin" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/home.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Admin.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/login.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" />
-        <option value="$PROJECT_DIR$/web/css/site_main.css" />
         <option value="$PROJECT_DIR$/documents/ads_system.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/User.java" />
         <option value="$PROJECT_DIR$/web/js/site_easyui.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/BaseDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/common/bean/Pager4EasyUI.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/common/bean/Pager.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/autoload.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" />
+        <option value="$PROJECT_DIR$/web/css/site_main.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" />
       </list>
     </option>
   </component>
@@ -1402,12 +1401,12 @@
       <workItem from="1463361566949" duration="1042000" />
       <workItem from="1463362633958" duration="28970000" />
       <workItem from="1463491111587" duration="15459000" />
-      <workItem from="1463555714353" duration="40940000" />
+      <workItem from="1463555714353" duration="49077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86411000" />
+    <option name="totallyTimeSpent" value="94548000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -1415,11 +1414,11 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.49676898" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.509693" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.49030694" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.49030694" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.49192247" order="3" side_tool="false" content_ui="tabs" />
@@ -1427,7 +1426,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13085622" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1488,14 +1487,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java</url>
-          <line>44</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
@@ -1839,17 +1830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36829838">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="e#737#738#0" expanded="false" />
-            <element signature="e#787#788#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1901,30 +1881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.5">
-          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.125">
-          <caret line="87" column="73" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.0">
@@ -1933,34 +1889,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.0">
-          <caret line="21" column="13" selection-start-line="17" selection-start-column="4" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <marker date="1463532052000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
-            <marker date="1463532052000" expanded="true" signature="709:781" placeholder="select * fro..t_customer..." />
-            <marker date="1463532052000" expanded="true" signature="709:800" placeholder="select * fro..t_customer..." />
-            <marker date="1463532052000" expanded="true" signature="910:934" placeholder="select * fro..t_customer..." />
-            <marker date="1463532052000" expanded="true" signature="1108:1165" placeholder="select * fro..t_customer..." />
-            <marker date="1463532052000" expanded="true" signature="1260:1291" placeholder="select count..t_customer..." />
-            <marker date="1463532052000" expanded="true" signature="1437:1553" placeholder="insert into t_customer..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/bean/ControllerResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84992343">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/site_main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1996,44 +1928,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Admin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#184#185#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="1" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/site_easyui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="207" column="14" selection-start-line="207" selection-start-column="14" selection-end-line="207" selection-end-column="14" />
-          <folding>
-            <marker date="1463649040000" expanded="true" signature="835:858" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/77d28789/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_admin">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -2092,35 +1991,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.375">
-          <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
-          <folding>
-            <marker date="1463651724000" expanded="true" signature="533:569" placeholder="select * fro..t_user..." />
-            <marker date="1463651724000" expanded="true" signature="688:757" placeholder="select * fro..t_admin..." />
-            <marker date="1463651724000" expanded="true" signature="883:904" placeholder="select * fro..t_amdin..." />
-            <marker date="1463651724000" expanded="true" signature="1075:1129" placeholder="select * fro..t_user..." />
-            <marker date="1463651724000" expanded="true" signature="1224:1247" placeholder="select count..t_user..." />
-            <marker date="1463651724000" expanded="true" signature="1224:1252" placeholder="select count..t_admin..." />
-            <marker date="1463651724000" expanded="true" signature="1395:1520" placeholder="insert into t_user..." />
-            <marker date="1463651724000" expanded="true" signature="1641:1655" placeholder="update t_adm..." />
-            <marker date="1463651724000" expanded="true" signature="1641:1669" placeholder="update t_adm..." />
-            <marker date="1463651724000" expanded="true" signature="1641:1685" placeholder="update t_adm..." />
-            <marker date="1463651724000" expanded="true" signature="1641:1689" placeholder="update t_adm..." />
-            <marker date="1463651724000" expanded="true" signature="1808:1856" placeholder="update t_adm..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.083333">
-          <caret line="88" column="40" selection-start-line="88" selection-start-column="40" selection-end-line="88" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.06993007">
@@ -2145,18 +2015,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3846154">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/AutoLoadListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.5">
+          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PathUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/site_easyui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="207" column="30" selection-start-line="207" selection-start-column="30" selection-end-line="207" selection-end-column="30" />
+          <folding>
+            <marker date="1463649040000" expanded="true" signature="835:858" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Admin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3146853">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="e#184#185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/77d28789/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_admin">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36829838">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding>
+            <element signature="e#737#738#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <element signature="e#256#257#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3846154">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-49.375">
+          <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/site_main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="120" column="34" selection-start-line="120" selection-start-column="34" selection-end-line="120" selection-end-column="34" />
+          <folding>
+            <element signature="e#4544#4551#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="120" column="82" selection-start-line="120" selection-start-column="82" selection-end-line="120" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.25">
+          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.875">
+          <caret line="35" column="102" selection-start-line="35" selection-start-column="102" selection-end-line="35" selection-end-column="102" />
           <folding />
         </state>
       </provider>
@@ -2174,54 +2175,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.5">
-          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="124" column="64" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="19" column="93" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
           <folding>
-            <element signature="e#4591#4598#0" expanded="true" />
+            <marker date="1463702782000" expanded="true" signature="533:569" placeholder="select * fro..t_user..." />
+            <marker date="1463702782000" expanded="true" signature="688:757" placeholder="select * fro..t_admin..." />
+            <marker date="1463702782000" expanded="true" signature="688:774" placeholder="select * fro..t_admin..." />
+            <marker date="1463702782000" expanded="true" signature="900:921" placeholder="select * fro..t_amdin..." />
+            <marker date="1463702782000" expanded="true" signature="1092:1146" placeholder="select * fro..t_user..." />
+            <marker date="1463702782000" expanded="true" signature="1241:1264" placeholder="select count..t_user..." />
+            <marker date="1463702782000" expanded="true" signature="1241:1269" placeholder="select count..t_admin..." />
+            <marker date="1463702782000" expanded="true" signature="1412:1537" placeholder="insert into t_user..." />
+            <marker date="1463702782000" expanded="true" signature="1658:1672" placeholder="update t_adm..." />
+            <marker date="1463702782000" expanded="true" signature="1658:1686" placeholder="update t_adm..." />
+            <marker date="1463702782000" expanded="true" signature="1658:1702" placeholder="update t_adm..." />
+            <marker date="1463702782000" expanded="true" signature="1658:1706" placeholder="update t_adm..." />
+            <marker date="1463702782000" expanded="true" signature="1825:1873" placeholder="update t_adm..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45454547">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+        <state vertical-scroll-proportion="-11.875">
+          <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1463702813000" expanded="true" signature="545:584" placeholder="select * fro..t_admin..." />
+            <marker date="1463702813000" expanded="true" signature="709:781" placeholder="select * fro..t_customer..." />
+            <marker date="1463702813000" expanded="true" signature="709:798" placeholder="select * fro..t_customer..." />
+            <marker date="1463702813000" expanded="true" signature="709:817" placeholder="select * fro..t_customer..." />
+            <marker date="1463702813000" expanded="true" signature="927:951" placeholder="select * fro..t_customer..." />
+            <marker date="1463702813000" expanded="true" signature="1125:1182" placeholder="select * fro..t_customer..." />
+            <marker date="1463702813000" expanded="true" signature="1277:1308" placeholder="select count..t_customer..." />
+            <marker date="1463702813000" expanded="true" signature="1454:1570" placeholder="insert into t_customer..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PathUtil.java">
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44055945">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.8518519">
+          <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
           <folding />
         </state>
       </provider>
