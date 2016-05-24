@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
     String path = request.getContextPath();
 %>
@@ -27,6 +28,21 @@
         $(function() {
             setPagination("#list")
         });
+
+        function addCustomer() {
+            $.post("<%=path %>/customer/add",
+                    $("#addForm").serialize(),
+                    function (data) {
+                        if (data.result == "success") {
+                            $("#addCustomer").window("close");
+                            dataGridReload("list");
+                            $("#addForm").form("clear");
+                        } else {
+                            $.messager.alert("提示", data.message, "info");
+                        }
+                    }
+            );
+        }
     </script>
 </head>
 <body style="margin:0;padding:0;">
@@ -48,12 +64,13 @@
         <th field="phone" width="80">手机号</th>
         <th field="address" width="200">地址</th>
         <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
+        <th field="loginTime" width="150" formatter="formatterDate">最近登录时间</th>
     </tr>
     </thead>
 </table>
 <div id="tb">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-       onclick="openWin('addAdmin');">添加</a>
+       onclick="openWin('addCustomer');">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
        onclick="openWin('addAdmin');">修改</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
@@ -61,5 +78,39 @@
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
        onclick="activeAdmin()">激活</a>
 </div>
+
+<div class="easyui-window site_win_small input_big" id="addCustomer" data-options="title:'添加客户',resizable:false,mode:true,closed:true">
+    <form:form id="addForm" modelAttribute="customer">
+        <table>
+            <tr>
+                <td>邮箱:</td>
+                <td><input type="text" name="email" class="easyui-textbox"/></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input type="password" name="password" class="easyui-textbox"/></td>
+            </tr>
+            <tr>
+                <td>姓名:</td>
+                <td><input type="text" name="name" class="easyui-textbox"/></td>
+            </tr>
+            <tr>
+                <td>手机:</td>
+                <td><input type="text" name="phone" class="easyui-textbox"/></td>
+            </tr>
+            <tr>
+                <td>地址:</td>
+                <td><input type="text" name="address" class="easyui-textbox"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="addCustomer();">确认</button>
+                </td>
+            </tr>
+        </table>
+    </form:form>
+</div>
+
 </body>
 </html>

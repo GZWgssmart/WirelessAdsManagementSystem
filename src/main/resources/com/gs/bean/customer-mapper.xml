@@ -42,7 +42,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="customer">
         <![CDATA[
-        insert into t_customer(id, email, password, last_login_time) values(uuid(), #{email}, #{password}, #{lastLoginTime})
+        insert into t_customer(id, email, password, name, phone, address) values(uuid(), #{email}, #{password}, #{name}, #{phone}, #{address})
         ]]>
     </insert>
 

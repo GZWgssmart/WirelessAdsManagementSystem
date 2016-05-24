@@ -74,7 +74,7 @@ public class CustomerController {
         return "customer/register";
     }
 
-    @RequestMapping("reg")
+    @RequestMapping(value = "reg", method = RequestMethod.POST)
     public String reg(Customer customer, HttpSession session) {
         customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
         customerService.insert(customer);
@@ -82,7 +82,18 @@ public class CustomerController {
         return "redirect:home";
     }
 
-    @RequestMapping("home")
+    @ResponseBody
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ControllerResult add(Customer customer, HttpSession session) {
+        if (SessionUtil.isAdmin(session) || SessionUtil.isSuperAdmin(session)) {
+            customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
+            customerService.insert(customer);
+            return ControllerResult.getSuccessResult("成功添加客户信息");
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             return "customer/home";
@@ -91,7 +102,7 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping("list_page")
+    @RequestMapping(value = "list_page", method = RequestMethod.GET)
     public String toListPage(HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             return "customer/customers";
@@ -101,7 +112,7 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @RequestMapping("list")
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<Customer> list(HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             logger.info("显示所有客户信息");
@@ -127,7 +138,7 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping("query/{id}")
+    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
             logger.info("根据客户id: " + id + "查询客户信息");
