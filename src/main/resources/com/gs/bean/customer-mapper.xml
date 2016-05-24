@@ -6,16 +6,17 @@
         <id property="id" column="id" />
         <result property="createTime" column="create_time" />
         <result property="lastLoginTime" column="last_login_time" />
+        <result property="loginTime" column="login_time" />
+        <result property="lastUpdateTime" column="last_update_time" />
     </resultMap>
 
-    <select id="queryById" parameterType="int"
-            resultType="customer">
+    <select id="queryById" parameterType="string" resultMap="customerResultMap">
         <![CDATA[
         select * from t_customer where id=#{id}
         ]]>
     </select>
 
-    <select id="query" parameterType="customer" resultType="customer">
+    <select id="query" parameterType="customer" resultMap="customerResultMap">
         <![CDATA[
         select * from t_customer where email=#{email} and password = #{password} and status = 'Y'
         ]]>
@@ -44,6 +45,24 @@
         insert into t_customer(id, email, password, last_login_time) values(uuid(), #{email}, #{password}, #{lastLoginTime})
         ]]>
     </insert>
+
+    <update id="updateLoginTime" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_customer set last_login_time = login_time, login_time = CURRENT_TIMESTAMP where id = #{id}
+        ]]>
+    </update>
+
+    <update id="update" keyProperty="id" parameterType="customer">
+        <![CDATA[
+        update t_customer set name = #{name}, phone = #{phone}, address = #{address}, last_update_time = CURRENT_TIMESTAMP where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updatePassword" keyProperty="id" parameterType="customer">
+        <![CDATA[
+        update t_customer set password = #{password} where id = #{id}
+        ]]>
+    </update>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
         <![CDATA[

@@ -41,6 +41,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public int update(Customer customer) {
+        return customerDAO.update(customer);
+    }
+
+    @Override
     public int batchInsert(List<Customer> customers) {
         return customerDAO.batchInsert(customers);
     }
@@ -53,5 +58,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int count() {
         return customerDAO.count();
+    }
+
+    @Override
+    public int updateLoginTime(String id) {
+        return customerDAO.updateLoginTime(id);
+    }
+
+    @Override
+    public int updatePassword(Customer customer) {
+        return customerDAO.updatePassword(customer);
     }
 }

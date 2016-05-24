@@ -13,6 +13,7 @@ CREATE TABLE t_admin(
   phone VARCHAR(11) NOT NULL COMMENT '手机号',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间',
   last_login_time DATETIME COMMENT '最近一次登录时间',
+  login_time DATETIME COMMENT '登录时间',
   role VARCHAR(20) NOT NULL COMMENT '管理员角色',
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '管理员是否可用'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -34,6 +35,7 @@ CREATE TABLE t_customer (
   phone VARCHAR(11) COMMENT '手机号',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间',
   last_login_time DATETIME COMMENT '最近一次登录时间',
+  login_time DATETIME COMMENT '登录时间',
   last_update_time DATETIME COMMENT '最近一次修改时间',
   last_update_by_role VARCHAR(10) COMMENT '最近一次被哪个角色修改,可选admin或self',
   last_update_by_admin VARCHAR(128) COMMENT '最近一次被哪个管理员修改',

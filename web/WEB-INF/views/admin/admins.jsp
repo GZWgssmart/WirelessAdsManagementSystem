@@ -36,7 +36,7 @@
                         if (data.result == "success") {
                             $("#addAdmin").window("close");
                             dataGridReload("list");
-                            $("#addForm").form("clear")
+                            $("#addForm").form("clear");
                         } else {
                             $.messager.alert("提示", data.message, "info");
                         }
@@ -96,7 +96,7 @@
 				pageSize:20,
 				rowStyler: function(index,row){
 					if (row.role == 'super'){
-						return 'background-color:silver;';
+						return 'background-color:#ccc;';
 					} else if (row.status == 'N') {
 					    return 'color:red;';
 					}

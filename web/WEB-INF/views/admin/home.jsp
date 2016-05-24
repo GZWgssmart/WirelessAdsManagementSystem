@@ -25,7 +25,7 @@
     <img class="main_logo" src="<%=path %>/images/logo.jpg"/>
 
     <div class="north wel_msg">
-        欢迎您:&nbsp;&nbsp;<b><a href="#">${sessionScope.admin.email }</a></b>&nbsp;&nbsp;
+        欢迎您:&nbsp;&nbsp;<b>${sessionScope.admin.email }</b>&nbsp;&nbsp;
         <a href="<%=path %>/admin/logout">安全退出</a>
     </div>
 </div>
@@ -33,7 +33,6 @@
     <div class="easyui-accordion" data-options="border:false">
         <div title="用户管理" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/customer/list_page" class="site-navi-tab">用户列表</a></p>
-            <a href="javascript:void(0);" src="add/AddUser_admin.jsp" class="site-navi-tab">用户注册</a></p>
         </div>
         <div title="资源管理" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>
@@ -86,8 +85,8 @@
             <c:if test="${sessionScope.admin.role == 'super' }">
             <a href="javascript:void(0);" src="<%=path %>/admin/list_page" class="site-navi-tab">管理员列表</a></p>
             </c:if>
-            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">账号信息</a></p>
-            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">账号设置</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/admin/query/${sessionScope.admin.id }" class="site-navi-tab">账号信息</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/admin/setting_page" class="site-navi-tab">账号设置</a></p>
         </div>
     </div>
 </div>

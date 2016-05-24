@@ -6,16 +6,16 @@
         <id property="id" column="id" />
         <result property="createTime" column="create_time" />
         <result property="lastLoginTime" column="last_login_time" />
+        <result property="loginTime" column="login_time" />
     </resultMap>
 
-    <select id="queryById" parameterType="int"
-            resultType="admin">
+    <select id="queryById" parameterType="string" resultMap="adminResultMap">
         <![CDATA[
         select * from t_admin where id=#{id}
         ]]>
     </select>
 
-    <select id="query" parameterType="admin" resultType="admin">
+    <select id="query" parameterType="admin" resultMap="adminResultMap">
         <![CDATA[
         select * from t_admin where email=#{email} and password = #{password} and status = 'Y'
         ]]>
@@ -54,6 +54,24 @@
     <update id="active" keyProperty="id" parameterType="string">
         <![CDATA[
         update t_admin set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updateLoginTime" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_admin set last_login_time = login_time, login_time = CURRENT_TIMESTAMP where id = #{id}
+        ]]>
+    </update>
+
+    <update id="update" keyProperty="id" parameterType="admin">
+        <![CDATA[
+        update t_admin set name = #{name}, phone = #{phone} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updatePassword" keyProperty="id" parameterType="admin">
+        <![CDATA[
+        update t_admin set password = #{password} where id = #{id}
         ]]>
     </update>
 

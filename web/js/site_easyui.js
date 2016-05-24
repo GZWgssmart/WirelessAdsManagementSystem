@@ -200,10 +200,18 @@ function openWin(id) {
     $("#" + id).window("open");
 }
 
+function closeWin(id) {
+    $("#" + id).window("close");
+}
+
 function selectedRow(id) {
     return $("#" + id).datagrid("getSelected");
 }
 
 function dataGridReload(id) {
     $("#" + id).datagrid("reload");
+}
+
+function closeTab(title) {
+    $('#tabs').tabs('close', title);
 }

@@ -67,4 +67,14 @@ public class AdminServiceImpl implements AdminService {
     public int count() {
         return adminDAO.count();
     }
+
+    @Override
+    public int updateLoginTime(String id) {
+        return adminDAO.updateLoginTime(id);
+    }
+
+    @Override
+    public int updatePassword(Admin admin) {
+        return adminDAO.updatePassword(admin);
+    }
 }

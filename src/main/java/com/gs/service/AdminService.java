@@ -22,4 +22,7 @@ public interface AdminService {
     public List<Admin> queryByPager(Pager pager);
     public int count();
 
+    public int updateLoginTime(String id);
+    public int updatePassword(Admin admin);
+
 }

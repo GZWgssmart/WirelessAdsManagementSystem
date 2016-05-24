@@ -51,5 +51,15 @@
     </tr>
     </thead>
 </table>
+<div id="tb">
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+       onclick="openWin('addAdmin');">添加</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+       onclick="openWin('addAdmin');">修改</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+       onclick="inactiveAdmin()">冻结</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+       onclick="activeAdmin()">激活</a>
+</div>
 </body>
 </html>

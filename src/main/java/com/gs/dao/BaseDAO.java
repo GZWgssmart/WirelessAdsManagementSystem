@@ -26,4 +26,7 @@ public interface BaseDAO<T, PK extends Serializable> {
     public int inactive(String id);
     public int active(String id);
 
+    public int updateLoginTime(String id);
+    public int updatePassword(T t);
+
 }

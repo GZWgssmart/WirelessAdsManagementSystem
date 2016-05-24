@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+* {
+    font-size: 12px;
+}
+
 a:link, a:visited, a:active {
     color:black;
     text-decoration: none;
@@ -97,12 +101,24 @@ a:hover {
 
 .site_table {
     border-collapse: collapse;
-    border:1px dotted grey;
+    border:1px dotted #ccc;
+    min-width: 400px;
+}
+
+.site_table tr th {
+    padding: 5px;
+    border:1px dotted #ccc;
+    text-align: center;
 }
 
 .site_table tr td {
     padding: 5px;
     border:1px dotted #ccc;
+    text-align: left;
+}
+
+.site_table_td_title {
+    background-color: #ccc;
 }
 
 

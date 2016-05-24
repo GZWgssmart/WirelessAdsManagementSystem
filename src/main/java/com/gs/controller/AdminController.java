@@ -57,6 +57,7 @@ public class AdminController {
             admin.setPassword(EncryptUtil.md5Encrypt(admin.getPassword()));
             Admin a = adminService.query(admin);
             if (a != null) {
+                adminService.updateLoginTime(a.getId());
                 session.setAttribute(Constants.SESSION_ADMIN, a);
                 return ControllerResult.getSuccessResult("登录成功");
             } else {
@@ -152,22 +153,54 @@ public class AdminController {
         }
     }
 
-    @RequestMapping("index/{id}")
-    public ModelAndView queryById(@PathVariable("id") String id) {
-        ModelAndView mav = new ModelAndView("index");
-        Admin admin = adminService.queryById(id);
-        mav.addObject("admin", admin);
-        return mav;
+    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
+    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("admin/info");
+            Admin admin = adminService.queryById(id);
+            mav.addObject("admin", admin);
+            return mav;
+        }
+        return null;
     }
 
-    @RequestMapping("index")
-    public String query(Model model) {
-        List<Admin> admins = adminService.queryAll();
-        for (Admin admin : admins) {
-            System.out.println(admin);
+    @ResponseBody
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ControllerResult update(Admin admin, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("更新管理员信息");
+            adminService.update(admin);
+            return ControllerResult.getSuccessResult("成功更新管理员信息");
+        } else {
+            return ControllerResult.getFailResult("更新管理员信息失败");
         }
-        model.addAttribute("admins", admins);
-        return "index";
+    }
+
+    @RequestMapping(value = "setting_page", method = RequestMethod.GET)
+    public String settingPage(Admin admin, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            return "admin/setting";
+        } else {
+            return "redirect:login_page";
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "update_pwd", method = RequestMethod.POST)
+    public ControllerResult updatePwd(@Param("password")String password, @Param("newPwd")String newPwd, @Param("conPwd")String conPwd, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            Admin admin = (Admin) session.getAttribute(Constants.SESSION_ADMIN);
+            if (admin.getPassword().equals(EncryptUtil.md5Encrypt(password)) && newPwd != null && conPwd != null && newPwd.equals(conPwd)) {
+                admin.setPassword(EncryptUtil.md5Encrypt(newPwd));
+                adminService.updatePassword(admin);
+                session.setAttribute(Constants.SESSION_ADMIN, admin);
+                return ControllerResult.getSuccessResult("更新管理员密码成功");
+            } else {
+                return ControllerResult.getFailResult("原密码错误,或新密码与确认密码不一致");
+            }
+        } else {
+            return ControllerResult.getFailResult("无法更新管理员密码");
+        }
     }
 
     @InitBinder

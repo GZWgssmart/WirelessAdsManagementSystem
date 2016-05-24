@@ -32,8 +32,8 @@
 <div data-options="region:'west',split:true,title:'功能菜单'" class="west">
     <div class="easyui-accordion" data-options="border:false">
         <div title="用户管理" class="site_menu">
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">账号信息</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable1.html" class="site-navi-tab">账号设置</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/query/${sessionScope.customer.id }" class="site-navi-tab">账号信息</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/setting_page" class="site-navi-tab">账号设置</a></p>
         </div>
         <div title="资源管理" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>
@@ -81,12 +81,6 @@
         <div title="信息发布" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/form.html" class="site-navi-tab">信息列表</a></p>
             <a href="javascript:void(0);" src="easyui/demo/validatebox.html" class="site-navi-tab">添加信息</a></p>
-        </div>
-        <div title="系统管理" class="site_menu">
-            <a href="javascript:void(0);" src="list/ListUser_admin.jsp" class="site-navi-tab">管理员列表</a></p>
-            <a href="javascript:void(0);" src="add/AddUser_admin.jsp" class="site-navi-tab">新增管理员</a></p>
-            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">修改资料卡</a></p>
-            <a href="javascript:void(0);" src="UserList.action" class="site-navi-tab">修改密码卡</a></p>
         </div>
     </div>
 </div>

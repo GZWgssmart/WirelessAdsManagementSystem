@@ -15,8 +15,12 @@ public interface CustomerService {
     public Customer queryById(String id);
     public Customer query(Customer customer);
     public int insert(Customer customer);
+    public int update(Customer customer);
     public int batchInsert(List<Customer> customers);
     public List<Customer> queryByPager(Pager pager);
     public int count();
+
+    public int updateLoginTime(String id);
+    public int updatePassword(Customer customer);
 
 }

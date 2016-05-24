@@ -1,5 +1,7 @@
 package com.gs.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ public class User implements Serializable {
     private String phone;
     private Date createTime;
     private Date lastLoginTime;
+    private Date loginTime;
     private String status;
 
     public String getId() {
@@ -71,6 +74,14 @@ public class User implements Serializable {
 
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
+    }
+
+    public Date getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
     }
 
     public String getStatus() {
