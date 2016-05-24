@@ -69,4 +69,14 @@ public class CustomerServiceImpl implements CustomerService {
     public int updatePassword(Customer customer) {
         return customerDAO.updatePassword(customer);
     }
+
+    @Override
+    public int inactive(String id) {
+        return customerDAO.inactive(id);
+    }
+
+    @Override
+    public int active(String id) {
+        return customerDAO.active(id);
+    }
 }

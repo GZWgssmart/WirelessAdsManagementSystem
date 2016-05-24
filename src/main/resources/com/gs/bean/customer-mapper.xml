@@ -64,6 +64,18 @@
         ]]>
     </update>
 
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_customer set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_customer set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
         <![CDATA[
         insert into t_customer(email, password) VALUES

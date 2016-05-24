@@ -190,6 +190,28 @@ public class CustomerController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "inactive", method = RequestMethod.GET)
+    public ControllerResult inactive(@Param("id")String id, HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
+            customerService.inactive(id);
+            return ControllerResult.getSuccessResult("冻结客户账号成功");
+        } else {
+            return ControllerResult.getFailResult("没有权限冻结客户账号");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "active", method = RequestMethod.GET)
+    public ControllerResult active(@Param("id")String id, HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
+            customerService.active(id);
+            return ControllerResult.getSuccessResult("已解除客户账号冻结");
+        } else {
+            return ControllerResult.getFailResult("没有权限激活客户账号");
+        }
+    }
+
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

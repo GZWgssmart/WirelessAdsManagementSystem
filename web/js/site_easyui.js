@@ -200,6 +200,16 @@ function openWin(id) {
     $("#" + id).window("open");
 }
 
+function openWinFitPos(id) {
+    var top = ($(document.body).height() - $("#" + id).height()) / 2 - 28;
+    var left = ($(document.body).width() - $("#" + id).width()) / 2 - 18;
+    $("#" + id).window({
+        top:top,
+        left:left
+    });
+    openWin(id);
+}
+
 function closeWin(id) {
     $("#" + id).window("close");
 }

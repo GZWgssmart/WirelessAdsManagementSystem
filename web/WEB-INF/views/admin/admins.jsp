@@ -44,7 +44,7 @@
             );
         }
 
-        function inactiveAdmin() {
+        function inactive() {
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'N') {
@@ -63,7 +63,7 @@
             }
         }
 
-        function activeAdmin() {
+        function active() {
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'Y') {
@@ -118,9 +118,9 @@
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true"
        onclick="openWin('addAdmin');">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
-       onclick="inactiveAdmin()">冻结</a>
+       onclick="inactive()">冻结</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-       onclick="activeAdmin()">激活</a>
+       onclick="active()">激活</a>
 </div>
 
 <div class="easyui-window site_win_small input_big" id="addAdmin" data-options="title:'添加管理员',resizable:false,mode:true,closed:true">

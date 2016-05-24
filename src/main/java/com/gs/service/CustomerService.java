@@ -23,4 +23,7 @@ public interface CustomerService {
     public int updateLoginTime(String id);
     public int updatePassword(Customer customer);
 
+    public int inactive(String id);
+    public int active(String id);
+
 }
