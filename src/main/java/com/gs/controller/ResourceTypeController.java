@@ -3,6 +3,7 @@ package com.gs.controller;
 import com.gs.bean.Customer;
 import com.gs.bean.ResourceType;
 import com.gs.common.Constants;
+import com.gs.common.bean.ComboBox4EasyUI;
 import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
@@ -27,6 +28,7 @@ import javax.naming.ldap.Control;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -70,6 +72,23 @@ public class ResourceTypeController {
         } else {
             return null;
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "list_combo", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
+        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
+        if (SessionUtil.isCustomer(session)) {
+            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
+            List<ResourceType> resourceTypes = resourceTypeService.queryAll();
+            for (ResourceType resourceType : resourceTypes) {
+                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
+                comboBox4EasyUI.setId(resourceType.getId());
+                comboBox4EasyUI.setText(resourceType.getName());
+                comboBox4EasyUIs.add(comboBox4EasyUI);
+            }
+        }
+        return comboBox4EasyUIs;
     }
 
     @ResponseBody

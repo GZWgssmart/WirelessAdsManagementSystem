@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/bean/ComboBox4EasyUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/ResourceTypeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/ResourceTypeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/resourceType-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/resourceType-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/resource/resource_types.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource/resource_types.jsp" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,20 +49,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="resource_types.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/resource_types.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.708333">
-              <caret line="112" column="52" selection-start-line="112" selection-start-column="52" selection-end-line="112" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resourceType-mapper.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="resourceType-mapper.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/resourceType-mapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.625">
+            <state vertical-scroll-proportion="1.5555556">
               <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
               <folding>
                 <marker date="1464184161000" expanded="true" signature="491:535" placeholder="select * fro..t_customer..." />
@@ -83,18 +73,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceTypeServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ResourceTypeServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/ResourceTypeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2074592">
-              <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#755#756#0" expanded="true" />
-                <element signature="e#814#815#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
-                <element signature="e#939#940#0" expanded="true" />
+                <element signature="e#777#778#0" expanded="true" />
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#902#903#0" expanded="true" />
+                <element signature="e#961#962#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Resource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Resource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="131" column="61" selection-start-line="131" selection-start-column="61" selection-end-line="131" selection-end-column="61" />
+              <caret line="87" column="52" selection-start-line="87" selection-start-column="52" selection-end-line="87" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -144,35 +144,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ads_system.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
-              <folding>
-                <marker date="1464165991000" expanded="true" signature="702:781" placeholder="ALTER TABLE t_admin..." />
-                <marker date="1464165991000" expanded="true" signature="1673:1790" placeholder="ALTER TABLE t_customer..." />
-                <marker date="1464165991000" expanded="true" signature="5599:5738" placeholder="ALTER TABLE t_device_resource..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ads_system.t_resource_type" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/77d28789/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_resource_type">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -199,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/bean/ControllerResult.java" />
         <option value="$PROJECT_DIR$/web/js/site_main.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/register.jsp" />
         <option value="dbtable:/77d28789/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_admin" />
@@ -248,6 +218,7 @@
         <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/resourceType-mapper.xml" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resource_types.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/bean/ComboBox4EasyUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/ResourceTypeServiceImpl.java" />
       </list>
@@ -897,8 +868,8 @@
       <recent name="$PROJECT_DIR$/web" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.gs.controller" />
       <recent name="com.gs.common.bean" />
+      <recent name="com.gs.controller" />
       <recent name="com.gs.common.util" />
       <recent name="com.gs.service" />
     </key>
@@ -1419,12 +1390,12 @@
       <workItem from="1463362633958" duration="28970000" />
       <workItem from="1463491111587" duration="15459000" />
       <workItem from="1463555714353" duration="80292000" />
-      <workItem from="1464084676862" duration="27188000" />
+      <workItem from="1464084676862" duration="29004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152951000" />
+    <option name="totallyTimeSpent" value="154767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -1514,28 +1485,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/AutoLoadListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PathUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/PagerUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3846154">
@@ -1933,36 +1882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="131" column="61" selection-start-line="131" selection-start-column="61" selection-end-line="131" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/resourceType-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
-          <folding>
-            <marker date="1464184161000" expanded="true" signature="491:535" placeholder="select * fro..t_customer..." />
-            <marker date="1464184161000" expanded="true" signature="676:711" placeholder="select * fro..t_resource_type..." />
-            <marker date="1464184161000" expanded="true" signature="676:712" placeholder="select * fro..t_customer..." />
-            <marker date="1464184161000" expanded="true" signature="676:722" placeholder="select * fro..t_resource_type..." />
-            <marker date="1464184161000" expanded="true" signature="855:869" placeholder="select * fro..t_customer..." />
-            <marker date="1464184161000" expanded="true" signature="855:884" placeholder="select * fro..t_resource_type..." />
-            <marker date="1464184161000" expanded="true" signature="1062:1124" placeholder="select * fro..t_customer..." />
-            <marker date="1464184161000" expanded="true" signature="1274:1382" placeholder="select * fro..t_resource_type..." />
-            <marker date="1464184161000" expanded="true" signature="1477:1513" placeholder="select count..t_customer..." />
-            <marker date="1464184161000" expanded="true" signature="1663:1770" placeholder="insert into t_customer..." />
-            <marker date="1464184161000" expanded="true" signature="1895:1967" placeholder="update t_cus..." />
-            <marker date="1464184161000" expanded="true" signature="2088:2144" placeholder="update t_cus..." />
-            <marker date="1464184161000" expanded="true" signature="2263:2319" placeholder="update t_cus..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/BaseService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1995,16 +1914,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Resource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/bean/Pager4EasyUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24475524">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/bean/ComboBox4EasyUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10489511">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="87" column="52" selection-start-line="87" selection-start-column="52" selection-end-line="87" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/ResourceTypeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2074592">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#755#756#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#902#903#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/resourceType-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5555556">
+          <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
+          <folding>
+            <marker date="1464184161000" expanded="true" signature="491:535" placeholder="select * fro..t_customer..." />
+            <marker date="1464184161000" expanded="true" signature="676:711" placeholder="select * fro..t_resource_type..." />
+            <marker date="1464184161000" expanded="true" signature="676:712" placeholder="select * fro..t_customer..." />
+            <marker date="1464184161000" expanded="true" signature="676:722" placeholder="select * fro..t_resource_type..." />
+            <marker date="1464184161000" expanded="true" signature="855:869" placeholder="select * fro..t_customer..." />
+            <marker date="1464184161000" expanded="true" signature="855:884" placeholder="select * fro..t_resource_type..." />
+            <marker date="1464184161000" expanded="true" signature="1062:1124" placeholder="select * fro..t_customer..." />
+            <marker date="1464184161000" expanded="true" signature="1274:1382" placeholder="select * fro..t_resource_type..." />
+            <marker date="1464184161000" expanded="true" signature="1477:1513" placeholder="select count..t_customer..." />
+            <marker date="1464184161000" expanded="true" signature="1663:1770" placeholder="insert into t_customer..." />
+            <marker date="1464184161000" expanded="true" signature="1895:1967" placeholder="update t_cus..." />
+            <marker date="1464184161000" expanded="true" signature="2088:2144" placeholder="update t_cus..." />
+            <marker date="1464184161000" expanded="true" signature="2263:2319" placeholder="update t_cus..." />
           </folding>
         </state>
       </provider>

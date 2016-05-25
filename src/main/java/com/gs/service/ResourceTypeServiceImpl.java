@@ -19,7 +19,7 @@ public class ResourceTypeServiceImpl implements ResourceTypeService {
 
     @Override
     public List<ResourceType> queryAll() {
-        return null;
+        return resourceTypeDAO.queryAll();
     }
 
     @Override
