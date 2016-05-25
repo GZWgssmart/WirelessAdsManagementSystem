@@ -29,10 +29,10 @@
             setPagination("#list")
         });
 
-        function addCustomer() {
+        function addType() {
             toValidate();
             if (validateForm("addForm")) {
-                $.post("<%=path %>/customer/add",
+                $.post("<%=path %>/restype/add",
                         $("#addForm").serialize(),
                         function (data) {
                             if (data.result == "success") {
@@ -57,10 +57,10 @@
             }
         }
 
-        function editCustomer() {
+        function editType() {
             toValidate();
             if (validateForm("editForm")) {
-                $.post("<%=path %>/customer/update",
+                $.post("<%=path %>/restype/update",
                         $("#editForm").serialize(),
                         function (data) {
                             if (data.result == "success") {
@@ -82,7 +82,7 @@
                 if (row.status == 'N') {
                     $.messager.alert("提示", "客户账号不可用,无需冻结", "info");
                 } else {
-                    $.get("<%=path %>/customer/inactive?id=" + row.id,
+                    $.get("<%=path %>/restype/inactive?id=" + row.id,
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
@@ -101,7 +101,7 @@
                 if (row.status == 'Y') {
                     $.messager.alert("提示", "客户账号可用,无需激活", "info");
                 } else {
-                    $.get("<%=path %>/customer/active?id=" + row.id,
+                    $.get("<%=path %>/restype/active?id=" + row.id,
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
@@ -118,7 +118,7 @@
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
-        url:'<%=path %>/customer/list_pager',
+        url:'<%=path %>/restype/list_pager',
         method:'get',
 				rownumbers:true,
 				singleSelect:true,
@@ -136,12 +136,9 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="email" width="150">邮箱</th>
-        <th field="name" width="100">姓名</th>
-        <th field="phone" width="80">手机号</th>
-        <th field="address" width="200">地址</th>
+        <th field="name" width="150">名称</th>
+        <th field="des" width="200">描述</th>
         <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
-        <th field="loginTime" width="150" formatter="formatterDate">最近登录时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>
@@ -157,37 +154,22 @@
        onclick="active()">激活</a>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加客户',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加资源类型',resizable:false,mode:true,closed:true">
     <form:form id="addForm" modelAttribute="customer">
         <table>
             <tr>
-                <td>邮箱:</td>
-                <td><input type="text" name="email" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,validType:'email',novalidate:true"/></td>
-            </tr>
-            <tr>
-                <td>密码:</td>
-                <td><input type="password" name="password" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
-            </tr>
-            <tr>
-                <td>姓名:</td>
+                <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
-                <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
-            </tr>
-            <tr>
-                <td>地址:</td>
-                <td><input type="text" name="address" class="easyui-textbox"/></td>
+                <td>描述:</td>
+                <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" onclick="addCustomer();">确认</button>
+                    <button type="button" onclick="addType();">确认</button>
                 </td>
             </tr>
         </table>
@@ -220,7 +202,7 @@
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
-                    <button type="button" onclick="editCustomer();">确认</button>
+                    <button type="button" onclick="editType();">确认</button>
                 </td>
             </tr>
         </table>

@@ -38,25 +38,7 @@
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>
             <a href="javascript:void(0);" src="easyui/demo/draggable.html" class="site-navi-tab">添加资源</a></p>
             <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改资源</a></p>
-            <ul class="easyui-tree" data-options="animate:true">
-                <li>
-                    <span>分类根目录</span>
-                    <ul>
-                        <li>
-                            <a href="#">图片</a>
-                        </li>
-                        <li>
-                            <a href="#">文本</a>
-                        </li>
-                        <li>
-                            <a href="#">视频</a>
-                        </li>
-                        <li>
-                            <a href="#">UI资源</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <a href="javascript:void(0);" src="<%=path %>/restype/list_page" class="site-navi-tab">资源类型列表</a></p>
         </div>
         <div title="终端管理" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">终端列表</a></p>

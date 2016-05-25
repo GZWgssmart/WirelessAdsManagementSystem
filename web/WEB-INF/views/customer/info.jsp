@@ -34,7 +34,7 @@
                         $("#editForm").serialize(),
                         function(data) {
                             if(data.result == "success") {
-                                closeWin("editCustomer");
+                                closeWin("editWin");
                                 $.messager.alert("提示", data.message, "info", function() {
                                     window.location.href = "<%=path %>/customer/query/${requestScope.customer.id }";
                                 });
@@ -106,10 +106,10 @@
 </table>
 <div>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
-       onclick="openWin('editCustomer');">修改</a>
+       onclick="openWin('editWin');">修改</a>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="editCustomer" data-options="title:'修改账号信息',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_small input_big" id="editWin" data-options="title:'修改账号信息',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
     <form:form id="editForm" method="post" modelAttribute="customer">
         <form:hidden path="id" />
@@ -133,7 +133,7 @@
                 <td><form:input type="text" path="address" class="easyui-textbox"/></td>
             </tr>
             <tr>
-                <td><button type="button" onclick="closeWin('editCustomer');">取消</button></td>
+                <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
                     <button type="button" onclick="editCustomer();">确认</button>
                 </td>

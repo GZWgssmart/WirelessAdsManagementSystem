@@ -8,6 +8,7 @@
     <typeAliases>
         <typeAlias type="com.gs.bean.Admin" alias="admin"/>
         <typeAlias type="com.gs.bean.Customer" alias="customer" />
+        <typeAlias type="com.gs.bean.ResourceType" alias="resourceType" />
     </typeAliases>
 
     <mappers></mappers>

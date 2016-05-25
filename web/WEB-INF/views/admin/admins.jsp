@@ -36,7 +36,7 @@
                         $("#addForm").serialize(),
                         function (data) {
                             if (data.result == "success") {
-                                $("#addAdmin").window("close");
+                                $("#addWin").window("close");
                                 dataGridReload("list");
                                 $("#addForm").form("clear");
                             } else {
@@ -51,7 +51,7 @@
             var row = selectedRow("list");
             if (row) {
                 $("#editForm").form("load", row);
-                openWin("editAdmin");
+                openWin("editWin");
             } else {
                 $.messager.alert("提示", "请选择需要修改的客户信息", "info");
             }
@@ -64,7 +64,7 @@
                         $("#editForm").serialize(),
                         function (data) {
                             if (data.result == "success") {
-                                closeWin("editAdmin");
+                                closeWin("editWin");
                                 $.messager.alert("提示", data.message, "info", function () {
                                     dataGridReload("list");
                                 });
@@ -148,7 +148,7 @@
 </table>
 <div id="tb">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-       onclick="openWinFitPos('addAdmin');">添加</a>
+       onclick="openWinFitPos('addWin');">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
        onclick="showEdit();">修改</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
@@ -157,7 +157,7 @@
        onclick="active()">激活</a>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="addAdmin" data-options="title:'添加管理员',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加管理员',resizable:false,mode:true,closed:true">
     <form:form id="addForm" modelAttribute="admin">
         <table>
             <tr>
@@ -200,7 +200,7 @@
     </form:form>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="editAdmin" data-options="title:'修改管理员',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_small input_big" id="editWin" data-options="title:'修改管理员',resizable:false,mode:true,closed:true">
     <form id="editForm" modelAttribute="admin">
         <input type="hidden" name="id" />
         <table>

@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerDAO extends BaseDAO<Customer,String> {
 
+    public int updateLoginTime(String id);
+    public int updatePassword(Customer customer);
 }

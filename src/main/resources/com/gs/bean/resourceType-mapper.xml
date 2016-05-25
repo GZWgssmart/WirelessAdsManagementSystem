@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.ResourceTypeDAO">
+
+    <resultMap id="resourceTypeResultMap" type="resourceType">
+        <id property="id" column="id" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="resourceTypeResultMap">
+        <![CDATA[
+        select * from t_resource_type where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="resourceType" resultMap="resourceTypeResultMap">
+        <![CDATA[
+        select * from t_resource_type where id = #{id}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="resourceTypeResultMap">
+        <![CDATA[
+        select * from t_resource_type
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="resourceTypeResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_resource_type limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="resourceTypeResultMap">
+        <![CDATA[
+        select * from t_resource_type where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_resource_type;
+        ]]>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resourceType">
+        <![CDATA[
+        insert into t_resource_type(id, name, des, create_time) values(uuid(), #{name}, #{des}, CURRENT_TIMESTAMP )
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="resourceType">
+        <![CDATA[
+        update t_resource_type set name = #{name}, phone = #{phone}, address = #{address}, last_update_time = CURRENT_TIMESTAMP where id = #{id}
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_resource_type set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_resource_type set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

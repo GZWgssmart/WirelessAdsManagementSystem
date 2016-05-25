@@ -53,18 +53,15 @@ FOREIGN KEY(last_update_by_admin) REFERENCES t_admin(id);
 ALTER TABLE t_customer ADD CONSTRAINT ck_customer_status
 CHECK (status in ('Y', 'N'));
 
---t_resource_type资源类型表,每个用户的资源类型都不一样
+--t_resource_type资源类型表
 DROP TABLE IF EXISTS t_resource_type;
 CREATE TABLE t_resource_type (
   id VARCHAR(128) PRIMARY KEY COMMENT '资源类型id',
   name VARCHAR(50) NOT NULL UNIQUE COMMENT '资源类型名称',
   des VARCHAR(200) COMMENT '资源类型描述',
-  customer_id VARCHAR(128) NOT NULL COMMENT '资源类型属于哪个客户',
-  create_time DATETIME DEFAULT current_timestamp COMMENT '资源类型创建时间'
+  create_time DATETIME DEFAULT current_timestamp COMMENT '资源类型创建时间',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '资源类型是否在可用状态'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
-ALTER TABLE t_resource_type ADD CONSTRAINT fk_resource_type_customer_id
-FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 
 --t_resource资源表,每个用户的资源都不一样
 DROP TABLE IF EXISTS t_resource;

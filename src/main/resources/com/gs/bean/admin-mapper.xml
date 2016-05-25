@@ -21,12 +21,6 @@
         ]]>
     </select>
 
-    <select id="queryAll" resultType="list" resultMap="adminResultMap">
-        <![CDATA[
-        select * from t_admin
-        ]]>
-    </select>
-
     <select id="queryByPager" resultType="list" resultMap="adminResultMap" parameterType="com.gs.common.bean.Pager">
         <![CDATA[
         select * from t_admin limit #{beginIndex}, #{pageSize}

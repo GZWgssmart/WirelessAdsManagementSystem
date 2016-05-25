@@ -384,10 +384,10 @@
         <comment>资源类型描述</comment>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="88" parent="8" name="customer_id">
-        <comment>资源类型属于哪个客户</comment>
+      <column id="88" parent="8" name="status">
         <mandatory>1</mandatory>
-        <data-type>varchar(128)</data-type>
+        <data-type>varchar(2)</data-type>
+        <default-expression>&apos;Y&apos;</default-expression>
       </column>
       <column id="89" parent="8" name="create_time">
         <comment>资源类型创建时间</comment>
@@ -406,12 +406,6 @@
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="93" parent="8" name="fk_resource_type_customer_id">
-        <columns>customer_id</columns>
-        <ref-key>t_customer.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
     </database-model>
   </data-source>
 </component>

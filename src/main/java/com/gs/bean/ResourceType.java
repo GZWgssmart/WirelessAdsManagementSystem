@@ -10,8 +10,8 @@ public class ResourceType {
     private String id;
     private String name;
     private String des;
-    private String customerId;
     private Date createTime;
+    private String status;
 
     public String getId() {
         return id;
@@ -37,19 +37,19 @@ public class ResourceType {
         this.des = des;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

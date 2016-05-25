@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminDAO extends BaseDAO<Admin, String> {
 
+    public int updateLoginTime(String id);
+    public int updatePassword(Admin admin);
+
 }

@@ -22,11 +22,7 @@ public interface BaseDAO<T, PK extends Serializable> {
     public T queryById(PK id);
     public List<T> queryByPager(Pager pager);
     public int count();
-
     public int inactive(String id);
     public int active(String id);
-
-    public int updateLoginTime(String id);
-    public int updatePassword(T t);
 
 }
