@@ -89,7 +89,8 @@ CREATE TABLE t_device_group(
   name VARCHAR(50) NOT NULL COMMENT '终端分组名称',
   des VARCHAR(200) COMMENT '终端分组描述',
   customer_id VARCHAR(128) NOT NULL COMMENT '终端分组属于哪个客户',
-  create_time DATETIME DEFAULT current_timestamp COMMENT '终端分组创建时间'
+  create_time DATETIME DEFAULT current_timestamp COMMENT '终端分组创建时间',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '设备分组是否可用'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_device_group ADD CONSTRAINT fk_device_group_customer_id

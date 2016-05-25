@@ -59,7 +59,7 @@ public class ResourceTypeController {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
             return "resource/resource_types";
         } else {
-            return "redirect:/index";
+            return "redirect:/admin/login_page";
         }
     }
 

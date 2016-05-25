@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.DeviceGroupDAO">
+
+    <resultMap id="deviceGroupResultMap" type="deviceGroup">
+        <id property="id" column="id" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="deviceGroupResultMap">
+        <![CDATA[
+        select * from t_device_group where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="deviceGroup" resultMap="deviceGroupResultMap">
+        <![CDATA[
+        select * from t_device_group where id = #{id}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="deviceGroupResultMap">
+        <![CDATA[
+        select * from t_device_group
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="deviceGroupResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_device_group limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceGroupResultMap">
+        <![CDATA[
+        select * from t_device_group where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_device_group;
+        ]]>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="deviceGroup">
+        <![CDATA[
+        insert into t_device_group(id, name, des, customer_id, create_time) values(uuid(), #{name}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="deviceGroup">
+        <![CDATA[
+        update t_device_group set name = #{name}, des = #{des} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_device_group set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_device_group set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

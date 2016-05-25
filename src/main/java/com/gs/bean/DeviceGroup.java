@@ -12,6 +12,7 @@ public class DeviceGroup {
     private String des;
     private String customerId;
     private Date createTime;
+    private String status;
 
     public String getId() {
         return id;
@@ -51,5 +52,13 @@ public class DeviceGroup {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

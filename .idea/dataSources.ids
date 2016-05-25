@@ -223,186 +223,192 @@
         <data-type>datetime</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
-      <key id="55" parent="5" name="PRIMARY">
+      <column id="55" parent="5" name="status">
+        <comment>设备分组是否可用</comment>
+        <mandatory>1</mandatory>
+        <data-type>varchar(2)</data-type>
+        <default-expression>&apos;Y&apos;</default-expression>
+      </column>
+      <key id="56" parent="5" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="56" parent="5" name="fk_device_group_customer_id">
+      <foreign-key id="57" parent="5" name="fk_device_group_customer_id">
         <columns>customer_id</columns>
         <ref-key>t_customer.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="57" parent="6" name="id">
+      <column id="58" parent="6" name="id">
         <comment>终端设备与资源关联id</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="58" parent="6" name="device_id">
+      <column id="59" parent="6" name="device_id">
         <comment>终端设备id</comment>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="59" parent="6" name="device_group_id">
+      <column id="60" parent="6" name="device_group_id">
         <comment>终端设备分组id</comment>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="60" parent="6" name="resource_id">
+      <column id="61" parent="6" name="resource_id">
         <comment>资源id</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="61" parent="6" name="show_type">
+      <column id="62" parent="6" name="show_type">
         <comment>显示方式，包括即时显示，定时显示,不定时显示</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(2)</data-type>
       </column>
-      <column id="62" parent="6" name="start_time">
+      <column id="63" parent="6" name="start_time">
         <comment>定时播放的开始时间</comment>
         <data-type>datetime</data-type>
       </column>
-      <column id="63" parent="6" name="end_time">
+      <column id="64" parent="6" name="end_time">
         <comment>定时播放的结束时间</comment>
         <data-type>datetime</data-type>
       </column>
-      <column id="64" parent="6" name="stay_time">
+      <column id="65" parent="6" name="stay_time">
         <comment>停留时间,以秒为单位</comment>
         <data-type>int(11)</data-type>
       </column>
-      <column id="65" parent="6" name="check_comment">
+      <column id="66" parent="6" name="check_comment">
         <comment>审核批注</comment>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="66" parent="6" name="checked">
+      <column id="67" parent="6" name="checked">
         <comment>是否审核通过</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(2)</data-type>
         <default-expression>&apos;N&apos;</default-expression>
       </column>
-      <column id="67" parent="6" name="create_time">
+      <column id="68" parent="6" name="create_time">
         <comment>资源发布添加时间</comment>
         <data-type>datetime</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
-      <column id="68" parent="6" name="publish_time">
+      <column id="69" parent="6" name="publish_time">
         <comment>资源下发时间</comment>
         <data-type>datetime</data-type>
       </column>
-      <column id="69" parent="6" name="status">
+      <column id="70" parent="6" name="status">
         <comment>资源状态,是否在用或删除</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(2)</data-type>
         <default-expression>&apos;Y&apos;</default-expression>
       </column>
-      <key id="70" parent="6" name="PRIMARY">
+      <key id="71" parent="6" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="71" parent="6" name="fk_device_resource_device_group_id">
+      <foreign-key id="72" parent="6" name="fk_device_resource_device_group_id">
         <columns>device_group_id</columns>
         <ref-key>t_device_group.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="72" parent="6" name="fk_device_resource_device_id">
+      <foreign-key id="73" parent="6" name="fk_device_resource_device_id">
         <columns>device_id</columns>
         <ref-key>t_device.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="73" parent="6" name="fk_device_resource_resource_id">
+      <foreign-key id="74" parent="6" name="fk_device_resource_resource_id">
         <columns>resource_id</columns>
         <ref-key>t_resource.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="74" parent="7" name="id">
+      <column id="75" parent="7" name="id">
         <comment>资源id</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="75" parent="7" name="name">
+      <column id="76" parent="7" name="name">
         <comment>资源名称</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="76" parent="7" name="resource_type_id">
+      <column id="77" parent="7" name="resource_type_id">
         <comment>资源类型id</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="77" parent="7" name="path">
+      <column id="78" parent="7" name="path">
         <comment>资源路径</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="78" parent="7" name="file_name">
+      <column id="79" parent="7" name="file_name">
         <comment>资源文件的名称</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="79" parent="7" name="des">
+      <column id="80" parent="7" name="des">
         <comment>资源描述,或者当用户选择文本信息时保存的文本</comment>
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="80" parent="7" name="create_time">
+      <column id="81" parent="7" name="create_time">
         <comment>资源添加的时间</comment>
         <data-type>datetime</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
-      <column id="81" parent="7" name="customer_id">
+      <column id="82" parent="7" name="customer_id">
         <comment>客户id</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <key id="82" parent="7" name="PRIMARY">
+      <key id="83" parent="7" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="83" parent="7" name="fk_resource_customer_id">
+      <foreign-key id="84" parent="7" name="fk_resource_customer_id">
         <columns>customer_id</columns>
         <ref-key>t_customer.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="84" parent="7" name="fk_resource_type_id">
+      <foreign-key id="85" parent="7" name="fk_resource_type_id">
         <columns>resource_type_id</columns>
         <ref-key>t_resource_type.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="85" parent="8" name="id">
+      <column id="86" parent="8" name="id">
         <comment>资源类型id</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="86" parent="8" name="name">
+      <column id="87" parent="8" name="name">
         <comment>资源类型名称</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(50)</data-type>
       </column>
-      <column id="87" parent="8" name="des">
+      <column id="88" parent="8" name="des">
         <comment>资源类型描述</comment>
         <data-type>varchar(200)</data-type>
       </column>
-      <column id="88" parent="8" name="status">
+      <column id="89" parent="8" name="status">
         <mandatory>1</mandatory>
         <data-type>varchar(2)</data-type>
         <default-expression>&apos;Y&apos;</default-expression>
       </column>
-      <column id="89" parent="8" name="create_time">
+      <column id="90" parent="8" name="create_time">
         <comment>资源类型创建时间</comment>
         <data-type>datetime</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
-      <index id="90" parent="8" name="name">
+      <index id="91" parent="8" name="name">
         <columns>name</columns>
         <unique>1</unique>
       </index>
-      <key id="91" parent="8" name="name">
+      <key id="92" parent="8" name="name">
         <columns>name</columns>
         <underlying-index>name</underlying-index>
       </key>
-      <key id="92" parent="8" name="PRIMARY">
+      <key id="93" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>

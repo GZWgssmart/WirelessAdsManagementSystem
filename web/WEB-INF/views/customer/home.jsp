@@ -63,20 +63,7 @@
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">终端列表</a></p>
             <a href="javascript:void(0);" src="easyui/demo/draggable.html" class="site-navi-tab">添加终端</a></p>
             <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改终端</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">添加分组</a></p>
-            <ul class="easyui-tree" data-options="animate:true">
-                <li>
-                    <span>终端分组</span>
-                    <ul>
-                        <li>
-                            <a href="#">分组一</a>
-                        </li>
-                        <li>
-                            <a href="#">分组二</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <a href="javascript:void(0);" src="<%=path %>/devgroup/list_page" class="site-navi-tab">终端分组列表</a></p>
         </div>
         <div title="信息发布" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/form.html" class="site-navi-tab">信息列表</a></p>

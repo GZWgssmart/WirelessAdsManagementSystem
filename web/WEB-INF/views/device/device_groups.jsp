@@ -29,10 +29,10 @@
             setPagination("#list")
         });
 
-        function addType() {
+        function addGroup() {
             toValidate();
             if (validateForm("addForm")) {
-                $.post("<%=path %>/restype/add",
+                $.post("<%=path %>/devgroup/add",
                         $("#addForm").serialize(),
                         function (data) {
                             if (data.result == "success") {
@@ -53,14 +53,14 @@
                 $("#editForm").form("load", row);
                 openWin("editWin");
             } else {
-                $.messager.alert("提示", "请选择需要修改的资源类型信息", "info");
+                $.messager.alert("提示", "请选择需要修改的终端分组信息", "info");
             }
         }
 
-        function editType() {
+        function editGroup() {
             toValidate();
             if (validateForm("editForm")) {
-                $.post("<%=path %>/restype/update",
+                $.post("<%=path %>/devgroup/update",
                         $("#editForm").serialize(),
                         function (data) {
                             if (data.result == "success") {
@@ -80,9 +80,9 @@
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'N') {
-                    $.messager.alert("提示", "资源类型不可用,无需冻结", "info");
+                    $.messager.alert("提示", "终端分组不可用,无需冻结", "info");
                 } else {
-                    $.get("<%=path %>/restype/inactive?id=" + row.id,
+                    $.get("<%=path %>/devgroup/inactive?id=" + row.id,
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
@@ -91,7 +91,7 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要冻结的资源类型", "info");
+                $.messager.alert("提示", "请选择需要冻结的终端分组", "info");
             }
         }
 
@@ -99,9 +99,9 @@
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'Y') {
-                    $.messager.alert("提示", "资源类型可用,无需激活", "info");
+                    $.messager.alert("提示", "终端分组可用,无需激活", "info");
                 } else {
-                    $.get("<%=path %>/restype/active?id=" + row.id,
+                    $.get("<%=path %>/devgroup/active?id=" + row.id,
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
@@ -110,7 +110,7 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要激活的资源类型", "info");
+                $.messager.alert("提示", "请选择需要激活的终端分组", "info");
             }
         }
     </script>
@@ -118,7 +118,7 @@
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
-        url:'<%=path %>/restype/list_pager',
+        url:'<%=path %>/devgroup/list_pager',
         method:'get',
 				rownumbers:true,
 				singleSelect:true,
@@ -154,8 +154,8 @@
        onclick="active()">激活</a>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加资源类型',resizable:false,mode:true,closed:true">
-    <form:form id="addForm" modelAttribute="resourceType">
+<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加终端分组',resizable:false,mode:true,closed:true">
+    <form:form id="addForm" modelAttribute="deviceGroup">
         <table>
             <tr>
                 <td>名称:</td>
@@ -169,16 +169,16 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" onclick="addType();">确认</button>
+                    <button type="button" onclick="addGroup();">确认</button>
                 </td>
             </tr>
         </table>
     </form:form>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="editWin" data-options="title:'修改资源类型',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_small input_big" id="editWin" data-options="title:'修改终端分组',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
-    <form id="editForm" method="post" modelAttribute="resourceType">
+    <form id="editForm" method="post" modelAttribute="deviceGroup">
         <input type="hidden" name="id" />
         <table>
             <tr>
@@ -193,7 +193,7 @@
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
-                    <button type="button" onclick="editType();">确认</button>
+                    <button type="button" onclick="editGroup();">确认</button>
                 </td>
             </tr>
         </table>
