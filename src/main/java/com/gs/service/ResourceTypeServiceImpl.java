@@ -39,7 +39,7 @@ public class ResourceTypeServiceImpl implements ResourceTypeService {
 
     @Override
     public int update(ResourceType resourceType) {
-        return 0;
+        return resourceTypeDAO.update(resourceType);
     }
 
     @Override
@@ -53,13 +53,13 @@ public class ResourceTypeServiceImpl implements ResourceTypeService {
     }
 
     @Override
-    public int inactive(String s) {
-        return 0;
+    public int inactive(String id) {
+        return resourceTypeDAO.inactive(id);
     }
 
     @Override
-    public int active(String s) {
-        return 0;
+    public int active(String id) {
+        return resourceTypeDAO.active(id);
     }
 
     @Override

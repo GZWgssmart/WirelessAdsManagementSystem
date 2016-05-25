@@ -116,9 +116,9 @@ public class ResourceTypeController {
     public ControllerResult inactive(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
             resourceTypeService.inactive(id);
-            return ControllerResult.getSuccessResult("冻结客户账号成功");
+            return ControllerResult.getSuccessResult("冻结资源类型成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结客户账号");
+            return ControllerResult.getFailResult("没有权限冻结资源类型");
         }
     }
 
@@ -127,9 +127,9 @@ public class ResourceTypeController {
     public ControllerResult active(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
             resourceTypeService.active(id);
-            return ControllerResult.getSuccessResult("已解除客户账号冻结");
+            return ControllerResult.getSuccessResult("已解除资源类型冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活客户账号");
+            return ControllerResult.getFailResult("没有权限激活资源类型");
         }
     }
 

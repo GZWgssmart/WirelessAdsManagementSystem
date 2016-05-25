@@ -51,7 +51,7 @@
 
     <update id="update" keyProperty="id" parameterType="resourceType">
         <![CDATA[
-        update t_resource_type set name = #{name}, phone = #{phone}, address = #{address}, last_update_time = CURRENT_TIMESTAMP where id = #{id}
+        update t_resource_type set name = #{name}, des = #{des} where id = #{id}
         ]]>
     </update>
 

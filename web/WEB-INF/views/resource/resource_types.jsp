@@ -53,7 +53,7 @@
                 $("#editForm").form("load", row);
                 openWin("editWin");
             } else {
-                $.messager.alert("提示", "请选择需要修改的客户信息", "info");
+                $.messager.alert("提示", "请选择需要修改的资源类型信息", "info");
             }
         }
 
@@ -80,7 +80,7 @@
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'N') {
-                    $.messager.alert("提示", "客户账号不可用,无需冻结", "info");
+                    $.messager.alert("提示", "资源类型不可用,无需冻结", "info");
                 } else {
                     $.get("<%=path %>/restype/inactive?id=" + row.id,
                             function (data) {
@@ -91,7 +91,7 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要冻结的客户账号", "info");
+                $.messager.alert("提示", "请选择需要冻结的资源类型", "info");
             }
         }
 
@@ -99,7 +99,7 @@
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'Y') {
-                    $.messager.alert("提示", "客户账号可用,无需激活", "info");
+                    $.messager.alert("提示", "资源类型可用,无需激活", "info");
                 } else {
                     $.get("<%=path %>/restype/active?id=" + row.id,
                             function (data) {
@@ -110,7 +110,7 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要激活的客户账号", "info");
+                $.messager.alert("提示", "请选择需要激活的资源类型", "info");
             }
         }
     </script>
@@ -155,7 +155,7 @@
 </div>
 
 <div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加资源类型',resizable:false,mode:true,closed:true">
-    <form:form id="addForm" modelAttribute="customer">
+    <form:form id="addForm" modelAttribute="resourceType">
         <table>
             <tr>
                 <td>名称:</td>
@@ -178,26 +178,17 @@
 
 <div class="easyui-window site_win_small input_big" id="editWin" data-options="title:'修改账号信息',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
-    <form id="editForm" method="post" modelAttribute="customer">
+    <form id="editForm" method="post" modelAttribute="resourceType">
         <input type="hidden" name="id" />
         <table>
             <tr>
-                <td>邮箱:</td>
-                <td><input type="text" name="email" class="easyui-textbox" readonly="true"/></td>
-            </tr>
-            <tr>
-                <td>姓名:</td>
+                <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
-                <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
-            </tr>
-            <tr>
-                <td>地址:</td>
-                <td><input type="text" name="address" class="easyui-textbox"/></td>
+                <td>描述:</td>
+                <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
             </tr>
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
