@@ -225,3 +225,17 @@ function dataGridReload(id) {
 function closeTab(title) {
     $('#tabs').tabs('close', title);
 }
+
+$(function(){
+    $('.validatebox-text').bind('blur', function(){
+        $(this).validatebox('enableValidation').validatebox('validate');
+    });
+})
+
+function toValidate() {
+    $('.validatebox-text').validatebox('enableValidation').validatebox('validate');
+}
+
+function validateForm(id) {
+    return $("#" + id).form("validate");
+}

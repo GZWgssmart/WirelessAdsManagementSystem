@@ -28,17 +28,20 @@
 
     <script>
         function updatePwd() {
-            $.post("<%=path %>/admin/update_pwd",
-                $("#updateForm").serialize(),
-                    function(data) {
-                        if(data.result == "success") {
-                            $.messager.alert("提示", data.message, "info");
-                            $("#updateForm").form("clear");
-                        } else {
-                            $("#errMsg").html(data.message);
+            toValidate();
+            if (validateForm("updateForm")) {
+                $.post("<%=path %>/admin/update_pwd",
+                        $("#updateForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                $.messager.alert("提示", data.message, "info");
+                                $("#updateForm").form("clear");
+                            } else {
+                                $("#errMsg").html(data.message);
+                            }
                         }
-                    }
-            );
+                );
+            }
         }
     </script>
 
@@ -51,15 +54,18 @@
         <caption>修改账号密码</caption>
         <tr>
             <td>原密码：</td>
-            <td><input type="password" name="password" class="easyui-textbox"/></td>
+            <td><input type="password" name="password" class="easyui-validatebox easyui-textbox"
+                       data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
         </tr>
         <tr>
             <td>新密码:</td>
-            <td><input type="password" name="newPwd" class="easyui-textbox"/></td>
+            <td><input type="password" name="newPwd" class="easyui-validatebox easyui-textbox"
+                       data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
         </tr>
         <tr>
             <td>确认密码:</td>
-            <td><input type="password" name="conPwd" class="easyui-textbox"/></td>
+            <td><input type="password" name="conPwd" class="easyui-validatebox easyui-textbox"
+                       data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
         </tr>
         <tr>
             <td></td>

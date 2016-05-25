@@ -30,18 +30,21 @@
         });
 
         function addCustomer() {
-            $.post("<%=path %>/customer/add",
-                    $("#addForm").serialize(),
-                    function (data) {
-                        if (data.result == "success") {
-                            $("#addCustomer").window("close");
-                            dataGridReload("list");
-                            $("#addForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
+            toValidate();
+            if (validateForm("addForm")) {
+                $.post("<%=path %>/customer/add",
+                        $("#addForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                $("#addCustomer").window("close");
+                                dataGridReload("list");
+                                $("#addForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
                         }
-                    }
-            );
+                );
+            }
         }
 
         function showEdit() {
@@ -55,19 +58,22 @@
         }
 
         function editCustomer() {
-            $.post("<%=path %>/customer/update",
-                    $("#editForm").serialize(),
-                    function(data) {
-                        if(data.result == "success") {
-                            closeWin("editCustomer");
-                            $.messager.alert("提示", data.message, "info", function() {
-                                dataGridReload("list");
-                            });
-                        } else {
-                            $("#errMsg").html(data.message);
+            toValidate();
+            if (validateForm("editForm")) {
+                $.post("<%=path %>/customer/update",
+                        $("#editForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                closeWin("editCustomer");
+                                $.messager.alert("提示", data.message, "info", function () {
+                                    dataGridReload("list");
+                                });
+                            } else {
+                                $("#errMsg").html(data.message);
+                            }
                         }
-                    }
-            );
+                );
+            }
         }
 
         function inactive() {
@@ -156,19 +162,23 @@
         <table>
             <tr>
                 <td>邮箱:</td>
-                <td><input type="text" name="email" class="easyui-textbox"/></td>
+                <td><input type="text" name="email" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'email',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>密码:</td>
-                <td><input type="password" name="password" class="easyui-textbox"/></td>
+                <td><input type="password" name="password" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>姓名:</td>
-                <td><input type="text" name="name" class="easyui-textbox"/></td>
+                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-textbox"/></td>
+                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
+                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>地址:</td>
@@ -195,11 +205,13 @@
             </tr>
             <tr>
                 <td>姓名:</td>
-                <td><input type="text" name="name" class="easyui-textbox"/></td>
+                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-textbox"/></td>
+                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
+                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>地址:</td>

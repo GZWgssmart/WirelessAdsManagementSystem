@@ -30,18 +30,50 @@
         });
 
         function addAdmin() {
-            $.post("<%=path %>/admin/add",
-                    $("#addForm").serialize(),
-                    function (data) {
-                        if (data.result == "success") {
-                            $("#addAdmin").window("close");
-                            dataGridReload("list");
-                            $("#addForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
+            toValidate();
+            if (validateForm("addForm")) {
+                $.post("<%=path %>/admin/add",
+                        $("#addForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                $("#addAdmin").window("close");
+                                dataGridReload("list");
+                                $("#addForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
                         }
-                    }
-            );
+                );
+            }
+        }
+
+        function showEdit() {
+            var row = selectedRow("list");
+            if (row) {
+                $("#editForm").form("load", row);
+                openWin("editAdmin");
+            } else {
+                $.messager.alert("提示", "请选择需要修改的客户信息", "info");
+            }
+        }
+
+        function editAdmin() {
+            toValidate();
+            if (validateForm("editForm")) {
+                $.post("<%=path %>/admin/update",
+                        $("#editForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                closeWin("editAdmin");
+                                $.messager.alert("提示", data.message, "info", function () {
+                                    dataGridReload("list");
+                                });
+                            } else {
+                                $("#errMsg").html(data.message);
+                            }
+                        }
+                );
+            }
         }
 
         function inactive() {
@@ -116,7 +148,9 @@
 </table>
 <div id="tb">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-       onclick="openWin('addAdmin');">添加</a>
+       onclick="openWinFitPos('addAdmin');">添加</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+       onclick="showEdit();">修改</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
        onclick="inactive()">冻结</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
@@ -128,24 +162,29 @@
         <table>
             <tr>
                 <td>邮箱:</td>
-                <td><input type="text" name="email" class="easyui-textbox"/></td>
+                <td><input type="text" name="email" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'email',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>密码:</td>
-                <td><input type="password" name="password" class="easyui-textbox"/></td>
+                <td><input type="password" name="password" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>姓名:</td>
-                <td><input type="text" name="name" class="easyui-textbox"/></td>
+                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-textbox"/></td>
+                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
+                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>角色:</td>
                 <td>
-                    <select id="role" class="easyui-combobox" name="role">
+                    <select id="role" class="easyui-validatebox easyui-combobox"
+                            data-options="required:true,novalidate:true" name="role">
                         <option value="super">超级管理员</option>
                         <option value="normal" selected>普通管理员</option>
                     </select>
@@ -159,6 +198,34 @@
             </tr>
         </table>
     </form:form>
+</div>
+
+<div class="easyui-window site_win_small input_big" id="editAdmin" data-options="title:'修改管理员',resizable:false,mode:true,closed:true">
+    <form id="editForm" modelAttribute="admin">
+        <input type="hidden" name="id" />
+        <table>
+            <tr>
+                <td>邮箱:</td>
+                <td><input type="text" name="email" class="easyui-textbox" readonly/></td>
+            </tr>
+            <tr>
+                <td>姓名:</td>
+                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>手机:</td>
+                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
+                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="editAdmin();">确认</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 </body>

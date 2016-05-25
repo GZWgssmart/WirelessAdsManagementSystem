@@ -28,19 +28,22 @@
 
     <script>
         function editCustomer() {
-            $.post("<%=path %>/customer/update",
-                    $("#editForm").serialize(),
-                    function(data) {
-                        if(data.result == "success") {
-                            closeWin("editCustomer");
-                            $.messager.alert("提示", data.message, "info", function() {
-                                window.location.href = "<%=path %>/customer/query/${requestScope.customer.id }";
-                            });
-                        } else {
-                            $("#errMsg").html(data.message);
+            toValidate();
+            if (validateForm("editForm")) {
+                $.post("<%=path %>/customer/update",
+                        $("#editForm").serialize(),
+                        function(data) {
+                            if(data.result == "success") {
+                                closeWin("editCustomer");
+                                $.messager.alert("提示", data.message, "info", function() {
+                                    window.location.href = "<%=path %>/customer/query/${requestScope.customer.id }";
+                                });
+                            } else {
+                                $("#errMsg").html(data.message);
+                            }
                         }
-                    }
-            );
+                );
+            }
         }
     </script>
 
@@ -117,11 +120,13 @@
             </tr>
             <tr>
                 <td>姓名:</td>
-                <td><form:input type="text" path="name" class="easyui-textbox"/></td>
+                <td><form:input type="text" path="name" class="easyui-validatebox easyui-textbox"
+                                data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><form:input type="text" path="phone" class="easyui-textbox"/></td>
+                <td><form:input type="text" path="phone" class="easyui-numberbox easyui-textbox"
+                                data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>地址:</td>
