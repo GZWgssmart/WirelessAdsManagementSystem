@@ -25,7 +25,7 @@
     <img class="main_logo" src="<%=path %>/images/logo.jpg"/>
 
     <div class="north wel_msg">
-        欢迎您:&nbsp;&nbsp;<b><a href="#">${sessionScope.customer.email }</a></b>&nbsp;&nbsp;
+        欢迎您:&nbsp;&nbsp;<b>${sessionScope.customer.email }</b>&nbsp;&nbsp;
         <a href="<%=path %>/customer/logout">安全退出</a>
     </div>
 </div>
