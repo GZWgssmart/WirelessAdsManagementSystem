@@ -29,7 +29,7 @@
             setPagination("#list")
         });
 
-        function addAdmin() {
+        function add() {
             toValidate();
             if (validateForm("addForm")) {
                 $.post("<%=path %>/admin/add",
@@ -57,7 +57,7 @@
             }
         }
 
-        function editAdmin() {
+        function edit() {
             toValidate();
             if (validateForm("editForm")) {
                 $.post("<%=path %>/admin/update",
@@ -183,17 +183,22 @@
             <tr>
                 <td>角色:</td>
                 <td>
-                    <select id="role" class="easyui-validatebox easyui-combobox"
-                            data-options="required:true,novalidate:true" name="role">
-                        <option value="super">超级管理员</option>
-                        <option value="normal" selected>普通管理员</option>
+                    <select name="role" class="easyui-validatebox easyui-combobox" data-options="valueField:'id',textField:'text',panelHeight:'auto',editable:false,required:true,novalidate:true,
+                    data: [{
+                        id: 'super',
+                        text: '超级管理员'
+                    },{
+                        id: 'normal',
+                        text: '普通管理员',
+                        selected:true
+                    }]">
                     </select>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" onclick="addAdmin();">确认</button>
+                    <button type="button" onclick="add();">确认</button>
                 </td>
             </tr>
         </table>
@@ -221,7 +226,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" onclick="editAdmin();">确认</button>
+                    <button type="button" onclick="edit();">确认</button>
                 </td>
             </tr>
         </table>

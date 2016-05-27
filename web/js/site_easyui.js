@@ -196,6 +196,15 @@ function formatterStatus(value) {
     }
 }
 
+function formatterLong(value) {
+    if (value != undefined && value != '' && value.length >= 35) {
+        var abValue = value.substring(0, 34) + "...";
+        return "<a href='javascript:void(0);' title='" + value + "' class='easyui-tooltip'>" + abValue + "</a>";
+    } else {
+        return value;
+    }
+}
+
 function openWin(id) {
     $("#" + id).window("open");
 }
@@ -238,4 +247,13 @@ function toValidate() {
 
 function validateForm(id) {
     return $("#" + id).form("validate");
+}
+
+function getQueryParams(dataGridId, formId) {
+    var fields =$('#' + formId).serializeArray();
+    var params = $("#" + dataGridId).datagrid('options').queryParams;
+    $.each( fields, function(i, field){
+        params[field.name] = field.value;
+    });
+    return params;
 }

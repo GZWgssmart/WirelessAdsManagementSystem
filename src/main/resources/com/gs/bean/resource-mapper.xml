@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.ResourceDAO">
+
+    <resultMap id="resourceResultMap" type="resource">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="path" column="path" />
+        <result property="fileName" column="file_name" />
+        <result property="des" column="des" />
+        <result property="createTime" column="create_time" />
+        <result property="status" column="status" />
+        <association property="resourceType" javaType="com.gs.bean.ResourceType">
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </association>
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="resource" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where id = #{id}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="resourceResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_resource limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="resourceResultMap">
+        <![CDATA[
+        select r.*, rt.id as t_id, rt.name as t_name from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="resourceResultMap">
+        <![CDATA[
+        select r.*, rt.id as t_id, rt.name as t_name from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
+        ]]>
+        <if test="resource.resourceTypeId != null and resource.resourceTypeId != ''">
+            and r.resource_type_id = #{resource.resourceTypeId}
+        </if>
+        <if test="resource.status != null and resource.status != ''">
+            and r.status = #{resource.status}
+        </if>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_resource;
+        ]]>
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_resource where customer_id = #{customerId}
+        ]]>
+        <if test="resource.resourceTypeId != null and resource.resourceTypeId != ''">
+            and resource_type_id = #{resource.resourceTypeId}
+        </if>
+        <if test="resource.status != null and resource.status != ''">
+            and status = #{resource.status}
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resource">
+        <![CDATA[
+        insert into t_resource(id, name, resource_type_id, path, file_name, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fileName}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="resource">
+        <![CDATA[
+        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId}, path = #{path}, file_name = #{fileName}, des = #{des} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_resource set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_resource set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

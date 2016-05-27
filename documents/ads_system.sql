@@ -69,11 +69,12 @@ CREATE TABLE t_resource(
   id VARCHAR(128) PRIMARY KEY COMMENT '资源id',
   name VARCHAR(100) NOT NULL COMMENT '资源名称',
   resource_type_id VARCHAR(128) NOT NULL COMMENT '资源类型id',
-  path VARCHAR(500) NOT NULL COMMENT '资源路径',
-  file_name VARCHAR(100) NOT NULL COMMENT '资源文件的名称',
+  path VARCHAR(500) NOT NULL DEFAULT '无路径' COMMENT '资源路径',
+  file_name VARCHAR(100) NOT NULL DEFAULT '无文件' COMMENT '资源文件的名称',
   des VARCHAR(500) COMMENT '资源描述,或者当用户选择文本信息时保存的文本',
   create_time DATETIME DEFAULT current_timestamp COMMENT '资源添加的时间',
-  customer_id VARCHAR(128) NOT NULL COMMENT '客户id'
+  customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '资源是否可用'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_resource ADD CONSTRAINT fk_resource_type_id

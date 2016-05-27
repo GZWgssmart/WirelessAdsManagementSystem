@@ -36,33 +36,10 @@
             <a href="javascript:void(0);" src="<%=path %>/customer/setting_page" class="site-navi-tab">账号设置</a></p>
         </div>
         <div title="资源管理" class="site_menu">
-            <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/draggable.html" class="site-navi-tab">添加资源</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改资源</a></p>
-            <ul class="easyui-tree" data-options="animate:true">
-                <li>
-                    <span>分类根目录</span>
-                    <ul>
-                        <li>
-                            <a href="#">图片</a>
-                        </li>
-                        <li>
-                            <a href="#">文本</a>
-                        </li>
-                        <li>
-                            <a href="#">视频</a>
-                        </li>
-                        <li>
-                            <a href="#">UI资源</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <a href="javascript:void(0);" src="<%=path %>/res/list_page" class="site-navi-tab">资源列表</a></p>
         </div>
         <div title="终端管理" class="site_menu">
             <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">终端列表</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/draggable.html" class="site-navi-tab">添加终端</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改终端</a></p>
             <a href="javascript:void(0);" src="<%=path %>/devgroup/list_page" class="site-navi-tab">终端分组列表</a></p>
         </div>
         <div title="信息发布" class="site_menu">

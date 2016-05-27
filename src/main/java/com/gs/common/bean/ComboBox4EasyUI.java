@@ -7,6 +7,7 @@ public class ComboBox4EasyUI {
 
     private String id;
     private String text;
+    private boolean selected;
 
     public String getId() {
         return id;
@@ -24,4 +25,11 @@ public class ComboBox4EasyUI {
         this.text = text;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

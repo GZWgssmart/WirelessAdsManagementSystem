@@ -10,6 +10,7 @@
         <typeAlias type="com.gs.bean.Customer" alias="customer" />
         <typeAlias type="com.gs.bean.ResourceType" alias="resourceType" />
         <typeAlias type="com.gs.bean.DeviceGroup" alias="deviceGroup" />
+        <typeAlias type="com.gs.bean.Resource" alias="resource" />
     </typeAliases>
 
     <mappers></mappers>

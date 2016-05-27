@@ -3,6 +3,7 @@
 body {
     margin: 0;
     padding: 0;
+    height:100%;
 }
 
 * {
@@ -44,6 +45,10 @@ a:hover {
 }
 
 .input_small input, .input_small select {
+    min-width:80px;
+}
+
+.input_normal input, .input_normal select {
     width: 160px;
 }
 
@@ -124,5 +129,4 @@ a:hover {
 .site_textarea {
     height:100px;
 }
-
 

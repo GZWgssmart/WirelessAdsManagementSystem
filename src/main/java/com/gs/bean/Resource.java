@@ -14,7 +14,9 @@ public class Resource {
     private String des;
     private String customerId;
     private String resourceTypeId;
+    private ResourceType resourceType;
     private Date createTime;
+    private String status;
 
     public String getId() {
         return id;
@@ -72,11 +74,27 @@ public class Resource {
         this.resourceTypeId = resourceTypeId;
     }
 
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

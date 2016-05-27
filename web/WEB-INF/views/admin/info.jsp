@@ -27,7 +27,7 @@
     <script src="<%=path %>/js/site_easyui.js"></script>
 
     <script>
-        function editAdmin() {
+        function edit() {
             toValidate();
             if (validateForm("editForm")) {
                 $.post("<%=path %>/admin/update",
@@ -136,7 +136,7 @@
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
-                    <button type="button" onclick="editAdmin();">确认</button>
+                    <button type="button" onclick="edit();">确认</button>
                 </td>
             </tr>
         </table>

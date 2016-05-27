@@ -129,7 +129,7 @@ public class DeviceGroupController {
     public ControllerResult active(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             deviceGroupService.active(id);
-            return ControllerResult.getSuccessResult("已解除资源终端分组");
+            return ControllerResult.getSuccessResult("已解除终端分组冻结");
         } else {
             return ControllerResult.getFailResult("没有权限激活终端分组");
         }
