@@ -80,13 +80,13 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resource">
         <![CDATA[
-        insert into t_resource(id, name, resource_type_id, path, file_name, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fileName}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
+        insert into t_resource(id, name, resource_type_id, path, full_path, file_name, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{fileName}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="resource">
         <![CDATA[
-        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId}, path = #{path}, file_name = #{fileName}, des = #{des} where id = #{id}
+        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId}, path = #{path}, full_path = #{fullPath}, file_name = #{fileName}, des = #{des} where id = #{id}
         ]]>
     </update>
 

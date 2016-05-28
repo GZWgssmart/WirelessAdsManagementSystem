@@ -10,6 +10,7 @@ public class Resource {
     private String id;
     private String name;
     private String path;
+    private String fullPath;
     private String fileName;
     private String des;
     private String customerId;
@@ -40,6 +41,14 @@ public class Resource {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getFullPath() {
+        return fullPath;
+    }
+
+    public void setFullPath(String fullPath) {
+        this.fullPath = fullPath;
     }
 
     public String getFileName() {

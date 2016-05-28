@@ -55,9 +55,11 @@ public class ResourceController {
                 }
                 resource.setFileName(fileName);
                 resource.setPath(FileUtil.uploadFilePath(targetFile));
+                resource.setFullPath(targetFile.getAbsolutePath());
             } else {
                 resource.setFileName("无");
                 resource.setPath("无");
+                resource.setFullPath("无");
             }
             resourceService.insert(resource);
             return ControllerResult.getSuccessResult("成功添加资源");
