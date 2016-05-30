@@ -62,19 +62,20 @@
         function edit() {
             toValidate();
             if (validateForm("editForm")) {
-                $.post("<%=path %>/res/update",
-                        $("#editForm").serialize(),
-                        function (data) {
-                            if (data.result == "success") {
-                                closeWin("editWin");
-                                $.messager.alert("提示", data.message, "info", function () {
-                                    dataGridReload("list");
-                                });
-                            } else {
-                                $("#errMsg").html(data.message);
-                            }
+                $('#editForm').ajaxSubmit({
+                    url:'<%=path %>/res/update',
+                    type:'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.result == "success") {
+                            closeWin("editWin");
+                            dataGridReload("list");
+                            $("#editForm").form("clear");
+                        } else {
+                            $.messager.alert("提示", data.message, "info");
                         }
-                );
+                    }
+                });
             }
         }
 
@@ -237,7 +238,7 @@
 
 <div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改资源',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
-    <form id="editForm" method="post" modelAttribute="resource">
+    <form id="editForm" method="post" modelAttribute="resource" enctype="multipart/form-data">
         <input type="hidden" name="id" />
         <table>
             <tr>

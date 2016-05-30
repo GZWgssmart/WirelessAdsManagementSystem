@@ -133,9 +133,22 @@ public class ResourceController {
 
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public ControllerResult update(com.gs.bean.Resource resource, HttpSession session) {
+    public ControllerResult update(com.gs.bean.Resource resource, MultipartFile file, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             logger.info("更新资源信息");
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            if (file != null) {
+                String fileName = file.getOriginalFilename();
+                File targetFile = new File(FileUtil.customerDirPath(session, customer.getId()), fileName);
+                try {
+                    file.transferTo(targetFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                resource.setFileName(fileName);
+                resource.setPath(FileUtil.uploadFilePath(targetFile));
+                resource.setFullPath(targetFile.getAbsolutePath());
+            }
             resourceService.update(resource);
             return ControllerResult.getSuccessResult("成功更新资源信息");
         } else {

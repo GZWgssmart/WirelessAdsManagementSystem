@@ -86,8 +86,18 @@
 
     <update id="update" keyProperty="id" parameterType="resource">
         <![CDATA[
-        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId}, path = #{path}, full_path = #{fullPath}, file_name = #{fileName}, des = #{des} where id = #{id}
+        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId},
         ]]>
+        <if test="path != null ">
+            path = #{path},
+        </if>
+        <if test="fullPath != null">
+            full_path = #{fullPath},
+        </if>
+        <if test="fileName != null">
+            file_name = #{fileName},
+        </if>
+        des = #{des} where id = #{id}
     </update>
 
     <update id="inactive" keyProperty="id" parameterType="string">
