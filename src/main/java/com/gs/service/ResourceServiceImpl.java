@@ -1,6 +1,7 @@
 package com.gs.service;
 
 import com.gs.bean.Resource;
+import com.gs.bean.ResourceType;
 import com.gs.common.bean.Pager;
 import com.gs.dao.ResourceDAO;
 import org.springframework.stereotype.Service;
@@ -79,5 +80,10 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public int batchInsert(List<Resource> resources) {
         return resourceDAO.batchInsert(resources);
+    }
+
+    @Override
+    public String queryByResourceId(String id) {
+        return resourceDAO.queryByResourceId(id);
     }
 }

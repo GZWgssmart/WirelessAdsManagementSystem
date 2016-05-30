@@ -31,12 +31,6 @@
         ]]>
     </select>
 
-    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="resourceTypeResultMap">
-        <![CDATA[
-        select * from t_resource_type where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
-        ]]>
-    </select>
-
     <select id="count" resultType="int">
         <![CDATA[
         select count(1) from t_resource_type;

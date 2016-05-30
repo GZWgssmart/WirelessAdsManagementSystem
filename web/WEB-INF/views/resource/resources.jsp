@@ -52,6 +52,13 @@
         function showEdit() {
             var row = selectedRow("list");
             if (row) {
+                $("#resourceTypeId").combobox({
+                    url:'<%=path %>/res/list_combo/' + row.id,
+                    method:'get',
+                    valueField:'id',
+                    textField:'text',
+                    panelHeight:'auto'
+                });
                 $("#editForm").form("load", row);
                 openWin("editWin");
             } else {
@@ -249,9 +256,8 @@
             <tr>
                 <td>类型:</td>
                 <td>
-                    <select name="resourceTypeId" class="easyui-validatebox easyui-combobox"
-                            data-options="url:'<%=path %>/restype/list_combo',method:'get',valueField:'id',
-                            textField:'text',panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
+                    <select id="resourceTypeId" name="resourceTypeId" class="easyui-validatebox easyui-combobox"
+                            data-options="editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
             <tr>

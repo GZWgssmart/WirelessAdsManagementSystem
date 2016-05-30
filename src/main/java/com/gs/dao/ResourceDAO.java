@@ -1,6 +1,7 @@
 package com.gs.dao;
 
 import com.gs.bean.Resource;
+import com.gs.bean.ResourceType;
 import com.gs.common.bean.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,7 @@ public interface ResourceDAO extends BaseDAO<Resource, String> {
                                                   @Param("customerId")String customerId);
 
     public int countByCriteria(@Param("resource") Resource resource, @Param("customerId") String customerId);
+
+    public String queryByResourceId(String id);
 
 }

@@ -1,7 +1,9 @@
 package com.gs.controller;
 
 import com.gs.bean.Customer;
+import com.gs.bean.ResourceType;
 import com.gs.common.Constants;
+import com.gs.common.bean.ComboBox4EasyUI;
 import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
@@ -9,6 +11,7 @@ import com.gs.common.util.FileUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.ResourceService;
+import com.gs.service.ResourceTypeService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +42,8 @@ public class ResourceController {
 
     @Resource
     private ResourceService resourceService;
+    @Resource
+    private ResourceTypeService resourceTypeService;
 
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -176,6 +182,27 @@ public class ResourceController {
         } else {
             return ControllerResult.getFailResult("没有权限激活资源信息");
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "list_combo/{id}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> listCombo(@PathVariable("id") String id, HttpSession session) {
+        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
+        if (SessionUtil.isCustomer(session)) {
+            String resourceTypeId = resourceService.queryByResourceId(id);
+            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
+            List<ResourceType> resourceTypes = resourceTypeService.queryAll();
+            for (ResourceType rt : resourceTypes) {
+                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
+                comboBox4EasyUI.setId(rt.getId());
+                comboBox4EasyUI.setText(rt.getName());
+                if (rt.getId().equals(resourceTypeId)) {
+                    comboBox4EasyUI.setSelected(true);
+                }
+                comboBox4EasyUIs.add(comboBox4EasyUI);
+            }
+        }
+        return comboBox4EasyUIs;
     }
 
 

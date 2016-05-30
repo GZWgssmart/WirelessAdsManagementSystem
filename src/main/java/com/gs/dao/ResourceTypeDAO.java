@@ -13,5 +13,4 @@ import java.util.List;
 @Repository
 public interface ResourceTypeDAO extends BaseDAO<ResourceType, String> {
 
-    public List<ResourceType> queryByPagerAndCustomerId(@Param("pager") Pager pager, @Param("customerId") String customerId);
 }
