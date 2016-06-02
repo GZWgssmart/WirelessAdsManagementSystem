@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.DeviceDAO">
+
+    <resultMap id="deviceResultMap" type="device">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="deviceGroupId" column="device_group_id" />
+        <result property="busNo" column="bus_no" />
+        <result property="busPlateNo" column="bus_plate_no" />
+        <result property="area" column="area" />
+        <result property="des" column="des" />
+        <result property="installTime" column="install_time" />
+        <result property="createTime" column="create_time" />
+        <result property="status" column="status" />
+        <result property="online" column="online" />
+        <association property="deviceGroup" javaType="com.gs.bean.DeviceGroup">
+            <id property="id" column="g_id"/>
+            <result property="name" column="g_name"/>
+        </association>
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="deviceResultMap">
+        <![CDATA[
+        select * from t_device where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="device" resultMap="deviceResultMap">
+        <![CDATA[
+        select * from t_device where id = #{id}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="deviceResultMap">
+        <![CDATA[
+        select * from t_device
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="deviceResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_device limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceResultMap">
+        <![CDATA[
+        select d.*, dg.id as g_id, dg.name as g_name from t_device d, t_device_group dg where d.customer_id = #{customerId} and d.device_group_id = dg.id limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="deviceResultMap">
+        <![CDATA[
+        select d.*, dg.id as g_id, dg.name as g_name from t_device d, t_device_group dg where d.customer_id = #{customerId} and d.device_group_id = dg.id
+        ]]>
+        <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
+            and d.device_group_id = #{device.deviceGroupId}
+        </if>
+        <if test="device.status != null and device.status != ''">
+            and d.status = #{device.status}
+        </if>
+        <if test="device.online != null and device.online !=''">
+            and d.online = #{device.online}
+        </if>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="queryByDeviceId" resultType="string" parameterType="string">
+        <![CDATA[
+        select device_group_id from t_device where id = #{deviceId};
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_device;
+        ]]>
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_device where customer_id = #{customerId}
+        ]]>
+        <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
+            and device_group_id = #{device.deviceGroupId}
+        </if>
+        <if test="device.status != null and device.status != ''">
+            and status = #{device.status}
+        </if>
+        <if test="device.online != null and device.online !=''">
+            and online = #{device.online}
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="device">
+        <![CDATA[
+        insert into t_device(id, name, device_group_id, bus_no, bus_plate_no, area, des, customer_id, install_time, create_time)
+        values(uuid(), #{name}, #{deviceGroupId}, #{busNo}, #{busPlateNo}, #{area}, #{des}, #{customerId}, #{installTime}, CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="device">
+        <![CDATA[
+        update t_device set name = #{name}, device_group_id = #{deviceGroupId}, bus_no = #{busNo}, bus_plate_no = #{busPlateNo}, area = #{area}, des = #{des}, install_time = #{installTime} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_device set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_device set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

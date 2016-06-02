@@ -63,6 +63,9 @@ CREATE TABLE t_resource_type (
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '资源类型是否在可用状态'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+ALTER TABLE t_resource_type ADD CONSTRAINT ck_resource_type_status
+CHECK (status in ('Y', 'N'));
+
 --t_resource资源表,每个用户的资源都不一样
 DROP TABLE IF EXISTS t_resource;
 CREATE TABLE t_resource(
@@ -84,6 +87,9 @@ FOREIGN KEY (resource_type_id) REFERENCES t_resource_type(id);
 ALTER TABLE t_resource ADD CONSTRAINT fk_resource_customer_id
 FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 
+ALTER TABLE t_resource ADD CONSTRAINT ck_resource_status
+CHECK (status in ('Y', 'N'));
+
 --t_device_group终端设备分组信息表,每个客户都可以有多个分组
 DROP TABLE IF EXISTS t_device_group;
 CREATE TABLE t_device_group(
@@ -98,6 +104,9 @@ CREATE TABLE t_device_group(
 ALTER TABLE t_device_group ADD CONSTRAINT fk_device_group_customer_id
 FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 
+ALTER TABLE t_device_group ADD CONSTRAINT ck_device_group_status
+CHECK (status in ('Y', 'N'));
+
 --t_device终端设备表,每个客户可以有多个终端设备
 DROP TABLE IF EXISTS t_device;
 CREATE TABLE t_device(
@@ -109,11 +118,23 @@ CREATE TABLE t_device(
   bus_plate_no VARCHAR(10) COMMENT '公交车牌号',
   area VARCHAR(50) COMMENT '运行区域',
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
-  create_time DATETIME DEFAULT current_timestamp COMMENT '终端添加时间'
+  device_group_id VARCHAR(128) COMMENT '终端设备分组id',
+  create_time DATETIME DEFAULT current_timestamp COMMENT '终端添加时间',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '终端是否可用',
+  online VARCHAR(2) NOT NULL DEFAULT 'N' COMMENT '终端是否在线,默认为不在线'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_device ADD CONSTRAINT fk_device_customer_id
 FOREIGN KEY (customer_id) REFERENCES t_customer(id);
+
+ALTER TABLE t_device ADD CONSTRAINT fk_device_group_id
+FOREIGN KEY (device_group_id) REFERENCES t_device_group(id);
+
+ALTER TABLE t_device ADD CONSTRAINT ck_device_status
+CHECK (status in ('Y', 'N'));
+
+ALTER TABLE t_device ADD CONSTRAINT ck_device_online
+CHECK (online in ('Y', 'N'));
 
 --t_device_resource设备资源表,不同的资源下发到不同的设备
 DROP TABLE IF EXISTS t_device_resource;

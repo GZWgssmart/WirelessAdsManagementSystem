@@ -11,11 +11,16 @@ public class Device {
     private String name;
     private String des;
     private Date installTime;
+    private String installTimeStr;
     private String busNo;
     private String busPlateNo;
     private String area;
     private Date createTime;
     private String customerId;
+    private String deviceGroupId;
+    private DeviceGroup deviceGroup;
+    private String status;
+    private String online;
 
     public String getId() {
         return id;
@@ -47,6 +52,14 @@ public class Device {
 
     public void setInstallTime(Date installTime) {
         this.installTime = installTime;
+    }
+
+    public String getInstallTimeStr() {
+        return installTimeStr;
+    }
+
+    public void setInstallTimeStr(String installTimeStr) {
+        this.installTimeStr = installTimeStr;
     }
 
     public String getBusNo() {
@@ -87,5 +100,37 @@ public class Device {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getDeviceGroupId() {
+        return deviceGroupId;
+    }
+
+    public void setDeviceGroupId(String deviceGroupId) {
+        this.deviceGroupId = deviceGroupId;
+    }
+
+    public DeviceGroup getDeviceGroup() {
+        return deviceGroup;
+    }
+
+    public void setDeviceGroup(DeviceGroup deviceGroup) {
+        this.deviceGroup = deviceGroup;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getOnline() {
+        return online;
+    }
+
+    public void setOnline(String online) {
+        this.online = online;
     }
 }

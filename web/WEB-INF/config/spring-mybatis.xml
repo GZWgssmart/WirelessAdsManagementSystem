@@ -8,10 +8,10 @@
     <context:property-placeholder location="WEB-INF/config/jdbc.properties"/>
 
     <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
-        <property name="driver" value="${jdbc.connection.driverClassName}"></property>
-        <property name="driverUrl" value="${jdbc.connection.driverUrl}"></property>
-        <property name="user" value="${jdbc.connection.user}"></property>
-        <property name="password" value="${jdbc.connection.password}"></property>
+        <property name="driver" value="${jdbc.connection.driverClassName}" />
+        <property name="driverUrl" value="${jdbc.connection.driverUrl}" />
+        <property name="user" value="${jdbc.connection.user}" />
+        <property name="password" value="${jdbc.connection.password}" />
         <property name="houseKeepingTestSql" value="${proxool.houseKeepingTestSql}"/>
         <!-- 最少保持的空闲连接数 （默认2个） -->
         <property name="prototypeCount" value="${proxool.prototypeCount}"/>

@@ -176,7 +176,7 @@ function formatterDate(value) {
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
-        return year + "/" + month + "/" + day + " " + hour + ":" + minutes + ":" + seconds;
+        return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
     }
 }
 
@@ -193,6 +193,14 @@ function formatterStatus(value) {
         return "可用";
     } else {
         return "不可用";
+    }
+}
+
+function formatterOnline(value) {
+    if (value == "Y") {
+        return "在线";
+    } else {
+        return "离线";
     }
 }
 

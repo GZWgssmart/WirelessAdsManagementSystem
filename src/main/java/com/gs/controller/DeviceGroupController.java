@@ -11,7 +11,6 @@ import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.DeviceGroupService;
-import com.gs.service.ResourceTypeService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,6 +86,23 @@ public class DeviceGroupController {
             logger.info("客户未登录，不能分页显示终端分组列表");
             return null;
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "list_combo", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
+        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
+        if (SessionUtil.isCustomer(session)) {
+            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
+            List<DeviceGroup> deviceGroups = deviceGroupService.queryAll();
+            for (DeviceGroup deviceGroup : deviceGroups) {
+                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
+                comboBox4EasyUI.setId(deviceGroup.getId());
+                comboBox4EasyUI.setText(deviceGroup.getName());
+                comboBox4EasyUIs.add(comboBox4EasyUI);
+            }
+        }
+        return comboBox4EasyUIs;
     }
 
     @RequestMapping(value = "query/{id}", method = RequestMethod.GET)

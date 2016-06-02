@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>客户列表-青岛宝瑞无线广告管理系统</title>
+    <title>终端列表-青岛宝瑞无线广告管理系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -33,7 +33,7 @@
             toValidate();
             if (validateForm("addForm")) {
                 $('#addForm').ajaxSubmit({
-                    url:'<%=path %>/res/add',
+                    url:'<%=path %>/device/add',
                     type:'post',
                     dataType: 'json',
                     success: function (data) {
@@ -52,8 +52,8 @@
         function showEdit() {
             var row = selectedRow("list");
             if (row) {
-                $("#resourceTypeId").combobox({
-                    url:'<%=path %>/res/list_combo/' + row.id,
+                $("#deviceGroupId").combobox({
+                    url:'<%=path %>/device/list_combo/' + row.id,
                     method:'get',
                     valueField:'id',
                     textField:'text',
@@ -62,7 +62,7 @@
                 $("#editForm").form("load", row);
                 openWin("editWin");
             } else {
-                $.messager.alert("提示", "请选择需要修改的资源类型信息", "info");
+                $.messager.alert("提示", "请选择需要修改的终端设备", "info");
             }
         }
 
@@ -70,7 +70,7 @@
             toValidate();
             if (validateForm("editForm")) {
                 $('#editForm').ajaxSubmit({
-                    url:'<%=path %>/res/update',
+                    url:'<%=path %>/device/update',
                     type:'post',
                     dataType: 'json',
                     success: function (data) {
@@ -90,9 +90,9 @@
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'N') {
-                    $.messager.alert("提示", "资源类型不可用,无需冻结", "info");
+                    $.messager.alert("提示", "终端设备不可用,无需冻结", "info");
                 } else {
-                    $.get("<%=path %>/res/inactive?id=" + row.id,
+                    $.get("<%=path %>/device/inactive?id=" + row.id,
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
@@ -101,7 +101,7 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要冻结的资源类型", "info");
+                $.messager.alert("提示", "请选择需要冻结的终端设备", "info");
             }
         }
 
@@ -109,9 +109,9 @@
             var row = selectedRow("list");
             if (row) {
                 if (row.status == 'Y') {
-                    $.messager.alert("提示", "资源类型可用,无需激活", "info");
+                    $.messager.alert("提示", "终端设备可用,无需激活", "info");
                 } else {
-                    $.get("<%=path %>/res/active?id=" + row.id,
+                    $.get("<%=path %>/device/active?id=" + row.id,
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
@@ -120,13 +120,13 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要激活的资源类型", "info");
+                $.messager.alert("提示", "请选择需要激活的终端设备", "info");
             }
         }
 
         function doSearch() {
             $("#list").datagrid({
-                url:'<%=path %>/res/search_pager',
+                url:'<%=path %>/device/search_pager',
                 pageSize:20,
                 queryParams:getQueryParams("list", "searchForm")
             });
@@ -136,14 +136,18 @@
         function searchAll() {
             $("#searchForm").form("clear");
             $("#list").datagrid({
-                url:'<%=path %>/res/search_pager',
+                url:'<%=path %>/device/search_pager',
                 pageSize:20,
                 queryParams:getQueryParams("list", "searchForm")
             });
             setPagination("#list");
         }
 
-        function formatterType(value) {
+        function refreshAll() {
+            $("#list").datagrid("reload");
+        }
+
+        function formatterDevice(value) {
             return value.name;
         }
     </script>
@@ -151,7 +155,7 @@
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
-        url:'<%=path %>/res/search_pager',
+        url:'<%=path %>/device/search_pager',
         method:'get',
 				rownumbers:true,
 				singleSelect:true,
@@ -160,18 +164,23 @@
 				border:false,
 				pageSize:20,
 				rowStyler: function(index,row){
-					if (row.status == 'N') {
+				    if (row.status == 'N') {
 					    return 'color:red;';
+					} else if (row.online == 'N') {
+					    return 'color:blue;';
 					}
 				}">
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="150">名称</th>
-        <th field="resourceType" width="80" formatter="formatterType">类型</th>
-        <th field="fileName" width="150">文件名</th>
-        <th field="path" width="200" formatter="formatterLong">路径</th>
+        <th field="deviceGroup" width="80" formatter="formatterDevice">终端分组</th>
+        <th field="area" width="150">区域</th>
+        <th field="busNo" width="80">车路线</th>
+        <th field="busPlateNo" width="80">车牌号</th>
         <th field="des" width="200">描述</th>
+        <th field="online" width="60" formatter="formatterOnline">在线状态</th>
+        <th field="installTimeStr" width="150">安装时间</th>
         <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
@@ -188,8 +197,17 @@
        onclick="active()">激活</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="resource">
-            类型:<select name="resourceTypeId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/restype/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+            分组:<select name="deviceGroupId" class="easyui-combobox"
+                       data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+            是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    data: [{
+                        id: 'Y',
+                        text: '在线'
+                    },{
+                        id: 'N',
+                        text: '离线'
+                    }]">
+        </select>
             状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -203,12 +221,14 @@
                onclick="doSearch();">搜索</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                onclick="searchAll();">查询所有</a>
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
+               onclick="refreshAll();">刷新</a>
         </form>
     </div>
 </div>
 
-<div class="easyui-window site_win_normal input_big" id="addWin" data-options="title:'添加资源',resizable:false,mode:true,closed:true">
-    <form:form id="addForm" modelAttribute="resource" enctype="multipart/form-data">
+<div class="easyui-window site_win_normal input_big" id="addWin" data-options="title:'添加设备',resizable:false,mode:true,closed:true">
+    <form:form id="addForm" modelAttribute="device">
         <table>
             <tr>
                 <td>名称:</td>
@@ -216,16 +236,31 @@
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
-                <td>类型:</td>
+                <td>分组:</td>
                 <td>
-                    <select name="resourceTypeId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/restype/list_combo',method:'get',valueField:'id',textField:'text',
+                    <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
+                           data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
             <tr>
-                <td>选择文件:</td>
-                <td><input name="file" class="easyui-filebox" data-options="prompt:'请选择文件',buttonText:'选择文件'" /></td>
+                <td>区域:</td>
+                <td><input type="text" name="area" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>车路线:</td>
+                <td><input type="text" name="busNo" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>车牌号:</td>
+                <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>安装时间:</td>
+                <td><input type="text" name="installTime" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
             <tr>
                 <td>描述:</td>
@@ -243,7 +278,7 @@
 
 <div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改资源',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
-    <form id="editForm" method="post" modelAttribute="resource" enctype="multipart/form-data">
+    <form id="editForm" method="post" modelAttribute="device">
         <input type="hidden" name="id" />
         <table>
             <tr>
@@ -252,15 +287,30 @@
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
-                <td>类型:</td>
+                <td>分组:</td>
                 <td>
-                    <select id="resourceTypeId" name="resourceTypeId" class="easyui-validatebox easyui-combobox"
+                    <select id="deviceGroupId" name="deviceGroupId" class="easyui-validatebox easyui-combobox"
                             data-options="editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
             <tr>
-                <td>选择文件:</td>
-                <td><input name="file" class="easyui-filebox" data-options="prompt:'请选择文件',buttonText:'选择文件'" /></td>
+                <td>区域:</td>
+                <td><input type="text" name="area" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>车路线:</td>
+                <td><input type="text" name="busNo" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>车牌号:</td>
+                <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>安装时间:</td>
+                <td><input type="text" name="installTimeStr" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
             <tr>
                 <td>描述:</td>
