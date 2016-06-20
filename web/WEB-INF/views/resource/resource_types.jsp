@@ -30,7 +30,7 @@
         });
 
         function addType() {
-            toValidate();
+            toValidate("addForm");
             if (validateForm("addForm")) {
                 $.post("<%=path %>/restype/add",
                         $("#addForm").serialize(),
@@ -58,7 +58,7 @@
         }
 
         function editType() {
-            toValidate();
+            toValidate("editForm");
             if (validateForm("editForm")) {
                 $.post("<%=path %>/restype/update",
                         $("#editForm").serialize(),

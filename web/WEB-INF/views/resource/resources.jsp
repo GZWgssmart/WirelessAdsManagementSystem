@@ -30,7 +30,7 @@
         });
 
         function add() {
-            toValidate();
+            toValidate("addForm");
             if (validateForm("addForm")) {
                 $('#addForm').ajaxSubmit({
                     url:'<%=path %>/res/add',
@@ -67,7 +67,7 @@
         }
 
         function edit() {
-            toValidate();
+            toValidate("editForm");
             if (validateForm("editForm")) {
                 $('#editForm').ajaxSubmit({
                     url:'<%=path %>/res/update',

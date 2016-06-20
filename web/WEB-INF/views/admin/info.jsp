@@ -28,7 +28,7 @@
 
     <script>
         function edit() {
-            toValidate();
+            toValidate("editForm");
             if (validateForm("editForm")) {
                 $.post("<%=path %>/admin/update",
                     $("#editForm").serialize(),

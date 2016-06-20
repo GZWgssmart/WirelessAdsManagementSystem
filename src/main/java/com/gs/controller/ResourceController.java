@@ -82,6 +82,15 @@ public class ResourceController {
         }
     }
 
+    @RequestMapping(value = "list_page_choose", method = RequestMethod.GET)
+    public String toListChoosePage(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "resource/resources_choose";
+        } else {
+            return "redirect:/index";
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<com.gs.bean.Resource> list(HttpSession session) {

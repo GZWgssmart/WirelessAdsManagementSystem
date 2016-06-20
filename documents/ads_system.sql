@@ -140,31 +140,34 @@ CHECK (online in ('Y', 'N'));
 DROP TABLE IF EXISTS t_device_resource;
 CREATE TABLE t_device_resource(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备与资源关联id',
+  customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   device_id VARCHAR(128) COMMENT '终端设备id',
-  device_group_id VARCHAR(128) COMMENT '终端设备分组id',
   resource_id VARCHAR(128) NOT NULL COMMENT '资源id',
   show_type VARCHAR(2) NOT NULL COMMENT '显示方式，包括即时显示，定时显示,不定时显示',
   start_time DATETIME COMMENT '定时播放的开始时间',
   end_time DATETIME COMMENT '定时播放的结束时间',
   stay_time INT COMMENT '停留时间,以秒为单位',
+  des VARCHAR(500) COMMENT '描述信息',
+  submit_check_time DATETIME COMMENT '审核提交时间',
   check_comment VARCHAR(200) COMMENT '审核批注',
-  checked VARCHAR(2) NOT NULL DEFAULT 'N' COMMENT '是否审核通过',
+  check_time DATETIME COMMENT '审核时间',
+  check_status VARCHAR(10) NOT NULL DEFAULT '未提交' COMMENT '审核状态',
   create_time DATETIME DEFAULT current_timestamp COMMENT '资源发布添加时间',
   publish_time DATETIME COMMENT '资源下发时间',
-  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '资源状态,是否在用或删除'
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '是否在用或删除'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_checked
-CHECK (checked in ('Y', 'N'));
+ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_check_status
+CHECK (check_status in ('未提交', '审核中', '已审核'));
 
 ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_status
 CHECK (status in ('Y', 'N'));
 
+ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_customer_id
+FOREIGN KEY (customer_id) REFERENCES t_customer(id);
+
 ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_device_id
 FOREIGN KEY (device_id) REFERENCES t_device(id);
-
-ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_device_group_id
-FOREIGN KEY (device_group_id) REFERENCES t_device_group(id);
 
 ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_resource_id
 FOREIGN KEY (resource_id) REFERENCES t_resource(id);

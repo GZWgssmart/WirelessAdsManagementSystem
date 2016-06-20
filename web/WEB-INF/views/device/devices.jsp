@@ -30,7 +30,7 @@
         });
 
         function add() {
-            toValidate();
+            toValidate("addForm");
             if (validateForm("addForm")) {
                 $('#addForm').ajaxSubmit({
                     url:'<%=path %>/device/add',
@@ -67,7 +67,7 @@
         }
 
         function edit() {
-            toValidate();
+            toValidate("editForm");
             if (validateForm("editForm")) {
                 $('#editForm').ajaxSubmit({
                     url:'<%=path %>/device/update',
@@ -196,7 +196,7 @@
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
        onclick="active()">激活</a>
     <div class="input_small">
-        <form id="searchForm" modalAttribute="resource">
+        <form id="searchForm" modalAttribute="device">
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
@@ -276,7 +276,7 @@
     </form:form>
 </div>
 
-<div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改资源',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改设备',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
     <form id="editForm" method="post" modelAttribute="device">
         <input type="hidden" name="id" />

@@ -30,7 +30,7 @@
         });
 
         function add() {
-            toValidate();
+            toValidate("addForm");
             if (validateForm("addForm")) {
                 $.post("<%=path %>/admin/add",
                         $("#addForm").serialize(),
@@ -58,7 +58,7 @@
         }
 
         function edit() {
-            toValidate();
+            toValidate("editForm");
             if (validateForm("editForm")) {
                 $.post("<%=path %>/admin/update",
                         $("#editForm").serialize(),

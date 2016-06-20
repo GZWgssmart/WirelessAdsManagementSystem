@@ -28,7 +28,7 @@
 
     <script>
         function updatePwd() {
-            toValidate();
+            toValidate("updateForm");
             if (validateForm("updateForm")) {
                 $.post("<%=path %>/customer/update_pwd",
                         $("#updateForm").serialize(),

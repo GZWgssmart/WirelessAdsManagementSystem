@@ -45,7 +45,8 @@ a:hover {
 }
 
 .input_small input, .input_small select {
-    min-width:80px;
+    min-width: 80px;
+    max-width:100px;
 }
 
 .input_normal input, .input_normal select {

@@ -12,6 +12,7 @@
         <typeAlias type="com.gs.bean.DeviceGroup" alias="deviceGroup" />
         <typeAlias type="com.gs.bean.Resource" alias="resource" />
         <typeAlias type="com.gs.bean.Device" alias="device" />
+        <typeAlias type="com.gs.bean.DeviceResource" alias="deviceResource" />
     </typeAliases>
 
     <mappers></mappers>

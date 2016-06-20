@@ -1,9 +1,8 @@
 package com.gs.controller;
 
 import com.gs.bean.Customer;
-import com.gs.bean.Device;
 import com.gs.bean.DeviceGroup;
-import com.gs.bean.ResourceType;
+import com.gs.bean.DeviceResource;
 import com.gs.common.Constants;
 import com.gs.common.bean.ComboBox4EasyUI;
 import com.gs.common.bean.ControllerResult;
@@ -14,7 +13,7 @@ import com.gs.common.util.DateParseUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.DeviceGroupService;
-import com.gs.service.DeviceService;
+import com.gs.service.DeviceResourceService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -37,24 +35,24 @@ import java.util.List;
  * Created by WangGenshen on 5/16/16.
  */
 @Controller
-@RequestMapping("/device")
-public class DeviceController {
+@RequestMapping("/devres")
+public class DeviceResourceController {
 
-    private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
+    private static final Logger logger = LoggerFactory.getLogger(DeviceResourceController.class);
 
     @Resource
-    private DeviceService deviceService;
+    private DeviceResourceService deviceResourceService;
     @Resource
     private DeviceGroupService deviceGroupService;
 
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public ControllerResult add(Device device, HttpSession session) {
+    public ControllerResult add(DeviceResource deviceResource, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            device.setCustomerId(customer.getId());
-            deviceService.insert(device);
-            return ControllerResult.getSuccessResult("成功添加终端设备");
+            deviceResource.setCustomerId(customer.getId());
+            deviceResourceService.insert(deviceResource);
+            return ControllerResult.getSuccessResult("成功添加消息发布");
         }
         return null;
     }
@@ -62,16 +60,25 @@ public class DeviceController {
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
     public String toListPage(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            return "device/devices";
+            return "publish/publishes";
         } else {
             return "redirect:/index";
         }
     }
 
-    @RequestMapping(value = "list_page_choose", method = RequestMethod.GET)
-    public String toListChoosePage(HttpSession session) {
+    @RequestMapping(value = "list_page_checking", method = RequestMethod.GET)
+    public String toListPageChecking(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            return "device/devices_choose";
+            return "publish/publishes_check";
+        } else {
+            return "redirect:/index";
+        }
+    }
+
+    @RequestMapping(value = "list_page_checked", method = RequestMethod.GET)
+    public String toListPageChecked(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "publish/publishes_checked";
         } else {
             return "redirect:/index";
         }
@@ -79,10 +86,10 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<Device> list(HttpSession session) {
+    public List<DeviceResource> list(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("显示所有终端设备");
-            return deviceService.queryAll();
+            logger.info("显示所有消息发布");
+            return deviceResourceService.queryAll();
         } else {
             return null;
         }
@@ -90,38 +97,40 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<Device> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
+    public Pager4EasyUI<DeviceResource> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示终端设备");
+            logger.info("分页显示消息发布");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            int total = deviceService.count();
+            int total = deviceResourceService.count();
             Pager pager = PagerUtil.getPager(page, rows, total);
-            List<Device> devices = deviceService.queryByPagerAndCustomerId(pager, customer.getId());
-            for (Device d : devices) {
-                d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+            List<DeviceResource> deviceResources = deviceResourceService.queryByPagerAndCustomerId(pager, customer.getId());
+            for (DeviceResource dr : deviceResources) {
+                dr.setStartTimeStr(DateFormatUtil.format(dr.getStartTime(), Constants.DATETIME_PATTERN));
+                dr.setEndTimeStr(DateFormatUtil.format(dr.getEndTime(), Constants.DATETIME_PATTERN));
             }
-            return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
+            return new Pager4EasyUI<DeviceResource>(pager.getTotalRecords(), deviceResources);
         } else {
-            logger.info("客户未登录，不能分页显示终端设备");
+            logger.info("客户未登录，不能分页显示消息发布");
             return null;
         }
     }
 
     @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<Device> searchPager(@Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
+    public Pager4EasyUI<DeviceResource> searchPager(@Param("page")String page, @Param("rows")String rows, DeviceResource deviceResource, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示终端设备");
+            logger.info("分页显示消息发布");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            int total = deviceService.countByCriteria(device, customer.getId());
+            int total = deviceResourceService.countByCriteria(deviceResource, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
-            List<Device> devices = deviceService.queryByPagerAndCriteria(pager, device, customer.getId());
-            for (Device d : devices) {
-                d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+            List<DeviceResource> deviceResources = deviceResourceService.queryByPagerAndCriteria(pager, deviceResource, customer.getId());
+            for (DeviceResource dr : deviceResources) {
+                dr.setStartTimeStr(DateFormatUtil.format(dr.getStartTime(), Constants.DATETIME_PATTERN));
+                dr.setEndTimeStr(DateFormatUtil.format(dr.getEndTime(), Constants.DATETIME_PATTERN));
             }
-            return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
+            return new Pager4EasyUI<DeviceResource>(pager.getTotalRecords(), deviceResources);
         } else {
-            logger.info("客户未登录，不能分页显示终端设备");
+            logger.info("客户未登录，不能分页显示消息发布");
             return null;
         }
     }
@@ -129,10 +138,10 @@ public class DeviceController {
     @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("根据终端设备id: " + id + "查询终端设备");
+            logger.info("根据消息发布id: " + id + "查询消息发布");
             ModelAndView mav = new ModelAndView("device/device_info");
-            Device device = deviceService.queryById(id);
-            mav.addObject("device", device);
+            DeviceResource deviceResource = deviceResourceService.queryById(id);
+            mav.addObject("deviceResource", deviceResource);
             return mav;
         }
         return null;
@@ -140,14 +149,15 @@ public class DeviceController {
 
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public ControllerResult update(Device device, HttpSession session) {
+    public ControllerResult update(DeviceResource deviceResource, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("更新终端设备");
-            device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
-            deviceService.update(device);
-            return ControllerResult.getSuccessResult("成功更新终端设备");
+            logger.info("更新消息发布");
+            deviceResource.setStartTime(DateParseUtil.parseDate(deviceResource.getStartTimeStr(), Constants.DATETIME_PATTERN));
+            deviceResource.setEndTime(DateParseUtil.parseDate(deviceResource.getEndTimeStr(), Constants.DATETIME_PATTERN));
+            deviceResourceService.update(deviceResource);
+            return ControllerResult.getSuccessResult("成功更新消息发布");
         } else {
-            return ControllerResult.getFailResult("更新终端设备失败");
+            return ControllerResult.getFailResult("更新消息发布失败");
         }
     }
 
@@ -155,10 +165,10 @@ public class DeviceController {
     @RequestMapping(value = "inactive", method = RequestMethod.GET)
     public ControllerResult inactive(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            deviceService.inactive(id);
-            return ControllerResult.getSuccessResult("冻结终端设备成功");
+            deviceResourceService.inactive(id);
+            return ControllerResult.getSuccessResult("冻结消息发布成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结终端设备");
+            return ControllerResult.getFailResult("没有权限冻结消息发布");
         }
     }
 
@@ -166,10 +176,21 @@ public class DeviceController {
     @RequestMapping(value = "active", method = RequestMethod.GET)
     public ControllerResult active(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            deviceService.active(id);
-            return ControllerResult.getSuccessResult("已解除终端设备冻结");
+            deviceResourceService.active(id);
+            return ControllerResult.getSuccessResult("已解除消息发布冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活终端设备");
+            return ControllerResult.getFailResult("没有权限激活消息发布");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "check", method = RequestMethod.GET)
+    public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            deviceResourceService.check(id, checkStatus);
+            return ControllerResult.getSuccessResult("消息发布" + checkStatus);
+        } else {
+            return ControllerResult.getFailResult("没有权限提交消息发布审核");
         }
     }
 
@@ -178,7 +199,7 @@ public class DeviceController {
     public List<ComboBox4EasyUI> listCombo(@PathVariable("id") String id, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
         if (SessionUtil.isCustomer(session)) {
-            String deviceGroupId = deviceService.queryByDeviceId(id);
+            String deviceGroupId = deviceResourceService.queryByDeviceId(id);
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
             List<DeviceGroup> deviceGroups = deviceGroupService.queryAll();
             for (DeviceGroup dg : deviceGroups) {

@@ -30,7 +30,7 @@
         });
 
         function addGroup() {
-            toValidate();
+            toValidate("addForm");
             if (validateForm("addForm")) {
                 $.post("<%=path %>/devgroup/add",
                         $("#addForm").serialize(),
@@ -58,7 +58,7 @@
         }
 
         function editGroup() {
-            toValidate();
+            toValidate("editForm");
             if (validateForm("editForm")) {
                 $.post("<%=path %>/devgroup/update",
                         $("#editForm").serialize(),

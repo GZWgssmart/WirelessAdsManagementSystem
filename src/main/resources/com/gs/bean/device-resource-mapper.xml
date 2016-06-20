@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.DeviceResourceDAO">
+
+    <resultMap id="deviceResourceResultMap" type="deviceResource">
+        <id property="id" column="id" />
+        <result property="deviceId" column="device_id" />
+        <result property="resourceId" column="resource_id" />
+        <result property="startTime" column="start_time" />
+        <result property="endTime" column="end_time" />
+        <result property="des" column="des" />
+        <result property="stayTime" column="stay_time" />
+        <result property="showType" column="show_type" />
+        <result property="submitCheckTime" column="submit_check_time" />
+        <result property="checkComment" column="check_comment" />
+        <result property="checkStatus" column="check_status" />
+        <result property="checkTime" column="check_time" />
+        <result property="createTime" column="create_time" />
+        <result property="publishTime" column="publish_time" />
+        <result property="status" column="status" />
+        <association property="device" javaType="com.gs.bean.Device">
+            <id property="id" column="d_id"/>
+            <result property="name" column="d_name"/>
+        </association>
+        <association property="resource" javaType="com.gs.bean.Resource">
+            <id property="id" column="r_id"/>
+            <result property="name" column="r_name"/>
+        </association>
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select * from t_device_resource where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="deviceResource" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select * from t_device_resource where id = #{id}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select * from t_device_resource
+        ]]>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="deviceResourceResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_device_resource limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select * from t_device_resource where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select dr.*, d.id as d_id, d.name as d_name, r.id as r_id, r.name as r_name from t_device_resource dr, t_device d, t_resource r
+        where dr.customer_id = #{customerId} and dr.device_id = d.id and dr.resource_id = r.id
+        ]]>
+        <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">
+            and dr.check_status = #{deviceResource.checkStatus}
+        </if>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="queryByDeviceId" resultType="string" parameterType="string">
+        <![CDATA[
+        select device_group_id from t_device where id = #{deviceId};
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_device_resource;
+        ]]>
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_device_resource where customer_id = #{customerId}
+        ]]>
+        <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">
+            and check_status = #{deviceResource.checkStatus}
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="deviceResource">
+        <![CDATA[
+        insert into t_device_resource(id,customer_id, device_id, resource_id, show_type, start_time, end_time, stay_time, des, create_time)
+        values(uuid(), #{customerId}, #{deviceId}, #{resourceId}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{des}, CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="deviceResource">
+        <![CDATA[
+        update t_device_resource set device_id = #{deviceId}, resource_id = #{resourceId}, show_type = #{showType}, start_time = #{startTime}, end_time = #{endTime}, stay_time = #{stayTime}, des = #{des} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_device_resource set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_device_resource set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="check" keyProperty="id">
+        <![CDATA[
+        update t_device_resource set check_status = #{checkStatus} where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

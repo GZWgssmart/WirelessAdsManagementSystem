@@ -249,8 +249,8 @@ $(function(){
     });
 })
 
-function toValidate() {
-    $('.validatebox-text').validatebox('enableValidation').validatebox('validate');
+function toValidate(formId) {
+    $('#' + formId + ' .validatebox-text').validatebox('enableValidation').validatebox('validate');
 }
 
 function validateForm(id) {

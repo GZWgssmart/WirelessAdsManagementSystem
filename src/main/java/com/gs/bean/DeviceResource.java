@@ -8,15 +8,22 @@ import java.util.Date;
 public class DeviceResource {
 
     private String id;
+    private String customerId;
     private String deviceId;
-    private String deviceGroupId;
+    private Device device;
     private String resourceId;
+    private Resource resource;
     private String showType;
     private Date startTime;
+    private String startTimeStr;
     private Date endTime;
+    private String endTimeStr;
     private int stayTime;
+    private String des;
+    private Date submitCheckTime;
     private String checkComment;
-    private String checked;
+    private Date checkTime;
+    private String checkStatus;
     private Date createTime;
     private String publishTime;
     private String status;
@@ -29,6 +36,14 @@ public class DeviceResource {
         this.id = id;
     }
 
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
     public String getDeviceId() {
         return deviceId;
     }
@@ -37,12 +52,12 @@ public class DeviceResource {
         this.deviceId = deviceId;
     }
 
-    public String getDeviceGroupId() {
-        return deviceGroupId;
+    public Device getDevice() {
+        return device;
     }
 
-    public void setDeviceGroupId(String deviceGroupId) {
-        this.deviceGroupId = deviceGroupId;
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
     public String getResourceId() {
@@ -51,6 +66,14 @@ public class DeviceResource {
 
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
     public String getShowType() {
@@ -69,12 +92,28 @@ public class DeviceResource {
         this.startTime = startTime;
     }
 
+    public String getStartTimeStr() {
+        return startTimeStr;
+    }
+
+    public void setStartTimeStr(String startTimeStr) {
+        this.startTimeStr = startTimeStr;
+    }
+
     public Date getEndTime() {
         return endTime;
     }
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getEndTimeStr() {
+        return endTimeStr;
+    }
+
+    public void setEndTimeStr(String endTimeStr) {
+        this.endTimeStr = endTimeStr;
     }
 
     public int getStayTime() {
@@ -85,6 +124,22 @@ public class DeviceResource {
         this.stayTime = stayTime;
     }
 
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public Date getSubmitCheckTime() {
+        return submitCheckTime;
+    }
+
+    public void setSubmitCheckTime(Date submitCheckTime) {
+        this.submitCheckTime = submitCheckTime;
+    }
+
     public String getCheckComment() {
         return checkComment;
     }
@@ -93,12 +148,20 @@ public class DeviceResource {
         this.checkComment = checkComment;
     }
 
-    public String getChecked() {
-        return checked;
+    public Date getCheckTime() {
+        return checkTime;
     }
 
-    public void setChecked(String checked) {
-        this.checked = checked;
+    public void setCheckTime(Date checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public String getCheckStatus() {
+        return checkStatus;
+    }
+
+    public void setCheckStatus(String checkStatus) {
+        this.checkStatus = checkStatus;
     }
 
     public Date getCreateTime() {
