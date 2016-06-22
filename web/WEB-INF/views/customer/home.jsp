@@ -42,7 +42,7 @@
             <a href="javascript:void(0);" src="<%=path %>/device/list_page" class="site-navi-tab">终端列表</a></p>
             <a href="javascript:void(0);" src="<%=path %>/devgroup/list_page" class="site-navi-tab">终端分组列表</a></p>
         </div>
-        <div title="信息发布" class="site_menu">
+        <div title="消息发布" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/devres/list_page" class="site-navi-tab">消息发布列表</a></p>
             <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checking" class="site-navi-tab">消息发布审核</a></p>
             <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checked" class="site-navi-tab">已发布消息列表</a></p>

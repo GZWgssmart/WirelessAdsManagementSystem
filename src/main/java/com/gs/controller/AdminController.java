@@ -132,6 +132,21 @@ public class AdminController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "search_pager", method = RequestMethod.GET)
+    public Pager4EasyUI<Admin> searchPager(@Param("page")String page, @Param("rows")String rows, Admin admin, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示管理员信息");
+            int total = adminService.countByCriteria(admin);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<Admin> admins = adminService.queryByPagerAndCriteria(pager, admin);
+            return new Pager4EasyUI<Admin>(pager.getTotalRecords(), admins);
+        } else {
+            logger.info("管理员未登录，不能分页显示管理员列表");
+            return null;
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "inactive", method = RequestMethod.GET)
     public ControllerResult inactive(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session)) {

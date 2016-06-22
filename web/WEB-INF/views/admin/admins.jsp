@@ -113,12 +113,31 @@
                 $.messager.alert("提示", "请选择需要激活的管理员", "info");
             }
         }
+
+        function doSearch() {
+            $("#list").datagrid({
+                url:'<%=path %>/admin/search_pager',
+                pageSize:20,
+                queryParams:getQueryParams("list", "searchForm")
+            });
+            setPagination("#list");
+        }
+
+        function searchAll() {
+            $("#searchForm").form("clear");
+            $("#list").datagrid({
+                url:'<%=path %>/admin/search_pager',
+                pageSize:20,
+                queryParams:getQueryParams("list", "searchForm")
+            });
+            setPagination("#list");
+        }
     </script>
 </head>
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
-        url:'<%=path %>/admin/list_pager',
+        url:'<%=path %>/admin/search_pager',
         method:'get',
 				rownumbers:true,
 				singleSelect:true,
@@ -155,6 +174,26 @@
        onclick="inactive()">冻结</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
        onclick="active()">激活</a>
+    <div class="input_small">
+        <form id="searchForm" modalAttribute="admin">
+            邮箱:<input type="email" name="email" class="easyui-textbox"/>
+            姓名:<input type="text" name="name" class="easyui-textbox"/>
+            手机:<input type="text" name="phone" class="easyui-textbox"/>
+            状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    data: [{
+                        id: 'Y',
+                        text: '可用'
+                    },{
+                        id: 'N',
+                        text: '不可用'
+                    }]">
+        </select>
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
+               onclick="doSearch();">搜索</a>
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
+               onclick="searchAll();">查询所有</a>
+        </form>
+    </div>
 </div>
 
 <div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加管理员',resizable:false,mode:true,closed:true">

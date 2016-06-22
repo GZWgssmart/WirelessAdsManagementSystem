@@ -1,6 +1,5 @@
 package com.gs.service;
 
-import com.gs.bean.Admin;
 import com.gs.bean.Customer;
 import com.gs.common.bean.Pager;
 
@@ -13,5 +12,9 @@ public interface CustomerService extends BaseService<Customer, String> {
 
     public int updateLoginTime(String id);
     public int updatePassword(Customer customer);
+
+    public List<Customer> queryByPagerAndCriteria(Pager pager, Customer customer);
+
+    public int countByCriteria(Customer customer);
 
 }

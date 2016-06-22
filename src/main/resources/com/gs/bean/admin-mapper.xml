@@ -27,10 +27,48 @@
         ]]>
     </select>
 
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="adminResultMap">
+        <![CDATA[
+        select * from t_admin where 1 = 1
+        ]]>
+        <if test="admin.email != null and admin.email != ''">
+            and email = #{admin.email}
+        </if>
+        <if test="admin.name != null and admin.name !=''">
+            and name = #{admin.name}
+        </if>
+        <if test="admin.phone != null and admin.phone !=''">
+            and phone = #{admin.phone}
+        </if>
+        <if test="admin.status != null and admin.status != ''">
+            and status = #{admin.status}
+        </if>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
     <select id="count" resultType="int">
         <![CDATA[
         select count(1) from t_admin;
         ]]>
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(1) from t_admin where 1 = 1
+        ]]>
+        <if test="admin.email != null and admin.email != ''">
+            and email = #{admin.email}
+        </if>
+        <if test="admin.name != null and admin.name !=''">
+            and name = #{admin.name}
+        </if>
+        <if test="admin.phone != null and admin.phone !=''">
+            and phone = #{admin.phone}
+        </if>
+        <if test="admin.status != null and admin.status != ''">
+            and status = #{admin.status}
+        </if>
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="admin">

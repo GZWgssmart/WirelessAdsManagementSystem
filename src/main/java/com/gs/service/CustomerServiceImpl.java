@@ -70,6 +70,14 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDAO.updatePassword(customer);
     }
 
+    public List<Customer> queryByPagerAndCriteria(Pager pager, Customer customer) {
+        return customerDAO.queryByPagerAndCriteria(pager, customer);
+    }
+
+    public int countByCriteria(Customer customer) {
+        return customerDAO.countByCriteria(customer);
+    }
+
     @Override
     public int inactive(String id) {
         return customerDAO.inactive(id);

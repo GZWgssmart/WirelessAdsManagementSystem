@@ -138,6 +138,21 @@ public class CustomerController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "search_pager", method = RequestMethod.GET)
+    public Pager4EasyUI<Customer> searchPager(@Param("page")String page, @Param("rows")String rows, Customer customer, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示客户信息");
+            int total = customerService.countByCriteria(customer);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<Customer> customers = customerService.queryByPagerAndCriteria(pager, customer);
+            return new Pager4EasyUI<Customer>(pager.getTotalRecords(), customers);
+        } else {
+            logger.info("管理员未登录，不能分页显示客户列表");
+            return null;
+        }
+    }
+
     @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {

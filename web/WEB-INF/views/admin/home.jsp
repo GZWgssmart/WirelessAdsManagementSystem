@@ -35,33 +35,16 @@
             <a href="javascript:void(0);" src="<%=path %>/customer/list_page" class="site-navi-tab">用户列表</a></p>
         </div>
         <div title="资源管理" class="site_menu">
-            <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">资源列表</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/draggable.html" class="site-navi-tab">添加资源</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改资源</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/res/list_page" class="site-navi-tab">资源列表</a></p>
             <a href="javascript:void(0);" src="<%=path %>/restype/list_page" class="site-navi-tab">资源类型列表</a></p>
         </div>
         <div title="终端管理" class="site_menu">
-            <a href="javascript:void(0);" src="easyui/demo/easyloader.html" class="site-navi-tab">终端列表</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/draggable.html" class="site-navi-tab">添加终端</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">修改终端</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/droppable.html" class="site-navi-tab">添加分组</a></p>
-            <ul class="easyui-tree" data-options="animate:true">
-                <li>
-                    <span>终端分组</span>
-                    <ul>
-                        <li>
-                            <a href="#">分组一</a>
-                        </li>
-                        <li>
-                            <a href="#">分组二</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <a href="javascript:void(0);" src="<%=path %>/device/list_page" class="site-navi-tab">终端列表</a></p>
         </div>
-        <div title="信息发布" class="site_menu">
-            <a href="javascript:void(0);" src="easyui/demo/form.html" class="site-navi-tab">信息列表</a></p>
-            <a href="javascript:void(0);" src="easyui/demo/validatebox.html" class="site-navi-tab">添加信息</a></p>
+        <div title="消息发布" class="site_menu">
+            <a href="javascript:void(0);" src="<%=path %>/devres/list_page" class="site-navi-tab">消息发布列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checking" class="site-navi-tab">消息发布审核</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checked" class="site-navi-tab">已发布消息列表</a></p>
         </div>
         <div title="系统管理" class="site_menu">
             <c:if test="${sessionScope.admin.role == 'super' }">

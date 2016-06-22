@@ -77,4 +77,14 @@ public class AdminServiceImpl implements AdminService {
     public int updatePassword(Admin admin) {
         return adminDAO.updatePassword(admin);
     }
+
+    @Override
+    public List<Admin> queryByPagerAndCriteria(Pager pager, Admin admin) {
+        return adminDAO.queryByPagerAndCriteria(pager, admin);
+    }
+
+    @Override
+    public int countByCriteria(Admin admin) {
+        return adminDAO.countByCriteria(admin);
+    }
 }

@@ -401,7 +401,7 @@
     </form:form>
 </div>
 
-<div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改消息发布',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_big input_big" id="editWin" data-options="title:'修改消息发布',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
     <form id="editForm" method="post" modelAttribute="deviceResource">
         <input type="hidden" name="id" />
