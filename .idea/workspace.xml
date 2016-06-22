@@ -3,21 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/AdminServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/CustomerServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/resource-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/resource-mapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,123 +57,155 @@
       <file leaf-file-name="publishes.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.833334">
-              <caret line="267" column="2" selection-start-line="267" selection-start-column="2" selection-end-line="267" selection-end-column="2" />
+            <state vertical-scroll-proportion="-4.9583335">
+              <caret line="316" column="12" selection-start-line="316" selection-start-column="12" selection-end-line="316" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admins.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp">
+      <file leaf-file-name="publishes_check.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.958333">
-              <caret line="195" column="10" selection-start-line="176" selection-start-column="4" selection-end-line="195" selection-end-column="10" />
+            <state vertical-scroll-proportion="-11.25">
+              <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customers.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp">
+      <file leaf-file-name="publishes_checked.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.25">
-              <caret line="177" column="54" selection-start-line="177" selection-start-column="54" selection-end-line="177" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.5555556">
+              <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="146" column="5" selection-start-line="133" selection-start-column="4" selection-end-line="146" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin/home.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.083333">
-              <caret line="50" column="73" selection-start-line="50" selection-start-column="73" selection-end-line="50" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeviceController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceController.java">
+      <file leaf-file-name="ads_system.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.875">
-              <caret line="41" column="110" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="110" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin-mapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/admin-mapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.625">
-              <caret line="71" column="13" selection-start-line="55" selection-start-column="4" selection-end-line="71" selection-end-column="13" />
+              <caret line="160" column="35" selection-start-line="160" selection-start-column="35" selection-end-line="160" selection-end-column="35" />
               <folding>
-                <marker date="1466565908000" expanded="true" signature="592:628" placeholder="select * fro..t_admin..." />
-                <marker date="1466565908000" expanded="true" signature="755:841" placeholder="select * fro..t_admin..." />
-                <marker date="1466565908000" expanded="true" signature="1012:1066" placeholder="select * fro..t_admin..." />
-                <marker date="1466565908000" expanded="true" signature="1207:1763" placeholder="select * fro..t_admin..." />
-                <marker date="1466565908000" expanded="true" signature="1847:1875" placeholder="select count..t_admin..." />
-                <marker date="1466565908000" expanded="true" signature="2621:2746" placeholder="insert into t_admin..." />
-                <marker date="1466565908000" expanded="true" signature="2867:2915" placeholder="update t_adm..." />
-                <marker date="1466565908000" expanded="true" signature="3034:3082" placeholder="update t_adm..." />
-                <marker date="1466565908000" expanded="true" signature="3210:3306" placeholder="update t_adm..." />
-                <marker date="1466565908000" expanded="true" signature="3424:3492" placeholder="update t_adm..." />
-                <marker date="1466565908000" expanded="true" signature="3618:3676" placeholder="update t_adm..." />
+                <marker date="1465891626000" expanded="true" signature="702:781" placeholder="ALTER TABLE t_admin..." />
+                <marker date="1465891626000" expanded="true" signature="1673:1790" placeholder="ALTER TABLE t_customer..." />
+                <marker date="1465891626000" expanded="true" signature="5112:5226" placeholder="ALTER TABLE t_device..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customer-mapper.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
+      <file leaf-file-name="deviceGroup-mapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/deviceGroup-mapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.034568">
-              <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1466567623000" expanded="true" signature="675:714" placeholder="select * fro..t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="847:936" placeholder="select * fro..t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="1065:1089" placeholder="select * fro..t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="1263:1320" placeholder="select * fro..t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="1464:2059" placeholder="select * fro..t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="2143:2174" placeholder="select count..t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="2962:3096" placeholder="insert into t_customer..." />
-                <marker date="1466567623000" expanded="true" signature="3224:3323" placeholder="update t_cus..." />
-                <marker date="1466567623000" expanded="true" signature="3444:3575" placeholder="update t_cus..." />
-                <marker date="1466567623000" expanded="true" signature="3704:3765" placeholder="update t_cus..." />
-                <marker date="1466567623000" expanded="true" signature="3886:3937" placeholder="update t_cus..." />
-                <marker date="1466567623000" expanded="true" signature="4056:4107" placeholder="update t_cus..." />
+                <marker date="1464188897000" expanded="true" signature="487:530" placeholder="select * fro..t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="669:714" placeholder="select * fro..t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="846:874" placeholder="select * fro..t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="1051:1112" placeholder="select * fro..t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="1261:1368" placeholder="select * fro..t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="1463:1498" placeholder="select count..t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="1647:1780" placeholder="insert into t_device_group..." />
+                <marker date="1464188897000" expanded="true" signature="1904:1975" placeholder="update t_dev..." />
+                <marker date="1464188897000" expanded="true" signature="2096:2151" placeholder="update t_dev..." />
+                <marker date="1464188897000" expanded="true" signature="2270:2325" placeholder="update t_dev..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resources.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.625">
+              <caret line="190" column="70" selection-start-line="190" selection-start-column="12" selection-end-line="190" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devices.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="199" column="70" selection-start-line="199" selection-start-column="70" selection-end-line="199" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="device-resource-mapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.25">
+              <caret line="68" column="77" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="77" />
+              <folding>
+                <marker date="1466570475000" expanded="true" signature="1668:1714" placeholder="select * fro..t_device_resource..." />
+                <marker date="1466570475000" expanded="true" signature="1859:1907" placeholder="select * fro..t_device..." />
+                <marker date="1466570475000" expanded="true" signature="2042:2073" placeholder="select * fro..t_device..." />
+                <marker date="1466570475000" expanded="true" signature="2253:2317" placeholder="select * fro..t_device..." />
+                <marker date="1466570475000" expanded="true" signature="2469:2579" placeholder="select d.*, ..t_device..." />
+                <marker date="1466570475000" expanded="true" signature="2729:3335" placeholder="select d.*, ..t_device..." />
+                <marker date="1466570475000" expanded="true" signature="2729:3343" placeholder="select dr.*,..t_device_resource..." />
+                <marker date="1466570475000" expanded="true" signature="3455:3514" placeholder="select devic..t_device..." />
+                <marker date="1466570475000" expanded="true" signature="3610:3648" placeholder="select count..t_device_resource..." />
+                <marker date="1466570475000" expanded="true" signature="3754:3826" placeholder="select count..t_device_resource..." />
+                <marker date="1466570475000" expanded="true" signature="4290:4566" placeholder="insert into t_device_resource..." />
+                <marker date="1466570475000" expanded="true" signature="4693:4905" placeholder="update t_dev..." />
+                <marker date="1466570475000" expanded="true" signature="5026:5084" placeholder="update t_dev..." />
+                <marker date="1466570475000" expanded="true" signature="5203:5261" placeholder="update t_dev..." />
+                <marker date="1466570475000" expanded="true" signature="5356:5431" placeholder="update t_dev..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="device-mapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.125">
+              <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+              <folding>
+                <marker date="1466570036000" expanded="true" signature="1169:1206" placeholder="select * fro..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="1335:1374" placeholder="select * fro..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="1501:1523" placeholder="select * fro..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="1695:1750" placeholder="select * fro..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="1894:2084" placeholder="select d.*, ..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="2226:2953" placeholder="select d.*, ..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="3073:3132" placeholder="select devic..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="3228:3257" placeholder="select count..t_device..." />
+                <marker date="1466570036000" expanded="true" signature="4078:4340" placeholder="insert into t_device..." />
+                <marker date="1466570036000" expanded="true" signature="4459:4656" placeholder="update t_dev..." />
+                <marker date="1466570036000" expanded="true" signature="4777:4826" placeholder="update t_dev..." />
+                <marker date="1466570036000" expanded="true" signature="4945:4994" placeholder="update t_dev..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resource-mapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/resource-mapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="11.875">
+              <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+              <folding>
+                <marker date="1466570024000" expanded="true" signature="1007:1046" placeholder="select * fro..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="1179:1220" placeholder="select * fro..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="1349:1373" placeholder="select * fro..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="1547:1604" placeholder="select * fro..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="1750:1942" placeholder="select r.*, ..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="2086:2714" placeholder="select r.*, ..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="2836:2900" placeholder="select resou..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="2996:3027" placeholder="select count..t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="3753:3982" placeholder="insert into t_resource..." />
+                <marker date="1466570024000" expanded="true" signature="4103:4480" placeholder="update t_res..." />
+                <marker date="1466570024000" expanded="true" signature="4589:4640" placeholder="update t_res..." />
+                <marker date="1466570024000" expanded="true" signature="4759:4810" placeholder="update t_res..." />
               </folding>
             </state>
           </provider>
@@ -207,12 +232,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/ResourceDAO.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/spring-mybatis.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/DeviceService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/DeviceServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceGroupController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml" />
         <option value="dbtable:/77d28789/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_device" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/common/util/DateParseUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/Device.java" />
@@ -227,23 +250,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/DeviceResourceDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/DeviceResourceService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/DeviceResourceServiceImpl.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceResourceController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources_choose.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/device/devices_choose.jsp" />
         <option value="$PROJECT_DIR$/web/js/site_easyui.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resource_types.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/device/device_groups.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/setting.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/info.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/setting.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/admin/info.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" />
         <option value="$PROJECT_DIR$/web/css/site_main.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/CustomerDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/dao/AdminDAO.java" />
@@ -258,6 +275,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/resource-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp" />
       </list>
     </option>
   </component>
@@ -1308,12 +1333,12 @@
       <workItem from="1464307605569" duration="18862000" />
       <workItem from="1464763361550" duration="44999000" />
       <workItem from="1465891370043" duration="17207000" />
-      <workItem from="1466491189793" duration="4690000" />
+      <workItem from="1466491189793" duration="6663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269601000" />
+    <option name="totallyTimeSpent" value="271574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -1325,16 +1350,16 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.49676898" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5129241" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.48707592" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.48707592" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28928047" sideWeight="0.4878837" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13085622" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13085622" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1423,13 +1448,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../../maven/org/springframework/spring-aop/4.2.6.RELEASE/spring-aop-4.2.6.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.925926">
-          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../maven/org/springframework/spring-webmvc/4.2.6.RELEASE/spring-webmvc-4.2.6.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.259259">
@@ -1447,13 +1465,6 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="160" column="35" selection-start-line="160" selection-start-column="35" selection-end-line="160" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1485,22 +1496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="64" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9803922">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.75">
-          <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -1585,14 +1580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4705882">
-          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/setting.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.9583335">
@@ -1637,30 +1624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-          <folding>
-            <marker date="1465893930000" expanded="true" signature="1668:1714" placeholder="select * fro..t_device_resource..." />
-            <marker date="1465893930000" expanded="true" signature="1859:1907" placeholder="select * fro..t_device..." />
-            <marker date="1465893930000" expanded="true" signature="2042:2073" placeholder="select * fro..t_device..." />
-            <marker date="1465893930000" expanded="true" signature="2253:2317" placeholder="select * fro..t_device..." />
-            <marker date="1465893930000" expanded="true" signature="2469:2579" placeholder="select d.*, ..t_device..." />
-            <marker date="1465893930000" expanded="true" signature="2729:3186" placeholder="select d.*, ..t_device..." />
-            <marker date="1465893930000" expanded="true" signature="2729:3194" placeholder="select dr.*,..t_device_resource..." />
-            <marker date="1465893930000" expanded="true" signature="3306:3365" placeholder="select devic..t_device..." />
-            <marker date="1465893930000" expanded="true" signature="3461:3499" placeholder="select count..t_device_resource..." />
-            <marker date="1465893930000" expanded="true" signature="3605:3677" placeholder="select count..t_device_resource..." />
-            <marker date="1465893930000" expanded="true" signature="3995:4271" placeholder="insert into t_device_resource..." />
-            <marker date="1465893930000" expanded="true" signature="4398:4610" placeholder="update t_dev..." />
-            <marker date="1465893930000" expanded="true" signature="4731:4789" placeholder="update t_dev..." />
-            <marker date="1465893930000" expanded="true" signature="4908:4966" placeholder="update t_dev..." />
-            <marker date="1465893930000" expanded="true" signature="5061:5136" placeholder="update t_dev..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/DeviceResourceServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1687,27 +1650,6 @@
         <state vertical-scroll-proportion="-9.041667">
           <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="52" column="39" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="39" />
-          <folding>
-            <marker date="1464832055000" expanded="true" signature="1169:1206" placeholder="select * fro..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="1335:1374" placeholder="select * fro..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="1501:1523" placeholder="select * fro..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="1695:1750" placeholder="select * fro..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="1894:2084" placeholder="select d.*, ..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="2226:2837" placeholder="select d.*, ..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="2957:3016" placeholder="select devic..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="3112:3141" placeholder="select count..t_device..." />
-            <marker date="1464832055000" expanded="true" signature="3848:4110" placeholder="insert into t_device..." />
-            <marker date="1464832055000" expanded="true" signature="4229:4426" placeholder="update t_dev..." />
-            <marker date="1464832055000" expanded="true" signature="4547:4596" placeholder="update t_dev..." />
-            <marker date="1464832055000" expanded="true" signature="4715:4764" placeholder="update t_dev..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1773,14 +1715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.958333">
-          <caret line="143" column="9" selection-start-line="126" selection-start-column="8" selection-end-line="143" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1789,27 +1723,6 @@
             <element signature="method#list#0;class#ResourceController#0" expanded="false" />
             <element signature="method#listPager#0;class#ResourceController#0" expanded="false" />
             <element signature="method#queryById#0;class#ResourceController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/resource-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.75">
-          <caret line="85" column="13" selection-start-line="75" selection-start-column="4" selection-end-line="85" selection-end-column="13" />
-          <folding>
-            <marker date="1464593371000" expanded="true" signature="1007:1046" placeholder="select * fro..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="1179:1220" placeholder="select * fro..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="1349:1373" placeholder="select * fro..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="1547:1604" placeholder="select * fro..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="1750:1942" placeholder="select r.*, ..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="2086:2592" placeholder="select r.*, ..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="2714:2778" placeholder="select resou..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="2874:2905" placeholder="select count..t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="3511:3740" placeholder="insert into t_resource..." />
-            <marker date="1464593371000" expanded="true" signature="3861:4238" placeholder="update t_res..." />
-            <marker date="1464593371000" expanded="true" signature="4347:4398" placeholder="update t_res..." />
-            <marker date="1464593371000" expanded="true" signature="4517:4568" placeholder="update t_res..." />
           </folding>
         </state>
       </provider>
@@ -1866,14 +1779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.833334">
-          <caret line="267" column="2" selection-start-line="267" selection-start-column="2" selection-end-line="267" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1898,17 +1803,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.25">
-          <caret line="177" column="54" selection-start-line="177" selection-start-column="54" selection-end-line="177" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.034568">
+        <state vertical-scroll-proportion="-17.458334">
           <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
           <folding>
             <marker date="1466567623000" expanded="true" signature="675:714" placeholder="select * fro..t_customer..." />
@@ -1924,6 +1821,151 @@
             <marker date="1466567623000" expanded="true" signature="3886:3937" placeholder="update t_cus..." />
             <marker date="1466567623000" expanded="true" signature="4056:4107" placeholder="update t_cus..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/customers.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="179" column="70" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="190" column="70" selection-start-line="190" selection-start-column="12" selection-end-line="190" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="199" column="70" selection-start-line="199" selection-start-column="70" selection-end-line="199" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/resource-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.875">
+          <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+          <folding>
+            <marker date="1466570024000" expanded="true" signature="1007:1046" placeholder="select * fro..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="1179:1220" placeholder="select * fro..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="1349:1373" placeholder="select * fro..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="1547:1604" placeholder="select * fro..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="1750:1942" placeholder="select r.*, ..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="2086:2714" placeholder="select r.*, ..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="2836:2900" placeholder="select resou..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="2996:3027" placeholder="select count..t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="3753:3982" placeholder="insert into t_resource..." />
+            <marker date="1466570024000" expanded="true" signature="4103:4480" placeholder="update t_res..." />
+            <marker date="1466570024000" expanded="true" signature="4589:4640" placeholder="update t_res..." />
+            <marker date="1466570024000" expanded="true" signature="4759:4810" placeholder="update t_res..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/device-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+          <folding>
+            <marker date="1466570036000" expanded="true" signature="1169:1206" placeholder="select * fro..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="1335:1374" placeholder="select * fro..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="1501:1523" placeholder="select * fro..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="1695:1750" placeholder="select * fro..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="1894:2084" placeholder="select d.*, ..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="2226:2953" placeholder="select d.*, ..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="3073:3132" placeholder="select devic..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="3228:3257" placeholder="select count..t_device..." />
+            <marker date="1466570036000" expanded="true" signature="4078:4340" placeholder="insert into t_device..." />
+            <marker date="1466570036000" expanded="true" signature="4459:4656" placeholder="update t_dev..." />
+            <marker date="1466570036000" expanded="true" signature="4777:4826" placeholder="update t_dev..." />
+            <marker date="1466570036000" expanded="true" signature="4945:4994" placeholder="update t_dev..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="160" column="35" selection-start-line="160" selection-start-column="35" selection-end-line="160" selection-end-column="35" />
+          <folding>
+            <marker date="1465891626000" expanded="true" signature="702:781" placeholder="ALTER TABLE t_admin..." />
+            <marker date="1465891626000" expanded="true" signature="1673:1790" placeholder="ALTER TABLE t_customer..." />
+            <marker date="1465891626000" expanded="true" signature="5112:5226" placeholder="ALTER TABLE t_device..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/deviceGroup-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1464188897000" expanded="true" signature="487:530" placeholder="select * fro..t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="669:714" placeholder="select * fro..t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="846:874" placeholder="select * fro..t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="1051:1112" placeholder="select * fro..t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="1261:1368" placeholder="select * fro..t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="1463:1498" placeholder="select count..t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="1647:1780" placeholder="insert into t_device_group..." />
+            <marker date="1464188897000" expanded="true" signature="1904:1975" placeholder="update t_dev..." />
+            <marker date="1464188897000" expanded="true" signature="2096:2151" placeholder="update t_dev..." />
+            <marker date="1464188897000" expanded="true" signature="2270:2325" placeholder="update t_dev..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/device-resource-mapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="68" column="77" selection-start-line="68" selection-start-column="77" selection-end-line="68" selection-end-column="77" />
+          <folding>
+            <marker date="1466570475000" expanded="true" signature="1668:1714" placeholder="select * fro..t_device_resource..." />
+            <marker date="1466570475000" expanded="true" signature="1859:1907" placeholder="select * fro..t_device..." />
+            <marker date="1466570475000" expanded="true" signature="2042:2073" placeholder="select * fro..t_device..." />
+            <marker date="1466570475000" expanded="true" signature="2253:2317" placeholder="select * fro..t_device..." />
+            <marker date="1466570475000" expanded="true" signature="2469:2579" placeholder="select d.*, ..t_device..." />
+            <marker date="1466570475000" expanded="true" signature="2729:3335" placeholder="select d.*, ..t_device..." />
+            <marker date="1466570475000" expanded="true" signature="2729:3343" placeholder="select dr.*,..t_device_resource..." />
+            <marker date="1466570475000" expanded="true" signature="3455:3514" placeholder="select devic..t_device..." />
+            <marker date="1466570475000" expanded="true" signature="3610:3648" placeholder="select count..t_device_resource..." />
+            <marker date="1466570475000" expanded="true" signature="3754:3826" placeholder="select count..t_device_resource..." />
+            <marker date="1466570475000" expanded="true" signature="4290:4566" placeholder="insert into t_device_resource..." />
+            <marker date="1466570475000" expanded="true" signature="4693:4905" placeholder="update t_dev..." />
+            <marker date="1466570475000" expanded="true" signature="5026:5084" placeholder="update t_dev..." />
+            <marker date="1466570475000" expanded="true" signature="5203:5261" placeholder="update t_dev..." />
+            <marker date="1466570475000" expanded="true" signature="5356:5431" placeholder="update t_dev..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.9583335">
+          <caret line="316" column="12" selection-start-line="316" selection-start-column="12" selection-end-line="316" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_check.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.25">
+          <caret line="107" column="15" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes_checked.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5555556">
+          <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -66,6 +66,9 @@
         <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">
             and dr.check_status = #{deviceResource.checkStatus}
         </if>
+        <if test="deviceResource.status != null and deviceResource.status != ''">
+            and dr.status = #{deviceResource.status}
+        </if>
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>
@@ -88,6 +91,9 @@
         ]]>
         <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">
             and check_status = #{deviceResource.checkStatus}
+        </if>
+        <if test="deviceResource.status != null and deviceResource.status != ''">
+            and status = #{deviceResource.status}
         </if>
     </select>
 

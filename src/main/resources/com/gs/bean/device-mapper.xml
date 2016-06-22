@@ -54,6 +54,9 @@
         <![CDATA[
         select d.*, dg.id as g_id, dg.name as g_name from t_device d, t_device_group dg where d.customer_id = #{customerId} and d.device_group_id = dg.id
         ]]>
+        <if test="device.name != null and device.name != ''">
+            and d.name = #{device.name}
+        </if>
         <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
             and d.device_group_id = #{device.deviceGroupId}
         </if>
@@ -83,6 +86,9 @@
         <![CDATA[
         select count(1) from t_device where customer_id = #{customerId}
         ]]>
+        <if test="device.name != null and device.name != ''">
+            and name = #{device.name}
+        </if>
         <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
             and device_group_id = #{device.deviceGroupId}
         </if>

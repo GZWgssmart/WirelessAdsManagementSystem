@@ -105,12 +105,6 @@
     <div class="input_small">
         <form id="searchForm" modalAttribute="deviceResource">
             <input type="hidden" name="checkStatus" value="审核中" />
-            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-               onclick="doSearch();">搜索</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-               onclick="searchAll();">查询所有</a>
-            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
-               onclick="refreshAll();">刷新</a>
         </form>
     </div>
 </div>

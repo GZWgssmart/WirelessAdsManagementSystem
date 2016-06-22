@@ -314,15 +314,16 @@
        onclick="active()">激活</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="deviceResource">
-            分组:<select name="deviceGroupId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            审核状态:<select name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
-                        id: 'Y',
-                        text: '在线'
+                        id: '未提交',
+                        text: '未提交'
                     },{
-                        id: 'N',
-                        text: '离线'
+                        id: '审核中',
+                        text: '审核中'
+                    },{
+                        id: '已审核',
+                        text: '已审核'
                     }]">
         </select>
             状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',

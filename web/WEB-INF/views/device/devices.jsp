@@ -197,6 +197,7 @@
        onclick="active()">激活</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="device">
+            名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
