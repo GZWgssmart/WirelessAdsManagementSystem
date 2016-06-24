@@ -68,6 +68,17 @@ public class DeviceController {
         }
     }
 
+    @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId,  HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("device/devices_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return null;
+        }
+    }
+
     @RequestMapping(value = "list_page_choose", method = RequestMethod.GET)
     public String toListChoosePage(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
@@ -122,6 +133,24 @@ public class DeviceController {
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {
             logger.info("客户未登录，不能分页显示终端设备");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
+    public Pager4EasyUI<Device> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示终端设备");
+            int total = deviceService.countByCriteria(device, customerId);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<Device> devices = deviceService.queryByPagerAndCriteria(pager, device, customerId);
+            for (Device d : devices) {
+                d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+            }
+            return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
+        } else {
+            logger.info("管理员未登录，不能分页显示终端设备");
             return null;
         }
     }

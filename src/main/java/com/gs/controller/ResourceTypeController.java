@@ -78,7 +78,7 @@ public class ResourceTypeController {
     @RequestMapping(value = "list_combo", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
-        if (SessionUtil.isCustomer(session)) {
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
             List<ResourceType> resourceTypes = resourceTypeService.queryAll();
             for (ResourceType resourceType : resourceTypes) {

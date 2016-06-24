@@ -35,16 +35,15 @@
             <a href="javascript:void(0);" src="<%=path %>/customer/list_page" class="site-navi-tab">用户列表</a></p>
         </div>
         <div title="资源管理" class="site_menu">
-            <a href="javascript:void(0);" src="<%=path %>/res/list_page" class="site-navi-tab">资源列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/res" class="site-navi-tab">资源列表</a></p>
             <a href="javascript:void(0);" src="<%=path %>/restype/list_page" class="site-navi-tab">资源类型列表</a></p>
         </div>
         <div title="终端管理" class="site_menu">
-            <a href="javascript:void(0);" src="<%=path %>/device/list_page" class="site-navi-tab">终端列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/dev" class="site-navi-tab">终端列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/devgroup" class="site-navi-tab">终端分组列表</a></p>
         </div>
         <div title="消息发布" class="site_menu">
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page" class="site-navi-tab">消息发布列表</a></p>
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checking" class="site-navi-tab">消息发布审核</a></p>
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checked" class="site-navi-tab">已发布消息列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/pub" class="site-navi-tab">消息发布列表</a></p>
         </div>
         <div title="系统管理" class="site_menu">
             <c:if test="${sessionScope.admin.role == 'super' }">

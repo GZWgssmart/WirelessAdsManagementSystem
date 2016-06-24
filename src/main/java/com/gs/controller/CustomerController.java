@@ -111,6 +111,22 @@ public class CustomerController {
         }
     }
 
+    @RequestMapping(value = "list_page_admin/{type}", method = RequestMethod.GET)
+    public String toListPageAdmin(@PathVariable("type") String type, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            if (type.equals("res")) {
+                return "customer/customers_res_admin";
+            } else if (type.equals("dev")) {
+                return "customer/customers_dev_admin";
+            } else if(type.equals("devgroup")) {
+                return "customer/customers_devg_admin";
+            } else if (type.equals("pub")) {
+                return "customer/customers_pub_admin";
+            }
+        }
+        return "redirect:/admin/login_page";
+    }
+
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<Customer> list(HttpSession session) {

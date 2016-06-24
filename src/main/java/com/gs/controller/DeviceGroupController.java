@@ -2,7 +2,6 @@ package com.gs.controller;
 
 import com.gs.bean.Customer;
 import com.gs.bean.DeviceGroup;
-import com.gs.bean.ResourceType;
 import com.gs.common.Constants;
 import com.gs.common.bean.ComboBox4EasyUI;
 import com.gs.common.bean.ControllerResult;
@@ -61,6 +60,17 @@ public class DeviceGroupController {
         }
     }
 
+    @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("device/device_groups_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return null;
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<DeviceGroup> list(HttpSession session) {
@@ -89,10 +99,25 @@ public class DeviceGroupController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "list_pager_admin/{customerId}", method = RequestMethod.GET)
+    public Pager4EasyUI<DeviceGroup> listPager(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示资源分组信息");
+            int total = deviceGroupService.count();
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<DeviceGroup> deviceGroups = deviceGroupService.queryByPagerAndCustomerId(pager, customerId);
+            return new Pager4EasyUI<DeviceGroup>(pager.getTotalRecords(), deviceGroups);
+        } else {
+            logger.info("管理员未登录，不能分页显示终端分组列表");
+            return null;
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "list_combo", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
-        if (SessionUtil.isCustomer(session)) {
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
             List<DeviceGroup> deviceGroups = deviceGroupService.queryAll();
             for (DeviceGroup deviceGroup : deviceGroups) {

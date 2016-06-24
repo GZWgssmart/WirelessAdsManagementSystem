@@ -84,6 +84,17 @@ public class DeviceResourceController {
         }
     }
 
+    @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("publish/publishes_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return null;
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<DeviceResource> list(HttpSession session) {
@@ -131,6 +142,25 @@ public class DeviceResourceController {
             return new Pager4EasyUI<DeviceResource>(pager.getTotalRecords(), deviceResources);
         } else {
             logger.info("客户未登录，不能分页显示消息发布");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
+    public Pager4EasyUI<DeviceResource> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, DeviceResource deviceResource, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示消息发布");
+            int total = deviceResourceService.countByCriteria(deviceResource, customerId);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<DeviceResource> deviceResources = deviceResourceService.queryByPagerAndCriteria(pager, deviceResource, customerId);
+            for (DeviceResource dr : deviceResources) {
+                dr.setStartTimeStr(DateFormatUtil.format(dr.getStartTime(), Constants.DATETIME_PATTERN));
+                dr.setEndTimeStr(DateFormatUtil.format(dr.getEndTime(), Constants.DATETIME_PATTERN));
+            }
+            return new Pager4EasyUI<DeviceResource>(pager.getTotalRecords(), deviceResources);
+        } else {
+            logger.info("管理员未登录，不能分页显示消息发布");
             return null;
         }
     }

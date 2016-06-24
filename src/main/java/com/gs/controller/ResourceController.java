@@ -91,6 +91,17 @@ public class ResourceController {
         }
     }
 
+    @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("resource/resources_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return null;
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public List<com.gs.bean.Resource> list(HttpSession session) {
@@ -127,6 +138,21 @@ public class ResourceController {
             int total = resourceService.countByCriteria(resource, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<com.gs.bean.Resource> resources = resourceService.queryByPagerAndCriteria(pager, resource, customer.getId());
+            return new Pager4EasyUI<com.gs.bean.Resource>(pager.getTotalRecords(), resources);
+        } else {
+            logger.info("客户未登录，不能分页显示资源列表");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
+    public Pager4EasyUI<com.gs.bean.Resource> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, com.gs.bean.Resource resource, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            logger.info("分页显示资源信息");
+            int total = resourceService.countByCriteria(resource, customerId);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<com.gs.bean.Resource> resources = resourceService.queryByPagerAndCriteria(pager, resource, customerId);
             return new Pager4EasyUI<com.gs.bean.Resource>(pager.getTotalRecords(), resources);
         } else {
             logger.info("客户未登录，不能分页显示资源列表");
