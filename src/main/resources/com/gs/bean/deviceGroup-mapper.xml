@@ -37,6 +37,12 @@
         ]]>
     </select>
 
+    <select id="queryAllByCustomerId" resultType="list" resultMap="deviceGroupResultMap">
+        <![CDATA[
+        select * from t_device_group where customer_id = #{customerId}
+        ]]>
+    </select>
+
     <select id="count" resultType="int">
         <![CDATA[
         select count(1) from t_device_group;

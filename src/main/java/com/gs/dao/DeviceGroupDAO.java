@@ -15,4 +15,6 @@ import java.util.List;
 public interface DeviceGroupDAO extends BaseDAO<DeviceGroup, String> {
 
     public List<DeviceGroup> queryByPagerAndCustomerId(@Param("pager") Pager pager, @Param("customerId") String customerId);
+
+    public List<DeviceGroup> queryAllByCustomerId(@Param("customerId") String customerId);
 }

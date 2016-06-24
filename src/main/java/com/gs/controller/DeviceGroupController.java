@@ -117,9 +117,27 @@ public class DeviceGroupController {
     @RequestMapping(value = "list_combo", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
-        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
+        if (SessionUtil.isCustomer(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
-            List<DeviceGroup> deviceGroups = deviceGroupService.queryAll();
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customer.getId());
+            for (DeviceGroup deviceGroup : deviceGroups) {
+                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
+                comboBox4EasyUI.setId(deviceGroup.getId());
+                comboBox4EasyUI.setText(deviceGroup.getName());
+                comboBox4EasyUIs.add(comboBox4EasyUI);
+            }
+        }
+        return comboBox4EasyUIs;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "list_combo_admin/{customerId}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4ComboboxAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
+        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
+        if (SessionUtil.isAdmin(session)) {
+            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
+            List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customerId);
             for (DeviceGroup deviceGroup : deviceGroups) {
                 ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
                 comboBox4EasyUI.setId(deviceGroup.getId());
