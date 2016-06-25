@@ -222,6 +222,18 @@ public class CustomerController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "update_other_pwd", method = RequestMethod.POST)
+    public ControllerResult updateOtherPwd(Customer customer, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
+            customerService.updatePassword(customer);
+            return ControllerResult.getSuccessResult("更新用户密码成功");
+        } else {
+            return ControllerResult.getFailResult("无法更新用户密码");
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "inactive", method = RequestMethod.GET)
     public ControllerResult inactive(@Param("id")String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {

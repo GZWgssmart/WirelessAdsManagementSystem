@@ -76,6 +76,36 @@
             }
         }
 
+        function showUpdatePwd() {
+            var row = selectedRow("list");
+            if (row) {
+                $("#editPwdForm").form("load", row);
+                $("#update_password").textbox("setValue", "");
+                openWin("editPwdWin");
+            } else {
+                $.messager.alert("提示", "请选择需要修改密码的管理员", "info");
+            }
+        }
+
+        function updatePwd() {
+            toValidate("editPwdForm");
+            if (validateForm("editPwdForm")) {
+                $.post("<%=path %>/customer/update_other_pwd",
+                        $("#editPwdForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                closeWin("editPwdWin");
+                                $.messager.alert("提示", data.message, "info", function () {
+                                    // dataGridReload("list");
+                                });
+                            } else {
+                                $("#errMsg").html(data.message);
+                            }
+                        }
+                );
+            }
+        }
+
         function inactive() {
             var row = selectedRow("list");
             if (row) {
@@ -170,6 +200,8 @@
        onclick="openWinFitPos('addWin');">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
        onclick="showEdit();">修改</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+       onclick="showUpdatePwd();">修改密码</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
        onclick="inactive()">冻结</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
@@ -264,6 +296,26 @@
             </tr>
         </table>
     </form>
+</div>
+
+<div class="easyui-window site_win_small input_big" id="editPwdWin" data-options="title:'修改客户密码',resizable:false,mode:true,closed:true">
+    <div id="errMsg"></div>
+    <form:form id="editPwdForm" method="post" modelAttribute="admin">
+        <input type="hidden" name="id" />
+        <table class="input_big">
+            <tr>
+                <td>新密码:</td>
+                <td><input id="update_password" type="password" name="password" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="updatePwd();">确认</button>
+                </td>
+            </tr>
+        </table>
+    </form:form>
 </div>
 
 </body>

@@ -218,6 +218,18 @@ public class AdminController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "update_other_pwd", method = RequestMethod.POST)
+    public ControllerResult updateOtherPwd(Admin admin, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            admin.setPassword(EncryptUtil.md5Encrypt(admin.getPassword()));
+            adminService.updatePassword(admin);
+            return ControllerResult.getSuccessResult("更新管理员密码成功");
+        } else {
+            return ControllerResult.getFailResult("无法更新管理员密码");
+        }
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

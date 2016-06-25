@@ -49,7 +49,7 @@ public class ResourceTypeServiceImpl implements ResourceTypeService {
 
     @Override
     public int count() {
-        return 0;
+        return resourceTypeDAO.count();
     }
 
     @Override
