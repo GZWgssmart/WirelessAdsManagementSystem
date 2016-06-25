@@ -90,19 +90,23 @@
         function updatePwd() {
             toValidate("editPwdForm");
             if (validateForm("editPwdForm")) {
-                $.post("<%=path %>/admin/update_other_pwd",
-                        $("#editPwdForm").serialize(),
-                        function (data) {
-                            if (data.result == "success") {
-                                closeWin("editPwdWin");
-                                $.messager.alert("提示", data.message, "info", function () {
-                                    // dataGridReload("list");
-                                });
-                            } else {
-                                $("#errMsg").html(data.message);
-                            }
-                        }
-                );
+                $.messager.confirm("提示", "更新该管理员密码，是否继续?", function(r) {
+                    if (r) {
+                        $.post("<%=path %>/admin/update_other_pwd",
+                                $("#editPwdForm").serialize(),
+                                function (data) {
+                                    if (data.result == "success") {
+                                        closeWin("editPwdWin");
+                                        $.messager.alert("提示", data.message, "info", function () {
+                                            // dataGridReload("list");
+                                        });
+                                    } else {
+                                        $("#errMsg").html(data.message);
+                                    }
+                                }
+                        );
+                    }
+                });
             }
         }
 
