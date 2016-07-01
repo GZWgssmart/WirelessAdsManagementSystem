@@ -49,6 +49,7 @@
             <c:if test="${sessionScope.admin.role == 'super' }">
             <a href="javascript:void(0);" src="<%=path %>/admin/list_page" class="site-navi-tab">管理员列表</a></p>
             </c:if>
+            <a href="javascript:void(0);" src="<%=path %>/version/list_page" class="site-navi-tab">版本列表</a></p>
             <a href="javascript:void(0);" src="<%=path %>/admin/query/${sessionScope.admin.id }" class="site-navi-tab">账号信息</a></p>
             <a href="javascript:void(0);" src="<%=path %>/admin/setting_page" class="site-navi-tab">账号设置</a></p>
         </div>

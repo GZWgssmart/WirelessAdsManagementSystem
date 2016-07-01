@@ -53,7 +53,7 @@ public class ResourceController {
             resource.setCustomerId(customer.getId());
             if (file != null) {
                 String fileName = file.getOriginalFilename();
-                File targetFile = new File(FileUtil.customerDirPath(session, customer.getId()), fileName);
+                File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
@@ -180,7 +180,7 @@ public class ResourceController {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (file != null) {
                 String fileName = file.getOriginalFilename();
-                File targetFile = new File(FileUtil.customerDirPath(session, customer.getId()), fileName);
+                File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {

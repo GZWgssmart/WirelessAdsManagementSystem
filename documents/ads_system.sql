@@ -172,3 +172,18 @@ FOREIGN KEY (device_id) REFERENCES t_device(id);
 ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_resource_id
 FOREIGN KEY (resource_id) REFERENCES t_resource(id);
 
+DROP TABLE IF EXISTS t_version;
+CREATE TABLE t_version(
+  id VARCHAR(128) PRIMARY KEY COMMENT '版本编号',
+  name VARCHAR(50) NOT NULL COMMENT '版本名称',
+  area_count int NOT NULL COMMENT '区域数',
+  path VARCHAR(500) NOT NULL COMMENT '区域说明图片路径',
+  full_path VARCHAR(500) NOT NULL COMMENT '区域说明图片完整路径',
+  file_name VARCHAR(100) NOT NULL COMMENT '区域说明图片的名称',
+  des VARCHAR(500) COMMENT '描述信息',
+  create_time DATETIME DEFAULT current_timestamp COMMENT '版本发布时间',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '版本是否可用'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+ALTER TABLE t_version ADD CONSTRAINT ck_version_status
+CHECK (status in ('Y', 'N'));
