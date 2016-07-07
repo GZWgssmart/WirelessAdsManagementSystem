@@ -15,6 +15,12 @@
         <result property="status" column="status" />
         <result property="online" column="online" />
         <result property="versionId" column="version_id" />
+        <result property="code" column="code" />
+        <result property="driver" column="driver" />
+        <result property="phone" column="phone" />
+        <result property="adsUpdateTime" column="ads_update_time" />
+        <result property="onlineTime" column="online_time" />
+        <result property="offlineTime" column="offline_time" />
         <association property="deviceGroup" javaType="com.gs.bean.DeviceGroup">
             <id property="id" column="g_id"/>
             <result property="name" column="g_name"/>
@@ -28,6 +34,12 @@
     <select id="queryById" parameterType="string" resultMap="deviceResultMap">
         <![CDATA[
         select * from t_device where id=#{id}
+        ]]>
+    </select>
+
+    <select id="queryByCode" parameterType="string" resultMap="deviceResultMap">
+        <![CDATA[
+        select * from t_device where code=#{code}
         ]]>
     </select>
 
@@ -59,6 +71,9 @@
         <![CDATA[
         select d.*, dg.id as g_id, dg.name as g_name, v.id as v_id, v.name as v_name from t_device d, t_device_group dg, t_version v where d.customer_id = #{customerId} and d.device_group_id = dg.id and d.version_id = v.id
         ]]>
+        <if test="device.code != null and device.code != ''">
+            and d.code = #{device.code}
+        </if>
         <if test="device.name != null and device.name != ''">
             and d.name = #{device.name}
         </if>
@@ -94,6 +109,9 @@
         <![CDATA[
         select count(1) from t_device where customer_id = #{customerId}
         ]]>
+        <if test="device.code != null and device.code != ''">
+            and code = #{device.code}
+        </if>
         <if test="device.name != null and device.name != ''">
             and name = #{device.name}
         </if>
@@ -113,14 +131,14 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="device">
         <![CDATA[
-        insert into t_device(id, name, version_id, device_group_id, bus_no, bus_plate_no, area, des, customer_id, install_time, create_time)
-        values(uuid(), #{name}, #{versionId}, #{deviceGroupId}, #{busNo}, #{busPlateNo}, #{area}, #{des}, #{customerId}, #{installTime}, CURRENT_TIMESTAMP)
+        insert into t_device(id, code, name, version_id, device_group_id, driver, phone, bus_no, bus_plate_no, area, des, customer_id, install_time, create_time)
+        values(uuid(), #{code}, #{name}, #{versionId}, #{deviceGroupId}, #{driver}, #{phone}, #{busNo}, #{busPlateNo}, #{area}, #{des}, #{customerId}, #{installTime}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="device">
         <![CDATA[
-        update t_device set name = #{name}, device_group_id = #{deviceGroupId}, bus_no = #{busNo}, bus_plate_no = #{busPlateNo}, area = #{area}, des = #{des}, install_time = #{installTime} where id = #{id}
+        update t_device set code = #{code}, name = #{name}, device_group_id = #{deviceGroupId}, driver = #{driver}, phone = #{phone}, bus_no = #{busNo}, bus_plate_no = #{busPlateNo}, area = #{area}, des = #{des}, install_time = #{installTime} where id = #{id}
         ]]>
     </update>
 

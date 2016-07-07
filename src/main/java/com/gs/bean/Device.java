@@ -23,6 +23,12 @@ public class Device {
     private DeviceGroup deviceGroup;
     private String status;
     private String online;
+    private String code;
+    private String driver;
+    private String phone;
+    private Date adsUpdateTime;
+    private Date onlineTime;
+    private Date offlineTime;
 
     public String getId() {
         return id;
@@ -150,5 +156,53 @@ public class Device {
 
     public void setOnline(String online) {
         this.online = online;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Date getAdsUpdateTime() {
+        return adsUpdateTime;
+    }
+
+    public void setAdsUpdateTime(Date adsUpdateTime) {
+        this.adsUpdateTime = adsUpdateTime;
+    }
+
+    public Date getOnlineTime() {
+        return onlineTime;
+    }
+
+    public void setOnlineTime(Date onlineTime) {
+        this.onlineTime = onlineTime;
+    }
+
+    public Date getOfflineTime() {
+        return offlineTime;
+    }
+
+    public void setOfflineTime(Date offlineTime) {
+        this.offlineTime = offlineTime;
     }
 }

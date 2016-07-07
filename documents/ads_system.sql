@@ -130,17 +130,23 @@ DROP TABLE IF EXISTS t_device;
 CREATE TABLE t_device(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备id',
   name VARCHAR(50) NOT NULL COMMENT '终端设备名称',
+  code VARCHAR(200) NOT NULL COMMENT '终端号',
   des VARCHAR(500) COMMENT '终端设备描述信息',
   version_id VARCHAR(128) NOT NULL COMMENT '终端设备的版本号',
   install_time DATETIME COMMENT '安装时间',
   bus_no VARCHAR(10) COMMENT '公交车路数',
   bus_plate_no VARCHAR(10) COMMENT '公交车牌号',
+  driver VARCHAR(50) COMMENT '驾驶员',
+  phone VARCHAR(11) COMMENT '手机号',
   area VARCHAR(50) COMMENT '运行区域',
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   device_group_id VARCHAR(128) COMMENT '终端设备分组id',
   create_time DATETIME DEFAULT current_timestamp COMMENT '终端添加时间',
+  ads_update_time DATETIME COMMENT '广告最近一次更新时间',
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '终端是否可用',
-  online VARCHAR(2) NOT NULL DEFAULT 'N' COMMENT '终端是否在线,默认为不在线'
+  online VARCHAR(2) NOT NULL DEFAULT 'N' COMMENT '终端是否在线,默认为不在线',
+  online_time DATETIME COMMENT '上线时间',
+  offline_time DATETIME COMMENT '离线时间'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_device ADD CONSTRAINT fk_device_version_id

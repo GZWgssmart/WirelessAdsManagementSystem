@@ -51,10 +51,14 @@ public class DeviceController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ControllerResult add(Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            device.setCustomerId(customer.getId());
-            deviceService.insert(device);
-            return ControllerResult.getSuccessResult("成功添加终端设备");
+            if (deviceService.queryByCode(device.getCode()) == null) {
+                Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+                device.setCustomerId(customer.getId());
+                deviceService.insert(device);
+                return ControllerResult.getSuccessResult("成功添加终端设备");
+            } else {
+                return ControllerResult.getFailResult("已经存在该终端号的设备");
+            }
         }
         return null;
     }

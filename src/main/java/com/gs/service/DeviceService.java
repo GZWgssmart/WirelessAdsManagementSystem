@@ -19,4 +19,6 @@ public interface DeviceService extends BaseService<Device, String> {
 
     public String queryByDeviceId(String id);
 
+    public Device queryByCode(String code);
+
 }

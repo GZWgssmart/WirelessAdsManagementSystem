@@ -23,4 +23,6 @@ public interface DeviceDAO extends BaseDAO<Device, String> {
 
     public String queryByDeviceId(String id);
 
+    public Device queryByCode(@Param("code") String code);
+
 }
