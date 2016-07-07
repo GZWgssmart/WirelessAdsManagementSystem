@@ -26,7 +26,7 @@
 
     <script>
         $(function() {
-            setPagination("#list")
+            doSearch();
         });
 
         function add() {
@@ -54,13 +54,6 @@
             if (row) {
                 $("#deviceGroupId").combobox({
                     url:'<%=path %>/device/list_combo/' + row.id,
-                    method:'get',
-                    valueField:'id',
-                    textField:'text',
-                    panelHeight:'auto'
-                });
-                $("#versionId").combobox({
-                    url:'<%=path %>/version/list_combo/' + row.id,
                     method:'get',
                     valueField:'id',
                     textField:'text',
@@ -142,6 +135,7 @@
 
         function searchAll() {
             $("#searchForm").form("clear");
+            $("#versionId").val("${versionId }");
             $("#list").datagrid({
                 url:'<%=path %>/device/search_pager',
                 pageSize:20,
@@ -209,11 +203,10 @@
        onclick="active()">激活</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="device">
+            <input id="versionId" type="hidden" name="versionId" value="${versionId }" />
             名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            版本:<select name="versionId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/version/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -249,14 +242,6 @@
                 <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
-            </tr>
-            <tr>
-                <td>版本:</td>
-                <td>
-                    <select name="versionId" class="easyui-validatebox easyui-combobox"
-                            data-options="url:'<%=path %>/version/list_combo',method:'get',valueField:'id',textField:'text',
-                           panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
-                </td>
             </tr>
             <tr>
                 <td>分组:</td>
@@ -308,13 +293,6 @@
                 <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
-            </tr>
-            <tr>
-                <td>版本:</td>
-                <td>
-                    <select id="versionId" name="versionId" class="easyui-validatebox easyui-combobox"
-                            data-options="editable:false,required:true,novalidate:true"></select>
-                </td>
             </tr>
             <tr>
                 <td>分组:</td>

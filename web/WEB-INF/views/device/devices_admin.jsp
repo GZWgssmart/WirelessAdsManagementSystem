@@ -55,6 +55,10 @@
         function formatterDevice(value) {
             return value.name;
         }
+
+        function formatterVersion(value) {
+            return value.name;
+        }
     </script>
 </head>
 <body>
@@ -79,6 +83,7 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="150">名称</th>
+        <th field="version" width="80" formatter="formatterVersion">版本</th>
         <th field="deviceGroup" width="80" formatter="formatterDevice">终端分组</th>
         <th field="area" width="150">区域</th>
         <th field="busNo" width="80">车路线</th>
@@ -97,6 +102,8 @@
             名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo_admin/${customerId }',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+            版本:<select name="versionId" class="easyui-combobox"
+                       data-options="url:'<%=path %>/version/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',

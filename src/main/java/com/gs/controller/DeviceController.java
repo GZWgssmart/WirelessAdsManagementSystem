@@ -68,6 +68,17 @@ public class DeviceController {
         }
     }
 
+    @RequestMapping(value = "list_page_version/{versionId}", method = RequestMethod.GET)
+    public ModelAndView toListPageVersion(@PathVariable("versionId") String versionId, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            ModelAndView mav = new ModelAndView("device/devices_version");
+            mav.addObject("versionId", versionId);
+            return mav;
+        } else {
+            return null;
+        }
+    }
+
     @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
     public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId,  HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
@@ -128,7 +139,9 @@ public class DeviceController {
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Device> devices = deviceService.queryByPagerAndCriteria(pager, device, customer.getId());
             for (Device d : devices) {
-                d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+                if (d.getInstallTime() != null) {
+                    d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+                }
             }
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {
@@ -146,7 +159,9 @@ public class DeviceController {
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Device> devices = deviceService.queryByPagerAndCriteria(pager, device, customerId);
             for (Device d : devices) {
-                d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+                if (d.getInstallTime() != null) {
+                    d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
+                }
             }
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {

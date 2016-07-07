@@ -263,6 +263,10 @@
             return value.name;
         }
 
+        function formatterArea(value) {
+            return "区域" + value;
+        }
+
     </script>
 </head>
 <body>
@@ -290,6 +294,7 @@
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="device" width="150" formatter="formatterName">终端名称</th>
         <th field="resource" width="150" formatter="formatterName">资源名称</th>
+        <th field="area" width="80" formatter="formatterArea">显示区域</th>
         <th field="showType" width="80">显示方式</th>
         <th field="startTimeStr" width="150" formatter="formatterDate">开始时间</th>
         <th field="endTimeStr" width="150" formatter="formatterDate">结束时间</th>
@@ -365,6 +370,15 @@
                        onclick="showResWin();">选择资源</a></td>
             </tr>
             <tr>
+                <td>显示区域:</td>
+                <td>
+                    <select name="area" class="easyui-validatebox easyui-combobox"
+                            data-options="panelHeight:'auto',editable:false,required:true,novalidate:true">
+                        <option value="1">区域1</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td>显示方式:</td>
                 <td><select name="showType" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
@@ -422,6 +436,15 @@
                            data-options="editable:false,required:true,novalidate:true"/>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                        onclick="showResWin();">选择资源</a></td>
+            </tr>
+            <tr>
+                <td>显示区域:</td>
+                <td>
+                    <select name="area" class="easyui-validatebox easyui-combobox"
+                            data-options="panelHeight:'auto',editable:false,required:true,novalidate:true">
+                        <option value="1">区域1</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>显示方式:</td>

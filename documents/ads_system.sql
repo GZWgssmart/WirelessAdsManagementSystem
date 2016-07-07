@@ -24,6 +24,8 @@ CHECK (status in ('Y', 'N'));
 ALTER TABLE t_admin ADD CONSTRAINT ck_admin_role
 CHECK (role in('super', 'normal'));
 
+INSERT INTO t_admin(id, email, password, name, phone, role) VALUES (uuid(), 'admin@126.com', '6khXbzC+FmmXFpnAmtBclA==', 'admin', '18888888888', 'super');
+
 --t_customer客户信息表
 DROP TABLE IF EXISTS t_customer;
 CREATE TABLE t_customer (
@@ -90,6 +92,22 @@ FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 ALTER TABLE t_resource ADD CONSTRAINT ck_resource_status
 CHECK (status in ('Y', 'N'));
 
+DROP TABLE IF EXISTS t_version;
+CREATE TABLE t_version(
+  id VARCHAR(128) PRIMARY KEY COMMENT '版本编号',
+  name VARCHAR(50) NOT NULL COMMENT '版本名称',
+  area_count int NOT NULL COMMENT '区域数',
+  path VARCHAR(500) NOT NULL COMMENT '区域说明图片路径',
+  full_path VARCHAR(500) NOT NULL COMMENT '区域说明图片完整路径',
+  file_name VARCHAR(100) NOT NULL COMMENT '区域说明图片的名称',
+  des VARCHAR(500) COMMENT '描述信息',
+  create_time DATETIME DEFAULT current_timestamp COMMENT '版本发布时间',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '版本是否可用'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+ALTER TABLE t_version ADD CONSTRAINT ck_version_status
+CHECK (status in ('Y', 'N'));
+
 --t_device_group终端设备分组信息表,每个客户都可以有多个分组
 DROP TABLE IF EXISTS t_device_group;
 CREATE TABLE t_device_group(
@@ -112,7 +130,8 @@ DROP TABLE IF EXISTS t_device;
 CREATE TABLE t_device(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备id',
   name VARCHAR(50) NOT NULL COMMENT '终端设备名称',
-  des VARCHAR(500) COMMENT '终端设置描述信息',
+  des VARCHAR(500) COMMENT '终端设备描述信息',
+  version_id VARCHAR(128) NOT NULL COMMENT '终端设备的版本号',
   install_time DATETIME COMMENT '安装时间',
   bus_no VARCHAR(10) COMMENT '公交车路数',
   bus_plate_no VARCHAR(10) COMMENT '公交车牌号',
@@ -123,6 +142,9 @@ CREATE TABLE t_device(
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '终端是否可用',
   online VARCHAR(2) NOT NULL DEFAULT 'N' COMMENT '终端是否在线,默认为不在线'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+ALTER TABLE t_device ADD CONSTRAINT fk_device_version_id
+FOREIGN KEY (version_id) REFERENCES t_version(id);
 
 ALTER TABLE t_device ADD CONSTRAINT fk_device_customer_id
 FOREIGN KEY (customer_id) REFERENCES t_customer(id);
@@ -143,6 +165,7 @@ CREATE TABLE t_device_resource(
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   device_id VARCHAR(128) COMMENT '终端设备id',
   resource_id VARCHAR(128) NOT NULL COMMENT '资源id',
+  area INT NOT NULL COMMENT '屏幕区域',
   show_type VARCHAR(2) NOT NULL COMMENT '显示方式，包括即时显示，定时显示,不定时显示',
   start_time DATETIME COMMENT '定时播放的开始时间',
   end_time DATETIME COMMENT '定时播放的结束时间',
@@ -171,19 +194,3 @@ FOREIGN KEY (device_id) REFERENCES t_device(id);
 
 ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_resource_id
 FOREIGN KEY (resource_id) REFERENCES t_resource(id);
-
-DROP TABLE IF EXISTS t_version;
-CREATE TABLE t_version(
-  id VARCHAR(128) PRIMARY KEY COMMENT '版本编号',
-  name VARCHAR(50) NOT NULL COMMENT '版本名称',
-  area_count int NOT NULL COMMENT '区域数',
-  path VARCHAR(500) NOT NULL COMMENT '区域说明图片路径',
-  full_path VARCHAR(500) NOT NULL COMMENT '区域说明图片完整路径',
-  file_name VARCHAR(100) NOT NULL COMMENT '区域说明图片的名称',
-  des VARCHAR(500) COMMENT '描述信息',
-  create_time DATETIME DEFAULT current_timestamp COMMENT '版本发布时间',
-  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '版本是否可用'
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
-ALTER TABLE t_version ADD CONSTRAINT ck_version_status
-CHECK (status in ('Y', 'N'));

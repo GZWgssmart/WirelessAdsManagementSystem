@@ -1,6 +1,7 @@
 package com.gs.controller;
 
 import com.gs.bean.Customer;
+import com.gs.bean.DeviceGroup;
 import com.gs.bean.ResourceType;
 import com.gs.bean.Version;
 import com.gs.common.Constants;
@@ -124,6 +125,24 @@ public class VersionController {
             logger.info("管理员未登录，不能分页显示版本信息");
             return null;
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "list_combo", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
+        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
+            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            List<Version> versions = versionService.queryAll();
+            for (Version version : versions) {
+                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
+                comboBox4EasyUI.setId(version.getId());
+                comboBox4EasyUI.setText(version.getName());
+                comboBox4EasyUIs.add(comboBox4EasyUI);
+            }
+        }
+        return comboBox4EasyUIs;
     }
 
     @RequestMapping(value = "query/{id}", method = RequestMethod.GET)

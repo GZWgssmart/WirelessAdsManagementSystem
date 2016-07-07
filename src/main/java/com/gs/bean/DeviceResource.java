@@ -13,6 +13,7 @@ public class DeviceResource {
     private Device device;
     private String resourceId;
     private Resource resource;
+    private int area;
     private String showType;
     private Date startTime;
     private String startTimeStr;
@@ -74,6 +75,14 @@ public class DeviceResource {
 
     public void setResource(Resource resource) {
         this.resource = resource;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
     }
 
     public String getShowType() {

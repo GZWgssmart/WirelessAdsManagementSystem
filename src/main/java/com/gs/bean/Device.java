@@ -10,6 +10,8 @@ public class Device {
     private String id;
     private String name;
     private String des;
+    private String versionId;
+    private Version version;
     private Date installTime;
     private String installTimeStr;
     private String busNo;
@@ -44,6 +46,22 @@ public class Device {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public String getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
+    }
+
+    public Version getVersion() {
+        return version;
+    }
+
+    public void setVersion(Version version) {
+        this.version = version;
     }
 
     public Date getInstallTime() {

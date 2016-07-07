@@ -23,7 +23,7 @@
 
     <select id="queryAll" resultType="list" resultMap="versionResultMap">
         <![CDATA[
-        select * from t_version
+        select * from t_version where status = 'Y'
         ]]>
     </select>
 

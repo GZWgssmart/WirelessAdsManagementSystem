@@ -6,6 +6,7 @@
         <id property="id" column="id" />
         <result property="deviceId" column="device_id" />
         <result property="resourceId" column="resource_id" />
+        <result property="area" column="area" />
         <result property="startTime" column="start_time" />
         <result property="endTime" column="end_time" />
         <result property="des" column="des" />
@@ -99,14 +100,14 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="deviceResource">
         <![CDATA[
-        insert into t_device_resource(id,customer_id, device_id, resource_id, show_type, start_time, end_time, stay_time, des, create_time)
-        values(uuid(), #{customerId}, #{deviceId}, #{resourceId}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{des}, CURRENT_TIMESTAMP)
+        insert into t_device_resource(id,customer_id, device_id, resource_id, area, show_type, start_time, end_time, stay_time, des, create_time)
+        values(uuid(), #{customerId}, #{deviceId}, #{resourceId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{des}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="deviceResource">
         <![CDATA[
-        update t_device_resource set device_id = #{deviceId}, resource_id = #{resourceId}, show_type = #{showType}, start_time = #{startTime}, end_time = #{endTime}, stay_time = #{stayTime}, des = #{des} where id = #{id}
+        update t_device_resource set device_id = #{deviceId}, resource_id = #{resourceId}, area = #{area}, show_type = #{showType}, start_time = #{startTime}, end_time = #{endTime}, stay_time = #{stayTime}, des = #{des} where id = #{id}
         ]]>
     </update>
 

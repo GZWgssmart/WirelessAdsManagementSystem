@@ -2,6 +2,7 @@ package com.gs.controller;
 
 import com.gs.bean.Admin;
 import com.gs.bean.Customer;
+import com.gs.bean.Version;
 import com.gs.common.Constants;
 import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
@@ -10,6 +11,7 @@ import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.CustomerService;
+import com.gs.service.VersionService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +41,9 @@ public class CustomerController {
 
     @Resource
     private CustomerService customerService;
+
+    @Resource
+    private VersionService versionService;
 
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -94,11 +99,14 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "home", method = RequestMethod.GET)
-    public String home(HttpSession session) {
+    public ModelAndView home(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            return "customer/home";
+            ModelAndView mav = new ModelAndView("customer/home");
+            List<Version> versions = versionService.queryAll();
+            mav.addObject("versions", versions);
+            return mav;
         } else {
-            return "redirect:/index";
+            return new ModelAndView("redirect:/index");
         }
     }
 
