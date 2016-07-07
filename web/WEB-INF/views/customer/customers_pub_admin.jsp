@@ -56,6 +56,10 @@
             });
             setPagination("#list");
         }
+
+        function refreshAll() {
+            $("#list").datagrid("reload");
+        }
     </script>
 </head>
 <body>
@@ -112,6 +116,8 @@
                        onclick="doSearch();">搜索</a>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                        onclick="searchAll();">查询所有</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
+                       onclick="refreshAll();">刷新</a>
                 </form>
             </div>
         </div>
