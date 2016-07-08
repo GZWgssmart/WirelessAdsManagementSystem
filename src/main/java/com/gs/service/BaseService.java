@@ -12,6 +12,7 @@ import java.util.List;
 public interface BaseService<T, PK extends Serializable> {
 
     public List<T> queryAll();
+    public List<T> queryAll(String status);
     public T queryById(PK pk);
     public T query(T t);
     public int insert(T t);

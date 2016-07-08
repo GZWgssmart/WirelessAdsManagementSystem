@@ -21,6 +21,7 @@
         <result property="status" column="status" />
         <association property="device" javaType="com.gs.bean.Device">
             <id property="id" column="d_id"/>
+            <result property="code" column="d_code" />
             <result property="name" column="d_name"/>
         </association>
         <association property="resource" javaType="com.gs.bean.Resource">
@@ -61,7 +62,7 @@
 
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="deviceResourceResultMap">
         <![CDATA[
-        select dr.*, d.id as d_id, d.name as d_name, r.id as r_id, r.name as r_name from t_device_resource dr, t_device d, t_resource r
+        select dr.*, d.id as d_id, d.code as d_code, d.name as d_name, r.id as r_id, r.name as r_name from t_device_resource dr, t_device d, t_resource r
         where dr.customer_id = #{customerId} and dr.device_id = d.id and dr.resource_id = r.id
         ]]>
         <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">

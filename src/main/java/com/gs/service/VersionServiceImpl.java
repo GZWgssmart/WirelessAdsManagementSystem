@@ -33,6 +33,11 @@ public class VersionServiceImpl implements VersionService {
     }
 
     @Override
+    public List<Version> queryAll(String status) {
+        return versionDAO.queryAll(status);
+    }
+
+    @Override
     public Version queryById(String s) {
         return versionDAO.queryById(s);
     }

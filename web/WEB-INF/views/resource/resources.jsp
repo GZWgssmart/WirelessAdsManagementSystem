@@ -53,7 +53,7 @@
             var row = selectedRow("list");
             if (row) {
                 $("#resourceTypeId").combobox({
-                    url:'<%=path %>/res/list_combo/' + row.id,
+                    url:'<%=path %>/res/list_combo/' + row.id + "/Y",
                     method:'get',
                     valueField:'id',
                     textField:'text',
@@ -194,7 +194,7 @@
         <form id="searchForm" modalAttribute="resource">
             名称:<input type="text" name="name" class="easyui-textbox"/>
             类型:<select name="resourceTypeId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/restype/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                       data-options="url:'<%=path %>/restype/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -226,7 +226,7 @@
                 <td>类型:</td>
                 <td>
                     <select name="resourceTypeId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/restype/list_combo',method:'get',valueField:'id',textField:'text',
+                           data-options="url:'<%=path %>/restype/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>

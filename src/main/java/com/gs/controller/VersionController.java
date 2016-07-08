@@ -128,13 +128,17 @@ public class VersionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list_combo/{id}", method = RequestMethod.GET)
-    public List<ComboBox4EasyUI> list4Combobox(@PathVariable("id") String id, HttpSession session) {
+    @RequestMapping(value = "list_combo/{id}/{status}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4Combobox(@PathVariable("id") String id, @PathVariable("status") String status, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
         if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            List<Version> versions = versionService.queryAll();
+            String theStatus = null;
+            if (status.equals("Y")) {
+                theStatus = "Y";
+            }
+            List<Version> versions = versionService.queryAll(theStatus);
             for (Version version : versions) {
                 ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
                 comboBox4EasyUI.setId(version.getId());

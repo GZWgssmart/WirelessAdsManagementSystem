@@ -26,6 +26,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Customer> queryAll(String status) {
+        return customerDAO.queryAll(status);
+    }
+
+    @Override
     public Customer queryById(String id) {
         return customerDAO.queryById(id);
     }

@@ -48,7 +48,7 @@
     <div class="input_small">
         <form id="resSearchForm" modalAttribute="resource">
             类型:<select name="resourceTypeId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/restype/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                       data-options="url:'<%=path %>/restype/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',

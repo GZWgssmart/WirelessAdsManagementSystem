@@ -12,6 +12,6 @@ public interface DeviceGroupService extends BaseService<DeviceGroup, String> {
 
     public List<DeviceGroup> queryByPagerAndCustomerId(Pager pager, String customerId);
 
-    public List<DeviceGroup> queryAllByCustomerId(String customerId);
+    public List<DeviceGroup> queryAllByCustomerId(String customerId, String status);
 
 }

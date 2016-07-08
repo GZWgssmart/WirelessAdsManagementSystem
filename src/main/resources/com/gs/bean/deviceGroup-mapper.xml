@@ -23,6 +23,9 @@
         <![CDATA[
         select * from t_device_group
         ]]>
+        <if test="status != null and status !=''">
+            where status = #{status}
+        </if>
     </select>
 
     <select id="queryByPager" resultType="list" resultMap="deviceGroupResultMap" parameterType="com.gs.common.bean.Pager">
@@ -41,6 +44,9 @@
         <![CDATA[
         select * from t_device_group where customer_id = #{customerId}
         ]]>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
     </select>
 
     <select id="count" resultType="int">

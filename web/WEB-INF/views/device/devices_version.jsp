@@ -53,7 +53,7 @@
             var row = selectedRow("list");
             if (row) {
                 $("#deviceGroupId").combobox({
-                    url:'<%=path %>/device/list_combo/' + row.id,
+                    url:'<%=path %>/devgroup/list_combo/Y',
                     method:'get',
                     valueField:'id',
                     textField:'text',
@@ -213,7 +213,7 @@
             终端号:<input type="text" name="code" class="easyui-textbox"/>
             名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                       data-options="url:'<%=path %>/devgroup/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -242,9 +242,15 @@
     </div>
 </div>
 
-<div class="easyui-window site_win_normal input_big" id="addWin" data-options="title:'添加设备',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_big input_big" id="addWin" data-options="title:'添加设备',resizable:false,mode:true,closed:true">
     <form:form id="addForm" modelAttribute="device">
+        <input type="hidden" name="versionId" value="${versionId }" />
         <table>
+            <tr>
+                <td>终端号:</td>
+                <td><input type="text" name="code" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
+            </tr>
             <tr>
                 <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
@@ -254,7 +260,7 @@
                 <td>分组:</td>
                 <td>
                     <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',
+                            data-options="url:'<%=path %>/devgroup/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
@@ -262,6 +268,16 @@
                 <td>区域:</td>
                 <td><input type="text" name="area" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>驾驶员:</td>
+                <td><input type="text" name="driver" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>手机:</td>
+                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
+                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>
@@ -291,11 +307,17 @@
     </form:form>
 </div>
 
-<div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改设备',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_big input_big" id="editWin" data-options="title:'修改设备',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
     <form id="editForm" method="post" modelAttribute="device">
         <input type="hidden" name="id" />
+        <input type="hidden" name="versionId" value="${versionId }" />
         <table>
+            <tr>
+                <td>终端号:</td>
+                <td><input type="text" name="code" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
+            </tr>
             <tr>
                 <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
@@ -312,6 +334,16 @@
                 <td>区域:</td>
                 <td><input type="text" name="area" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>驾驶员:</td>
+                <td><input type="text" name="driver" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true" /></td>
+            </tr>
+            <tr>
+                <td>手机:</td>
+                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
+                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>

@@ -19,7 +19,12 @@ public class DeviceResourceServiceImpl implements DeviceResourceService {
 
     @Override
     public List<DeviceResource> queryAll() {
-        return null;
+        return deviceResourceDAO.queryAll();
+    }
+
+    @Override
+    public List<DeviceResource> queryAll(String status) {
+        return deviceResourceDAO.queryAll(status);
     }
 
     @Override

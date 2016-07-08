@@ -102,7 +102,7 @@ public class CustomerController {
     public ModelAndView home(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             ModelAndView mav = new ModelAndView("customer/home");
-            List<Version> versions = versionService.queryAll();
+            List<Version> versions = versionService.queryAll("Y");
             mav.addObject("versions", versions);
             return mav;
         } else {

@@ -221,28 +221,6 @@ public class DeviceController {
         }
     }
 
-    @ResponseBody
-    @RequestMapping(value = "list_combo/{id}", method = RequestMethod.GET)
-    public List<ComboBox4EasyUI> listCombo(@PathVariable("id") String id, HttpSession session) {
-        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
-        if (SessionUtil.isCustomer(session)) {
-            String deviceGroupId = deviceService.queryByDeviceId(id);
-            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
-            List<DeviceGroup> deviceGroups = deviceGroupService.queryAll();
-            for (DeviceGroup dg : deviceGroups) {
-                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
-                comboBox4EasyUI.setId(dg.getId());
-                comboBox4EasyUI.setText(dg.getName());
-                if (dg.getId().equals(deviceGroupId)) {
-                    comboBox4EasyUI.setSelected(true);
-                }
-                comboBox4EasyUIs.add(comboBox4EasyUI);
-            }
-        }
-        return comboBox4EasyUIs;
-    }
-
-
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

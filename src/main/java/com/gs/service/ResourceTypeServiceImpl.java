@@ -23,6 +23,11 @@ public class ResourceTypeServiceImpl implements ResourceTypeService {
     }
 
     @Override
+    public List<ResourceType> queryAll(String status) {
+        return resourceTypeDAO.queryAll(status);
+    }
+
+    @Override
     public ResourceType queryById(String s) {
         return null;
     }

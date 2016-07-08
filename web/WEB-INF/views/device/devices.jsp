@@ -53,14 +53,14 @@
             var row = selectedRow("list");
             if (row) {
                 $("#deviceGroupId").combobox({
-                    url:'<%=path %>/device/list_combo/' + row.id,
+                    url:'<%=path %>/devgroup/list_combo/Y',
                     method:'get',
                     valueField:'id',
                     textField:'text',
                     panelHeight:'auto'
                 });
                 $("#versionId").combobox({
-                    url:'<%=path %>/version/list_combo/' + row.id,
+                    url:'<%=path %>/version/list_combo/' + row.version.id + "/all",
                     method:'get',
                     valueField:'id',
                     textField:'text',
@@ -218,9 +218,9 @@
             终端号:<input type="text" name="code" class="easyui-textbox"/>
             名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                       data-options="url:'<%=path %>/devgroup/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             版本:<select name="versionId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/version/list_combo/0',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                       data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -266,7 +266,7 @@
                 <td>版本:</td>
                 <td>
                     <select name="versionId" class="easyui-validatebox easyui-combobox"
-                            data-options="url:'<%=path %>/version/list_combo/0',method:'get',valueField:'id',textField:'text',
+                            data-options="url:'<%=path %>/version/list_combo/0/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
@@ -274,7 +274,7 @@
                 <td>分组:</td>
                 <td>
                     <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/devgroup/list_combo',method:'get',valueField:'id',textField:'text',
+                           data-options="url:'<%=path %>/devgroup/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>

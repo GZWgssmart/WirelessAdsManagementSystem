@@ -208,11 +208,15 @@
         function chooseDev() {
             var row = selectedRow("devList");
             if (row) {
-                $("#addDeviceId").val(row.id);
-                $("#editDeviceId").val(row.id);
-                $("#addDeviceName").textbox("setValue", row.name);
-                $("#editDeviceName").textbox("setValue", row.name);
-                closeWin("devWin");
+                if (row.status == 'Y') {
+                    $("#addDeviceId").val(row.id);
+                    $("#editDeviceId").val(row.id);
+                    $("#addDeviceName").textbox("setValue", row.name);
+                    $("#editDeviceName").textbox("setValue", row.name);
+                    closeWin("devWin");
+                } else {
+                    $.messager.alert("提示", "必须选择可用状态的设备", "info");
+                }
             } else {
                 $.messager.alert("提示", "请选择设备", "info");
             }
@@ -245,11 +249,15 @@
         function chooseRes() {
             var row = selectedRow("resList");
             if (row) {
-                $("#addResourceId").val(row.id);
-                $("#editResourceId").val(row.id);
-                $("#addResourceName").textbox("setValue", row.name);
-                $("#editResourceName").textbox("setValue", row.name);
-                closeWin("resWin");
+                if (row.status == 'Y') {
+                    $("#addResourceId").val(row.id);
+                    $("#editResourceId").val(row.id);
+                    $("#addResourceName").textbox("setValue", row.name);
+                    $("#editResourceName").textbox("setValue", row.name);
+                    closeWin("resWin");
+                } else {
+                    $.messager.alert("提示", "必须选择可用状态的资源", "info");
+                }
             } else {
                 $.messager.alert("提示", "请选择设备", "info");
             }
@@ -259,12 +267,20 @@
             return value.name;
         }
 
+        function formatterCode(value, row, index) {
+            return row.device.code;
+        }
+
         function formatterName(value) {
             return value.name;
         }
 
         function formatterArea(value) {
             return "区域" + value;
+        }
+
+        function formatterVersion(value) {
+            return value.name;
         }
 
     </script>
@@ -292,6 +308,7 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
+        <th field="code" width="100" formatter="formatterCode">终端号</th>
         <th field="device" width="150" formatter="formatterName">终端名称</th>
         <th field="resource" width="150" formatter="formatterName">资源名称</th>
         <th field="area" width="80" formatter="formatterArea">显示区域</th>

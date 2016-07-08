@@ -23,8 +23,11 @@
 
     <select id="queryAll" resultType="list" resultMap="versionResultMap">
         <![CDATA[
-        select * from t_version where status = 'Y'
+        select * from t_version
         ]]>
+        <if test="status != null and status !=''">
+            where status = #{status}
+        </if>
     </select>
 
     <select id="queryByPager" resultType="list" resultMap="versionResultMap" parameterType="com.gs.common.bean.Pager">

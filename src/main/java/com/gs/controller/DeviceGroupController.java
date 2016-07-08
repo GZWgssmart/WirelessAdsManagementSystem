@@ -114,13 +114,17 @@ public class DeviceGroupController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list_combo", method = RequestMethod.GET)
-    public List<ComboBox4EasyUI> list4Combobox(HttpSession session) {
+    @RequestMapping(value = "list_combo/{status}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4Combobox(@PathVariable("status") String status, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
         if (SessionUtil.isCustomer(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customer.getId());
+            String theStatus = null;
+            if (status.equals("Y")) {
+                theStatus = "Y";
+            }
+            List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customer.getId(), theStatus);
             for (DeviceGroup deviceGroup : deviceGroups) {
                 ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
                 comboBox4EasyUI.setId(deviceGroup.getId());
@@ -132,12 +136,16 @@ public class DeviceGroupController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list_combo_admin/{customerId}", method = RequestMethod.GET)
-    public List<ComboBox4EasyUI> list4ComboboxAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
+    @RequestMapping(value = "list_combo_admin/{customerId}/{status}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4ComboboxAdmin(@PathVariable("customerId") String customerId, @PathVariable("status") String status, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
         if (SessionUtil.isAdmin(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
-            List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customerId);
+            String theStatus = null;
+            if (status.equals("Y")) {
+                theStatus = "Y";
+            }
+            List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customerId, theStatus);
             for (DeviceGroup deviceGroup : deviceGroups) {
                 ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
                 comboBox4EasyUI.setId(deviceGroup.getId());

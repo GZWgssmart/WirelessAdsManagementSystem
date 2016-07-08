@@ -33,6 +33,11 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
+    public List<Resource> queryAll(String status) {
+        return resourceDAO.queryAll(status);
+    }
+
+    @Override
     public Resource queryById(String s) {
         return resourceDAO.queryById(s);
     }

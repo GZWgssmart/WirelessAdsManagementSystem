@@ -67,6 +67,10 @@
             $("#list").datagrid("reload");
         }
 
+        function formatterCode(value, row, index) {
+            return row.device.code;
+        }
+
         function formatterName(value) {
             return value.name;
         }
@@ -90,6 +94,7 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
+        <th field="device" width="100" formatter="formatterCode">终端号</th>
         <th field="device" width="150" formatter="formatterName">终端名称</th>
         <th field="resource" width="150" formatter="formatterName">资源名称</th>
         <th field="area" width="80" formatter="formatterArea">显示区域</th>

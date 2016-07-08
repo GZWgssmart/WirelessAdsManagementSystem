@@ -23,6 +23,9 @@
         <![CDATA[
         select * from t_resource_type
         ]]>
+        <if test="status != null and status !=''">
+            where status = #{status}
+        </if>
     </select>
 
     <select id="queryByPager" resultType="list" resultMap="resourceTypeResultMap" parameterType="com.gs.common.bean.Pager">

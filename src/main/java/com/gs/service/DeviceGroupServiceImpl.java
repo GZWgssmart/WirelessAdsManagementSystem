@@ -25,6 +25,11 @@ public class DeviceGroupServiceImpl implements DeviceGroupService {
     }
 
     @Override
+    public List<DeviceGroup> queryAll(String status) {
+        return deviceGroupDAO.queryAll(status);
+    }
+
+    @Override
     public DeviceGroup queryById(String s) {
         return null;
     }
@@ -75,7 +80,7 @@ public class DeviceGroupServiceImpl implements DeviceGroupService {
     }
 
     @Override
-    public List<DeviceGroup> queryAllByCustomerId(String customerId) {
-        return deviceGroupDAO.queryAllByCustomerId(customerId);
+    public List<DeviceGroup> queryAllByCustomerId(String customerId, String status) {
+        return deviceGroupDAO.queryAllByCustomerId(customerId, status);
     }
 }
