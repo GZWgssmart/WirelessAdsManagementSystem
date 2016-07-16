@@ -172,7 +172,7 @@ CREATE TABLE t_device_resource(
   device_id VARCHAR(128) COMMENT '终端设备id',
   resource_id VARCHAR(128) NOT NULL COMMENT '资源id',
   area INT NOT NULL COMMENT '屏幕区域',
-  show_type VARCHAR(2) NOT NULL COMMENT '显示方式，包括即时显示，定时显示,不定时显示',
+  show_type VARCHAR(20) NOT NULL COMMENT '显示方式，包括即时显示，定时显示(定时),不定时显示(顺序)',
   start_time DATETIME COMMENT '定时播放的开始时间',
   end_time DATETIME COMMENT '定时播放的结束时间',
   stay_time INT COMMENT '停留时间,以秒为单位',
@@ -192,6 +192,9 @@ CHECK (check_status in ('未提交', '审核中', '已审核'));
 ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_status
 CHECK (status in ('Y', 'N'));
 
+ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_show_type
+CHECK (show_type in ('now', 'order', 'segment'));
+
 ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_customer_id
 FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 
@@ -200,3 +203,21 @@ FOREIGN KEY (device_id) REFERENCES t_device(id);
 
 ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_resource_id
 FOREIGN KEY (resource_id) REFERENCES t_resource(id);
+
+DROP TABLE IF EXISTS t_time_segment;
+CREATE TABLE t_time_segment(
+  id VARCHAR(128) NOT NULL PRIMARY KEY COMMENT '时段编号',
+  pub_id VARCHAR(128) NOT NULL COMMENT '消息发布编号',
+  start_time DATETIME NOT NULL COMMENT '开始时间',
+  end_time DATETIME NOT NULL COMMENT '结束时间',
+  create_time DATETIME DEFAULT current_timestamp COMMENT '添加时间',
+  des VARCHAR(500) COMMENT '描述信息',
+  status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '是否在用或删除'
+);
+
+ALTER TABLE t_time_segment ADD CONSTRAINT fk_time_segment_pub_id
+FOREIGN KEY (pub_id) REFERENCES t_device_resource(id);
+
+ALTER TABLE t_time_segment ADD CONSTRAINT ck_segment_status
+CHECK (status in ('Y', 'N'));
+

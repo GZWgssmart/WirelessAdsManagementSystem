@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.TimeSegmentDAO">
+
+    <resultMap id="timeSegmentResultMap" type="timeSegment">
+        <id property="id" column="id" />
+        <result property="pubId" column="pub_id" />
+        <result property="startTime" column="start_time" />
+        <result property="endTime" column="end_time" />
+        <result property="createTime" column="create_time" />
+        <result property="des" column="des" />
+    </resultMap>
+
+    <select id="queryById" parameterType="string" resultMap="timeSegmentResultMap">
+        <![CDATA[
+        select * from t_time_segment where id=#{id}
+        ]]>
+    </select>
+
+    <select id="query" parameterType="timeSegment" resultMap="timeSegmentResultMap">
+        <![CDATA[
+        select * from t_time_segment where id = #{id}
+        ]]>
+    </select>
+
+    <select id="queryAll" resultType="list" resultMap="timeSegmentResultMap">
+        <![CDATA[
+        select * from t_time_segment
+        ]]>
+        <if test="status != null and status !=''">
+            where status = #{status}
+        </if>
+    </select>
+
+    <select id="queryByPager" resultType="list" resultMap="timeSegmentResultMap" parameterType="com.gs.common.bean.Pager">
+        <![CDATA[
+        select * from t_time_segment limit #{beginIndex}, #{pageSize}
+        ]]>
+    </select>
+
+    <select id="count" resultType="int">
+        <![CDATA[
+        select count(1) from t_time_segment;
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndPubId" resultType="list" resultMap="timeSegmentResultMap">
+        <![CDATA[
+        select * from t_time_segment where pub_id = #{pubId} limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="countByPubId" resultType="int" parameterType="string">
+        <![CDATA[
+        select count(1) from t_time_segment where pub_id = #{pubId};
+        ]]>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="timeSegment">
+        <![CDATA[
+        insert into t_time_segment(id, pub_id, start_time, end_time, des, create_time) values(uuid(), #{pubId}, #{startTime}, #{endTime}, #{des}, CURRENT_TIMESTAMP )
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="timeSegment">
+        <![CDATA[
+        update t_time_segment set start_time = #{startTime}, end_time = #{endTime}, des = #{des} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_time_segment set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_time_segment set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

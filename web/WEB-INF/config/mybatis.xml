@@ -14,6 +14,7 @@
         <typeAlias type="com.gs.bean.Device" alias="device" />
         <typeAlias type="com.gs.bean.DeviceResource" alias="deviceResource" />
         <typeAlias type="com.gs.bean.Version" alias="version" />
+        <typeAlias type="com.gs.bean.TimeSegment" alias="timeSegment" />
     </typeAliases>
 
     <mappers></mappers>

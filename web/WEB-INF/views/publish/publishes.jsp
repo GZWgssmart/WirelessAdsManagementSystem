@@ -27,6 +27,7 @@
     <script>
         $(function() {
             setPagination("#list");
+            setPagination("#segmentList");
         });
 
         function showAdd() {
@@ -263,6 +264,107 @@
             }
         }
 
+        ///////////////////////segment///////////////////
+        function showSegmentWin() {
+            var row = selectedRow("list");
+            if (row) {
+                if (row.showType == 'segment') {
+                    openWinFitPos("segmentWin");
+                    $("#segmentWin").window("refresh", "<%=path %>/segment/list_page/" + row.id);
+                } else {
+                    $.messager.alert('提示', '只有时段播放模式的消息发布可以设置时段', 'info');
+                }
+            } else {
+                $.messager.alert("提示", "请先选择需要设置时段的消息发布", "info");
+            }
+        }
+
+        function addSegment() {
+            toValidate("addSegmentForm");
+            if (validateForm("addSegmentForm")) {
+                $.post("<%=path %>/segment/add",
+                        $("#addSegmentForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                $("#addSegmentWin").window("close");
+                                dataGridReload("segmentList");
+                                $("#addSegmentForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
+                        }
+                );
+            }
+        }
+
+        function showEditSegment() {
+            var row = selectedRow("segmentList");
+            if (row) {
+                $("#editSegmentForm").form("load", row);
+                openWin("editSegmentWin");
+            } else {
+                $.messager.alert("提示", "请选择需要修改的时段信息", "info");
+            }
+        }
+
+        function editSegment() {
+            toValidate("editSegmentForm");
+            if (validateForm("editSegmentForm")) {
+                $.post("<%=path %>/segment/update",
+                        $("#editSegmentForm").serialize(),
+                        function (data) {
+                            if (data.result == "success") {
+                                closeWin("editSegmentWin");
+                                $.messager.alert("提示", data.message, "info", function () {
+                                    dataGridReload("segmentList");
+                                });
+                            } else {
+                                $("#errMsgSegment").html(data.message);
+                            }
+                        }
+                );
+            }
+        }
+
+        function inactiveSegment() {
+            var row = selectedRow("segmentList");
+            if (row) {
+                if (row.status == 'N') {
+                    $.messager.alert("提示", "时段信息不可用,无需冻结", "info");
+                } else {
+                    $.get("<%=path %>/segment/inactive?id=" + row.id,
+                            function (data) {
+                                if (data.result == "success") {
+                                    $.messager.alert("提示", data.message, "info");
+                                    dataGridReload("segmentList");
+                                }
+                            });
+                }
+            } else {
+                $.messager.alert("提示", "请选择需要冻结的时段信息", "info");
+            }
+        }
+
+        function activeSegment() {
+            var row = selectedRow("segmentList");
+            if (row) {
+                if (row.status == 'Y') {
+                    $.messager.alert("提示", "时段信息可用,无需激活", "info");
+                } else {
+                    $.get("<%=path %>/segment/active?id=" + row.id,
+                            function (data) {
+                                if (data.result == "success") {
+                                    $.messager.alert("提示", data.message, "info");
+                                    dataGridReload("segmentList");
+                                }
+                            });
+                }
+            } else {
+                $.messager.alert("提示", "请选择需要激活的时段信息", "info");
+            }
+        }
+        ///////////////////////segment//////////////////
+
         function formatterType(value) {
             return value.name;
         }
@@ -281,6 +383,17 @@
 
         function formatterVersion(value) {
             return value.name;
+        }
+
+        function formatterShowType(value) {
+            if (value == 'order') {
+                return "顺序播放";
+            } else if (value == 'now') {
+                return "即时播放";
+            } else if (value == "segment") {
+                return "时段播放";
+            }
+
         }
 
     </script>
@@ -312,7 +425,7 @@
         <th field="device" width="150" formatter="formatterName">终端名称</th>
         <th field="resource" width="150" formatter="formatterName">资源名称</th>
         <th field="area" width="80" formatter="formatterArea">显示区域</th>
-        <th field="showType" width="80">显示方式</th>
+        <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
         <th field="startTimeStr" width="150" formatter="formatterDate">开始时间</th>
         <th field="endTimeStr" width="150" formatter="formatterDate">结束时间</th>
         <th field="stayTime" width="60">停留时间（S）</th>
@@ -328,6 +441,8 @@
        onclick="showAdd();">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
        onclick="showEdit();">修改</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+       onclick="showSegmentWin();">设置时段</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-tip" plain="true"
        onclick="toCheck();">提交审核</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
@@ -396,22 +511,25 @@
                 </td>
             </tr>
             <tr>
-                <td>显示方式:</td>
+                <td>播放模式:</td>
                 <td><select name="showType" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
-                        id: 'Y',
-                        text: '可用'
+                        id: 'now',
+                        text: '即时播放'
                     },{
-                        id: 'N',
-                        text: '不可用'
+                        id: 'order',
+                        text: '顺序播放'
+                    },{
+                        id: 'segment',
+                        text: '时段播放'
                     }]"></select></td>
             </tr>
             <tr>
-                <td>开始时间:</td>
+                <td>开始日期:</td>
                 <td><input type="text" name="startTime" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
             <tr>
-                <td>结束时间:</td>
+                <td>结束日期:</td>
                 <td><input type="text" name="endTime" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
             <tr>
@@ -464,22 +582,25 @@
                 </td>
             </tr>
             <tr>
-                <td>显示方式:</td>
+                <td>播放模式:</td>
                 <td><select name="showType" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
-                        id: 'Y',
-                        text: '可用'
+                        id: 'now',
+                        text: '即时播放'
                     },{
-                        id: 'N',
-                        text: '不可用'
+                        id: 'order',
+                        text: '顺序播放'
+                    },{
+                        id: 'segment',
+                        text: '时段播放'
                     }]"></select></td>
             </tr>
             <tr>
-                <td>开始时间:</td>
+                <td>开始日期:</td>
                 <td><input type="text" name="startTimeStr" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
             <tr>
-                <td>结束时间:</td>
+                <td>结束日期:</td>
                 <td><input type="text" name="endTimeStr" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
             <tr>
@@ -503,6 +624,7 @@
 
 <div class="easyui-window site_win_big_wider input_big" id="devWin" style="padding:0;" data-options="title:'选择设备',resizable:false,mode:true,closed:true"></div>
 <div class="easyui-window site_win_big_wider input_big" id="resWin" style="padding:0;" data-options="title:'选择资源',resizable:false,mode:true,closed:true"></div>
+<div class="easyui-window site_win_big_wider input_big" id="segmentWin" style="padding: 0;" data-options="title:'时段',resizable:false,mode:true,closed:true"></div>
 
 </body>
 </html>
