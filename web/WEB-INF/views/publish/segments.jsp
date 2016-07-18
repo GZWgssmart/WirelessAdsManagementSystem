@@ -108,7 +108,7 @@
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
             </tr>
             <tr>
-                <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
+                <td><button type="button" onclick="closeWin('editSegmentWin');">取消</button></td>
                 <td>
                     <button type="button" onclick="editSegment();">确认</button>
                 </td>
