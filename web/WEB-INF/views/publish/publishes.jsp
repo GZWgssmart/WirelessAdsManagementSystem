@@ -65,6 +65,10 @@
                     textField:'text',
                     panelHeight:'auto'
                 });
+                if (row.stayTime != '') {
+                    $("#stayTime1").textbox({"required":true,"novalidate":true});
+                    $("#stayTimeTR1").attr("style", "");
+                }
                 $("#editForm").form("load", row);
                 $("#editDeviceName").textbox("setValue", row.device.name);
                 $("#editResourceName").textbox("setValue", row.resource.name);
@@ -251,6 +255,10 @@
             var row = selectedRow("resList");
             if (row) {
                 if (row.status == 'Y') {
+                    if (row.resourceType.name == '图片' || row.resourceType.name == '文字') {
+                        $("#stayTime").textbox({"required":true,"novalidate":true});
+                        $("#stayTimeTR").attr("style", "");
+                    }
                     $("#addResourceId").val(row.id);
                     $("#editResourceId").val(row.id);
                     $("#addResourceName").textbox("setValue", row.name);
@@ -532,10 +540,10 @@
                 <td>结束日期:</td>
                 <td><input type="text" name="endTime" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
-            <tr>
+            <tr id="stayTimeTR" style="display:none">
                 <td>停留时间(S):</td>
-                <td><input type="text" name="stayTime" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
+                <td><input id="stayTime" type="text" name="stayTime" class="easyui-validatebox easyui-textbox"/>
+                </td>
             </tr>
             <tr>
                 <td>描述:</td>
@@ -603,10 +611,10 @@
                 <td>结束日期:</td>
                 <td><input type="text" name="endTimeStr" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
-            <tr>
+            <tr id="stayTimeTR1" style="display:none">
                 <td>停留时间(S):</td>
-                <td><input type="text" name="stayTime" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
+                <td><input id="stayTime1" type="text" name="stayTime" class="easyui-validatebox easyui-textbox"/>
+                </td>
             </tr>
             <tr>
                 <td>描述:</td>
