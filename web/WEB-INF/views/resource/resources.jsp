@@ -36,6 +36,10 @@
                     url:'<%=path %>/res/add',
                     type:'post',
                     dataType: 'json',
+                    beforeSend:function () {
+                        $("#addBtn").text("正在添加...");
+                        $("#addBtn").attr("disabled", "true");
+                    },
                     success: function (data) {
                         if (data.result == "success") {
                             $("#addWin").window("close");
@@ -44,6 +48,10 @@
                         } else {
                             $.messager.alert("提示", data.message, "info");
                         }
+                    },
+                    complete:function () {
+                        $("#addBtn").text("确认");
+                        $("#addBtn").removeAttr("disabled");
                     }
                 });
             }
@@ -73,6 +81,11 @@
                     url:'<%=path %>/res/update',
                     type:'post',
                     dataType: 'json',
+                    beforeSend:function () {
+                        $("#editBtn").text("正在修改...");
+                        $("#cancelBtn").attr("disabled", "true");
+                        $("#editBtn").attr("disabled", "true");
+                    },
                     success: function (data) {
                         if (data.result == "success") {
                             closeWin("editWin");
@@ -81,6 +94,11 @@
                         } else {
                             $.messager.alert("提示", data.message, "info");
                         }
+                    },
+                    complete:function () {
+                        $("#editBtn").text("确认");
+                        $("#cancelBtn").removeAttr("disabled");
+                        $("#editBtn").removeAttr("disabled");
                     }
                 });
             }
@@ -241,7 +259,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" onclick="add();">确认</button>
+                    <button id="addBtn" type="button" onclick="add();">确认</button>
                 </td>
             </tr>
         </table>
@@ -274,9 +292,9 @@
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
             </tr>
             <tr>
-                <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
+                <td><button id="cancelBtn" type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
-                    <button type="button" onclick="edit();">确认</button>
+                    <button id="editBtn" type="button" onclick="edit();">确认</button>
                 </td>
             </tr>
         </table>
