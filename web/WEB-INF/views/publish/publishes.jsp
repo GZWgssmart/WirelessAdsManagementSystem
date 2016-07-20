@@ -32,6 +32,8 @@
 
         function showAdd() {
             $("#addForm").form("clear");
+            $("#stayTime").textbox({"required":false,"novalidate":true});
+            $("#stayTimeTR").attr("style", "display:none");
             openWinFitPos('addWin');
         }
 
@@ -65,6 +67,8 @@
                     textField:'text',
                     panelHeight:'auto'
                 });
+                $("#stayTime1").textbox({"required":false,"novalidate":true});
+                $("#stayTimeTR1").attr("style", "display:none");
                 if (row.stayTime != '') {
                     $("#stayTime1").textbox({"required":true,"novalidate":true});
                     $("#stayTimeTR1").attr("style", "");
