@@ -23,37 +23,52 @@
     <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
+    <script src="<%=path %>/js/file_type.js"></script>
 
     <script>
         $(function() {
             setPagination("#list")
         });
 
+        function expectedFileType(id) {
+            var resType = $('#' + id).combobox("getText");
+            var types;
+            $.each(fileTypes, function(index, data) {
+                if (resType == data.name) {
+                    types = data.value;
+                }
+            });
+            return types;
+        }
+
         function add() {
             toValidate("addForm");
             if (validateForm("addForm")) {
-                $('#addForm').ajaxSubmit({
-                    url:'<%=path %>/res/add',
-                    type:'post',
-                    dataType: 'json',
-                    beforeSend:function () {
-                        $("#addBtn").text("正在添加...");
-                        $("#addBtn").attr("disabled", "true");
-                    },
-                    success: function (data) {
-                        if (data.result == "success") {
-                            $("#addWin").window("close");
-                            dataGridReload("list");
-                            $("#addForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
+                var types = expectedFileType('addResourceTypeId');
+                if (checkFile('file', 0, types, 200)) {
+                    $('#addForm').ajaxSubmit({
+                        url: '<%=path %>/res/add',
+                        type: 'post',
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#addBtn").text("正在添加...");
+                            $("#addBtn").attr("disabled", "true");
+                        },
+                        success: function (data) {
+                            if (data.result == "success") {
+                                $("#addWin").window("close");
+                                dataGridReload("list");
+                                $("#addForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
+                        },
+                        complete: function () {
+                            $("#addBtn").text("确认");
+                            $("#addBtn").removeAttr("disabled");
                         }
-                    },
-                    complete:function () {
-                        $("#addBtn").text("确认");
-                        $("#addBtn").removeAttr("disabled");
-                    }
-                });
+                    });
+                }
             }
         }
 
@@ -77,30 +92,33 @@
         function edit() {
             toValidate("editForm");
             if (validateForm("editForm")) {
-                $('#editForm').ajaxSubmit({
-                    url:'<%=path %>/res/update',
-                    type:'post',
-                    dataType: 'json',
-                    beforeSend:function () {
-                        $("#editBtn").text("正在修改...");
-                        $("#cancelBtn").attr("disabled", "true");
-                        $("#editBtn").attr("disabled", "true");
-                    },
-                    success: function (data) {
-                        if (data.result == "success") {
-                            closeWin("editWin");
-                            dataGridReload("list");
-                            $("#editForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
+                var types = expectedFileType('resourceTypeId');
+                if (checkFile('file', 1, types, 200)) {
+                    $('#editForm').ajaxSubmit({
+                        url: '<%=path %>/res/update',
+                        type: 'post',
+                        dataType: 'json',
+                        beforeSend: function () {
+                            $("#editBtn").text("正在修改...");
+                            $("#cancelBtn").attr("disabled", "true");
+                            $("#editBtn").attr("disabled", "true");
+                        },
+                        success: function (data) {
+                            if (data.result == "success") {
+                                closeWin("editWin");
+                                dataGridReload("list");
+                                $("#editForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
+                        },
+                        complete: function () {
+                            $("#editBtn").text("确认");
+                            $("#cancelBtn").removeAttr("disabled");
+                            $("#editBtn").removeAttr("disabled");
                         }
-                    },
-                    complete:function () {
-                        $("#editBtn").text("确认");
-                        $("#cancelBtn").removeAttr("disabled");
-                        $("#editBtn").removeAttr("disabled");
-                    }
-                });
+                    });
+                }
             }
         }
 
@@ -243,7 +261,7 @@
             <tr>
                 <td>类型:</td>
                 <td>
-                    <select name="resourceTypeId" class="easyui-validatebox easyui-combobox"
+                    <select id="addResourceTypeId" name="resourceTypeId" class="easyui-validatebox easyui-combobox"
                            data-options="url:'<%=path %>/restype/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>

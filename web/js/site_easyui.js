@@ -269,3 +269,19 @@ function getQueryParams(dataGridId, formId) {
 function toPage(url) {
     window.location.href = url;
 }
+
+function checkFile(name, index, type, size) {
+    var file = document.getElementsByName(name)[index].files[0];
+    var fileName = file.name;
+    var fileType = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+    var maxSize = size * 1024 * 1024;
+    if (file.size >= maxSize) {
+        $.messager.alert("提示", "文件大小最大为" + size + "MB", "info");
+        return false;
+    }
+    if (type.indexOf(fileType) < 0) {
+        $.messager.alert("提示", "文件后缀只能为" + type, "info");
+        return false;
+    }
+    return true;
+}

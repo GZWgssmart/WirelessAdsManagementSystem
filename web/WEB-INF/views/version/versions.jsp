@@ -32,20 +32,22 @@
         function add() {
             toValidate("addForm");
             if (validateForm("addForm")) {
-                $('#addForm').ajaxSubmit({
-                    url:'<%=path %>/version/add',
-                    type:'post',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.result == "success") {
-                            $("#addWin").window("close");
-                            dataGridReload("list");
-                            $("#addForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
+                if (checkFile("file", 0, '.jpg,.bmp,.png', 10)) {
+                    $('#addForm').ajaxSubmit({
+                        url:'<%=path %>/version/add',
+                        type:'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.result == "success") {
+                                $("#addWin").window("close");
+                                dataGridReload("list");
+                                $("#addForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
 
@@ -62,20 +64,22 @@
         function edit() {
             toValidate("editForm");
             if (validateForm("editForm")) {
-                $('#editForm').ajaxSubmit({
-                    url:'<%=path %>/version/update',
-                    type:'post',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.result == "success") {
-                            closeWin("editWin");
-                            dataGridReload("list");
-                            $("#editForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
+                if (checkFile("file", 1, '.jpg,.bmp,.png', 10)) {
+                    $('#editForm').ajaxSubmit({
+                        url: '<%=path %>/version/update',
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.result == "success") {
+                                closeWin("editWin");
+                                dataGridReload("list");
+                                $("#editForm").form("clear");
+                            } else {
+                                $.messager.alert("提示", data.message, "info");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
 
