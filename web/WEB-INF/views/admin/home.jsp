@@ -26,6 +26,7 @@
 
     <div class="north wel_msg">
         欢迎您:&nbsp;&nbsp;<b>${sessionScope.admin.email }</b>&nbsp;&nbsp;
+        <a href="javascript:void(0);" onclick="toPage('<%=path %>/admin/home')">刷新主页</a>&nbsp;&nbsp;
         <a href="<%=path %>/admin/logout">安全退出</a>
     </div>
 </div>

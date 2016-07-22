@@ -265,3 +265,7 @@ function getQueryParams(dataGridId, formId) {
     });
     return params;
 }
+
+function toPage(url) {
+    window.location.href = url;
+}
