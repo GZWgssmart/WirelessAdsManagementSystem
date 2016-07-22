@@ -32,7 +32,7 @@
 
     <select id="queryByCustomerAndGroupById" parameterType="string" resultType="list" resultMap="versionResultMap">
         <![CDATA[
-        select v.* from t_device d, t_version v where d.customer_id = #{customerId} and d.status = 'Y' and d.version_id = v.id group by v.id;
+        select v.* from t_device d, t_version v where d.customer_id = #{customerId} and d.version_id = v.id group by v.id;
         ]]>
     </select>
 
