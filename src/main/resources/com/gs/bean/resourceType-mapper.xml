@@ -30,7 +30,7 @@
 
     <select id="queryByPager" resultType="list" resultMap="resourceTypeResultMap" parameterType="com.gs.common.bean.Pager">
         <![CDATA[
-        select * from t_resource_type limit #{beginIndex}, #{pageSize}
+        select * from t_resource_type order by create_time desc limit #{beginIndex}, #{pageSize}
         ]]>
     </select>
 

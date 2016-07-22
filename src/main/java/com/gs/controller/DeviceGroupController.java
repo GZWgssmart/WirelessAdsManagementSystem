@@ -88,7 +88,7 @@ public class DeviceGroupController {
         if (SessionUtil.isCustomer(session)) {
             logger.info("分页显示资源分组信息");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            int total = deviceGroupService.count();
+            int total = deviceGroupService.countByCustomerId(customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<DeviceGroup> deviceGroups = deviceGroupService.queryByPagerAndCustomerId(pager, customer.getId());
             return new Pager4EasyUI<DeviceGroup>(pager.getTotalRecords(), deviceGroups);

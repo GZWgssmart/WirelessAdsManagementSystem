@@ -83,4 +83,9 @@ public class DeviceGroupServiceImpl implements DeviceGroupService {
     public List<DeviceGroup> queryAllByCustomerId(String customerId, String status) {
         return deviceGroupDAO.queryAllByCustomerId(customerId, status);
     }
+
+    @Override
+    public int countByCustomerId(String customerId) {
+        return deviceGroupDAO.countByCustomerId(customerId);
+    }
 }

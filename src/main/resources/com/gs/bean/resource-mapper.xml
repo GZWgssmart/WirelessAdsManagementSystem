@@ -60,6 +60,7 @@
         <if test="resource.status != null and resource.status != ''">
             and r.status = #{resource.status}
         </if>
+        order by r.create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>

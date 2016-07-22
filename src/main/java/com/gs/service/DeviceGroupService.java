@@ -14,4 +14,6 @@ public interface DeviceGroupService extends BaseService<DeviceGroup, String> {
 
     public List<DeviceGroup> queryAllByCustomerId(String customerId, String status);
 
+    public int countByCustomerId(String customerId);
+
 }

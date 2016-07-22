@@ -36,7 +36,9 @@
 
     <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceGroupResultMap">
         <![CDATA[
-        select * from t_device_group where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
+        select * from t_device_group where customer_id = #{customerId}
+        order by create_time desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
 
@@ -52,6 +54,12 @@
     <select id="count" resultType="int">
         <![CDATA[
         select count(1) from t_device_group;
+        ]]>
+    </select>
+
+    <select id="countByCustomerId" resultType="int" parameterType="string">
+        <![CDATA[
+        select count(1) from t_device_group where customer_id = #{customerId};
         ]]>
     </select>
 

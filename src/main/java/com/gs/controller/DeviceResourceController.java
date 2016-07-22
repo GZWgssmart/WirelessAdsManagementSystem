@@ -159,8 +159,12 @@ public class DeviceResourceController {
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<DeviceResource> deviceResources = deviceResourceService.queryByPagerAndCriteria(pager, deviceResource, customerId);
             for (DeviceResource dr : deviceResources) {
-                dr.setStartTimeStr(DateFormatUtil.format(dr.getStartTime(), Constants.DATETIME_PATTERN));
-                dr.setEndTimeStr(DateFormatUtil.format(dr.getEndTime(), Constants.DATETIME_PATTERN));
+                if (dr.getStartTime() != null) {
+                    dr.setStartTimeStr(DateFormatUtil.format(dr.getStartTime(), Constants.DATETIME_PATTERN));
+                }
+                if (dr.getEndTime() != null) {
+                    dr.setEndTimeStr(DateFormatUtil.format(dr.getEndTime(), Constants.DATETIME_PATTERN));
+                }
             }
             return new Pager4EasyUI<DeviceResource>(pager.getTotalRecords(), deviceResources);
         } else {

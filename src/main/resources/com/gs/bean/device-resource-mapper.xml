@@ -71,6 +71,7 @@
         <if test="deviceResource.status != null and deviceResource.status != ''">
             and dr.status = #{deviceResource.status}
         </if>
+        order by dr.create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>
