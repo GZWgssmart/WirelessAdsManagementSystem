@@ -18,4 +18,6 @@ public interface VersionDAO extends BaseDAO<Version,String> {
                                                   @Param("version") Version version);
 
     public int countByCriteria(@Param("version") Version version);
+
+    public List<Version> queryByCustomerAndGroupById(String customerId);
 }

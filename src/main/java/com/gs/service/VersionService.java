@@ -15,4 +15,6 @@ public interface VersionService extends BaseService<Version, String> {
 
     public int countByCriteria(Version version);
 
+    public List<Version> queryByCustomerAndGroupById(String customerId);
+
 }

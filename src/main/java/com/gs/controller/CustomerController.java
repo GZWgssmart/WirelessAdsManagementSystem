@@ -101,8 +101,9 @@ public class CustomerController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             ModelAndView mav = new ModelAndView("customer/home");
-            List<Version> versions = versionService.queryAll("Y");
+            List<Version> versions = versionService.queryByCustomerAndGroupById(customer.getId()); // 只需要查询该客户下的所有终端版本
             mav.addObject("versions", versions);
             return mav;
         } else {

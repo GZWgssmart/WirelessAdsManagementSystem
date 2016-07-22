@@ -81,4 +81,9 @@ public class VersionServiceImpl implements VersionService {
     public int batchInsert(List<Version> versions) {
         return 0;
     }
+
+    @Override
+    public List<Version> queryByCustomerAndGroupById(String customerId) {
+        return versionDAO.queryByCustomerAndGroupById(customerId);
+    }
 }
