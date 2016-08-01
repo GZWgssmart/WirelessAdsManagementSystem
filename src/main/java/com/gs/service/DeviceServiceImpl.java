@@ -95,4 +95,9 @@ public class DeviceServiceImpl implements DeviceService {
     public Device queryByCode(String code) {
         return deviceDAO.queryByCode(code);
     }
+
+    @Override
+    public int updateStatus(Device device) {
+        return deviceDAO.updateStatus(device);
+    }
 }

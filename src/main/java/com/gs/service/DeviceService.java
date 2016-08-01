@@ -21,4 +21,6 @@ public interface DeviceService extends BaseService<Device, String> {
 
     public Device queryByCode(String code);
 
+    public int updateStatus(Device device);
+
 }

@@ -51,6 +51,7 @@
         <fasterxml-version>2.7.4</fasterxml-version>
         <logback-ext-spring-version>0.1.4</logback-ext-spring-version>
         <kaptcha-version>2.3.2</kaptcha-version>
+        <fastjson-version>1.2.14</fastjson-version>
     </properties>
 
     <dependencies>
@@ -179,6 +180,13 @@
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson-version}</version>
+        </dependency>
+
 
     </dependencies>
     

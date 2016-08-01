@@ -14,4 +14,8 @@ public class Constants {
 
     public static final String  DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
+    public static final String ADSSERVER = "adsserver";
+
+    public static final String DEFAULT_ENCODING = "UTF-8";
+
 }

@@ -155,4 +155,17 @@
         ]]>
     </update>
 
+    <update id="updateStatus" keyProperty="id" parameterType="device">
+        <![CDATA[
+        update t_device set online = #{online},
+        ]]>
+        <if test="onlineTime != null">
+            online_time = #{onlineTime}
+        </if>
+        <if test="offlineTime != null">
+            offline_time = #{offlineTime}
+        </if>
+        where code = #{code}
+    </update>
+
 </mapper>

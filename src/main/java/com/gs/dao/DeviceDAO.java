@@ -25,4 +25,6 @@ public interface DeviceDAO extends BaseDAO<Device, String> {
 
     public Device queryByCode(@Param("code") String code);
 
+    public int updateStatus(Device device);
+
 }
