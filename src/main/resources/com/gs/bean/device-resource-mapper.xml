@@ -114,8 +114,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="deviceResource">
         <![CDATA[
-        insert into t_device_resource(id,customer_id, device_id, resource_id, area, show_type, start_time, end_time, stay_time, des, create_time)
-        values(uuid(), #{customerId}, #{deviceId}, #{resourceId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{des}, CURRENT_TIMESTAMP)
+        insert into t_device_resource(id,customer_id, device_id, resource_id, publish_log, area, show_type, start_time, end_time, stay_time, des, create_time)
+        values(uuid(), #{customerId}, #{deviceId}, #{resourceId}, #{publishLog}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{des}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
