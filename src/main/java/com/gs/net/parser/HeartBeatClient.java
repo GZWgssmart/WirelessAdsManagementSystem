@@ -8,7 +8,7 @@ import java.util.Date;
 public class HeartBeatClient {
     private String type;
     private String devcode;
-    private Date time;
+    private String time;
 
     public String getType() {
         return type;
@@ -26,11 +26,11 @@ public class HeartBeatClient {
         this.devcode = devcode;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

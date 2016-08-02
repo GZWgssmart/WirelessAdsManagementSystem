@@ -12,4 +12,8 @@ public class ServletContextUtil {
     public static ServletContext getServletContext() {
         return ContextLoader.getCurrentWebApplicationContext().getServletContext();
     }
+
+    public static String getContextPath() {
+        return ContextLoader.getCurrentWebApplicationContext().getServletContext().getContextPath();
+    }
 }

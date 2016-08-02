@@ -12,13 +12,13 @@ public class PublishServer {
     private String restype;
     private int area;
     private String showtype;
-    private Date startdate;
-    private Date enddate;
+    private String startdate;
+    private String enddate;
     private int showcount;
     private int staytime;
     private int segcount;
     private String segments;
-    private Date time;
+    private String time;
     private String pubid;
 
     public String getType() {
@@ -69,19 +69,19 @@ public class PublishServer {
         this.showtype = showtype;
     }
 
-    public Date getStartdate() {
+    public String getStartdate() {
         return startdate;
     }
 
-    public void setStartdate(Date startdate) {
+    public void setStartdate(String startdate) {
         this.startdate = startdate;
     }
 
-    public Date getEnddate() {
+    public String getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(Date enddate) {
+    public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
 
@@ -117,11 +117,11 @@ public class PublishServer {
         this.segments = segments;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

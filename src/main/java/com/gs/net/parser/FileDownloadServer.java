@@ -10,9 +10,9 @@ public class FileDownloadServer {
     private String type;
     private String devcode;
     private String filename;
-    private String filesize;
+    private long filesize;
     private String url;
-    private Date time;
+    private String time;
     private String pubid;
 
     public String getType() {
@@ -39,11 +39,11 @@ public class FileDownloadServer {
         this.filename = filename;
     }
 
-    public String getFilesize() {
+    public long getFilesize() {
         return filesize;
     }
 
-    public void setFilesize(String filesize) {
+    public void setFilesize(long filesize) {
         this.filesize = filesize;
     }
 
@@ -55,11 +55,11 @@ public class FileDownloadServer {
         this.url = url;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

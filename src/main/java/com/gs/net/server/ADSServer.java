@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.gs.bean.Device;
 import com.gs.common.Constants;
 import com.gs.common.util.Config;
+import com.gs.common.util.DateFormatUtil;
 import com.gs.net.bean.ADSSocket;
 import com.gs.net.parser.*;
 import com.gs.service.DeviceService;
@@ -31,8 +32,6 @@ public class ADSServer {
 
     public static final String ONLINE = "Y";
     public static final String OFFLINE = "N";
-
-    public final Date currentTime = Calendar.getInstance().getTime();
 
     private static int port;
     private ServerSocket serverSocket;
@@ -117,7 +116,7 @@ public class ADSServer {
                     if (dataLength > 0) {
                         byte[] bytes = new byte[in.available()];
                         in.read(bytes);
-                        String msg = new String(bytes, Constants.DEFAULT_ENCODING);
+                        String msg = StringUnicodeUtil.unicodeToString(new String(bytes, Constants.DEFAULT_ENCODING));
                         logger.info("接收来自客户端的信息: " + msg);
                         if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
                             logger.info("读取到客户端心跳包信息.....");
@@ -130,7 +129,7 @@ public class ADSServer {
                             HeartBeatServer heartBeatServer = new HeartBeatServer();
                             heartBeatServer.setDevcode(heartBeatClient.getDevcode());
                             heartBeatServer.setType(Common.TYPE_CHECK);
-                            heartBeatServer.setTime(currentTime);
+                            heartBeatServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
                             writeHeartBeat(adsSocket, heartBeatServer);
                         } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
                             logger.info("读取到客户端文件下载反馈......");
@@ -190,7 +189,7 @@ public class ADSServer {
                 if (msg != null && msg.length() > 0) {
                     Socket socket = adsSocket.getSocket();
                     OutputStream out = socket.getOutputStream();
-                    out.write(msg.getBytes(Constants.DEFAULT_ENCODING));
+                    out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
                     logger.info("发送信息到客户端: " + msg);
                 }
             } catch(SocketException e) {
@@ -294,10 +293,11 @@ public class ADSServer {
         Device device = new Device();
         device.setCode(adsSocket.getDeviceCode());
         device.setOnline(status);
+        Date time = Calendar.getInstance().getTime();
         if (status.equals("Y")) {
-            device.setOnlineTime(currentTime);
+            device.setOnlineTime(time);
         } else if (status.equals("N")) {
-            device.setOfflineTime(currentTime);
+            device.setOfflineTime(time);
         }
         logger.info("更新" +adsSocket.getDeviceCode() + "终端在线状态为:" + status);
         deviceService.updateStatus(device);

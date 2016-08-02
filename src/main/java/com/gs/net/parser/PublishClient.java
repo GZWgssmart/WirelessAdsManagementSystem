@@ -10,7 +10,7 @@ public class PublishClient {
     private String devcode;
     private String filename;
     private String restype;
-    private Date time;
+    private String time;
     private String pubid;
 
     public String getType() {
@@ -45,11 +45,11 @@ public class PublishClient {
         this.restype = restype;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

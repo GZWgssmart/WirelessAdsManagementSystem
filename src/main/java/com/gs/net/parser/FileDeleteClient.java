@@ -12,7 +12,7 @@ public class FileDeleteClient {
     private String filename;
     private String restype;
     private String result;
-    private Date time;
+    private String time;
     private String pubid;
 
     public String getType() {
@@ -55,11 +55,11 @@ public class FileDeleteClient {
         this.result = result;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
