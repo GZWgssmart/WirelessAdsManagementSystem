@@ -94,7 +94,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resource">
         <![CDATA[
-        insert into t_resource(id, name, resource_type_id, path, full_path, file_name, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{fileName}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
+        insert into t_resource(id, name, resource_type_id, path, full_path, file_name, file_size, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{fileName}, #{fileSize}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
@@ -110,6 +110,9 @@
         </if>
         <if test="fileName != null">
             file_name = #{fileName},
+        </if>
+        <if test="fileSize != null">
+            file_size = #{fileSize},
         </if>
         des = #{des} where id = #{id}
     </update>

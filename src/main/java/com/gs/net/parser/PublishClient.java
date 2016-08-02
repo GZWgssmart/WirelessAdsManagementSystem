@@ -12,6 +12,7 @@ public class PublishClient {
     private String restype;
     private String time;
     private String pubid;
+    private String result;
 
     public String getType() {
         return type;
@@ -61,6 +62,14 @@ public class PublishClient {
         this.pubid = pubid;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     @Override
     public String toString() {
         return "PublishClient{" +
@@ -68,8 +77,9 @@ public class PublishClient {
                 ", devcode='" + devcode + '\'' +
                 ", filename='" + filename + '\'' +
                 ", restype='" + restype + '\'' +
-                ", time=" + time +
+                ", time='" + time + '\'' +
                 ", pubid='" + pubid + '\'' +
+                ", result='" + result + '\'' +
                 '}';
     }
 }

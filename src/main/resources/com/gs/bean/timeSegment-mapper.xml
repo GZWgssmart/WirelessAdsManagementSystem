@@ -50,6 +50,12 @@
         ]]>
     </select>
 
+    <select id="queryByPubId" resultType="int" parameterType="string">
+        <![CDATA[
+        select * from t_time_segment where pub_id = #{pubId};
+        ]]>
+    </select>
+
     <select id="countByPubId" resultType="int" parameterType="string">
         <![CDATA[
         select count(1) from t_time_segment where pub_id = #{pubId};

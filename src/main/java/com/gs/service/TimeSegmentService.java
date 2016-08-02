@@ -12,5 +12,6 @@ public interface TimeSegmentService extends BaseService<TimeSegment, String> {
 
     public List<TimeSegment> queryByPagerAndPubId(Pager pager, String pubId);
     public int countByPubId(String pubId);
+    public List<TimeSegment> queryByPubId(String pubId);
 
 }

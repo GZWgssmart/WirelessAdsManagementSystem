@@ -85,4 +85,8 @@ public class TimeSegmentServiceImpl implements TimeSegmentService {
         return timeSegmentDAO.countByPubId(pubId);
     }
 
+    @Override
+    public List<TimeSegment> queryByPubId(String pubId) {
+        return timeSegmentDAO.queryByPubId(pubId);
+    }
 }

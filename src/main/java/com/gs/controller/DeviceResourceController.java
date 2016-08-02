@@ -1,8 +1,6 @@
 package com.gs.controller;
 
-import com.gs.bean.Customer;
-import com.gs.bean.DeviceGroup;
-import com.gs.bean.DeviceResource;
+import com.gs.bean.*;
 import com.gs.common.Constants;
 import com.gs.common.bean.ComboBox4EasyUI;
 import com.gs.common.bean.ControllerResult;
@@ -11,7 +9,11 @@ import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.DateFormatUtil;
 import com.gs.common.util.DateParseUtil;
 import com.gs.common.util.PagerUtil;
+import com.gs.common.web.ADSServerUtil;
+import com.gs.common.web.ServletContextUtil;
 import com.gs.common.web.SessionUtil;
+import com.gs.net.parser.Common;
+import com.gs.net.parser.FileDownloadServer;
 import com.gs.service.DeviceGroupService;
 import com.gs.service.DeviceResourceService;
 import org.apache.ibatis.annotations.Param;
@@ -28,6 +30,7 @@ import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class DeviceResourceController {
         if (SessionUtil.isCustomer(session)) {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             deviceResource.setCustomerId(customer.getId());
+            deviceResource.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
             deviceResourceService.insert(deviceResource);
             return ControllerResult.getSuccessResult("成功添加消息发布");
         }
@@ -225,7 +229,28 @@ public class DeviceResourceController {
     @RequestMapping(value = "check", method = RequestMethod.GET)
     public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            deviceResourceService.check(id, checkStatus);
+            // deviceResourceService.check(id, checkStatus);
+            deviceResourceService.updatePublishLog(id, PublishLog.SUBMIT_TO_CHECK);
+            // 一旦提交审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
+            DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(id);
+            Device device = deviceResource.getDevice();
+            com.gs.bean.Resource resource = deviceResource.getResource();
+            FileDownloadServer fileDownloadServer = new FileDownloadServer();
+            fileDownloadServer.setDevcode(device.getCode());
+            fileDownloadServer.setPubid(id);
+            fileDownloadServer.setType(Common.TYPE_DOWNLOAD);
+            fileDownloadServer.setFilename(resource.getFileName());
+            fileDownloadServer.setFilesize(resource.getFileSize());
+            fileDownloadServer.setUrl(ServletContextUtil.getContextPath() + "/" + resource.getPath());
+            fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
+            String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(fileDownloadServer);
+            if (result.equals(Common.DEVICE_NOT_CONNECT)) {
+                return ControllerResult.getFailResult("消息发布: 终端未连接上服务器");
+            } else if (result.equals(Common.DEVICE_IS_HANDLING)){
+                return ControllerResult.getFailResult("消息发布: 终端正在处理中");
+            } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
+                deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
+            }
             return ControllerResult.getSuccessResult("消息发布" + checkStatus);
         } else {
             return ControllerResult.getFailResult("没有权限提交消息发布审核");

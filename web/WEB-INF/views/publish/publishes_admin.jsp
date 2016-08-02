@@ -64,6 +64,17 @@
             return "区域" + value;
         }
 
+        function formatterShowType(value) {
+            if (value == 'order') {
+                return "顺序播放";
+            } else if (value == 'now') {
+                return "即时播放";
+            } else if (value == "segment") {
+                return "时段播放";
+            }
+
+        }
+
     </script>
 </head>
 <body>
@@ -92,8 +103,9 @@
         <th field="code" width="100" formatter="formatterCode">终端号</th>
         <th field="device" width="150" formatter="formatterName">终端名称</th>
         <th field="resource" width="150" formatter="formatterName">资源名称</th>
+        <th field="publishLog" width="100">发布日志</th>
         <th field="area" width="80" formatter="formatterArea">显示区域</th>
-        <th field="showType" width="80">播放模式</th>
+        <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
         <th field="startTimeStr" width="150" formatter="formatterDate">开始时间</th>
         <th field="endTimeStr" width="150" formatter="formatterDate">结束时间</th>
         <th field="stayTime" width="60">停留时间（S）</th>

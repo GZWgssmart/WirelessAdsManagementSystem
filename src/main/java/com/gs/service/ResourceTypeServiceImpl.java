@@ -29,7 +29,7 @@ public class ResourceTypeServiceImpl implements ResourceTypeService {
 
     @Override
     public ResourceType queryById(String s) {
-        return null;
+        return resourceTypeDAO.queryById(s);
     }
 
     @Override

@@ -96,4 +96,14 @@ public class DeviceResourceServiceImpl implements DeviceResourceService {
     public int check(String id, String checkStatus) {
         return deviceResourceDAO.check(id, checkStatus);
     }
+
+    @Override
+    public DeviceResource queryWithDeviceResourceById(String drid) {
+        return deviceResourceDAO.queryWithDeviceResourceById(drid);
+    }
+
+    @Override
+    public int updatePublishLog(String id, String publishLog) {
+        return deviceResourceDAO.updatePublishLog(id, publishLog);
+    }
 }

@@ -21,4 +21,8 @@ public interface DeviceResourceService extends BaseService<DeviceResource, Strin
 
     public int check(String id, String checkStatus);
 
+    public DeviceResource queryWithDeviceResourceById(String drid);
+
+    public int updatePublishLog(String id, String publishLog);
+
 }

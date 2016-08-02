@@ -1,16 +1,20 @@
 package com.gs.net.server;
 
 import com.alibaba.fastjson.JSON;
-import com.gs.bean.Device;
+import com.gs.bean.*;
 import com.gs.common.Constants;
 import com.gs.common.util.Config;
 import com.gs.common.util.DateFormatUtil;
 import com.gs.net.bean.ADSSocket;
 import com.gs.net.parser.*;
+import com.gs.service.DeviceResourceService;
 import com.gs.service.DeviceService;
+import com.gs.service.ResourceTypeService;
+import com.gs.service.TimeSegmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import sun.tools.jconsole.Plotter;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -43,6 +47,12 @@ public class ADSServer {
 
     @Resource
     private DeviceService deviceService;
+    @Resource
+    private DeviceResourceService deviceResourceService;
+    @Resource
+    private ResourceTypeService resourceTypeService;
+    @Resource
+    private TimeSegmentService timeSegmentService;
 
     static {
         Config config = new Config();
@@ -135,10 +145,44 @@ public class ADSServer {
                             logger.info("读取到客户端文件下载反馈......");
                             FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
                             handlingDevices.remove(fileDownloadClient.getDevcode());
-                            System.out.println(fileDownloadClient);
+                            if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
+                                deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
+                            } else {
+                                // 如果客户端成功下载文件，则需要进行发布操作
+                                deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
+                                DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(fileDownloadClient.getPubid());
+                                Device device = deviceResource.getDevice();
+                                com.gs.bean.Resource resource = deviceResource.getResource();
+                                PublishServer publishServer = new PublishServer();
+                                publishServer.setType(Common.TYPE_PUBLISH);
+                                publishServer.setPubid(deviceResource.getId());
+                                publishServer.setArea(deviceResource.getArea());
+                                publishServer.setDevcode(device.getCode());
+                                publishServer.setEnddate(DateFormatUtil.format(deviceResource.getEndTime(), Common.DATE_PATTERN));
+                                publishServer.setStartdate(DateFormatUtil.format(deviceResource.getStartTime(), Common.DATE_PATTERN));
+                                publishServer.setFilename(resource.getFileName());
+                                ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
+                                publishServer.setRestype(resourceType.getName());
+                                publishServer.setSegcount(timeSegmentService.countByPubId(deviceResource.getId()));
+                                publishServer.setSegments(getSegments(deviceResource.getId()));
+                                publishServer.setShowcount(0); // showCount还没做
+                                publishServer.setShowtype(deviceResource.getShowType());
+                                publishServer.setStaytime(deviceResource.getStayTime());
+                                publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
+                                String result = writePublish(publishServer);
+                                if (result.equals(Common.DEVICE_WRITE_OUT)) {
+                                    deviceResourceService.updatePublishLog(publishServer.getPubid(), PublishLog.PUBLISHING);
+                                }
+                            }
                         } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
                             logger.info("读取到客户端消息发布反馈......");
                             PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
+                            if (publishClient.getResult().equals(Common.RESULT_N)) {
+                                deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
+                            } else {
+                                deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.PUBLISHED);
+                                deviceResourceService.check(publishClient.getPubid(), "已审核");
+                            }
                             handlingDevices.remove(publishClient.getDevcode());
                             System.out.println(publishClient);
                         } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
@@ -338,6 +382,19 @@ public class ADSServer {
             return false;
         }
         return true;
+    }
+
+    private String getSegments(String pubId) {
+        List<TimeSegment> segments = timeSegmentService.queryByPubId(pubId);
+        String segmentsStr = "";
+        for (TimeSegment segment : segments) {
+            String beginStr = DateFormatUtil.format(segment.getStartTime(), Common.TIME_PATTERN);
+            String endStr = DateFormatUtil.format(segment.getEndTime(), Common.TIME_PATTERN);
+            if (!segmentsStr.equals("")) {
+                segmentsStr = segmentsStr + "," + beginStr + "-" + endStr;
+            }
+        }
+        return segmentsStr;
     }
 
 }

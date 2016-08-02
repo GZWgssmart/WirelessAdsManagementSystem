@@ -28,6 +28,7 @@ public class DeviceResource {
     private Date createTime;
     private String publishTime;
     private String status;
+    private String publishLog;
 
     public String getId() {
         return id;
@@ -195,5 +196,13 @@ public class DeviceResource {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPublishLog() {
+        return publishLog;
+    }
+
+    public void setPublishLog(String publishLog) {
+        this.publishLog = publishLog;
     }
 }
