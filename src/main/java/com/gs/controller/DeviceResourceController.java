@@ -251,7 +251,7 @@ public class DeviceResourceController {
             } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
                 deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
             }
-            return ControllerResult.getSuccessResult("消息发布" + checkStatus);
+            return ControllerResult.getSuccessResult("消息发布已经开始,请关注发布日志");
         } else {
             return ControllerResult.getFailResult("没有权限提交消息发布审核");
         }

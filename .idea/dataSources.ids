@@ -363,7 +363,7 @@
         <comment>审核状态</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(10)</data-type>
-        <default-expression>&apos;未提交&apos;</default-expression>
+        <default-expression>&apos;not_submit&apos;</default-expression>
       </column>
       <column id="86" parent="6" name="create_time">
         <comment>资源发布添加时间</comment>

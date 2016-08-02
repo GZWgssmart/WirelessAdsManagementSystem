@@ -182,14 +182,14 @@ CREATE TABLE t_device_resource(
   submit_check_time DATETIME COMMENT '审核提交时间',
   check_comment VARCHAR(200) COMMENT '审核批注',
   check_time DATETIME COMMENT '审核时间',
-  check_status VARCHAR(10) NOT NULL DEFAULT '未提交' COMMENT '审核状态',
+  check_status VARCHAR(10) NOT NULL DEFAULT 'not_submit' COMMENT '审核状态',
   create_time DATETIME DEFAULT current_timestamp COMMENT '资源发布添加时间',
   publish_time DATETIME COMMENT '资源下发时间',
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '是否在用或删除'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_check_status
-CHECK (check_status in ('未提交', '审核中', '已审核'));
+CHECK (check_status in ('not_submit', 'checking', 'checked'));
 
 ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_status
 CHECK (status in ('Y', 'N'));

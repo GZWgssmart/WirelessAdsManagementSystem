@@ -75,6 +75,17 @@
 
         }
 
+        function formatterCheckStatus(value) {
+            if (value == 'not_submit') {
+                return "未提交";
+            } else if (value == 'checking') {
+                return "审核中";
+            } else if (value == "checked") {
+                return "已审核";
+            }
+
+        }
+
     </script>
 </head>
 <body>
@@ -100,7 +111,7 @@
         <th field="endTimeStr" width="150" formatter="formatterDate">结束时间</th>
         <th field="stayTime" width="60">停留时间（S）</th>
         <th field="des" width="200">描述</th>
-        <th field="checkStatus" width="60">审核状态</th>
+        <th field="checkStatus" width="60" formatter="formatterCheckStatus">审核状态</th>
         <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
@@ -109,7 +120,7 @@
 <div id="tb">
     <div class="input_small">
         <form id="searchForm" modalAttribute="deviceResource">
-            <input type="hidden" name="checkStatus" value="已审核" />
+            <input type="hidden" name="checkStatus" value="checked" />
         </form>
     </div>
 </div>

@@ -181,7 +181,7 @@ public class ADSServer {
                                 deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
                             } else {
                                 deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.PUBLISHED);
-                                deviceResourceService.check(publishClient.getPubid(), "已审核");
+                                deviceResourceService.check(publishClient.getPubid(), "checked");
                             }
                             handlingDevices.remove(publishClient.getDevcode());
                             System.out.println(publishClient);

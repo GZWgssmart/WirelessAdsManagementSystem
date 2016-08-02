@@ -105,14 +105,16 @@
         function toCheck() {
             var row = selectedRow("list");
             if (row) {
-                if (row.checkStatus != "未提交") {
+                if (row.checkStatus != "not_submit") {
                     $.messager.alert("提示", "请选择未提交审核的消息发布", "info");
                 } else {
-                    $.get("<%=path %>/devres/check?id=" + row.id + "&checkStatus=审核中",
+                    $.get("<%=path %>/devres/check?id=" + row.id + "&checkStatus=checking",
                             function (data) {
                                 if (data.result == "success") {
                                     $.messager.alert("提示", data.message, "info");
                                     dataGridReload("list");
+                                } else {
+                                    $.messager.alert("提示", data.message, "info");
                                 }
                             });
                 }
@@ -408,6 +410,17 @@
 
         }
 
+        function formatterCheckStatus(value) {
+            if (value == 'not_submit') {
+                return "未提交";
+            } else if (value == 'checking') {
+                return "审核中";
+            } else if (value == "checked") {
+                return "已审核";
+            }
+
+        }
+
     </script>
 </head>
 <body>
@@ -424,9 +437,9 @@
 				rowStyler: function(index,row){
 				    if (row.status == 'N') {
 					    return 'color:red;';
-					} else if (row.checkStatus == '审核中') {
+					} else if (row.checkStatus == 'checking') {
 					    return 'color:orange';
-                    } else if (row.checkStatus == '已审核') {
+                    } else if (row.checkStatus == 'checked') {
                         return 'color:green;';
                     }
 				}">
@@ -443,7 +456,7 @@
         <th field="endTimeStr" width="150" formatter="formatterDate">结束时间</th>
         <th field="stayTime" width="60">停留时间（S）</th>
         <th field="des" width="200">描述</th>
-        <th field="checkStatus" width="60">审核状态</th>
+        <th field="checkStatus" width="60" formatter="formatterCheckStatus">审核状态</th>
         <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
@@ -466,13 +479,13 @@
         <form id="searchForm" modalAttribute="deviceResource">
             审核状态:<select name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
-                        id: '未提交',
+                        id: 'not_submit',
                         text: '未提交'
                     },{
-                        id: '审核中',
+                        id: 'checking',
                         text: '审核中'
                     },{
-                        id: '已审核',
+                        id: 'checked',
                         text: '已审核'
                     }]">
         </select>
