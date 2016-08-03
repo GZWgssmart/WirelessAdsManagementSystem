@@ -327,8 +327,8 @@ public class ADSServer {
         // 接收客户端心跳包并解析
         HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
         adsSocket.setDeviceCode(heartBeatClient.getDevcode());
-        updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
         if (adsSockets.get(heartBeatClient.getDevcode()) == null) { // 第一次收到终端心跳包时,启动检测线程
+            updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
             deviceHeartBeatCount.put(heartBeatClient.getDevcode(), 1);
             startCheckDeviceConnection(adsSocket);
             // 从此时开始,每次收到一个心跳包都加1
