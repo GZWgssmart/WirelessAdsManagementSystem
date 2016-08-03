@@ -38,4 +38,8 @@ public class Config {
         return Double.valueOf(properties.getProperty(key));
     }
 
+    public long getLong(String key) {
+        return Long.valueOf(properties.getProperty(key));
+    }
+
 }

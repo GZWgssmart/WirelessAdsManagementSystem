@@ -3,9 +3,12 @@ package com.gs.service;
 import com.gs.bean.Device;
 import com.gs.common.bean.Pager;
 import com.gs.dao.DeviceDAO;
+import com.gs.net.bean.ADSSocket;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -99,5 +102,18 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public int updateStatus(Device device) {
         return deviceDAO.updateStatus(device);
+    }
+
+    public void updateDeviceStatus(String devCode, String status) {
+        Device device = new Device();
+        device.setCode(devCode);
+        device.setOnline(status);
+        Date time = Calendar.getInstance().getTime();
+        if (status.equals("Y")) {
+            device.setOnlineTime(time);
+        } else if (status.equals("N")) {
+            device.setOfflineTime(time);
+        }
+        deviceDAO.updateStatus(device);
     }
 }

@@ -14,7 +14,6 @@ import com.gs.service.TimeSegmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import sun.tools.jconsole.Plotter;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -34,10 +33,8 @@ public class ADSServer {
 
     private static final Logger logger = LoggerFactory.getLogger(ADSServer.class);
 
-    public static final String ONLINE = "Y";
-    public static final String OFFLINE = "N";
-
     private static int port;
+    private static long checkDeviceConnectionTime;
     private ServerSocket serverSocket;
     private Map<String, ADSSocket> adsSockets;
 
@@ -56,8 +53,9 @@ public class ADSServer {
 
     static {
         Config config = new Config();
-        config.build("classpath:/conf/port.properties");
-        port = config.getInt("port");
+        config.build("classpath:/conf/adsserver.properties");
+        port = config.getInt(Common.PORT);
+        checkDeviceConnectionTime = config.getLong(Common.CHECK_DEVICE_CONNECTION_TIME);
     }
 
     public ADSServer() {
@@ -98,6 +96,7 @@ public class ADSServer {
                     adsSocket.setDeviceIP(inetAddress.getHostAddress());
                     adsSocket.setSocket(socket);
                     startRead(adsSocket);
+                    startCheckDeviceConnection(adsSocket);
                 }
             } catch (SocketException e) {
                 stopServer();
@@ -129,67 +128,13 @@ public class ADSServer {
                         String msg = StringUnicodeUtil.unicodeToString(new String(bytes, Constants.DEFAULT_ENCODING));
                         logger.info("接收来自客户端的信息: " + msg);
                         if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
-                            logger.info("读取到客户端心跳包信息.....");
-                            // 接收客户端心跳包并解析
-                            HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
-                            adsSocket.setDeviceCode(heartBeatClient.getDevcode());
-                            adsSockets.put(heartBeatClient.getDevcode(), adsSocket);
-                            updateDeviceStatus(adsSocket, ONLINE);
-                            // 服务端反馈到客户端
-                            HeartBeatServer heartBeatServer = new HeartBeatServer();
-                            heartBeatServer.setDevcode(heartBeatClient.getDevcode());
-                            heartBeatServer.setType(Common.TYPE_CHECK);
-                            heartBeatServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-                            writeHeartBeat(adsSocket, heartBeatServer);
+                            readHeartBeat(adsSocket, msg);
                         } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                            logger.info("读取到客户端文件下载反馈......");
-                            FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
-                            handlingDevices.remove(fileDownloadClient.getDevcode());
-                            if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
-                                deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
-                            } else {
-                                // 如果客户端成功下载文件，则需要进行发布操作
-                                deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
-                                DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(fileDownloadClient.getPubid());
-                                Device device = deviceResource.getDevice();
-                                com.gs.bean.Resource resource = deviceResource.getResource();
-                                PublishServer publishServer = new PublishServer();
-                                publishServer.setType(Common.TYPE_PUBLISH);
-                                publishServer.setPubid(deviceResource.getId());
-                                publishServer.setArea(deviceResource.getArea());
-                                publishServer.setDevcode(device.getCode());
-                                publishServer.setEnddate(DateFormatUtil.format(deviceResource.getEndTime(), Common.DATE_PATTERN));
-                                publishServer.setStartdate(DateFormatUtil.format(deviceResource.getStartTime(), Common.DATE_PATTERN));
-                                publishServer.setFilename(resource.getFileName());
-                                ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
-                                publishServer.setRestype(resourceType.getName());
-                                publishServer.setSegcount(timeSegmentService.countByPubId(deviceResource.getId()));
-                                publishServer.setSegments(getSegments(deviceResource.getId()));
-                                publishServer.setShowcount(0); // showCount还没做
-                                publishServer.setShowtype(deviceResource.getShowType());
-                                publishServer.setStaytime(deviceResource.getStayTime());
-                                publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-                                String result = writePublish(publishServer);
-                                if (result.equals(Common.DEVICE_WRITE_OUT)) {
-                                    deviceResourceService.updatePublishLog(publishServer.getPubid(), PublishLog.PUBLISHING);
-                                }
-                            }
+                            readFileDownload(msg);
                         } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                            logger.info("读取到客户端消息发布反馈......");
-                            PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
-                            if (publishClient.getResult().equals(Common.RESULT_N)) {
-                                deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
-                            } else {
-                                deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.PUBLISHED);
-                                deviceResourceService.check(publishClient.getPubid(), "checked");
-                            }
-                            handlingDevices.remove(publishClient.getDevcode());
-                            System.out.println(publishClient);
+                            readPublish(msg);
                         } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                            logger.info("读取到客户端文件删除反馈......");
-                            FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
-                            handlingDevices.remove(fileDeleteClient.getDevcode());
-                            System.out.println(fileDeleteClient);
+                            readFileDelete(msg);
                         } else {
                             logger.info("读取到其他消息......");
                         }
@@ -212,7 +157,36 @@ public class ADSServer {
     private void startRead(ADSSocket adsSocket) {
         ReadThread readThread = new ReadThread(adsSocket);
         new Thread(readThread).start();
+    }
 
+    /**
+     * 检测设备是否连接的线程
+     */
+    private class DeviceCheckThread implements Runnable {
+
+        private ADSSocket adsSocket;
+
+        public DeviceCheckThread(ADSSocket adsSocket) {
+            this.adsSocket = adsSocket;
+        }
+
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(checkDeviceConnectionTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (!isDeviceWork(adsSocket)) {
+                    break;
+                }
+            }
+        }
+    }
+
+    private void startCheckDeviceConnection(ADSSocket adsSocket) {
+        DeviceCheckThread deviceCheckThread = new DeviceCheckThread(adsSocket);
+        new Thread(deviceCheckThread).start();
     }
 
     private class WriteThread implements Runnable {
@@ -258,9 +232,14 @@ public class ADSServer {
         new Thread(writeThread).start();
     }
 
-    private void writeHeartBeat(ADSSocket adsSocket, HeartBeatServer server) {
-        logger.info("发送心跳反馈到" + adsSocket.getDeviceCode() + "客户端");
-        startWrite(adsSocket, JSON.toJSONString(server));
+    private String writeHeartBeat(ADSSocket adsSocket, HeartBeatServer server) {
+        if (isDeviceWork(adsSocket)) {
+            logger.info("发送心跳反馈到" + adsSocket.getDeviceCode() + "客户端");
+            startWrite(adsSocket, JSON.toJSONString(server));
+            return Common.DEVICE_WRITE_OUT;
+        } else {
+            return Common.DEVICE_NOT_CONNECT;
+        }
     }
 
     public String writeFileDownload(FileDownloadServer fileDownloadServer) {
@@ -329,22 +308,83 @@ public class ADSServer {
         return Common.DEVICE_NOT_CONNECT;
     }
 
+    private void readHeartBeat(ADSSocket adsSocket, String msg) {
+        logger.info("读取到客户端心跳包信息.....");
+        // 接收客户端心跳包并解析
+        HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
+        adsSocket.setDeviceCode(heartBeatClient.getDevcode());
+        adsSockets.put(heartBeatClient.getDevcode(), adsSocket);
+        updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
+        // 服务端反馈到客户端
+        HeartBeatServer heartBeatServer = new HeartBeatServer();
+        heartBeatServer.setDevcode(heartBeatClient.getDevcode());
+        heartBeatServer.setType(Common.TYPE_CHECK);
+        heartBeatServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
+        writeHeartBeat(adsSocket, heartBeatServer);
+    }
+
+    private void readFileDownload(String msg) {
+        logger.info("读取到客户端文件下载反馈......");
+        FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
+        handlingDevices.remove(fileDownloadClient.getDevcode());
+        if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
+            deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
+        } else {
+            // 如果客户端成功下载文件，则需要进行发布操作
+            deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
+            DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(fileDownloadClient.getPubid());
+            Device device = deviceResource.getDevice();
+            com.gs.bean.Resource resource = deviceResource.getResource();
+            PublishServer publishServer = new PublishServer();
+            publishServer.setType(Common.TYPE_PUBLISH);
+            publishServer.setPubid(deviceResource.getId());
+            publishServer.setArea(deviceResource.getArea());
+            publishServer.setDevcode(device.getCode());
+            publishServer.setEnddate(DateFormatUtil.format(deviceResource.getEndTime(), Common.DATE_PATTERN));
+            publishServer.setStartdate(DateFormatUtil.format(deviceResource.getStartTime(), Common.DATE_PATTERN));
+            publishServer.setFilename(resource.getFileName());
+            ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
+            publishServer.setRestype(resourceType.getName());
+            publishServer.setSegcount(timeSegmentService.countByPubId(deviceResource.getId()));
+            publishServer.setSegments(getSegments(deviceResource.getId()));
+            publishServer.setShowcount(0); // showCount还没做
+            publishServer.setShowtype(deviceResource.getShowType());
+            publishServer.setStaytime(deviceResource.getStayTime());
+            publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
+            String result = writePublish(publishServer);
+            if (result.equals(Common.DEVICE_WRITE_OUT)) {
+                deviceResourceService.updatePublishLog(publishServer.getPubid(), PublishLog.PUBLISHING);
+            }
+        }
+    }
+
+    private void readPublish(String msg) {
+        logger.info("读取到客户端消息发布反馈......");
+        PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
+        if (publishClient.getResult().equals(Common.RESULT_N)) {
+            deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
+        } else {
+            deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.PUBLISHED);
+            deviceResourceService.check(publishClient.getPubid(), "checked");
+        }
+        handlingDevices.remove(publishClient.getDevcode());
+        System.out.println(publishClient);
+    }
+
+    private void readFileDelete(String msg) {
+        logger.info("读取到客户端文件删除反馈......");
+        FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
+        handlingDevices.remove(fileDeleteClient.getDevcode());
+        System.out.println(fileDeleteClient);
+    }
+
     /**
      * 当设备不能与服务器连接时,更新设备的在线状态,status可选值为Y或N,也要更新上线或离线的时间
      * @param status
      */
     private void updateDeviceStatus(ADSSocket adsSocket, String status) {
-        Device device = new Device();
-        device.setCode(adsSocket.getDeviceCode());
-        device.setOnline(status);
-        Date time = Calendar.getInstance().getTime();
-        if (status.equals("Y")) {
-            device.setOnlineTime(time);
-        } else if (status.equals("N")) {
-            device.setOfflineTime(time);
-        }
         logger.info("更新" +adsSocket.getDeviceCode() + "终端在线状态为:" + status);
-        deviceService.updateStatus(device);
+        deviceService.updateDeviceStatus(adsSocket.getDeviceCode(), status);
     }
 
     /**
@@ -352,7 +392,7 @@ public class ADSServer {
      * @param adsSocket
      */
     private void lostDeviceConnection(ADSSocket adsSocket) {
-        updateDeviceStatus(adsSocket, OFFLINE);
+        updateDeviceStatus(adsSocket, Common.DEVICE_OFFLINE);
         Socket socket = adsSocket.getSocket();
         if (socket.isConnected() && !socket.isClosed()) {
             try {
@@ -371,6 +411,7 @@ public class ADSServer {
      */
     private boolean isDeviceWork(ADSSocket adsSocket) {
         try {
+            logger.info("开始检测客户端" + adsSocket.getDeviceCode() + "是否连接......");
             OutputStream out = adsSocket.getSocket().getOutputStream();
             out.write(0);
         } catch (SocketException e) {

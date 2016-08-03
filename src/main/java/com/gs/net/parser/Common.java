@@ -21,4 +21,10 @@ public class Common {
     public static final String DEVICE_WRITE_OUT = "writeOut";
     public static final String DEVICE_NOT_CONNECT = "notConnect";
 
+    public static final String DEVICE_ONLINE = "Y";
+    public static final String DEVICE_OFFLINE = "N";
+
+    public static final String PORT = "port";
+    public static final String CHECK_DEVICE_CONNECTION_TIME = "check_device_connection_time";
+
 }

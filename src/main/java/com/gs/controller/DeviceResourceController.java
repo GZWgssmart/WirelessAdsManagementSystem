@@ -16,6 +16,7 @@ import com.gs.net.parser.Common;
 import com.gs.net.parser.FileDownloadServer;
 import com.gs.service.DeviceGroupService;
 import com.gs.service.DeviceResourceService;
+import com.gs.service.DeviceService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,8 @@ public class DeviceResourceController {
     private DeviceResourceService deviceResourceService;
     @Resource
     private DeviceGroupService deviceGroupService;
+    @Resource
+    private DeviceService deviceService;
 
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -229,29 +232,33 @@ public class DeviceResourceController {
     @RequestMapping(value = "check", method = RequestMethod.GET)
     public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            // deviceResourceService.check(id, checkStatus);
-            deviceResourceService.updatePublishLog(id, PublishLog.SUBMIT_TO_CHECK);
-            // 一旦提交审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
-            DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(id);
-            Device device = deviceResource.getDevice();
-            com.gs.bean.Resource resource = deviceResource.getResource();
-            FileDownloadServer fileDownloadServer = new FileDownloadServer();
-            fileDownloadServer.setDevcode(device.getCode());
-            fileDownloadServer.setPubid(id);
-            fileDownloadServer.setType(Common.TYPE_DOWNLOAD);
-            fileDownloadServer.setFilename(resource.getFileName());
-            fileDownloadServer.setFilesize(resource.getFileSize());
-            fileDownloadServer.setUrl(ServletContextUtil.getContextPath() + "/" + resource.getPath());
-            fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-            String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(fileDownloadServer);
-            if (result.equals(Common.DEVICE_NOT_CONNECT)) {
-                return ControllerResult.getFailResult("消息发布: 终端未连接上服务器");
-            } else if (result.equals(Common.DEVICE_IS_HANDLING)){
-                return ControllerResult.getFailResult("消息发布: 终端正在处理中");
-            } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
-                deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
+            if (checkStatus.equals("checking")) {
+                deviceResourceService.check(id, checkStatus);
+                deviceResourceService.updatePublishLog(id, PublishLog.SUBMIT_TO_CHECK);
+                return ControllerResult.getSuccessResult("消息发布已提交审核");
+            } else {
+                // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
+                DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(id);
+                Device device = deviceResource.getDevice();
+                com.gs.bean.Resource resource = deviceResource.getResource();
+                FileDownloadServer fileDownloadServer = new FileDownloadServer();
+                fileDownloadServer.setDevcode(device.getCode());
+                fileDownloadServer.setPubid(id);
+                fileDownloadServer.setType(Common.TYPE_DOWNLOAD);
+                fileDownloadServer.setFilename(resource.getFileName());
+                fileDownloadServer.setFilesize(resource.getFileSize());
+                fileDownloadServer.setUrl(ServletContextUtil.getContextPath() + "/" + resource.getPath());
+                fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
+                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(fileDownloadServer);
+                if (result.equals(Common.DEVICE_NOT_CONNECT)) {
+                    return ControllerResult.getFailResult("消息发布: 终端未连接上服务器");
+                } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
+                    return ControllerResult.getFailResult("消息发布: 终端正在处理中");
+                } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
+                    deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
+                }
+                return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
             }
-            return ControllerResult.getSuccessResult("消息发布已经开始,请关注发布日志");
         } else {
             return ControllerResult.getFailResult("没有权限提交消息发布审核");
         }
