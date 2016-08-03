@@ -34,13 +34,17 @@ public class ADSServer {
     private static final Logger logger = LoggerFactory.getLogger(ADSServer.class);
 
     private static int port;
-    private static long checkDeviceConnectionTime;
+    private static long heartBeatTime;
+    private static int heartBeatCheckCount;
+    private static long heartBeatCheckExtraTime;
     private ServerSocket serverSocket;
     private Map<String, ADSSocket> adsSockets;
 
     private List<String> handlingDevices;
 
     private boolean serverStarted;
+
+    private Map<String, Integer> deviceHeartBeatCount;
 
     @Resource
     private DeviceService deviceService;
@@ -55,12 +59,15 @@ public class ADSServer {
         Config config = new Config();
         config.build("classpath:/conf/adsserver.properties");
         port = config.getInt(Common.PORT);
-        checkDeviceConnectionTime = config.getLong(Common.CHECK_DEVICE_CONNECTION_TIME);
+        heartBeatTime = config.getLong(Common.HEART_BEAT_TIME);
+        heartBeatCheckCount = config.getInt(Common.HEART_BEAT_CHECK_COUNT);
+        heartBeatCheckExtraTime = config.getLong(Common.HEART_BEAT_CHECK_EXTRA_TIME);
     }
 
     public ADSServer() {
         adsSockets = new HashMap<String, ADSSocket>();
         handlingDevices = new ArrayList<String>();
+        deviceHeartBeatCount = new HashMap<String, Integer>();
     }
 
     public void startServer() {
@@ -96,7 +103,6 @@ public class ADSServer {
                     adsSocket.setDeviceIP(inetAddress.getHostAddress());
                     adsSocket.setSocket(socket);
                     startRead(adsSocket);
-                    startCheckDeviceConnection(adsSocket);
                 }
             } catch (SocketException e) {
                 stopServer();
@@ -146,7 +152,6 @@ public class ADSServer {
                     lostDeviceConnection(adsSocket);
                 } catch (IOException e) {
                     needRunning = false;
-                    e.printStackTrace();
                 }
 
             }
@@ -160,7 +165,9 @@ public class ADSServer {
     }
 
     /**
-     * 检测设备是否连接的线程
+     * 检测设备是否连接的线程,每隔一段时间去检测心跳包收到的次数
+     * 比如以3个心跳包为基准,每个心跳包时间间隔为10s,则计算每隔30-50秒（需要确定一个确切的值）
+     * 是否接收到至少3个心跳包,如果是,则说明连接无问题,否则,终端连接不上
      */
     private class DeviceCheckThread implements Runnable {
 
@@ -171,15 +178,22 @@ public class ADSServer {
         }
 
         public void run() {
+            long time = heartBeatCheckCount * heartBeatTime + heartBeatCheckExtraTime;
             while (true) {
                 try {
-                    Thread.sleep(checkDeviceConnectionTime);
+                    Thread.sleep(time);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (!isDeviceWork(adsSocket)) {
+                logger.info("开始判断指定时间" + time + "ms内是否收到至少" + heartBeatCheckCount + "个心跳包....");
+                if (deviceHeartBeatCount.get(adsSocket.getDeviceCode()) < heartBeatCheckCount) {
+                    logger.info("指定时间" + time + "ms内未收到至少" + heartBeatCheckCount + "个心跳包,连接断开....");
+                    lostDeviceConnection(adsSocket); // 如果在指定的时间后，收到的心跳包个数小于这个时间段内可接收到的心跳数,则说明终端连接有问题,应该关闭连接并修改在线状态
                     break;
+                } else {
+                    logger.info("指定时间" + time + "ms内收到至少" + heartBeatCheckCount + "个心跳包,连接正常....");
                 }
+                deviceHeartBeatCount.put(adsSocket.getDeviceCode(), 0); // 重新开始心跳包计数
             }
         }
     }
@@ -313,8 +327,15 @@ public class ADSServer {
         // 接收客户端心跳包并解析
         HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
         adsSocket.setDeviceCode(heartBeatClient.getDevcode());
-        adsSockets.put(heartBeatClient.getDevcode(), adsSocket);
         updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
+        if (adsSockets.get(heartBeatClient.getDevcode()) == null) { // 第一次收到终端心跳包时,启动检测线程
+            deviceHeartBeatCount.put(heartBeatClient.getDevcode(), 1);
+            startCheckDeviceConnection(adsSocket);
+            // 从此时开始,每次收到一个心跳包都加1
+        } else {
+            deviceHeartBeatCount.put(heartBeatClient.getDevcode(), deviceHeartBeatCount.get(heartBeatClient.getDevcode()) + 1);
+        }
+        adsSockets.put(heartBeatClient.getDevcode(), adsSocket);
         // 服务端反馈到客户端
         HeartBeatServer heartBeatServer = new HeartBeatServer();
         heartBeatServer.setDevcode(heartBeatClient.getDevcode());
@@ -413,7 +434,7 @@ public class ADSServer {
         try {
             logger.info("开始检测客户端" + adsSocket.getDeviceCode() + "是否连接......");
             OutputStream out = adsSocket.getSocket().getOutputStream();
-            out.write(0);
+            out.write(0); // 发送空字符
         } catch (SocketException e) {
             logger.info("在尝试发送消息到客户端时出现客户端不能连接的错误.....");
             lostDeviceConnection(adsSocket);
