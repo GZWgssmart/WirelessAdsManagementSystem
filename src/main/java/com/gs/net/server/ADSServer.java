@@ -63,9 +63,9 @@ public class ADSServer {
         Config config = new Config();
         config.build("classpath:/conf/adsserver.properties");
         port = config.getInt(Common.PORT);
-        heartBeatTime = config.getLong(Common.HEART_BEAT_TIME);
+        heartBeatTime = config.getLong(Common.HEART_BEAT_TIME) * 1000;
         heartBeatCheckCount = config.getInt(Common.HEART_BEAT_CHECK_COUNT);
-        heartBeatCheckExtraTime = config.getLong(Common.HEART_BEAT_CHECK_EXTRA_TIME);
+        heartBeatCheckExtraTime = config.getLong(Common.HEART_BEAT_CHECK_EXTRA_TIME) * 1000;
     }
 
     public ADSServer() {
