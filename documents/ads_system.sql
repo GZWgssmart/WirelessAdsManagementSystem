@@ -189,7 +189,7 @@ CREATE TABLE t_device_resource(
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_check_status
-CHECK (check_status in ('not_submit', 'checking', 'checked'));
+CHECK (check_status in ('not_submit', 'checking', 'checked', 'finish'));
 
 ALTER TABLE t_device_resource ADD CONSTRAINT ck_device_resource_status
 CHECK (status in ('Y', 'N'));

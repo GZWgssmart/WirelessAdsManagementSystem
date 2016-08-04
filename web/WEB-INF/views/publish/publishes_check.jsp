@@ -99,6 +99,8 @@
                 return "审核中";
             } else if (value == "checked") {
                 return "已审核";
+            } else if (value == "finish") {
+                return "已完成";
             }
 
         }

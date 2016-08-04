@@ -82,6 +82,8 @@
                 return "审核中";
             } else if (value == "checked") {
                 return "已审核";
+            } else if (value == "finish") {
+                return "已完成";
             }
 
         }
@@ -140,6 +142,9 @@
                     },{
                         id: 'checked',
                         text: '已审核'
+                    },{
+                        id: 'finish',
+                        text: '已完成'
                     }]">
         </select>
             状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',

@@ -103,6 +103,11 @@ public class DeviceResourceServiceImpl implements DeviceResourceService {
     }
 
     @Override
+    public List<DeviceResource> queryWithDeviceResourceByCode(String code) {
+        return deviceResourceDAO.queryWithDeviceResourceByCode(code);
+    }
+
+    @Override
     public int updatePublishLog(String id, String publishLog) {
         return deviceResourceDAO.updatePublishLog(id, publishLog);
     }

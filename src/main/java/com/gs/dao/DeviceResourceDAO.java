@@ -28,6 +28,8 @@ public interface DeviceResourceDAO extends BaseDAO<DeviceResource, String> {
 
     public DeviceResource queryWithDeviceResourceById(String drId);
 
+    public List<DeviceResource> queryWithDeviceResourceByCode(String code);
+
     public int updatePublishLog(@Param("id") String id, @Param("publishLog") String publishLog);
 
 }

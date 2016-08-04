@@ -122,7 +122,7 @@
 <div id="tb">
     <div class="input_small">
         <form id="searchForm" modalAttribute="deviceResource">
-            <input type="hidden" name="checkStatus" value="checked" />
+            <input type="hidden" name="checkStatus" value="finish" />
         </form>
     </div>
 </div>

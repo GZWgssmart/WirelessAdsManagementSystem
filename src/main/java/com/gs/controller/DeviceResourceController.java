@@ -91,6 +91,15 @@ public class DeviceResourceController {
         }
     }
 
+    @RequestMapping(value = "list_page_finish", method = RequestMethod.GET)
+    public String toListPageFinish(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "publish/publishes_finish";
+        } else {
+            return "redirect:/index";
+        }
+    }
+
     @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
     public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
@@ -232,33 +241,25 @@ public class DeviceResourceController {
     @RequestMapping(value = "check", method = RequestMethod.GET)
     public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            if (checkStatus.equals("checking")) {
+            if (checkStatus != null && checkStatus.equals("checking")) { // 提交审核
                 deviceResourceService.check(id, checkStatus);
                 deviceResourceService.updatePublishLog(id, PublishLog.SUBMIT_TO_CHECK);
                 return ControllerResult.getSuccessResult("消息发布已提交审核");
-            } else {
+            } else if (checkStatus != null && checkStatus.equals("checked")){ // 审核
+                deviceResourceService.check(id, checkStatus);
                 // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
                 DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(id);
-                Device device = deviceResource.getDevice();
-                com.gs.bean.Resource resource = deviceResource.getResource();
-                FileDownloadServer fileDownloadServer = new FileDownloadServer();
-                fileDownloadServer.setDevcode(device.getCode());
-                fileDownloadServer.setPubid(id);
-                fileDownloadServer.setType(Common.TYPE_DOWNLOAD);
-                fileDownloadServer.setFilename(resource.getFileName());
-                fileDownloadServer.setFilesize(resource.getFileSize());
-                fileDownloadServer.setUrl(ServletContextUtil.getContextPath() + "/" + resource.getPath());
-                fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(fileDownloadServer);
+                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(deviceResource);
                 if (result.equals(Common.DEVICE_NOT_CONNECT)) {
-                    return ControllerResult.getFailResult("消息发布: 终端未连接上服务器");
+                    return ControllerResult.getFailResult("消息发布: 终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
                 } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
-                    return ControllerResult.getFailResult("消息发布: 终端正在处理中");
+                    return ControllerResult.getFailResult("消息发布: 终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
                 } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
                     deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
+                    return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
                 }
-                return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
             }
+            return ControllerResult.getFailResult("您进行了不支持的操作......");
         } else {
             return ControllerResult.getFailResult("没有权限提交消息发布审核");
         }

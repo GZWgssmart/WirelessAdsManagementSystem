@@ -48,6 +48,13 @@
         ]]>
     </select>
 
+    <select id="queryWithDeviceResourceByCode" parameterType="string" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select dr.*, d.code as d_code, r.file_name as r_file_name, r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+        from t_device_resource dr, t_device d, t_resource r where dr.device_id = d.id and dr.resource_id = r.id and d.code = #{code} and dr.check_status = 'checked';
+        ]]>
+    </select>
+
     <select id="query" parameterType="deviceResource" resultMap="deviceResourceResultMap">
         <![CDATA[
         select * from t_device_resource where id = #{id}
