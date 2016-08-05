@@ -41,6 +41,8 @@ public class ADSServer {
     private static long heartBeatTime;
     private static int heartBeatCheckCount;
     private static long heartBeatCheckExtraTime;
+    private static String siteDomain;
+    private static long autoRunDelay;
     private ServerSocket serverSocket;
     private Map<String, ADSSocket> adsSockets;
 
@@ -66,6 +68,8 @@ public class ADSServer {
         heartBeatTime = config.getLong(Common.HEART_BEAT_TIME) * 1000;
         heartBeatCheckCount = config.getInt(Common.HEART_BEAT_CHECK_COUNT);
         heartBeatCheckExtraTime = config.getLong(Common.HEART_BEAT_CHECK_EXTRA_TIME) * 1000;
+        siteDomain = config.getString(Common.SITE_DOMAIN);
+        autoRunDelay = config.getLong(Common.AUTO_RUN_DELAY) * 1000;
     }
 
     public ADSServer() {
@@ -211,6 +215,7 @@ public class ADSServer {
 
         private ADSSocket adsSocket;
         private String msg;
+        private long delay;
 
         public WriteThread(ADSSocket adsSocket) {
             this.adsSocket = adsSocket;
@@ -220,8 +225,13 @@ public class ADSServer {
             this.msg = msg;
         }
 
+        public void setDelay(long delay) {
+            this.delay = delay;
+        }
+
         public void run() {
             try {
+                Thread.sleep(delay);
                 if (msg != null && msg.length() > 0) {
                     Socket socket = adsSocket.getSocket();
                     OutputStream out = socket.getOutputStream();
@@ -234,6 +244,8 @@ public class ADSServer {
                 lostDeviceConnection(adsSocket);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
@@ -244,9 +256,10 @@ public class ADSServer {
      * @param adsSocket
      * @param msg
      */
-    private void startWrite(ADSSocket adsSocket, String msg) {
+    private void startWrite(ADSSocket adsSocket, String msg, long delay) {
         WriteThread writeThread = new WriteThread(adsSocket);
         writeThread.setMsg(msg);
+        writeThread.setDelay(delay);
         new Thread(writeThread).start();
     }
 
@@ -257,16 +270,16 @@ public class ADSServer {
             heartBeatServer.setDevcode(adsSocket.getDeviceCode());
             heartBeatServer.setType(Common.TYPE_CHECK);
             heartBeatServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-            startWrite(adsSocket, JSON.toJSONString(heartBeatServer));
+            startWrite(adsSocket, JSON.toJSONString(heartBeatServer), 0);
             return Common.DEVICE_WRITE_OUT;
         } else {
             return Common.DEVICE_NOT_CONNECT;
         }
     }
 
-    public String writeFileDownload(DeviceResource deviceResource) {
+    public String writeFileDownload(DeviceResource deviceResource, boolean autoRun) {
         String deviceCode = deviceResource.getDevice().getCode();
-        ADSSocket adsSocket = adsSockets.get(deviceResource.getDevice().getCode());
+        ADSSocket adsSocket = adsSockets.get(deviceCode);
         if (adsSocket != null) {
             if (isDeviceWork(adsSocket)) {
                 synchronized (Object.class) {
@@ -279,9 +292,13 @@ public class ADSServer {
                         fileDownloadServer.setType(Common.TYPE_DOWNLOAD);
                         fileDownloadServer.setFilename(resource.getFileName());
                         fileDownloadServer.setFilesize(resource.getFileSize());
-                        fileDownloadServer.setUrl(ServletContextUtil.getContextPath() + "/" + resource.getPath());
+                        fileDownloadServer.setUrl(siteDomain + "/" + resource.getPath());
                         fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-                        startWrite(adsSocket, JSON.toJSONString(fileDownloadServer));
+                        long delay = 0;
+                        if (autoRun) {
+                            delay = autoRunDelay;
+                        }
+                        startWrite(adsSocket, JSON.toJSONString(fileDownloadServer), delay);
                         handlingDevices.add(deviceCode);
                         return Common.DEVICE_WRITE_OUT;
                     } else {
@@ -296,13 +313,18 @@ public class ADSServer {
         return Common.DEVICE_NOT_CONNECT;
     }
 
-    public String writePublish(DeviceResource deviceResource) {
+    public String writePublish(DeviceResource deviceResource, boolean autoRun) {
         String deviceCode = deviceResource.getDevice().getCode();
         ADSSocket adsSocket = adsSockets.get(deviceCode);
         if (adsSocket != null) {
             if (isDeviceWork(adsSocket)) {
                 synchronized (Object.class) {
-                    if (!handlingDevices.contains(deviceCode)) {
+                    if (autoRun && handlingDevices.contains(deviceCode)) {
+                        return Common.DEVICE_IS_HANDLING;
+                    } else if (autoRun && !handlingDevices.contains(deviceCode)) {
+                        handlingDevices.add(deviceCode);
+                    }
+                    if (handlingDevices.contains(deviceCode)) {
                         logger.info("发送消息发布通知到" + adsSocket.getDeviceCode() + "客户端");
                         com.gs.bean.Resource resource = deviceResource.getResource();
                         PublishServer publishServer = new PublishServer();
@@ -321,11 +343,12 @@ public class ADSServer {
                         publishServer.setShowtype(deviceResource.getShowType());
                         publishServer.setStaytime(deviceResource.getStayTime());
                         publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-                        startWrite(adsSocket, JSON.toJSONString(publishServer));
-                        handlingDevices.add(deviceCode);
+                        long delay = 0;
+                        if (autoRun) {
+                            delay = autoRunDelay;
+                        }
+                        startWrite(adsSocket, JSON.toJSONString(publishServer), delay);
                         return Common.DEVICE_WRITE_OUT;
-                    } else {
-                        return Common.DEVICE_IS_HANDLING;
                     }
                 }
             } else {
@@ -345,7 +368,7 @@ public class ADSServer {
                     if (!handlingDevices.contains(deviceCode)) {
                         logger.info("发送文件删除通知到" + adsSocket.getDeviceCode() + "客户端");
                         FileDeleteServer fileDeleteServer = new FileDeleteServer();
-                        startWrite(adsSocket, JSON.toJSONString(fileDeleteServer));
+                        startWrite(adsSocket, JSON.toJSONString(fileDeleteServer), 0);
                         handlingDevices.add(deviceCode);
                         return Common.DEVICE_WRITE_OUT;
                     } else {
@@ -364,33 +387,34 @@ public class ADSServer {
         logger.info("读取到客户端心跳包信息.....");
         // 接收客户端心跳包并解析
         HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
-        adsSocket.setDeviceCode(heartBeatClient.getDevcode());
-        if (adsSockets.get(heartBeatClient.getDevcode()) == null) { // 每次重新连接收到终端心跳包时,启动检测线程
-            logger.info("终端" + heartBeatClient.getDevcode() + "第一次连接,或失去连接后重新连接上服务器");
+        String deviceCode = heartBeatClient.getDevcode();
+        adsSocket.setDeviceCode(deviceCode);
+        if (adsSockets.get(deviceCode) == null) { // 每次重新连接收到终端心跳包时,启动检测线程
+            logger.info("终端" + deviceCode + "第一次连接,或失去连接后重新连接上服务器");
             updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
-            deviceHeartBeatCount.put(heartBeatClient.getDevcode(), 1);
+            deviceHeartBeatCount.put(deviceCode, 1);
             startCheckDeviceConnection(adsSocket);
             // 从此时开始,每次收到一个心跳包都加1
         } else {
-            deviceHeartBeatCount.put(heartBeatClient.getDevcode(), deviceHeartBeatCount.get(heartBeatClient.getDevcode()) + 1);
+            deviceHeartBeatCount.put(deviceCode, deviceHeartBeatCount.get(deviceCode) + 1);
         }
-        adsSockets.put(heartBeatClient.getDevcode(), adsSocket);
+        adsSockets.put(deviceCode, adsSocket);
         // 服务端反馈到客户端
         writeHeartBeat(adsSocket);
-        autoPublishWhenDeviceWork(adsSocket); // 每接收到一个心跳包就开始自动处理消息发布
+        autoPublishWhenDeviceWork(adsSocket, heartBeatClient); // 每接收到一个心跳包就开始自动处理消息发布
     }
 
     private void readFileDownload(String msg) {
         logger.info("读取到客户端文件下载反馈......");
         FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
-        handlingDevices.remove(fileDownloadClient.getDevcode());
         if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
             deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
+            handlingDevices.remove(fileDownloadClient.getDevcode()); // 只有文件下载反馈结果为失败时,才需要从正在处理的设备中移除,否则直接做发布消息通知
         } else {
             // 如果客户端成功下载文件，则需要进行发布操作
             deviceResourceService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
             DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(fileDownloadClient.getPubid());
-            String result = writePublish(deviceResource);
+            String result = writePublish(deviceResource, false);
             if (result.equals(Common.DEVICE_WRITE_OUT)) {
                 deviceResourceService.updatePublishLog(deviceResource.getId(), PublishLog.PUBLISHING);
             }
@@ -417,26 +441,38 @@ public class ADSServer {
         System.out.println(fileDeleteClient);
     }
 
-    private void autoPublishWhenDeviceWork(ADSSocket adsSocket) {
+    /**
+     * 如果是连接后收到的第一个心跳包
+     * 1)从文件下载开始，此时应该从正在处理的设备中移除,然后才能开始自动处理消息发布
+     * 2)从消息发布开始，直接开始消息发布
+     *
+     * 如果是连接后收到第二个开始的心跳包
+     *
+     *
+     * @param adsSocket
+     */
+    private void autoPublishWhenDeviceWork(ADSSocket adsSocket, HeartBeatClient heartBeatClient) {
         final List<DeviceResource> deviceResources = deviceResourceService.queryWithDeviceResourceByCode(adsSocket.getDeviceCode());
+        String deviceCode = adsSocket.getDeviceCode();
+        if (heartBeatClient.getFirstbeat().equals(Common.RESULT_Y)) {
+            handlingDevices.remove(deviceCode);
+        }
         if (deviceResources != null && deviceResources.size() > 0) {
             // 有消息发布还未处理完,则需要顺序处理这些消息发布
-            logger.info("终端" + adsSocket.getDeviceCode() + "开始自动处理消息发布......");
+            logger.info("终端" + deviceCode + "开始自动处理消息发布......");
             for (DeviceResource deviceResource : deviceResources) {
                 String publishLog = deviceResource.getPublishLog();
-                if (publishLog.equals(PublishLog.SUBMIT_TO_CHECK) ||
-                        publishLog.equals(PublishLog.FILE_DOWNLOADING) ||
-                        publishLog.equals(PublishLog.FILE_NOT_DOWNLOADED)) {
-                    String result = writeFileDownload(deviceResource);
+                if (publishLog.equals(PublishLog.SUBMIT_TO_CHECK) || publishLog.equals(PublishLog.FILE_DOWNLOADING) || publishLog.equals(PublishLog.FILE_NOT_DOWNLOADED)) {
+                    String result = writeFileDownload(deviceResource, true);
                     if (result.equals(Common.DEVICE_WRITE_OUT)) {
                         deviceResourceService.updatePublishLog(deviceResource.getId(), PublishLog.FILE_DOWNLOADING);
                     }
-                } else if (publishLog.equals(PublishLog.PUBLISHING) ||
-                        publishLog.equals(PublishLog.NOT_PUBLISHED)) {
-                    String result = writePublish(deviceResource);
+                } else if (publishLog.equals(PublishLog.PUBLISHING) || publishLog.equals(PublishLog.NOT_PUBLISHED)) {
+                    String result = writePublish(deviceResource, true);
                     if (result.equals(Common.DEVICE_WRITE_OUT)) {
                         deviceResourceService.updatePublishLog(deviceResource.getId(), PublishLog.PUBLISHING);
                     }
+
                 }
             }
         }

@@ -249,11 +249,11 @@ public class DeviceResourceController {
                 deviceResourceService.check(id, checkStatus);
                 // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
                 DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(id);
-                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(deviceResource);
+                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(deviceResource, false);
                 if (result.equals(Common.DEVICE_NOT_CONNECT)) {
-                    return ControllerResult.getFailResult("消息发布: 终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
+                    // return ControllerResult.getFailResult("消息发布: 终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
                 } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
-                    return ControllerResult.getFailResult("消息发布: 终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
+                    // return ControllerResult.getFailResult("消息发布: 终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
                 } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
                     deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
                     return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");

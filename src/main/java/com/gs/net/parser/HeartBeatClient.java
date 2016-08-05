@@ -8,6 +8,7 @@ import java.util.Date;
 public class HeartBeatClient {
     private String type;
     private String devcode;
+    private String firstbeat;
     private String time;
 
     public String getType() {
@@ -26,6 +27,14 @@ public class HeartBeatClient {
         this.devcode = devcode;
     }
 
+    public String getFirstbeat() {
+        return firstbeat;
+    }
+
+    public void setFirstbeat(String firstbeat) {
+        this.firstbeat = firstbeat;
+    }
+
     public String getTime() {
         return time;
     }
@@ -39,7 +48,8 @@ public class HeartBeatClient {
         return "HeartBeatClient{" +
                 "type='" + type + '\'' +
                 ", devcode='" + devcode + '\'' +
-                ", time=" + time +
+                ", firstbeat='" + firstbeat + '\'' +
+                ", time='" + time + '\'' +
                 '}';
     }
 }
