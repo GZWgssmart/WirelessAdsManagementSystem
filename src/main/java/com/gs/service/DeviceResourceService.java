@@ -27,4 +27,6 @@ public interface DeviceResourceService extends BaseService<DeviceResource, Strin
 
     public int updatePublishLog(String id, String publishLog);
 
+    public int updateWhenPublished(DeviceResource deviceResource);
+
 }

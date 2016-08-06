@@ -25,4 +25,6 @@ public interface DeviceService extends BaseService<Device, String> {
 
     public void updateDeviceStatus(String devCode, String status);
 
+    public int updatePublishTime(Device device);
+
 }

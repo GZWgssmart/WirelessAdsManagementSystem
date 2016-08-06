@@ -27,4 +27,6 @@ public interface DeviceDAO extends BaseDAO<Device, String> {
 
     public int updateStatus(Device device);
 
+    public int updatePublishTime(Device device);
+
 }

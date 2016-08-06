@@ -1,10 +1,7 @@
 package com.gs.net.server;
 
 import com.alibaba.fastjson.JSON;
-import com.gs.bean.DeviceResource;
-import com.gs.bean.PublishLog;
-import com.gs.bean.ResourceType;
-import com.gs.bean.TimeSegment;
+import com.gs.bean.*;
 import com.gs.common.Constants;
 import com.gs.common.util.Config;
 import com.gs.common.util.DateFormatUtil;
@@ -427,8 +424,17 @@ public class ADSServer {
         if (publishClient.getResult().equals(Common.RESULT_N)) {
             deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
         } else {
-            deviceResourceService.updatePublishLog(publishClient.getPubid(), PublishLog.PUBLISHED);
-            deviceResourceService.check(publishClient.getPubid(), "finish");
+            DeviceResource deviceResource = new DeviceResource();
+            deviceResource.setPublishLog(PublishLog.PUBLISHED);
+            deviceResource.setId(publishClient.getPubid());
+            deviceResource.setCheckStatus("finish");
+            Date time = Calendar.getInstance().getTime();
+            deviceResource.setPublishTime(time);
+            deviceResourceService.updateWhenPublished(deviceResource);
+            Device device = new Device();
+            device.setAdsUpdateTime(time);
+            device.setCode(publishClient.getDevcode());
+            deviceService.updatePublishTime(device);
         }
         handlingDevices.remove(publishClient.getDevcode());
         System.out.println(publishClient);

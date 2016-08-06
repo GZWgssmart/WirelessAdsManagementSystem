@@ -26,7 +26,7 @@ public class DeviceResource {
     private Date checkTime;
     private String checkStatus;
     private Date createTime;
-    private String publishTime;
+    private Date publishTime;
     private String status;
     private String publishLog;
 
@@ -182,11 +182,11 @@ public class DeviceResource {
         this.createTime = createTime;
     }
 
-    public String getPublishTime() {
+    public Date getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(String publishTime) {
+    public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
     }
 

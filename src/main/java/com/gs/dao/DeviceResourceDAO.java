@@ -32,4 +32,6 @@ public interface DeviceResourceDAO extends BaseDAO<DeviceResource, String> {
 
     public int updatePublishLog(@Param("id") String id, @Param("publishLog") String publishLog);
 
+    public int updateWhenPublished(DeviceResource deviceResource);
+
 }

@@ -156,4 +156,10 @@
         ]]>
     </update>
 
+    <update id="updateWhenPublished" keyProperty="id" parameterType="deviceResource">
+        <![CDATA[
+        update t_device_resource set publish_log = #{publishLog}, publish_time = #{publishTime}, check_status = #{checkStatus} where id = #{id}
+        ]]>
+    </update>
+
 </mapper>

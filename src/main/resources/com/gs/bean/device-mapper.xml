@@ -168,4 +168,10 @@
         where code = #{code}
     </update>
 
+    <update id="updatePublishTime" keyProperty="id" parameterType="device">
+        <![CDATA[
+        update t_device set ads_update_time = #{adsUpdateTime} where code = #{code}
+        ]]>
+    </update>
+
 </mapper>

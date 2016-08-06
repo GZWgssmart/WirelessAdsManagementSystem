@@ -116,4 +116,9 @@ public class DeviceServiceImpl implements DeviceService {
         }
         deviceDAO.updateStatus(device);
     }
+
+    @Override
+    public int updatePublishTime(Device device) {
+        return deviceDAO.updatePublishTime(device);
+    }
 }

@@ -111,4 +111,9 @@ public class DeviceResourceServiceImpl implements DeviceResourceService {
     public int updatePublishLog(String id, String publishLog) {
         return deviceResourceDAO.updatePublishLog(id, publishLog);
     }
+
+    @Override
+    public int updateWhenPublished(DeviceResource deviceResource) {
+        return deviceResourceDAO.updateWhenPublished(deviceResource);
+    }
 }
