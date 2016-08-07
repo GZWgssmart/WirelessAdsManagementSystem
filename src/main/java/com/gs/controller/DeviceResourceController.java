@@ -259,7 +259,6 @@ public class DeviceResourceController {
                     return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
                 }
             }
-            return ControllerResult.getFailResult("您进行了不支持的操作......");
         } else {
             return ControllerResult.getFailResult("没有权限提交消息发布审核");
         }
