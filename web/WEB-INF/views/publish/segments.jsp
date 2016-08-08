@@ -23,6 +23,12 @@
     <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
+
+    <script>
+        $(function() {
+            setPagination("#segmentList");
+        });
+    </script>
 </head>
 <body>
 <table id="segmentList" class="easyui-datagrid" toolbar="#segmenttb" style="height:100%;"

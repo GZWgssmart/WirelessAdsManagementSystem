@@ -27,7 +27,6 @@
     <script>
         $(function() {
             setPagination("#list");
-            setPagination("#segmentList");
         });
 
         function showAdd() {
