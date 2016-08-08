@@ -251,14 +251,15 @@ public class DeviceResourceController {
                 DeviceResource deviceResource = deviceResourceService.queryWithDeviceResourceById(id);
                 String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(deviceResource, false);
                 if (result.equals(Common.DEVICE_NOT_CONNECT)) {
-                    // return ControllerResult.getFailResult("消息发布: 终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
+                    return ControllerResult.getFailResult("消息发布: 此终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
                 } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
-                    // return ControllerResult.getFailResult("消息发布: 终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
+                    return ControllerResult.getFailResult("消息发布: 此终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
                 } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
                     deviceResourceService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
                     return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
                 }
             }
+            return ControllerResult.getFailResult("您可能正在尝试其他操作,请联系技术支持");
         } else {
             return ControllerResult.getFailResult("没有权限提交消息发布审核");
         }

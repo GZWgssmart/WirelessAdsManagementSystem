@@ -50,7 +50,7 @@
             <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
             <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
             <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
-            <tx:method name="select*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
             <tx:method name="count*" read-only="true"/>
             <tx:method name="*"/>
         </tx:attributes>
