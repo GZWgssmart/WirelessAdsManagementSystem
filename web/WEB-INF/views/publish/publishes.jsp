@@ -74,7 +74,7 @@
                     $("#stayTime1").textbox({"required":true,"novalidate":true});
                     $("#stayTimeTR1").attr("style", "");
                 }
-                $("#editDeviceName").textbox("setValue", row.device.name);
+                $("#editDeviceCode").textbox("setValue", row.device.name);
                 $("#editResourceName").textbox("setValue", row.resource.name);
                 openWin("editWin");
             } else {
@@ -222,8 +222,8 @@
                 if (row.status == 'Y') {
                     $("#addDeviceId").val(row.id);
                     $("#editDeviceId").val(row.id);
-                    $("#addDeviceName").textbox("setValue", row.name);
-                    $("#editDeviceName").textbox("setValue", row.name);
+                    $("#addDeviceCode").textbox("setValue", row.code);
+                    $("#editDeviceCode").textbox("setValue", row.code);
                     closeWin("devWin");
                 } else {
                     $.messager.alert("提示", "必须选择可用状态的设备", "info");
@@ -451,7 +451,6 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="100" formatter="formatterCode">终端号</th>
-        <th field="device" width="150" formatter="formatterName">终端名称</th>
         <th field="resource" width="150" formatter="formatterName">资源名称</th>
         <th field="publishLog" width="100">发布日志</th>
         <th field="publishTime" width="150" formatter="formatterDate">发布时间</th>
@@ -522,7 +521,7 @@
             <tr>
                 <td>设备:</td>
                 <td><input id="addDeviceId" type="hidden" name="deviceId" />
-                    <input id="addDeviceName" type="text" name="deviceName" class="easyui-validatebox easyui-textbox"
+                    <input id="addDeviceCode" type="text" name="deviceCode" class="easyui-validatebox easyui-textbox"
                            data-options="editable:false,required:true,novalidate:true"/>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                        onclick="showDevWin();">选择设备</a></td>
@@ -593,7 +592,7 @@
             <tr>
                 <td>设备:</td>
                 <td><input id="editDeviceId" type="hidden" name="deviceId" />
-                    <input id="editDeviceName" type="text" name="deviceName" class="easyui-validatebox easyui-textbox"
+                    <input id="editDeviceCode" type="text" name="deviceCode" class="easyui-validatebox easyui-textbox"
                            data-options="editable:false,required:true,novalidate:true"/>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                        onclick="showDevWin();">选择设备</a></td>

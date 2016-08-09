@@ -130,7 +130,6 @@ CHECK (status in ('Y', 'N'));
 DROP TABLE IF EXISTS t_device;
 CREATE TABLE t_device(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备id',
-  name VARCHAR(50) NOT NULL COMMENT '终端设备名称',
   code VARCHAR(200) NOT NULL COMMENT '终端号',
   des VARCHAR(500) COMMENT '终端设备描述信息',
   version_id VARCHAR(128) NOT NULL COMMENT '终端设备的版本号',
@@ -139,7 +138,6 @@ CREATE TABLE t_device(
   bus_plate_no VARCHAR(10) COMMENT '公交车牌号',
   driver VARCHAR(50) COMMENT '驾驶员',
   phone VARCHAR(11) COMMENT '手机号',
-  area VARCHAR(50) COMMENT '运行区域',
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   device_group_id VARCHAR(128) COMMENT '终端设备分组id',
   create_time DATETIME DEFAULT current_timestamp COMMENT '终端添加时间',

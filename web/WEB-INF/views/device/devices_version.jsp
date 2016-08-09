@@ -179,10 +179,8 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="100">终端号</th>
-        <th field="name" width="150">名称</th>
         <th field="version" width="80" formatter="formatterVersion">版本</th>
         <th field="deviceGroup" width="80" formatter="formatterDevice">终端分组</th>
-        <th field="area" width="150">区域</th>
         <th field="driver" width="80">驾驶员</th>
         <th field="phone" width="80">手机号</th>
         <th field="busNo" width="80">车路线</th>
@@ -211,7 +209,6 @@
         <form id="searchForm" modalAttribute="device">
             <input id="versionId" type="hidden" name="versionId" value="${versionId }" />
             终端号:<input type="text" name="code" class="easyui-textbox"/>
-            名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
@@ -252,22 +249,12 @@
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
-                <td>名称:</td>
-                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
-            </tr>
-            <tr>
                 <td>分组:</td>
                 <td>
                     <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
                             data-options="url:'<%=path %>/devgroup/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
-            </tr>
-            <tr>
-                <td>区域:</td>
-                <td><input type="text" name="area" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>驾驶员:</td>
@@ -319,21 +306,11 @@
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
-                <td>名称:</td>
-                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
-            </tr>
-            <tr>
                 <td>分组:</td>
                 <td>
                     <select id="deviceGroupId" name="deviceGroupId" class="easyui-validatebox easyui-combobox"
                             data-options="editable:false,required:true,novalidate:true"></select>
                 </td>
-            </tr>
-            <tr>
-                <td>区域:</td>
-                <td><input type="text" name="area" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>驾驶员:</td>

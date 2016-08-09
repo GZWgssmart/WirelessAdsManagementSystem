@@ -8,7 +8,6 @@ import java.util.Date;
 public class Device {
 
     private String id;
-    private String name;
     private String des;
     private String versionId;
     private Version version;
@@ -16,7 +15,6 @@ public class Device {
     private String installTimeStr;
     private String busNo;
     private String busPlateNo;
-    private String area;
     private Date createTime;
     private String customerId;
     private String deviceGroupId;
@@ -36,14 +34,6 @@ public class Device {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDes() {
@@ -100,14 +90,6 @@ public class Device {
 
     public void setBusPlateNo(String busPlateNo) {
         this.busPlateNo = busPlateNo;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
     }
 
     public Date getCreateTime() {

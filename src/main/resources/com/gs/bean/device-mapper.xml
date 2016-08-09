@@ -4,11 +4,9 @@
 
     <resultMap id="deviceResultMap" type="device">
         <id property="id" column="id" />
-        <result property="name" column="name" />
         <result property="deviceGroupId" column="device_group_id" />
         <result property="busNo" column="bus_no" />
         <result property="busPlateNo" column="bus_plate_no" />
-        <result property="area" column="area" />
         <result property="des" column="des" />
         <result property="installTime" column="install_time" />
         <result property="createTime" column="create_time" />
@@ -74,9 +72,6 @@
         <if test="device.code != null and device.code != ''">
             and d.code = #{device.code}
         </if>
-        <if test="device.name != null and device.name != ''">
-            and d.name = #{device.name}
-        </if>
         <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
             and d.device_group_id = #{device.deviceGroupId}
         </if>
@@ -113,9 +108,6 @@
         <if test="device.code != null and device.code != ''">
             and code = #{device.code}
         </if>
-        <if test="device.name != null and device.name != ''">
-            and name = #{device.name}
-        </if>
         <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
             and device_group_id = #{device.deviceGroupId}
         </if>
@@ -132,14 +124,14 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="device">
         <![CDATA[
-        insert into t_device(id, code, name, version_id, device_group_id, driver, phone, bus_no, bus_plate_no, area, des, customer_id, install_time, create_time)
-        values(uuid(), #{code}, #{name}, #{versionId}, #{deviceGroupId}, #{driver}, #{phone}, #{busNo}, #{busPlateNo}, #{area}, #{des}, #{customerId}, #{installTime}, CURRENT_TIMESTAMP)
+        insert into t_device(id, code, version_id, device_group_id, driver, phone, bus_no, bus_plate_no, des, customer_id, install_time, create_time)
+        values(uuid(), #{code}, #{versionId}, #{deviceGroupId}, #{driver}, #{phone}, #{busNo}, #{busPlateNo}, #{des}, #{customerId}, #{installTime}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="device">
         <![CDATA[
-        update t_device set code = #{code}, name = #{name}, device_group_id = #{deviceGroupId}, driver = #{driver}, phone = #{phone}, bus_no = #{busNo}, bus_plate_no = #{busPlateNo}, area = #{area}, des = #{des}, install_time = #{installTime} where id = #{id}
+        update t_device set code = #{code}, device_group_id = #{deviceGroupId}, driver = #{driver}, phone = #{phone}, bus_no = #{busNo}, bus_plate_no = #{busPlateNo}, des = #{des}, install_time = #{installTime} where id = #{id}
         ]]>
     </update>
 

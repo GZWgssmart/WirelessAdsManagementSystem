@@ -35,10 +35,8 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="100">终端号</th>
-        <th field="name" width="150">名称</th>
         <th field="version" width="80" formatter="formatterVersion">版本</th>
         <th field="deviceGroup" width="80" formatter="formatterDevice">终端分组</th>
-        <th field="area" width="150">区域</th>
         <th field="driver" width="80">驾驶员</th>
         <th field="phone" width="80">手机号</th>
         <th field="busNo" width="80">车路线</th>
@@ -60,7 +58,6 @@
     <div class="input_small">
         <form id="devSearchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
-            名称:<input type="text" name="name" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             版本:<select name="versionId" class="easyui-combobox"
