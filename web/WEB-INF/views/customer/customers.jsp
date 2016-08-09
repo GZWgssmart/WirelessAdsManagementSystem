@@ -254,12 +254,12 @@
             <tr>
                 <td>姓名:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
+                           data-options="required:false,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>手机:</td>
                 <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>地址:</td>
@@ -287,12 +287,12 @@
             <tr>
                 <td>姓名:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
+                           data-options="required:false,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>手机:</td>
                 <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>地址:</td>
