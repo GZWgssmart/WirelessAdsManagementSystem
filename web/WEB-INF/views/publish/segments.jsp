@@ -51,10 +51,10 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="startTimeStr" width="150">开始时间</th>
-        <th field="endTimeStr" width="150">结束时间</th>
-        <th field="des" width="200">描述</th>
-        <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
+        <th field="startTimeStr" width="120">开始时间</th>
+        <th field="endTimeStr" width="120">结束时间</th>
+        <th field="des" width="100">描述</th>
+        <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>

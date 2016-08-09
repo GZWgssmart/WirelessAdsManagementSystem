@@ -207,12 +207,12 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="name" width="150">名称</th>
+        <th field="name" width="80">名称</th>
         <th field="resourceType" width="80" formatter="formatterType">类型</th>
         <th field="fileName" width="150">文件名</th>
         <th field="path" width="200" formatter="formatterLong">路径</th>
-        <th field="des" width="200">描述</th>
-        <th field="createTime" width="150" formatter="formatterDate">创建时间</th>
+        <th field="des" width="100">描述</th>
+        <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>
