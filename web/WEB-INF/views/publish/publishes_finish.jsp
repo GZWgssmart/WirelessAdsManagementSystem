@@ -109,8 +109,8 @@
         <th field="publishTime" width="120" formatter="formatterDate">发布时间</th>
         <th field="area" width="60" formatter="formatterArea">显示区域</th>
         <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
-        <th field="startTimeStr" width="120" formatter="formatterDate">开始时间</th>
-        <th field="endTimeStr" width="120" formatter="formatterDate">结束时间</th>
+        <th field="startTimeStr" width="120" formatter="formatterDate">开始日期</th>
+        <th field="endTimeStr" width="120" formatter="formatterDate">结束日期</th>
         <th field="stayTime" width="70">停留时间(S)</th>
         <th field="des" width="100">描述</th>
         <th field="checkStatus" width="60" formatter="formatterCheckStatus">审核状态</th>

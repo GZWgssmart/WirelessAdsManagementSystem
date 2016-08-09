@@ -206,8 +206,8 @@ public class DeviceResourceController {
     public ControllerResult update(DeviceResource deviceResource, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             logger.info("更新消息发布");
-            deviceResource.setStartTime(DateParseUtil.parseDate(deviceResource.getStartTimeStr(), Constants.DATETIME_PATTERN));
-            deviceResource.setEndTime(DateParseUtil.parseDate(deviceResource.getEndTimeStr(), Constants.DATETIME_PATTERN));
+            deviceResource.setStartTime(DateParseUtil.parseDate(deviceResource.getStartTimeStr(), Constants.DATE_PATTERN));
+            deviceResource.setEndTime(DateParseUtil.parseDate(deviceResource.getEndTimeStr(), Constants.DATE_PATTERN));
             deviceResourceService.update(deviceResource);
             return ControllerResult.getSuccessResult("成功更新消息发布");
         } else {
