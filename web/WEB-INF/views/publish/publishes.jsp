@@ -568,7 +568,7 @@
             </tr>
             <tr id="stayTimeTR" style="display:none">
                 <td>停留时间(S):</td>
-                <td><input id="stayTime" type="text" name="stayTime" class="easyui-validatebox easyui-textbox"/>
+                <td><input id="stayTime" type="text" name="stayTime" class="easyui-numberbox easyui-textbox"/>
                 </td>
             </tr>
             <tr>
@@ -639,7 +639,7 @@
             </tr>
             <tr id="stayTimeTR1" style="display:none">
                 <td>停留时间(S):</td>
-                <td><input id="stayTime1" type="text" name="stayTime" class="easyui-validatebox easyui-textbox"/>
+                <td><input id="stayTime1" type="text" name="stayTime" class="easyui-numberbox easyui-textbox"/>
                 </td>
             </tr>
             <tr>
