@@ -9,6 +9,7 @@ public class ResourceType {
 
     private String id;
     private String name;
+    private String extension;
     private String des;
     private Date createTime;
     private String status;
@@ -27,6 +28,14 @@ public class ResourceType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     public String getDes() {

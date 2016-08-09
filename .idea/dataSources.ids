@@ -495,106 +495,109 @@
         <data-type>varchar(2)</data-type>
         <default-expression>&apos;Y&apos;</default-expression>
       </column>
-      <index id="111" parent="8" name="name">
+      <column id="111" parent="8" name="extension">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <index id="112" parent="8" name="name">
         <columns>name</columns>
         <unique>1</unique>
       </index>
-      <key id="112" parent="8" name="name">
+      <key id="113" parent="8" name="name">
         <columns>name</columns>
         <underlying-index>name</underlying-index>
       </key>
-      <key id="113" parent="8" name="PRIMARY">
+      <key id="114" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="114" parent="9" name="id">
+      <column id="115" parent="9" name="id">
         <comment>版本编号</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="115" parent="9" name="name">
+      <column id="116" parent="9" name="name">
         <comment>版本名称</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(50)</data-type>
       </column>
-      <column id="116" parent="9" name="area_count">
+      <column id="117" parent="9" name="area_count">
         <comment>区域数</comment>
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="117" parent="9" name="path">
+      <column id="118" parent="9" name="path">
         <comment>区域说明图片路径</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="118" parent="9" name="full_path">
+      <column id="119" parent="9" name="full_path">
         <comment>区域说明图片完整路径</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="119" parent="9" name="file_name">
+      <column id="120" parent="9" name="file_name">
         <comment>区域说明图片的名称</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="120" parent="9" name="des">
+      <column id="121" parent="9" name="des">
         <comment>描述信息</comment>
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="121" parent="9" name="create_time">
+      <column id="122" parent="9" name="create_time">
         <comment>版本发布时间</comment>
         <data-type>datetime</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
-      <column id="122" parent="9" name="status">
+      <column id="123" parent="9" name="status">
         <comment>版本是否可用</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(2)</data-type>
         <default-expression>&apos;Y&apos;</default-expression>
       </column>
-      <key id="123" parent="9" name="PRIMARY">
+      <key id="124" parent="9" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="124" parent="10" name="id">
+      <column id="125" parent="10" name="id">
         <comment>时段编号</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="125" parent="10" name="pub_id">
+      <column id="126" parent="10" name="pub_id">
         <comment>消息发布编号</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(128)</data-type>
       </column>
-      <column id="126" parent="10" name="start_time">
+      <column id="127" parent="10" name="start_time">
         <comment>开始时间</comment>
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="127" parent="10" name="end_time">
+      <column id="128" parent="10" name="end_time">
         <comment>结束时间</comment>
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>
-      <column id="128" parent="10" name="create_time">
+      <column id="129" parent="10" name="create_time">
         <comment>添加时间</comment>
         <data-type>datetime</data-type>
         <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
       </column>
-      <column id="129" parent="10" name="des">
+      <column id="130" parent="10" name="des">
         <comment>描述信息</comment>
         <data-type>varchar(500)</data-type>
       </column>
-      <column id="130" parent="10" name="status">
+      <column id="131" parent="10" name="status">
         <mandatory>1</mandatory>
         <data-type>varchar(2)</data-type>
         <default-expression>&apos;Y&apos;</default-expression>
       </column>
-      <key id="131" parent="10" name="PRIMARY">
+      <key id="132" parent="10" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="132" parent="10" name="fk_time_segment_pub_id">
+      <foreign-key id="133" parent="10" name="fk_time_segment_pub_id">
         <columns>pub_id</columns>
         <ref-key>t_device_resource.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>

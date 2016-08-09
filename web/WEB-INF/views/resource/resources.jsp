@@ -44,31 +44,35 @@
         function add() {
             toValidate("addForm");
             if (validateForm("addForm")) {
-                var types = expectedFileType('addResourceTypeId');
-                if (checkFile('file', 0, types, 200)) {
-                    $('#addForm').ajaxSubmit({
-                        url: '<%=path %>/res/add',
-                        type: 'post',
-                        dataType: 'json',
-                        beforeSend: function () {
-                            $("#addBtn").text("正在添加...");
-                            $("#addBtn").attr("disabled", "true");
-                        },
-                        success: function (data) {
-                            if (data.result == "success") {
-                                $("#addWin").window("close");
-                                dataGridReload("list");
-                                $("#addForm").form("clear");
-                            } else {
-                                $.messager.alert("提示", data.message, "info");
-                            }
-                        },
-                        complete: function () {
-                            $("#addBtn").text("确认");
-                            $("#addBtn").removeAttr("disabled");
+                var resTypeId = $("#addResourceTypeId").combobox("getValue");
+                $.get("<%=path %>/restype/queryJSON/" + resTypeId, function (data) {
+                    if (data != undefined && data.extension != undefined && data.extension != '') {
+                        if (checkFile('file', 0, data.extension, 200)) {
+                            $('#addForm').ajaxSubmit({
+                                url: '<%=path %>/res/add',
+                                type: 'post',
+                                dataType: 'json',
+                                beforeSend: function () {
+                                    $("#addBtn").text("正在添加...");
+                                    $("#addBtn").attr("disabled", "true");
+                                },
+                                success: function (data) {
+                                    if (data.result == "success") {
+                                        $("#addWin").window("close");
+                                        dataGridReload("list");
+                                        $("#addForm").form("clear");
+                                    } else {
+                                        $.messager.alert("提示", data.message, "info");
+                                    }
+                                },
+                                complete: function () {
+                                    $("#addBtn").text("确认");
+                                    $("#addBtn").removeAttr("disabled");
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                }, "json");
             }
         }
 
@@ -92,33 +96,37 @@
         function edit() {
             toValidate("editForm");
             if (validateForm("editForm")) {
-                var types = expectedFileType('resourceTypeId');
-                if (checkFile('file', 1, types, 200)) {
-                    $('#editForm').ajaxSubmit({
-                        url: '<%=path %>/res/update',
-                        type: 'post',
-                        dataType: 'json',
-                        beforeSend: function () {
-                            $("#editBtn").text("正在修改...");
-                            $("#cancelBtn").attr("disabled", "true");
-                            $("#editBtn").attr("disabled", "true");
-                        },
-                        success: function (data) {
-                            if (data.result == "success") {
-                                closeWin("editWin");
-                                dataGridReload("list");
-                                $("#editForm").form("clear");
-                            } else {
-                                $.messager.alert("提示", data.message, "info");
-                            }
-                        },
-                        complete: function () {
-                            $("#editBtn").text("确认");
-                            $("#cancelBtn").removeAttr("disabled");
-                            $("#editBtn").removeAttr("disabled");
+                var resTypeId = $("#resourceTypeId").combobox("getValue");
+                $.get("<%=path %>/restype/queryJSON/" + resTypeId, function (data) {
+                    if (data != undefined && data.extension != undefined && data.extension != '') {
+                        if (checkFile('file', 1, data.extension, 200)) {
+                            $('#editForm').ajaxSubmit({
+                                url: '<%=path %>/res/update',
+                                type: 'post',
+                                dataType: 'json',
+                                beforeSend: function () {
+                                    $("#editBtn").text("正在修改...");
+                                    $("#cancelBtn").attr("disabled", "true");
+                                    $("#editBtn").attr("disabled", "true");
+                                },
+                                success: function (data) {
+                                    if (data.result == "success") {
+                                        closeWin("editWin");
+                                        dataGridReload("list");
+                                        $("#editForm").form("clear");
+                                    } else {
+                                        $.messager.alert("提示", data.message, "info");
+                                    }
+                                },
+                                complete: function () {
+                                    $("#editBtn").text("确认");
+                                    $("#cancelBtn").removeAttr("disabled");
+                                    $("#editBtn").removeAttr("disabled");
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                }, "json");
             }
         }
 

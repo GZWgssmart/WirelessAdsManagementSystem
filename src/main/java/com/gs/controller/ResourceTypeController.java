@@ -123,6 +123,16 @@ public class ResourceTypeController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "queryJSON/{id}", method = RequestMethod.GET)
+    public ResourceType queryByIdJSON(@PathVariable("id") String id, HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
+            logger.info("根据资源类型id: " + id + "查询资源类型信息");
+            return resourceTypeService.queryById(id);
+        }
+        return null;
+    }
+
+    @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(ResourceType resourceType, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {

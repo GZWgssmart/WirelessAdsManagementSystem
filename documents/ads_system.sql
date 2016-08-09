@@ -60,6 +60,7 @@ DROP TABLE IF EXISTS t_resource_type;
 CREATE TABLE t_resource_type (
   id VARCHAR(128) PRIMARY KEY COMMENT '资源类型id',
   name VARCHAR(50) NOT NULL UNIQUE COMMENT '资源类型名称',
+  extension VARCHAR(100) COMMENT '类型文件后缀',
   des VARCHAR(200) COMMENT '资源类型描述',
   create_time DATETIME DEFAULT current_timestamp COMMENT '资源类型创建时间',
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '资源类型是否在可用状态'

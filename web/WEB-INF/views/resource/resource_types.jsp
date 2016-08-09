@@ -137,6 +137,7 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="80">名称</th>
+        <th field="extension" width="100">可用后缀</th>
         <th field="des" width="100">描述</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
@@ -163,6 +164,11 @@
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
+                <td>可用后缀:</td>
+                <td><input type="text" name="extension" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
+            </tr>
+            <tr>
                 <td>描述:</td>
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
             </tr>
@@ -184,6 +190,11 @@
             <tr>
                 <td>名称:</td>
                 <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>可用后缀:</td>
+                <td><input type="text" name="extension" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>

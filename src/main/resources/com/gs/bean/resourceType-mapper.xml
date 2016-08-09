@@ -42,13 +42,13 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resourceType">
         <![CDATA[
-        insert into t_resource_type(id, name, des, create_time) values(uuid(), #{name}, #{des}, CURRENT_TIMESTAMP )
+        insert into t_resource_type(id, name, extension, des, create_time) values(uuid(), #{name}, #{extension}, #{des}, CURRENT_TIMESTAMP )
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="resourceType">
         <![CDATA[
-        update t_resource_type set name = #{name}, des = #{des} where id = #{id}
+        update t_resource_type set name = #{name}, extension = #{extension}, des = #{des} where id = #{id}
         ]]>
     </update>
 
