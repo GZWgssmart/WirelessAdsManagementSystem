@@ -267,7 +267,7 @@
                 <td>
                     <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
                            data-options="url:'<%=path %>/devgroup/list_combo/Y',method:'get',valueField:'id',textField:'text',
-                           panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
+                           panelHeight:'auto',editable:false,required:false,novalidate:true"></select>
                 </td>
             </tr>
             <tr>
@@ -329,7 +329,7 @@
                 <td>分组:</td>
                 <td>
                     <select id="deviceGroupId" name="deviceGroupId" class="easyui-validatebox easyui-combobox"
-                            data-options="editable:false,required:true,novalidate:true"></select>
+                            data-options="editable:false,required:false,novalidate:true"></select>
                 </td>
             </tr>
             <tr>
