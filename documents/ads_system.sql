@@ -177,7 +177,7 @@ CREATE TABLE t_device_resource(
   show_type VARCHAR(20) NOT NULL COMMENT '显示方式，包括即时显示，定时显示(定时),不定时显示(顺序)',
   start_time DATETIME COMMENT '定时播放的开始时间',
   end_time DATETIME COMMENT '定时播放的结束时间',
-  stay_time INT COMMENT '停留时间,以秒为单位',
+  stay_time VARCHAR(10) COMMENT '停留时间,以秒为单位',
   des VARCHAR(500) COMMENT '描述信息',
   submit_check_time DATETIME COMMENT '审核提交时间',
   check_comment VARCHAR(200) COMMENT '审核批注',

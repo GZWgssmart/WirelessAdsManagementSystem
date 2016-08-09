@@ -19,7 +19,7 @@ public class DeviceResource {
     private String startTimeStr;
     private Date endTime;
     private String endTimeStr;
-    private int stayTime;
+    private String stayTime;
     private String des;
     private Date submitCheckTime;
     private String checkComment;
@@ -126,11 +126,11 @@ public class DeviceResource {
         this.endTimeStr = endTimeStr;
     }
 
-    public int getStayTime() {
+    public String getStayTime() {
         return stayTime;
     }
 
-    public void setStayTime(int stayTime) {
+    public void setStayTime(String stayTime) {
         this.stayTime = stayTime;
     }
 

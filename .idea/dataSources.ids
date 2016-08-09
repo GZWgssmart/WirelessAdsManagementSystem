@@ -341,7 +341,7 @@
       </column>
       <column id="80" parent="6" name="stay_time">
         <comment>停留时间,以秒为单位</comment>
-        <data-type>int(11)</data-type>
+        <data-type>varchar(10)</data-type>
       </column>
       <column id="81" parent="6" name="des">
         <comment>描述信息</comment>

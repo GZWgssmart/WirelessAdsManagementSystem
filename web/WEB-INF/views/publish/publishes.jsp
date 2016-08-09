@@ -66,13 +66,14 @@
                     textField:'text',
                     panelHeight:'auto'
                 });
+                $("#editForm").form("load", row);
+                $("#stayTime1").textbox("setValue", "");
                 $("#stayTime1").textbox({"required":false,"novalidate":true});
                 $("#stayTimeTR1").attr("style", "display:none");
-                if (row.stayTime != '') {
+                if (row.stayTime != '0') {
                     $("#stayTime1").textbox({"required":true,"novalidate":true});
                     $("#stayTimeTR1").attr("style", "");
                 }
-                $("#editForm").form("load", row);
                 $("#editDeviceName").textbox("setValue", row.device.name);
                 $("#editResourceName").textbox("setValue", row.resource.name);
                 openWin("editWin");
@@ -263,6 +264,8 @@
                     if (row.resourceType.name == '图片' || row.resourceType.name == '文字') {
                         $("#stayTime").textbox({"required":true,"novalidate":true});
                         $("#stayTimeTR").attr("style", "");
+                        $("#stayTime1").textbox({"required":true,"novalidate":true});
+                        $("#stayTimeTR1").attr("style", "");
                     }
                     $("#addResourceId").val(row.id);
                     $("#editResourceId").val(row.id);
