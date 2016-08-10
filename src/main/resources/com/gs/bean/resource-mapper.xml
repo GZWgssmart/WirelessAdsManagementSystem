@@ -52,7 +52,7 @@
         select r.*, rt.id as t_id, rt.name as t_name from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
         ]]>
         <if test="resource.name != null and resource.name != ''">
-            and r.name = #{resource.name}
+            and r.name like concat('%', #{resource.name}, '%')
         </if>
         <if test="resource.resourceTypeId != null and resource.resourceTypeId != ''">
             and r.resource_type_id = #{resource.resourceTypeId}
@@ -82,7 +82,7 @@
         select count(1) from t_resource where customer_id = #{customerId}
         ]]>
         <if test="resource.name != null and resource.name != ''">
-            and name = #{resource.name}
+            and name like concat('%', #{resource.name}, '%')
         </if>
         <if test="resource.resourceTypeId != null and resource.resourceTypeId != ''">
             and resource_type_id = #{resource.resourceTypeId}
