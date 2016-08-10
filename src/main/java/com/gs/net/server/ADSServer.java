@@ -339,7 +339,7 @@ public class ADSServer {
                         publishServer.setShowcount(0); // showCount还没做
                         publishServer.setShowtype(deviceResource.getShowType());
                         String stayTime = deviceResource.getStayTime();
-                        publishServer.setStaytime(stayTime != null ? Integer.valueOf(deviceResource.getStayTime()) : 0);
+                        publishServer.setStaytime(stayTime != null && !stayTime.equals("") ? Integer.valueOf(deviceResource.getStayTime()) : 0);
                         publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
                         long delay = 0;
                         if (autoRun) {
