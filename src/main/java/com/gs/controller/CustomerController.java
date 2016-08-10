@@ -2,6 +2,7 @@ package com.gs.controller;
 
 import com.gs.bean.Admin;
 import com.gs.bean.Customer;
+import com.gs.bean.DeviceGroup;
 import com.gs.bean.Version;
 import com.gs.common.Constants;
 import com.gs.common.bean.ControllerResult;
@@ -11,6 +12,7 @@ import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.CustomerService;
+import com.gs.service.DeviceGroupService;
 import com.gs.service.VersionService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -45,6 +47,9 @@ public class CustomerController {
     @Resource
     private VersionService versionService;
 
+    @Resource
+    private DeviceGroupService deviceGroupService;
+
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ControllerResult login(Customer customer, @Param("checkCode")String checkCode, HttpSession session) {
@@ -56,6 +61,14 @@ public class CustomerController {
             customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
             Customer c = customerService.query(customer);
             if (c != null) {
+                // 当用户第一次登录时,loginTime的值为空,此时需要为用户创建一个终端的默认分组
+                if (c.getLoginTime() == null) {
+                    DeviceGroup deviceGroup = new DeviceGroup();
+                    deviceGroup.setCustomerId(c.getId());
+                    deviceGroup.setName("默认分组");
+                    deviceGroup.setDes("默认分组");
+                    deviceGroupService.insert(deviceGroup);
+                }
                 customerService.updateLoginTime(c.getId());
                 session.setAttribute(Constants.SESSION_CUSTOMER, c);
                 return ControllerResult.getSuccessResult("登录成功");

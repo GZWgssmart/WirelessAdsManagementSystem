@@ -49,11 +49,11 @@
 
         function showEdit() {
             var row = selectedRow("list");
-            if (row) {
+            if (row && row.name != "默认分组") {
                 $("#editForm").form("load", row);
                 openWin("editWin");
             } else {
-                $.messager.alert("提示", "请选择需要修改的终端分组信息", "info");
+                $.messager.alert("提示", "请选择需要修改的终端分组信息（不可修改默认分组）", "info");
             }
         }
 
@@ -78,7 +78,7 @@
 
         function inactive() {
             var row = selectedRow("list");
-            if (row) {
+            if (row && row.name != "默认分组") {
                 if (row.status == 'N') {
                     $.messager.alert("提示", "终端分组不可用,无需冻结", "info");
                 } else {
@@ -91,13 +91,13 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要冻结的终端分组", "info");
+                $.messager.alert("提示", "请选择需要冻结的终端分组（默认分组不可冻结）", "info");
             }
         }
 
         function active() {
             var row = selectedRow("list");
-            if (row) {
+            if (row && row.name != "默认分组") {
                 if (row.status == 'Y') {
                     $.messager.alert("提示", "终端分组可用,无需激活", "info");
                 } else {
@@ -110,7 +110,7 @@
                             });
                 }
             } else {
-                $.messager.alert("提示", "请选择需要激活的终端分组", "info");
+                $.messager.alert("提示", "请选择需要激活的终端分组(默认分组无需激活)", "info");
             }
         }
     </script>

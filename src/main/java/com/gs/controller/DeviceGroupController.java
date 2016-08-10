@@ -1,6 +1,7 @@
 package com.gs.controller;
 
 import com.gs.bean.Customer;
+import com.gs.bean.Device;
 import com.gs.bean.DeviceGroup;
 import com.gs.common.Constants;
 import com.gs.common.bean.ComboBox4EasyUI;
@@ -114,8 +115,8 @@ public class DeviceGroupController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list_combo/{status}", method = RequestMethod.GET)
-    public List<ComboBox4EasyUI> list4Combobox(@PathVariable("status") String status, HttpSession session) {
+    @RequestMapping(value = "list_combo/{status}/{id}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> list4Combobox(@PathVariable("status") String status, @PathVariable("id") String id, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
         if (SessionUtil.isCustomer(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
@@ -125,12 +126,33 @@ public class DeviceGroupController {
                 theStatus = "Y";
             }
             List<DeviceGroup> deviceGroups = deviceGroupService.queryAllByCustomerId(customer.getId(), theStatus);
+            boolean defaultGroup = false;
+            boolean editDefaultGroup = true;
+            if (id.equals("add")) {
+                defaultGroup = true;
+            }
             for (DeviceGroup deviceGroup : deviceGroups) {
                 ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
                 comboBox4EasyUI.setId(deviceGroup.getId());
                 comboBox4EasyUI.setText(deviceGroup.getName());
+
+                if (deviceGroup.getId().equals(id)) { // 如果分组id在可用分组里,则不需要显示默认分组
+                    editDefaultGroup = false;
+                }
+
                 comboBox4EasyUIs.add(comboBox4EasyUI);
             }
+            if (!id.equals("search")) {
+                if (defaultGroup || editDefaultGroup) {
+                    for (ComboBox4EasyUI comboBox4EasyUI : comboBox4EasyUIs) {
+                        if (comboBox4EasyUI.getText().equals("默认分组")) {
+                            comboBox4EasyUI.setSelected(true);
+                            break;
+                        }
+                    }
+                }
+            }
+
         }
         return comboBox4EasyUIs;
     }
