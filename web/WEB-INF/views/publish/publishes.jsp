@@ -482,6 +482,8 @@
        onclick="active()">激活</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="deviceResource">
+            终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>
+            资源名称:<input type="text" name="resourceName" class="easyui-textbox"/>
             审核状态:<select name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'not_submit',

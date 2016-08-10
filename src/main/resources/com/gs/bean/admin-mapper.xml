@@ -32,13 +32,13 @@
         select * from t_admin where 1 = 1
         ]]>
         <if test="admin.email != null and admin.email != ''">
-            and email = #{admin.email}
+            and email like concat('%', #{admin.email}, '%')
         </if>
         <if test="admin.name != null and admin.name !=''">
-            and name = #{admin.name}
+            and name like concat('%', #{admin.name}, '%')
         </if>
         <if test="admin.phone != null and admin.phone !=''">
-            and phone = #{admin.phone}
+            and phone like concat('%', #{admin.phone}, '%')
         </if>
         <if test="admin.status != null and admin.status != ''">
             and status = #{admin.status}

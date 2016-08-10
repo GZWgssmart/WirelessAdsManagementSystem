@@ -70,7 +70,7 @@
         select d.*, dg.id as g_id, dg.name as g_name, v.id as v_id, v.name as v_name from t_device d, t_device_group dg, t_version v where d.customer_id = #{customerId} and d.device_group_id = dg.id and d.version_id = v.id
         ]]>
         <if test="device.code != null and device.code != ''">
-            and d.code = #{device.code}
+            and d.code like concat('%', #{device.code}, '%')
         </if>
         <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
             and d.device_group_id = #{device.deviceGroupId}
@@ -106,7 +106,7 @@
         select count(1) from t_device where customer_id = #{customerId}
         ]]>
         <if test="device.code != null and device.code != ''">
-            and code = #{device.code}
+            and code like concat('%', #{device.code}, '%')
         </if>
         <if test="device.deviceGroupId != null and device.deviceGroupId != ''">
             and device_group_id = #{device.deviceGroupId}

@@ -39,13 +39,13 @@
         select * from t_customer where 1 = 1
         ]]>
         <if test="customer.email != null and customer.email != ''">
-            and email = #{customer.email}
+            and email like concat('%', #{customer.email}, '%')
         </if>
         <if test="customer.name != null and customer.name !=''">
-            and name = #{customer.name}
+            and name like concat('%', #{customer.name}, '%')
         </if>
         <if test="customer.phone != null and customer.phone !=''">
-            and phone = #{customer.phone}
+            and phone like concat('%', #{customer.phone}, '%')
         </if>
         <if test="customer.status != null and customer.status != ''">
             and status = #{customer.status}
@@ -66,13 +66,13 @@
         select count(1) from t_customer where 1 = 1
         ]]>
         <if test="customer.email != null and customer.email != ''">
-            and email = #{customer.email}
+            and email like concat('%', #{customer.email}, '%')
         </if>
         <if test="customer.name != null and customer.name !=''">
-            and name = #{customer.name}
+            and name like concat('%', #{customer.name}, '%')
         </if>
         <if test="customer.phone != null and customer.phone !=''">
-            and phone = #{customer.phone}
+            and phone like concat('%', #{customer.phone}, '%')
         </if>
         <if test="customer.status != null and customer.status != ''">
             and status = #{customer.status}

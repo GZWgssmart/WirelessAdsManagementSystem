@@ -10,8 +10,10 @@ public class DeviceResource {
     private String id;
     private String customerId;
     private String deviceId;
+    private String deviceCode;
     private Device device;
     private String resourceId;
+    private String resourceName;
     private Resource resource;
     private int area;
     private String showType;
@@ -54,6 +56,14 @@ public class DeviceResource {
         this.deviceId = deviceId;
     }
 
+    public String getDeviceCode() {
+        return deviceCode;
+    }
+
+    public void setDeviceCode(String deviceCode) {
+        this.deviceCode = deviceCode;
+    }
+
     public Device getDevice() {
         return device;
     }
@@ -68,6 +78,14 @@ public class DeviceResource {
 
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
+    }
+
+    public String getResourceName() {
+        return resourceName;
+    }
+
+    public void setResourceName(String resourceName) {
+        this.resourceName = resourceName;
     }
 
     public Resource getResource() {

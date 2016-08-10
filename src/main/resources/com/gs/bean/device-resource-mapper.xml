@@ -83,6 +83,12 @@
         select dr.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name from t_device_resource dr, t_device d, t_resource r
         where dr.customer_id = #{customerId} and dr.device_id = d.id and dr.resource_id = r.id
         ]]>
+        <if test="deviceResource.deviceCode != null and deviceResource.deviceCode != ''">
+            and d.code like concat('%', #{deviceResource.deviceCode}, '%')
+        </if>
+        <if test="deviceResource.resourceName != null and deviceResource.resourceName != ''">
+            and r.name like concat('%', #{deviceResource.resourceName}, '%')
+        </if>
         <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">
             and dr.check_status = #{deviceResource.checkStatus}
         </if>
@@ -108,13 +114,19 @@
 
     <select id="countByCriteria" resultType="int">
         <![CDATA[
-        select count(1) from t_device_resource where customer_id = #{customerId}
+        select count(1) from t_device_resource dr, t_device d, t_resource r where dr.customer_id = #{customerId} and dr.device_id = d.id and dr.resource_id = r.id
         ]]>
+        <if test="deviceResource.deviceCode != null and deviceResource.deviceCode != ''">
+            and d.code like concat('%', #{deviceResource.deviceCode}, '%')
+        </if>
+        <if test="deviceResource.resourceName != null and deviceResource.resourceName != ''">
+            and r.name like concat('%', #{deviceResource.resourceName}, '%')
+        </if>
         <if test="deviceResource.checkStatus != null and deviceResource.checkStatus != ''">
-            and check_status = #{deviceResource.checkStatus}
+            and dr.check_status = #{deviceResource.checkStatus}
         </if>
         <if test="deviceResource.status != null and deviceResource.status != ''">
-            and status = #{deviceResource.status}
+            and dr.status = #{deviceResource.status}
         </if>
     </select>
 
