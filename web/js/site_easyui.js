@@ -4,12 +4,12 @@ function addTab(title, url) {
     if ($('#tabs').tabs('exists', title)) {
         $('#tabs').tabs('select', title);
         var currTab = $('#tabs').tabs('getSelected');
-        var url = $(currTab.panel('options').content).attr('src');
-        if(url != undefined && currTab.panel('options').title != homeTabTitle) {
+        var url1 = $(currTab.panel('options').content).attr('src');
+        if(url1 != undefined && currTab.panel('options').title != homeTabTitle) {
             $('#tabs').tabs('update',{
                 tab:currTab,
                 options:{
-                    content:createFrame(url)
+                    content:createFrame(url1)
                 }
             })
         }
