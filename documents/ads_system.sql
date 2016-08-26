@@ -240,6 +240,3 @@ CREATE TABLE t_time_segment(
 ALTER TABLE t_time_segment ADD CONSTRAINT fk_time_segment_plan_id
 FOREIGN KEY (plan_id) REFERENCES t_publish_plan(id);
 
-ALTER TABLE t_time_segment ADD CONSTRAINT ck_segment_status
-CHECK (status in ('Y', 'N'));
-
