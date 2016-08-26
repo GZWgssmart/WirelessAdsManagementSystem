@@ -18,8 +18,9 @@
        data-options="
         url:'<%=path %>/device/search_pager',
         method:'get',
+                idField:'id',
 				rownumbers:true,
-				singleSelect:true,
+				singleSelect:false,
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
@@ -54,13 +55,17 @@
 </table>
 <div id="devtb">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-       onclick="chooseDev();">选择</a>
+       onclick="chooseDev('multiple');">选择已选终端</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+       onclick="chooseDev('group');">选择分组终端</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+       onclick="chooseDev('all');">选择指定版本的全部终端</a>
     <div class="input_small">
         <form id="devSearchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
-            分组:<select name="deviceGroupId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/devgroup/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            版本:<select name="versionId" class="easyui-combobox"
+            分组:<select id="deviceGroupId" name="deviceGroupId" class="easyui-combobox"
+                       data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+            版本:<select id="versionId" name="versionId" class="easyui-combobox"
                        data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             <br />
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',

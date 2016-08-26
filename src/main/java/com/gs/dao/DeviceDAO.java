@@ -21,12 +21,14 @@ public interface DeviceDAO extends BaseDAO<Device, String> {
 
     public int countByCriteria(@Param("device") Device device, @Param("customerId") String customerId);
 
-    public String queryByDeviceId(String id);
-
     public Device queryByCode(@Param("code") String code);
 
     public int updateStatus(Device device);
 
     public int updatePublishTime(Device device);
+
+    public List<Device> queryByGroupIdAndVersionId(@Param("groupId") String groupId, @Param("versionId") String versionId);
+
+    public List<Device> queryByCustomerIdAndVersionId(@Param("customerId") String customerId, @Param("versionId") String versionId);
 
 }

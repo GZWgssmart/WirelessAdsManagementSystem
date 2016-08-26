@@ -72,21 +72,21 @@ public class TimeSegmentServiceImpl implements TimeSegmentService {
 
     @Override
     public int batchInsert(List<TimeSegment> timeSegments) {
-        return 0;
-    }
-
-    @Override
-    public List<TimeSegment> queryByPagerAndPubId(Pager pager, String pubId) {
-        return timeSegmentDAO.queryByPagerAndPubId(pager, pubId);
-    }
-
-    @Override
-    public int countByPubId(String pubId) {
-        return timeSegmentDAO.countByPubId(pubId);
+        return timeSegmentDAO.batchInsert(timeSegments);
     }
 
     @Override
     public List<TimeSegment> queryByPubId(String pubId) {
         return timeSegmentDAO.queryByPubId(pubId);
+    }
+
+    @Override
+    public void deleteByPlanId(String planId) {
+        timeSegmentDAO.deleteByPlanId(planId);
+    }
+
+    @Override
+    public List<TimeSegment> queryByPlanId(String planId) {
+        return timeSegmentDAO.queryByPlanId(planId);
     }
 }

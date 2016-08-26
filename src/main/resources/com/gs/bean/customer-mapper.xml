@@ -54,13 +54,6 @@
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>
-
-    <select id="count" resultType="int">
-        <![CDATA[
-        select count(1) from t_customer;
-        ]]>
-    </select>
-
     <select id="countByCriteria" resultType="int">
         <![CDATA[
         select count(1) from t_customer where 1 = 1

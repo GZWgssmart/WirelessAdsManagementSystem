@@ -93,6 +93,12 @@ a:hover {
     padding: 10px;
 }
 
+.site_win_normal_wider {
+    width: 700px;
+    height:300px;
+    padding: 10px;
+}
+
 .site_win_big {
     width:600px;
     height:400px;

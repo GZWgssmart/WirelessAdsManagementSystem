@@ -17,24 +17,6 @@
         </association>
     </resultMap>
 
-    <select id="queryById" parameterType="string" resultMap="resourceResultMap">
-        <![CDATA[
-        select * from t_resource where id=#{id}
-        ]]>
-    </select>
-
-    <select id="query" parameterType="resource" resultMap="resourceResultMap">
-        <![CDATA[
-        select * from t_resource where id = #{id}
-        ]]>
-    </select>
-
-    <select id="queryAll" resultType="list" resultMap="resourceResultMap">
-        <![CDATA[
-        select * from t_resource
-        ]]>
-    </select>
-
     <select id="queryByPager" resultType="list" resultMap="resourceResultMap" parameterType="com.gs.common.bean.Pager">
         <![CDATA[
         select * from t_resource limit #{beginIndex}, #{pageSize}
@@ -68,12 +50,6 @@
     <select id="queryByResourceId" resultType="string" parameterType="string">
         <![CDATA[
         select resource_type_id from t_resource where id = #{resourceId};
-        ]]>
-    </select>
-
-    <select id="count" resultType="int">
-        <![CDATA[
-        select count(1) from t_resource;
         ]]>
     </select>
 

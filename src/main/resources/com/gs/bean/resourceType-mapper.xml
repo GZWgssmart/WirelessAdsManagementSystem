@@ -13,12 +13,6 @@
         ]]>
     </select>
 
-    <select id="query" parameterType="resourceType" resultMap="resourceTypeResultMap">
-        <![CDATA[
-        select * from t_resource_type where id = #{id}
-        ]]>
-    </select>
-
     <select id="queryAll" resultType="list" resultMap="resourceTypeResultMap">
         <![CDATA[
         select * from t_resource_type

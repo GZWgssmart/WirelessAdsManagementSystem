@@ -9,7 +9,7 @@ public class Version {
 
     private String id;
     private String name;
-    private String areaCount;
+    private int areaCount;
     private String path;
     private String fullPath;
     private String fileName;
@@ -33,11 +33,11 @@ public class Version {
         this.name = name;
     }
 
-    public String getAreaCount() {
+    public int getAreaCount() {
         return areaCount;
     }
 
-    public void setAreaCount(String areaCount) {
+    public void setAreaCount(int areaCount) {
         this.areaCount = areaCount;
     }
 

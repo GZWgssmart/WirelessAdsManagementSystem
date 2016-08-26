@@ -105,33 +105,6 @@ public class ResourceController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<com.gs.bean.Resource> list(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("显示所有资源信息");
-            return resourceService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<com.gs.bean.Resource> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示资源信息");
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            int total = resourceService.count();
-            Pager pager = PagerUtil.getPager(page, rows, total);
-            List<com.gs.bean.Resource> resources = resourceService.queryByPagerAndCustomerId(pager, customer.getId());
-            return new Pager4EasyUI<com.gs.bean.Resource>(pager.getTotalRecords(), resources);
-        } else {
-            logger.info("客户未登录，不能分页显示资源列表");
-            return null;
-        }
-    }
-
-    @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<com.gs.bean.Resource> searchPager(@Param("page")String page, @Param("rows")String rows, com.gs.bean.Resource resource, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
@@ -160,18 +133,6 @@ public class ResourceController {
             logger.info("客户未登录，不能分页显示资源列表");
             return null;
         }
-    }
-
-    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("根据资源id: " + id + "查询资源信息");
-            ModelAndView mav = new ModelAndView("res/res_info");
-            com.gs.bean.Resource resource = resourceService.queryById(id);
-            mav.addObject("resource", resource);
-            return mav;
-        }
-        return null;
     }
 
     @ResponseBody

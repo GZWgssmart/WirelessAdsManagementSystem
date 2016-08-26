@@ -53,7 +53,7 @@
             var row = selectedRow("list");
             if (row) {
                 $("#deviceGroupId").combobox({
-                    url:'<%=path %>/devgroup/list_combo/Y',
+                    url:'<%=path %>/devgroup/list_combo/Y/' + row.deviceGroup.id,
                     method:'get',
                     valueField:'id',
                     textField:'text',
@@ -210,7 +210,7 @@
             <input id="versionId" type="hidden" name="versionId" value="${versionId }" />
             终端号:<input type="text" name="code" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
-                       data-options="url:'<%=path %>/devgroup/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                       data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -252,7 +252,7 @@
                 <td>分组:</td>
                 <td>
                     <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
-                            data-options="url:'<%=path %>/devgroup/list_combo/Y',method:'get',valueField:'id',textField:'text',
+                            data-options="url:'<%=path %>/devgroup/list_combo/Y/add',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>

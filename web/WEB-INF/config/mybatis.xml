@@ -12,9 +12,10 @@
         <typeAlias type="com.gs.bean.DeviceGroup" alias="deviceGroup" />
         <typeAlias type="com.gs.bean.Resource" alias="resource" />
         <typeAlias type="com.gs.bean.Device" alias="device" />
-        <typeAlias type="com.gs.bean.DeviceResource" alias="deviceResource" />
+        <typeAlias type="com.gs.bean.Publish" alias="publish" />
         <typeAlias type="com.gs.bean.Version" alias="version" />
         <typeAlias type="com.gs.bean.TimeSegment" alias="timeSegment" />
+        <typeAlias type="com.gs.bean.PublishPlan" alias="publishPlan" />
     </typeAliases>
 
     <mappers></mappers>

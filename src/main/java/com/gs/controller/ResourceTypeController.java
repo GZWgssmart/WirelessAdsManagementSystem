@@ -64,17 +64,6 @@ public class ResourceTypeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<ResourceType> list(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("显示所有资源类型信息");
-            return resourceTypeService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
     @RequestMapping(value = "list_combo/{status}", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(@PathVariable("status") String status, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
@@ -108,18 +97,6 @@ public class ResourceTypeController {
             logger.info("管理员未登录，不能分页显示资源类型列表");
             return null;
         }
-    }
-
-    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
-        if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("根据资源类型id: " + id + "查询资源类型信息");
-            ModelAndView mav = new ModelAndView("resource/restype_info");
-            ResourceType resourceType = resourceTypeService.queryById(id);
-            mav.addObject("resourceType", resourceType);
-            return mav;
-        }
-        return null;
     }
 
     @ResponseBody

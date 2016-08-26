@@ -26,7 +26,12 @@
 
     <script>
         $(function() {
-            setPagination("#list")
+            setPagination("#list");
+            $('#list').datagrid({
+                onDblClickCell: function(rowIndex, rowData){
+                    showDev();
+                }
+            });
         });
 
         function showDev() {

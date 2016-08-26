@@ -29,33 +29,9 @@
         </association>
     </resultMap>
 
-    <select id="queryById" parameterType="string" resultMap="deviceResultMap">
-        <![CDATA[
-        select * from t_device where id=#{id}
-        ]]>
-    </select>
-
     <select id="queryByCode" parameterType="string" resultMap="deviceResultMap">
         <![CDATA[
         select * from t_device where code=#{code}
-        ]]>
-    </select>
-
-    <select id="query" parameterType="device" resultMap="deviceResultMap">
-        <![CDATA[
-        select * from t_device where id = #{id}
-        ]]>
-    </select>
-
-    <select id="queryAll" resultType="list" resultMap="deviceResultMap">
-        <![CDATA[
-        select * from t_device
-        ]]>
-    </select>
-
-    <select id="queryByPager" resultType="list" resultMap="deviceResultMap" parameterType="com.gs.common.bean.Pager">
-        <![CDATA[
-        select * from t_device limit #{beginIndex}, #{pageSize}
         ]]>
     </select>
 
@@ -95,9 +71,15 @@
         ]]>
     </select>
 
-    <select id="count" resultType="int">
+    <select id="queryByGroupIdAndVersionId" resultType="list" resultMap="deviceResultMap">
         <![CDATA[
-        select count(1) from t_device;
+        select id from t_device where device_group_id = #{groupId} and version_id = #{versionId};
+        ]]>
+    </select>
+
+    <select id="queryByCustomerIdAndVersionId" resultType="list" resultMap="deviceResultMap">
+        <![CDATA[
+        select id from t_device where customer_id = #{customerId} and version_id = #{versionId};
         ]]>
     </select>
 

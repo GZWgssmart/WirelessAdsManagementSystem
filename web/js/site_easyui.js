@@ -235,6 +235,10 @@ function selectedRow(id) {
     return $("#" + id).datagrid("getSelected");
 }
 
+function selectedRows(id) {
+    return $("#" + id).datagrid("getChecked");
+}
+
 function dataGridReload(id) {
     $("#" + id).datagrid("reload");
 }

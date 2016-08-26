@@ -8,14 +8,10 @@ import java.util.Date;
 public class TimeSegment {
 
     private String id;
-    private String pubId;
-    private Date startTime;
-    private String startTimeStr;
-    private Date endTime;
-    private String endTimeStr;
-    private Date createTime;
-    private String des;
-    private String status;
+    private String planId;
+    private String startTime;
+    private String endTime;
+    private int queueOrder;
 
     public String getId() {
         return id;
@@ -25,67 +21,35 @@ public class TimeSegment {
         this.id = id;
     }
 
-    public String getPubId() {
-        return pubId;
+    public String getPlanId() {
+        return planId;
     }
 
-    public void setPubId(String pubId) {
-        this.pubId = pubId;
+    public void setPlanId(String planId) {
+        this.planId = planId;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public String getStartTimeStr() {
-        return startTimeStr;
-    }
-
-    public void setStartTimeStr(String startTimeStr) {
-        this.startTimeStr = startTimeStr;
-    }
-
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public String getEndTimeStr() {
-        return endTimeStr;
+    public int getQueueOrder() {
+        return queueOrder;
     }
 
-    public void setEndTimeStr(String endTimeStr) {
-        this.endTimeStr = endTimeStr;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getDes() {
-        return des;
-    }
-
-    public void setDes(String des) {
-        this.des = des;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setQueueOrder(int queueOrder) {
+        this.queueOrder = queueOrder;
     }
 }

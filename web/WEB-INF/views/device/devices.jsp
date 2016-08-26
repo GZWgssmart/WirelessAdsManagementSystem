@@ -29,6 +29,17 @@
             setPagination("#list")
         });
 
+        function showAdd() {
+            $("#addDeviceGroupId").combobox({
+                url:'<%=path %>/devgroup/list_combo/all/add',
+                method:'get',
+                valueField:'id',
+                textField:'text',
+                panelHeight:'auto'
+            });
+            openWinFitPos('addWin');
+        }
+
         function add() {
             toValidate("addForm");
             if (validateForm("addForm")) {
@@ -204,7 +215,7 @@
 </table>
 <div id="tb">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-       onclick="openWinFitPos('addWin');">添加</a>
+       onclick="showAdd();">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
        onclick="showEdit();">修改</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
@@ -265,9 +276,8 @@
             <tr>
                 <td>分组:</td>
                 <td>
-                    <select name="deviceGroupId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/devgroup/list_combo/Y/add',method:'get',valueField:'id',textField:'text',
-                           panelHeight:'auto',editable:false,required:false,novalidate:true"></select>
+                    <select id="addDeviceGroupId" name="deviceGroupId" class="easyui-validatebox easyui-combobox"
+                           data-options="editable:false,required:false,novalidate:true"></select>
                 </td>
             </tr>
             <tr>

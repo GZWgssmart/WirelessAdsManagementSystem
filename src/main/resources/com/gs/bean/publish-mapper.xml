@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.PublishDAO">
+
+    <resultMap id="deviceResourceResultMap" type="publish">
+        <id property="id" column="id" />
+        <result property="publishLog" column="publish_log" />
+        <result property="publishTime" column="publish_time" />
+        <result property="publishPlanId" column="pub_plan_id" />
+        <result property="resourceName" column="resource_name" />
+        <association property="device" javaType="com.gs.bean.Device">
+            <id property="id" column="d_id"/>
+            <result property="code" column="d_code" />
+        </association>
+    </resultMap>
+
+    <select id="queryByPlanId" parameterType="string" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select dr.*, d.id as d_id, d.code as d_code from t_device_resource dr, t_device d
+        where dr.pub_plan_id = #{planId} and dr.device_id = d.id
+        ]]>
+    </select>
+
+    <select id="queryByDRId" parameterType="string" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select dr.*, d.id as d_id, d.code as d_code from t_device_resource dr, t_device d
+        where dr.device_id = d.id and dr.id = #{drId}
+        ]]>
+    </select>
+
+    <select id="queryByCode" parameterType="string" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select dr.*, d.id as d_id, d.code as d_code from t_device_resource dr, t_device d, t_publish_plan pp
+        where dr.device_id = d.id and d.code = #{code} and dr.pub_plan_id = pp.id and pp.check_status = 'checked'
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select * from t_device_resource where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="deviceResourceResultMap">
+        <![CDATA[
+        select dr.*, d.id as d_id, d.code as d_code, pp.resource_name as resource_name from t_device_resource dr, t_device d, t_publish_plan pp
+        where dr.pub_plan_id = pp.id and dr.device_id = d.id and pp.id = #{publish.publishPlanId}
+        ]]>
+        <if test="publish.deviceCode != null and publish.deviceCode != ''">
+            and d.code like concat('%', #{publish.deviceCode}, '%')
+        </if>
+        <if test="publish.resourceName != null and publish.resourceName != ''">
+            and pp.resource_name like concat('%', #{publish.resourceName}, '%')
+        </if>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="countByCriteria" parameterType="publish" resultType="int">
+        <![CDATA[
+        select count(1) from t_device_resource dr, t_device d, t_publish_plan pp where dr.pub_plan_id = pp.id and pp.id = #{publishPlanId} and dr.device_id = d.id
+        ]]>
+        <if test="deviceCode != null and deviceCode != ''">
+            and d.code like concat('%', #{deviceCode}, '%')
+        </if>
+        <if test="resourceName != null and resourceName != ''">
+            and pp.resource_name like concat('%', #{resourceName}, '%')
+        </if>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="publish">
+        <![CDATA[
+        insert into t_device_resource(id, device_id, publish_log, pub_plan_id)
+        values(uuid(), #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId})
+        ]]>
+    </insert>
+
+    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
+        <![CDATA[
+        insert into t_device_resource(id, device_id, publish_log, pub_plan_id) VALUES
+        ]]>
+        <foreach collection="list" item="item" index="index" separator=",">
+            <![CDATA[
+            (uuid(), #{item.deviceId}, #{item.publishLog}, #{item.publishPlanId})
+            ]]>
+        </foreach>
+
+    </insert>
+
+    <update id="updatePublishLog" keyProperty="id">
+        <![CDATA[
+        update t_device_resource set publish_log = #{publishLog} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updatePublishLogByPlanId" keyProperty="id">
+        <![CDATA[
+        update t_device_resource set publish_log = #{publishLog} where pub_plan_id = #{pubPlanId}
+        ]]>
+    </update>
+
+    <update id="updateWhenPublished" keyProperty="id" parameterType="publish">
+        <![CDATA[
+        update t_device_resource set publish_log = #{publishLog}, publish_time = #{publishTime} where id = #{id}
+        ]]>
+    </update>
+
+</mapper>

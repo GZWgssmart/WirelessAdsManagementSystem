@@ -26,13 +26,18 @@
 
     <script>
         $(function() {
-            setPagination("#list")
+            setPagination("#list");
+            $('#list').datagrid({
+                onDblClickCell: function(rowIndex, rowData){
+                    showPubPlan();
+                }
+            });
         });
 
-        function showPub() {
+        function showPubPlan() {
             var row = selectedRow("list");
             if (row) {
-                addTab(row.email + "的消息发布列表", "<%=path %>/devres/list_page_admin/" + row.id);
+                addTab(row.email + "的计划列表", "<%=path %>/pubplan/list_page_admin/" + row.id);
             } else {
                 $.messager.alert("提示", "请先选择客户", "info");
             }
@@ -97,7 +102,7 @@
         </table>
         <div id="tb">
             <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-               onclick="showPub()">查看消息发布列表</a>
+               onclick="showPubPlan()">查看计划列表</a>
             <div class="input_small">
                 <form id="searchForm" modalAttribute="customer">
                     邮箱:<input type="email" name="email" class="easyui-textbox"/>

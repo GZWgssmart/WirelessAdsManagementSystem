@@ -13,9 +13,10 @@ import java.util.List;
 @Repository
 public interface TimeSegmentDAO extends BaseDAO<TimeSegment, String> {
 
-    public List<TimeSegment> queryByPagerAndPubId(@Param("pager") Pager pager, @Param("pubId") String pubId);
-    public int countByPubId(String pubId);
-
     public List<TimeSegment> queryByPubId(String pubId);
+
+    public List<TimeSegment> queryByPlanId(String planId);
+
+    public void deleteByPlanId(String planId);
 
 }
