@@ -122,14 +122,4 @@ public class PublishServiceImpl implements PublishService {
         return publishDAO.queryByPlanId(planId);
     }
 
-    @Override
-    public Publish copyFromPlan(Publish publish, PublishPlan publishPlan) {
-        publish.setResource(publishPlan.getResource());
-        publish.setArea(publishPlan.getArea());
-        publish.setStartTime(publishPlan.getStartTime());
-        publish.setEndTime(publishPlan.getEndTime());
-        publish.setShowType(publishPlan.getShowType());
-        publish.setStayTime(publishPlan.getStayTime());
-        return publish;
-    }
 }

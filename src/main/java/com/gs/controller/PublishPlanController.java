@@ -1,5 +1,6 @@
 package com.gs.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.gs.bean.*;
 import com.gs.common.Constants;
 import com.gs.common.bean.ComboBox4EasyUI;
@@ -73,35 +74,47 @@ public class PublishPlanController {
             }
             publishPlan.setName(name);
             PublishPlan pp = publishPlanService.insertBack(publishPlan);
+            List<PublishResourceDetail> details = JSON.parseArray("[" + publishPlan.getResourceDetails() + "]", PublishResourceDetail.class);
             List<Publish> publishs = new ArrayList<Publish>();
             for (String deviceId : deviceIds) {
-                Publish publish = new Publish();
-                publish.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
-                publish.setDeviceId(deviceId);
-                publish.setPublishPlanId(pp.getId());
-                publishs.add(publish);
+                for (PublishResourceDetail detail : details) {
+                    Publish publish = new Publish();
+                    publish.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
+                    publish.setDeviceId(deviceId);
+                    publish.setResourceId(detail.getResourceId());
+                    publish.setPublishPlanId(pp.getId());
+                    publish.setArea(detail.getArea());
+                    publish.setShowType(detail.getShowType());
+                    publish.setStartTime(detail.getStartTime());
+                    publish.setEndTime(detail.getEndTime());
+                    publish.setStayTime(detail.getStayTime());
+                    publishs.add(publish);
+                    publishService.insert(publish);
+                    addSegment(publish.getId(), detail.getSegments());
+                }
             }
-            publishService.batchInsert(publishs);
             publishPlan.setDevCount(publishs.size());
             publishPlan.setNotFinishCount(publishs.size());
             publishPlan.setFinishCount(0);
             publishPlanService.updateCount(publishPlan);
-            addSegment(pp.getId(), publishPlan.getSegments());
             return ControllerResult.getSuccessResult("成功添加计划");
         }
         return null;
     }
 
-    private void addSegment(String planId, List<TimeSegment> timeSegments) {
-        Iterator<TimeSegment> ite = timeSegments.iterator();
+    private void addSegment(String pubId, String segments) {
+        String[] segmentArray = segments.split(",");
         int order = 0;
-        while (ite.hasNext()) {
-            TimeSegment seg = ite.next();
-            if (seg.getStartTime().equals("") || seg.getEndTime().equals("")) {
-                ite.remove();
-            } else {
-                seg.setQueueOrder(order++);
-                seg.setPlanId(planId);
+        List<TimeSegment> timeSegments = new ArrayList<TimeSegment>();
+        for (String s : segmentArray) {
+            String[] time = s.split("-");
+            if (time.length == 2) {
+                TimeSegment segment = new TimeSegment();
+                segment.setStartTime(time[0]);
+                segment.setEndTime(time[1]);
+                segment.setQueueOrder(order++);
+                segment.setPubId(pubId);
+                timeSegments.add(segment);
             }
         }
         if (timeSegments.size() > 0) {
@@ -165,14 +178,6 @@ public class PublishPlanController {
             int total = publishPlanService.countByCriteria(publishPlan, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<PublishPlan> publishPlans = publishPlanService.queryByPagerAndCriteria(pager, publishPlan, customer.getId());
-            for (PublishPlan dr : publishPlans) {
-                if (dr.getStartTime() != null) {
-                    dr.setStartTimeStr(DateFormatUtil.format(dr.getStartTime(), Constants.DATETIME_PATTERN));
-                }
-                if (dr.getEndTime() != null) {
-                    dr.setEndTimeStr(DateFormatUtil.format(dr.getEndTime(), Constants.DATETIME_PATTERN));
-                }
-            }
             return new Pager4EasyUI<PublishPlan>(pager.getTotalRecords(), publishPlans);
         } else {
             logger.info("客户未登录，不能分页显示消息计划");
@@ -188,14 +193,6 @@ public class PublishPlanController {
             int total = publishPlanService.countByCriteria(publishPlan, customerId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<PublishPlan> publishPlans = publishPlanService.queryByPagerAndCriteria(pager, publishPlan, customerId);
-            for (PublishPlan pp : publishPlans) {
-                if (pp.getStartTime() != null) {
-                    pp.setStartTimeStr(DateFormatUtil.format(pp.getStartTime(), Constants.DATETIME_PATTERN));
-                }
-                if (pp.getEndTime() != null) {
-                    pp.setEndTimeStr(DateFormatUtil.format(pp.getEndTime(), Constants.DATETIME_PATTERN));
-                }
-            }
             return new Pager4EasyUI<PublishPlan>(pager.getTotalRecords(), publishPlans);
         } else {
             logger.info("管理员未登录，不能分页显示消息计划");
@@ -209,11 +206,9 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             logger.info("更新消息计划");
             publishPlan.setName(publishPlan.getDeviceCode());
-            publishPlan.setStartTime(DateParseUtil.parseDate(publishPlan.getStartTimeStr(), Constants.DATE_PATTERN));
-            publishPlan.setEndTime(DateParseUtil.parseDate(publishPlan.getEndTimeStr(), Constants.DATE_PATTERN));
             publishPlanService.update(publishPlan);
-            timeSegmentService.deleteByPlanId(publishPlan.getId());
-            addSegment(publishPlan.getId(), publishPlan.getSegments());
+//            timeSegmentService.deleteByPlanId(publishPlan.getId());
+//            addSegment(publishPlan.getId(), publishPlan.getSegments());
             return ControllerResult.getSuccessResult("成功更新消息计划");
         } else {
             return ControllerResult.getFailResult("更新消息计划失败");
@@ -254,10 +249,8 @@ public class PublishPlanController {
                 publishPlanService.check(id, checkStatus);
                 // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
                 // 查找单个计划，及此计划下的所有终端,每一个终端都要开始发送文件下载通知
-                PublishPlan publishPlan = publishPlanService.queryWithResourceById(id);
                 List<Publish> publishs = publishService.queryByPlanId(id);
                 for (Publish publish : publishs) {
-                    publish = publishService.copyFromPlan(publish, publishPlan);
                     String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(publish, false);
                     if (result.equals(Common.DEVICE_NOT_CONNECT)) {
                         // return ControllerResult.getFailResult("消息发布: 此终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");

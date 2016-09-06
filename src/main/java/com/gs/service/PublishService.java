@@ -31,6 +31,4 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public List<Publish> queryByPlanId(String planId);
 
-    public Publish copyFromPlan(Publish publish, PublishPlan publishPlan);
-
 }

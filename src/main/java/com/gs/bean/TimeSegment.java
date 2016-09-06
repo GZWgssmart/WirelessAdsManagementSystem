@@ -8,7 +8,7 @@ import java.util.Date;
 public class TimeSegment {
 
     private String id;
-    private String planId;
+    private String pubId;
     private String startTime;
     private String endTime;
     private int queueOrder;
@@ -21,12 +21,12 @@ public class TimeSegment {
         this.id = id;
     }
 
-    public String getPlanId() {
-        return planId;
+    public String getPubId() {
+        return pubId;
     }
 
-    public void setPlanId(String planId) {
-        this.planId = planId;
+    public void setPubId(String pubId) {
+        this.pubId = pubId;
     }
 
     public String getStartTime() {

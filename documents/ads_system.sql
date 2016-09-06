@@ -168,22 +168,16 @@ CHECK (online in ('Y', 'N'));
 DROP TABLE IF EXISTS t_publish_plan;
 CREATE TABLE t_publish_plan(
   id VARCHAR(128) PRIMARY KEY COMMENT '发布计划编号',
+  plan_name VARCHAR(50) COMMENT '计划名称',
+  name VARCHAR(50) NOT NULL COMMENT '发布计划的名称,如果是单个终端则为终端号,多个终端,分组终端和全部终端',
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   group_name VARCHAR(50) COMMENT '终端分组名称',
   version_id VARCHAR(128) COMMENT '终端版本号',
   version_name VARCHAR(50) COMMENT '版本名',
-  resource_id VARCHAR(128) NOT NULL COMMENT '资源id',
-  resource_name VARCHAR(100) NOT NULL COMMENT '资源名称',
-  name VARCHAR(50) NOT NULL COMMENT '发布计划的名称,如果是单个终端则为终端号,多个终端,分组终端和全部终端',
   type VARCHAR(20) NOT NULL COMMENT '计划类型,单个终端,多个终端,分组终端,全部终端',
   dev_count INT COMMENT '终端总数',
   finish_count INT COMMENT '完成消息发布终端总数',
   not_finish_count INT COMMENT '未完成消息发布终端总数',
-  area INT NOT NULL COMMENT '屏幕区域',
-  show_type VARCHAR(20) NOT NULL COMMENT '显示方式，包括即时显示,定时显示(定时),不定时显示(顺序)',
-  start_time DATETIME COMMENT '定时播放的开始时间',
-  end_time DATETIME COMMENT '定时播放的结束时间',
-  stay_time VARCHAR(10) COMMENT '停留时间,以秒为单位',
   des VARCHAR(500) COMMENT '描述信息',
   submit_check_time DATETIME COMMENT '审核提交时间',
   check_comment VARCHAR(200) COMMENT '审核批注',
@@ -205,38 +199,46 @@ CHECK (type in ('one', 'multiple', 'group', 'all'));
 ALTER TABLE t_publish_plan ADD CONSTRAINT ck_publish_plan_check_status
 CHECK (check_status in ('not_submit', 'checking', 'checked', 'finish'));
 
-ALTER TABLE t_publish_plan ADD CONSTRAINT ck_publish_plan_show_type
-CHECK (show_type in ('now', 'order', 'segment'));
-
 ALTER TABLE t_publish_plan ADD CONSTRAINT ck_publish_plan_status
 CHECK (status in ('Y', 'N'));
 
-
---t_device_resource设备资源表,不同的资源下发到不同的设备
-DROP TABLE IF EXISTS t_device_resource;
-CREATE TABLE t_device_resource(
+--t_publish设备资源表,不同的资源下发到不同的设备
+DROP TABLE IF EXISTS t_publish;
+CREATE TABLE t_publish(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备与资源关联id',
   device_id VARCHAR(128) COMMENT '终端设备id',
+  resource_id VARCHAR(128) COMMENT '资源id',
   publish_log VARCHAR(50) NOT NULL COMMENT '发布日志记录',
   publish_time DATETIME COMMENT '资源下发时间',
-  pub_plan_id VARCHAR(128) NOT NULL COMMENT '发布计划编号'
+  pub_plan_id VARCHAR(128) NOT NULL COMMENT '发布计划编号',
+  area INT NOT NULL COMMENT '屏幕区域',
+  show_type VARCHAR(20) NOT NULL COMMENT '显示方式，包括即时显示,定时显示(定时),不定时显示(顺序)',
+  start_time DATETIME COMMENT '定时播放的开始时间',
+  end_time DATETIME COMMENT '定时播放的结束时间',
+  stay_time VARCHAR(10) COMMENT '停留时间,以秒为单位'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_device_id
+ALTER TABLE t_publish ADD CONSTRAINT fk_publish_device_id
 FOREIGN KEY (device_id) REFERENCES t_device(id);
 
-ALTER TABLE t_device_resource ADD CONSTRAINT fk_device_resource_pub_plan_id
+ALTER TABLE t_publish ADD CONSTRAINT fk_publish_resource_id
+FOREIGN KEY (resource_id) REFERENCES t_resource(id);
+
+ALTER TABLE t_publish ADD CONSTRAINT fk_publish_pub_plan_id
 FOREIGN KEY (pub_plan_id) REFERENCES t_publish_plan(id);
+
+ALTER TABLE t_publish ADD CONSTRAINT ck_publish_show_type
+CHECK (show_type in ('now', 'order', 'segment'));
 
 DROP TABLE IF EXISTS t_time_segment;
 CREATE TABLE t_time_segment(
   id VARCHAR(128) NOT NULL PRIMARY KEY COMMENT '时段编号',
-  plan_id VARCHAR(128) NOT NULL COMMENT '计划编号',
+  pub_id VARCHAR(128) NOT NULL COMMENT '计划编号',
   start_time VARCHAR(20) NOT NULL COMMENT '开始时间',
   end_time VARCHAR(20) NOT NULL COMMENT '结束时间',
   queue_order int COMMENT '序号'
 );
 
-ALTER TABLE t_time_segment ADD CONSTRAINT fk_time_segment_plan_id
-FOREIGN KEY (plan_id) REFERENCES t_publish_plan(id);
+ALTER TABLE t_time_segment ADD CONSTRAINT fk_time_segment_pub_id
+FOREIGN KEY (pub_id) REFERENCES t_publish(id);
 

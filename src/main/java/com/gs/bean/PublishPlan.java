@@ -9,6 +9,7 @@ import java.util.List;
 public class PublishPlan {
 
     private String id;
+    private String planName;
     private String customerId;
     private String groupName;
     private String versionId;
@@ -18,13 +19,6 @@ public class PublishPlan {
     private Resource resource;
     private String name;
     private String type;
-    private int area;
-    private String showType;
-    private Date startTime;
-    private String startTimeStr;
-    private Date endTime;
-    private String endTimeStr;
-    private String stayTime;
     private String des;
     private Date submitCheckTime;
     private String checkComment;
@@ -41,8 +35,7 @@ public class PublishPlan {
     private String deviceId;
     private String deviceCode;
 
-    private List<TimeSegment> segments;
-
+    private String resourceDetails;
 
     public String getId() {
         return id;
@@ -50,6 +43,14 @@ public class PublishPlan {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
     }
 
     public String getCustomerId() {
@@ -98,62 +99,6 @@ public class PublishPlan {
 
     public void setResource(Resource resource) {
         this.resource = resource;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public void setArea(int area) {
-        this.area = area;
-    }
-
-    public String getShowType() {
-        return showType;
-    }
-
-    public void setShowType(String showType) {
-        this.showType = showType;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getStartTimeStr() {
-        return startTimeStr;
-    }
-
-    public void setStartTimeStr(String startTimeStr) {
-        this.startTimeStr = startTimeStr;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getEndTimeStr() {
-        return endTimeStr;
-    }
-
-    public void setEndTimeStr(String endTimeStr) {
-        this.endTimeStr = endTimeStr;
-    }
-
-    public String getStayTime() {
-        return stayTime;
-    }
-
-    public void setStayTime(String stayTime) {
-        this.stayTime = stayTime;
     }
 
     public String getDes() {
@@ -276,11 +221,11 @@ public class PublishPlan {
         this.deviceCode = deviceCode;
     }
 
-    public List<TimeSegment> getSegments() {
-        return segments;
+    public String getResourceDetails() {
+        return resourceDetails;
     }
 
-    public void setSegments(List<TimeSegment> segments) {
-        this.segments = segments;
+    public void setResourceDetails(String resourceDetails) {
+        this.resourceDetails = resourceDetails;
     }
 }

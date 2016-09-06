@@ -4,7 +4,7 @@
 
     <resultMap id="timeSegmentResultMap" type="timeSegment">
         <id property="id" column="id" />
-        <result property="planId" column="plan_id" />
+        <result property="pubId" column="pub_id" />
         <result property="startTime" column="start_time" />
         <result property="endTime" column="end_time" />
         <result property="queueOrder" column="queue_order" />
@@ -13,42 +13,34 @@
     <select id="queryByPubId" resultType="list" resultMap="timeSegmentResultMap" parameterType="string">
         <![CDATA[
 
-        select * from t_time_segment where plan_id = (select pub_plan_id from t_device_resource where id = #{pubId}) order by queue_order;
+        select * from t_time_segment where pub_id = #{pubId} order by queue_order;
 
         ]]>
     </select>
 
-    <select id="queryByPlanId" resultType="list" resultMap="timeSegmentResultMap" parameterType="string">
+    <select id="countByPubId" resultType="int" parameterType="string">
         <![CDATA[
 
-        select * from t_time_segment where plan_id = #{planId} order by queue_order;
-
-        ]]>
-    </select>
-
-    <select id="countByPlanId" resultType="int" parameterType="string">
-        <![CDATA[
-
-        select count(1) from t_time_segment where plan_id = #{planId};
+        select count(1) from t_time_segment where pub_id = #{pubId};
 
         ]]>
     </select>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
         <![CDATA[
-        insert into t_time_segment(id, plan_id, start_time, end_time, queue_order) values
+        insert into t_time_segment(id, pub_id, start_time, end_time, queue_order) values
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
             <![CDATA[
-            (uuid(), #{item.planId}, #{item.startTime}, #{item.endTime}, #{item.queueOrder})
+            (uuid(), #{item.pubId}, #{item.startTime}, #{item.endTime}, #{item.queueOrder})
             ]]>
         </foreach>
 
     </insert>
 
-    <delete id="deleteByPlanId" parameterType="string">
+    <delete id="deleteByPubId" parameterType="string">
         <![CDATA[
-        delete from t_time_segment where plan_id = #{planId}
+        delete from t_time_segment where pub_id = #{pubId}
         ]]>
     </delete>
 

@@ -15,8 +15,6 @@ public interface TimeSegmentDAO extends BaseDAO<TimeSegment, String> {
 
     public List<TimeSegment> queryByPubId(String pubId);
 
-    public List<TimeSegment> queryByPlanId(String planId);
-
-    public void deleteByPlanId(String planId);
+    public void deleteByPubId(String pubId);
 
 }

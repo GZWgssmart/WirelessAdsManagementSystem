@@ -2,55 +2,75 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gs.dao.PublishDAO">
 
-    <resultMap id="deviceResourceResultMap" type="publish">
+    <resultMap id="publishResultMap" type="publish">
         <id property="id" column="id" />
         <result property="publishLog" column="publish_log" />
         <result property="publishTime" column="publish_time" />
         <result property="publishPlanId" column="pub_plan_id" />
-        <result property="resourceName" column="resource_name" />
+        <result property="area" column="area" />
+        <result property="showType" column="show_type" />
+        <result property="startTime" column="start_time" />
+        <result property="endTime" column="end_time" />
+        <result property="stayTime" column="stay_time" />
         <association property="device" javaType="com.gs.bean.Device">
             <id property="id" column="d_id"/>
             <result property="code" column="d_code" />
         </association>
+        <association property="resource" javaType="com.gs.bean.Resource">
+            <id property="id" column="r_id"/>
+            <result property="name" column="r_name"/>
+            <result property="fileName" column="r_file_name" />
+            <result property="fileSize" column="r_file_size" />
+            <result property="path" column="r_path" />
+            <result property="resourceTypeId" column="r_restype_id" />
+        </association>
     </resultMap>
 
-    <select id="queryByPlanId" parameterType="string" resultMap="deviceResourceResultMap">
+    <select id="queryByPlanId" parameterType="string" resultMap="publishResultMap">
         <![CDATA[
-        select dr.*, d.id as d_id, d.code as d_code from t_device_resource dr, t_device d
-        where dr.pub_plan_id = #{planId} and dr.device_id = d.id
+        select p.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name, r.file_name as r_file_name,
+         r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+          from t_publish p, t_device d, t_resource r
+        where p.pub_plan_id = #{planId} and p.device_id = d.id and p.resource_id = r.id
         ]]>
     </select>
 
-    <select id="queryByDRId" parameterType="string" resultMap="deviceResourceResultMap">
+    <select id="queryByDRId" parameterType="string" resultMap="publishResultMap">
         <![CDATA[
-        select dr.*, d.id as d_id, d.code as d_code from t_device_resource dr, t_device d
-        where dr.device_id = d.id and dr.id = #{drId}
+        select p.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name, r.file_name as r_file_name,
+         r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+          from t_publish p, t_device d, t_resource r
+        where p.device_id = d.id and p.id = #{pId} and p.resource_id = r.id
         ]]>
     </select>
 
-    <select id="queryByCode" parameterType="string" resultMap="deviceResourceResultMap">
+    <select id="queryByCode" parameterType="string" resultMap="publishResultMap">
         <![CDATA[
-        select dr.*, d.id as d_id, d.code as d_code from t_device_resource dr, t_device d, t_publish_plan pp
-        where dr.device_id = d.id and d.code = #{code} and dr.pub_plan_id = pp.id and pp.check_status = 'checked'
+        select p.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name, r.file_name as r_file_name,
+         r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+         from t_publish p, t_device d, t_publish_plan pp, t_resource r
+        where p.device_id = d.id and p.resource_id = r.id and d.code = #{code} and p.pub_plan_id = pp.id and pp.check_status = 'checked'
         ]]>
     </select>
 
-    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceResourceResultMap">
+    <select id="queryByPagerAndCustomerId" resultType="list" resultMap="publishResultMap">
         <![CDATA[
-        select * from t_device_resource where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
+        select * from t_publish where customer_id = #{customerId} limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
 
-    <select id="queryByPagerAndCriteria" resultType="list" resultMap="deviceResourceResultMap">
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="publishResultMap">
         <![CDATA[
-        select dr.*, d.id as d_id, d.code as d_code, pp.resource_name as resource_name from t_device_resource dr, t_device d, t_publish_plan pp
-        where dr.pub_plan_id = pp.id and dr.device_id = d.id and pp.id = #{publish.publishPlanId}
+        select p.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name, r.file_name as r_file_name,
+         r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+          from t_publish p, t_device d, t_publish_plan pp, t_resource r
+        where p.pub_plan_id = pp.id and p.device_id = d.id and p.resource_id = r.id and pp.id = #{publish.publishPlanId}
         ]]>
         <if test="publish.deviceCode != null and publish.deviceCode != ''">
             and d.code like concat('%', #{publish.deviceCode}, '%')
         </if>
         <if test="publish.resourceName != null and publish.resourceName != ''">
-            and pp.resource_name like concat('%', #{publish.resourceName}, '%')
+            and r.resource_name like concat('%', #{publish.resourceName}, '%')
         </if>
         limit #{pager.beginIndex}, #{pager.pageSize}
 
@@ -58,30 +78,33 @@
 
     <select id="countByCriteria" parameterType="publish" resultType="int">
         <![CDATA[
-        select count(1) from t_device_resource dr, t_device d, t_publish_plan pp where dr.pub_plan_id = pp.id and pp.id = #{publishPlanId} and dr.device_id = d.id
+        select count(1) from t_publish p, t_device d, t_publish_plan pp, t_resource r where p.pub_plan_id = pp.id and pp.id = #{publishPlanId} and p.device_id = d.id and p.resource_id = r.id
         ]]>
         <if test="deviceCode != null and deviceCode != ''">
             and d.code like concat('%', #{deviceCode}, '%')
         </if>
         <if test="resourceName != null and resourceName != ''">
-            and pp.resource_name like concat('%', #{resourceName}, '%')
+            and r.resource_name like concat('%', #{resourceName}, '%')
         </if>
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="publish">
+    <insert id="insert" parameterType="publish">
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
+            select uuid() from dual
+        </selectKey>
         <![CDATA[
-        insert into t_device_resource(id, device_id, publish_log, pub_plan_id)
-        values(uuid(), #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId})
+        insert into t_publish(id, device_id, resource_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time)
+        values(#{id}, #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime})
         ]]>
     </insert>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
         <![CDATA[
-        insert into t_device_resource(id, device_id, publish_log, pub_plan_id) VALUES
+        insert into t_publish(id, device_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
             <![CDATA[
-            (uuid(), #{item.deviceId}, #{item.publishLog}, #{item.publishPlanId})
+            (uuid(), #{item.deviceId}, #{item.publishLog}, #{item.publishPlanId}, #{item.area}, #{item.showType}, #{item.startTime}, #{item.endTime}, #{item.stayTime})
             ]]>
         </foreach>
 
@@ -89,19 +112,19 @@
 
     <update id="updatePublishLog" keyProperty="id">
         <![CDATA[
-        update t_device_resource set publish_log = #{publishLog} where id = #{id}
+        update t_publish set publish_log = #{publishLog} where id = #{id}
         ]]>
     </update>
 
     <update id="updatePublishLogByPlanId" keyProperty="id">
         <![CDATA[
-        update t_device_resource set publish_log = #{publishLog} where pub_plan_id = #{pubPlanId}
+        update t_publish set publish_log = #{publishLog} where pub_plan_id = #{pubPlanId}
         ]]>
     </update>
 
     <update id="updateWhenPublished" keyProperty="id" parameterType="publish">
         <![CDATA[
-        update t_device_resource set publish_log = #{publishLog}, publish_time = #{publishTime} where id = #{id}
+        update t_publish set publish_log = #{publishLog}, publish_time = #{publishTime} where id = #{id}
         ]]>
     </update>
 

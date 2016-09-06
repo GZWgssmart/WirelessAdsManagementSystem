@@ -418,7 +418,6 @@ public class ADSServer {
             publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
             Publish publish = publishService.queryByDRId(fileDownloadClient.getPubid());
             PublishPlan publishPlan = publishPlanService.queryWithResourceById(publish.getPublishPlanId());
-            publish = publishService.copyFromPlan(publish, publishPlan);
             String result = writePublish(publish, false);
             if (result.equals(Common.DEVICE_WRITE_OUT)) {
                 publishService.updatePublishLog(publish.getId(), PublishLog.PUBLISHING);
@@ -477,8 +476,6 @@ public class ADSServer {
             logger.info("终端" + deviceCode + "开始自动处理消息发布......");
             for (Publish publish : publishs) {
                 logger.info("消息编号: " + publish.getId());
-                PublishPlan publishPlan = publishPlanService.queryWithResourceById(publish.getPublishPlanId());
-                publish = publishService.copyFromPlan(publish, publishPlan);
                 String publishLog = publish.getPublishLog();
                 if (publishLog.equals(PublishLog.SUBMIT_TO_CHECK) || publishLog.equals(PublishLog.FILE_DOWNLOADING) || publishLog.equals(PublishLog.FILE_NOT_DOWNLOADED)) {
                     String result = writeFileDownload(publish, true);

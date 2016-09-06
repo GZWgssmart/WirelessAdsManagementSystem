@@ -81,12 +81,8 @@ public class TimeSegmentServiceImpl implements TimeSegmentService {
     }
 
     @Override
-    public void deleteByPlanId(String planId) {
-        timeSegmentDAO.deleteByPlanId(planId);
+    public void deleteByPubId(String pubId) {
+        timeSegmentDAO.deleteByPubId(pubId);
     }
 
-    @Override
-    public List<TimeSegment> queryByPlanId(String planId) {
-        return timeSegmentDAO.queryByPlanId(planId);
-    }
 }

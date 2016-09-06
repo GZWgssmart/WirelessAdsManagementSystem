@@ -56,9 +56,29 @@
             return value.name;
         }
 
+        function formatterResource(value) {
+            return value.name;
+        }
+
+        function formatterArea(value) {
+            return "区域" + value;
+        }
+
         function formatterCode(value, row, index) {
             return row.device.code;
         }
+
+        function formatterShowType(value) {
+            if (value == 'order') {
+                return "顺序播放";
+            } else if (value == 'now') {
+                return "即时播放";
+            } else if (value == "segment") {
+                return "时段播放";
+            }
+
+        }
+
 
     </script>
 </head>
@@ -77,13 +97,20 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="85" formatter="formatterCode">终端号</th>
-        <th field="resourceName" width="100">资源名称</th>
+        <th field="resource" width="100" formatter="formatterResource">资源名称</th>
         <th field="publishLog" width="100">发布日志</th>
         <th field="publishTime" width="120" formatter="formatterDate">发布时间</th>
+        <th field="area" width="60" formatter="formatterArea">显示区域</th>
+        <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
+        <th field="startTime" width="120" formatter="formatterDate">开始日期</th>
+        <th field="endTime" width="120" formatter="formatterDate">结束日期</th>
+        <th field="stayTime" width="70">停留时间(S)</th>
     </tr>
     </thead>
 </table>
 <div id="tb">
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+       onclick="showSegments();">查看时段</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="publish">
             终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>

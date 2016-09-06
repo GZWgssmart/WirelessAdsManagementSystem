@@ -11,12 +11,15 @@ public class Publish {
     private String deviceId;
     private String deviceCode;
     private Device device;
+    private String resourceId;
     private String resourceName;
     private Resource resource;
     private int area;
     private String showType;
     private Date startTime;
+    private String startTimeStr;
     private Date endTime;
+    private String endTimeStr;
     private String stayTime;
     private Date publishTime;
     private String publishLog;
@@ -53,6 +56,14 @@ public class Publish {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 
     public String getResourceName() {
@@ -133,5 +144,21 @@ public class Publish {
 
     public void setPublishPlanId(String publishPlanId) {
         this.publishPlanId = publishPlanId;
+    }
+
+    public String getStartTimeStr() {
+        return startTimeStr;
+    }
+
+    public void setStartTimeStr(String startTimeStr) {
+        this.startTimeStr = startTimeStr;
+    }
+
+    public String getEndTimeStr() {
+        return endTimeStr;
+    }
+
+    public void setEndTimeStr(String endTimeStr) {
+        this.endTimeStr = endTimeStr;
     }
 }

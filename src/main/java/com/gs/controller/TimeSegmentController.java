@@ -39,11 +39,11 @@ public class TimeSegmentController {
     private TimeSegmentService timeSegmentService;
 
     @ResponseBody
-    @RequestMapping(value = "querybyplanid/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "querybypubid/{id}", method = RequestMethod.GET)
     public List<TimeSegment> queryByPlanId(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             logger.info("根据计划id: " + id + "查询时段信息");
-            return timeSegmentService.queryByPlanId(id);
+            return timeSegmentService.queryByPubId(id);
         }
         return null;
     }
