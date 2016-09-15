@@ -149,70 +149,6 @@ function setPagination(tableId) {
     });
 }
 
-function formatterDate(value) {
-    if (value == undefined || value == null || value == '') {
-        return "";
-    }
-    else {
-        var date = new Date(value);
-        var year = date.getFullYear().toString();
-        var month = (date.getMonth() + 1);
-        var day = date.getDate().toString();
-        var hour = date.getHours().toString();
-        var minutes = date.getMinutes().toString();
-        var seconds = date.getSeconds().toString();
-        if (month < 10) {
-            month = "0" + month;
-        }
-        if (day < 10) {
-            day = "0" + day;
-        }
-        if (hour < 10) {
-            hour = "0" + hour;
-        }
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-        return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
-    }
-}
-
-function formatterRole(value) {
-    if (value == 'super') {
-        return "超级管理员";
-    } else {
-        return "普通管理员";
-    }
-}
-
-function formatterStatus(value) {
-    if (value == "Y") {
-        return "可用";
-    } else {
-        return "不可用";
-    }
-}
-
-function formatterOnline(value) {
-    if (value == "Y") {
-        return "在线";
-    } else {
-        return "离线";
-    }
-}
-
-function formatterLong(value) {
-    if (value != undefined && value != '' && value.length >= 35) {
-        var abValue = value.substring(0, 34) + "...";
-        return "<a href='javascript:void(0);' title='" + value + "' class='easyui-tooltip'>" + abValue + "</a>";
-    } else {
-        return value;
-    }
-}
-
 function openWin(id) {
     $("#" + id).window("open");
 }
@@ -291,3 +227,118 @@ function checkFile(name, index, type, size) {
     }
     return true;
 }
+
+//////////////////////////////////////
+
+function formatterDate(value) {
+    if (value == undefined || value == null || value == '') {
+        return "";
+    }
+    else {
+        var date = new Date(value);
+        var year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        var hour = date.getHours().toString();
+        var minutes = date.getMinutes().toString();
+        var seconds = date.getSeconds().toString();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    }
+}
+
+function formatterRole(value) {
+    if (value == 'super') {
+        return "超级管理员";
+    } else {
+        return "普通管理员";
+    }
+}
+
+function formatterStatus(value) {
+    if (value == "Y") {
+        return "可用";
+    } else {
+        return "不可用";
+    }
+}
+
+function formatterOnline(value) {
+    if (value == "Y") {
+        return "在线";
+    } else {
+        return "离线";
+    }
+}
+
+function formatterLong(value) {
+    if (value != undefined && value != '' && value.length >= 35) {
+        var abValue = value.substring(0, 34) + "...";
+        return "<a href='javascript:void(0);' title='" + value + "' class='easyui-tooltip'>" + abValue + "</a>";
+    } else {
+        return value;
+    }
+}
+
+function formatterShowType(value) {
+    if (value == 'order') {
+        return "顺序播放";
+    } else if (value == 'now') {
+        return "即时播放";
+    } else if (value == "segment") {
+        return "时段播放";
+    }
+
+}
+
+function formatterCode(value, row, index) {
+    return row.device.code;
+}
+
+function formatterArea(value) {
+    return "区域" + value;
+}
+
+function formatterCheckStatus(value) {
+    if (value == 'not_submit') {
+        return "未提交";
+    } else if (value == 'checking') {
+        return "审核中";
+    } else if (value == "checked") {
+        return "已审核";
+    } else if (value == "finish") {
+        return "已完成";
+    }
+
+}
+
+function formatterPlanType(value) {
+    if (value == 'one') {
+        return '单个';
+    } else if (value == 'multiple') {
+        return '多个';
+    } else if (value == 'group') {
+        return '分组';
+    } else if (value == 'all') {
+        return '全部';
+    }
+}
+
+function formatterName(value) {
+    return value.name;
+}
+/////////////////////////////////////

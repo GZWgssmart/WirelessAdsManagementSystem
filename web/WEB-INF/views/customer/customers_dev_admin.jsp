@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>客户列表-青岛宝瑞无线广告管理系统</title>
+    <title>客户列表-青岛宝瑞液晶信息屏发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -24,48 +24,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        $(function() {
-            setPagination("#list");
-            $('#list').datagrid({
-                onDblClickCell: function(rowIndex, rowData){
-                    showDev();
-                }
-            });
-        });
-
-        function showDev() {
-            var row = selectedRow("list");
-            if (row) {
-                addTab(row.email + "的终端列表", "<%=path %>/device/list_page_admin/" + row.id);
-            } else {
-                $.messager.alert("提示", "请先选择客户", "info");
-            }
-        }
-
-        function doSearch() {
-            $("#list").datagrid({
-                url:'<%=path %>/customer/search_pager',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function searchAll() {
-            $("#searchForm").form("clear");
-            $("#list").datagrid({
-                url:'<%=path %>/customer/search_pager',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function refreshAll() {
-            $("#list").datagrid("reload");
-        }
-    </script>
+    <script src="<%=path %>/js/customer/customers_dev_admin.js"></script>
 </head>
 <body>
 <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">

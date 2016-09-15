@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-    <title>管理员账号设置-青岛宝瑞无线广告管理系统</title>
+    <title>管理员账号设置-青岛宝瑞液晶信息屏发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -26,24 +26,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        function updatePwd() {
-            toValidate("updateForm");
-            if (validateForm("updateForm")) {
-                $.post("<%=path %>/admin/update_pwd",
-                        $("#updateForm").serialize(),
-                        function (data) {
-                            if (data.result == "success") {
-                                $.messager.alert("提示", data.message, "info");
-                                $("#updateForm").form("clear");
-                            } else {
-                                $("#errMsg").html(data.message);
-                            }
-                        }
-                );
-            }
-        }
-    </script>
+    <script src="<%=path %>/js/admin/setting.js"></script>
 
 
 </head>

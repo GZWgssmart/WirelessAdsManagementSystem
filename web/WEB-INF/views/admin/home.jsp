@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>管理员主页-青岛宝瑞无线广告管理系统</title>
+    <title>管理员主页-青岛宝瑞液晶信息屏发布系统</title>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
     <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
@@ -59,13 +59,13 @@
 <div id="mainPanle" data-options="region:'center',border:true">
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div title="主页">
-            青岛宝瑞无线广告管理系统
+            青岛宝瑞液晶信息屏发布系统
         </div>
     </div>
 </div>
 
 <div data-options="region:'south',border:false">
-    青岛宝瑞无线广告管理系统V1.0&nbsp;&nbsp;地址：山东青岛&nbsp;&nbsp;技术支持:Wgssmart(QQ:847315251 微信:Wgssmart)
+    青岛宝瑞液晶信息屏发布系统V1.0&nbsp;&nbsp;地址：山东省青岛市崂山区株洲路140号&nbsp;&nbsp;技术支持:0532-80678775/80678776
 </div>
 
 <div id="mm" class="easyui-menu">

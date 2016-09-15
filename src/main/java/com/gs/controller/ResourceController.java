@@ -84,15 +84,6 @@ public class ResourceController {
         }
     }
 
-    @RequestMapping(value = "list_page_choose", method = RequestMethod.GET)
-    public String toListChoosePage(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            return "resource/resources_choose";
-        } else {
-            return "redirect:/index";
-        }
-    }
-
     @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
     public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {

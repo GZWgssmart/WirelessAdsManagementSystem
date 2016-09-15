@@ -19,7 +19,7 @@
         url:'<%=path %>/res/search_pager',
         method:'get',
 				rownumbers:true,
-				singleSelect:false,
+				singleSelect:true,
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
@@ -29,14 +29,13 @@
 					if (row.status == 'N') {
 					    return 'color:red;';
 					}
-				},
-				onRowContextMenu:resContextMenu
+				}
                 ">
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="80">名称</th>
-        <th field="resourceType" width="80" formatter="formatterType">类型</th>
+        <th field="resourceType" width="80" formatter="formatterName">类型</th>
         <th field="fileName" width="150">文件名</th>
         <th field="path" width="200" formatter="formatterLong">路径</th>
         <th field="des" width="100">描述</th>
@@ -46,12 +45,8 @@
     </thead>
 </table>
 <div id="restb">
-    <div id="resMenu" class="easyui-menu" style="width:80px;display:none; ">
-        <div onclick="addResourceToArea();">添加到区域</div>
-        <div onclick="addResourceToArea();">从区域移除</div>
-    </div>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-       onclick="chooseRes();">确认</a>
+       onclick="addResourceToArea();">添加到区域</a>
     <div class="input_small">
         <form id="resSearchForm" modalAttribute="resource">
             类型:<select name="resourceTypeId" class="easyui-combobox"
@@ -88,22 +83,22 @@
                             },{
                                 id: 'segment',
                                 text: '时段播放'
-                            }]"></select>
+                            }],required:true,novalidate:true"></select>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"
                        onclick="showAddSegmentWin('');">设置时段</a>
                 </td>
             </tr>
             <tr>
                 <td>开始日期:</td>
-                <td><input id="startTime" type="text" name="startTime" class="easyui-datebox" data-options="editable:false"/></td>
+                <td><input id="startTime" type="text" name="startTime" class="easyui-datebox" data-options="editable:false,required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>结束日期:</td>
-                <td><input id="endTime" type="text" name="endTime" class="easyui-datebox" data-options="editable:false"/></td>
+                <td><input id="endTime" type="text" name="endTime" class="easyui-datebox" data-options="editable:false,required:true,novalidate:true"/></td>
             </tr>
             <tr id="stayTimeTR" style="display:none">
                 <td>停留时间(S):</td>
-                <td><input id="stayTime" type="text" name="stayTime" class="easyui-numberbox easyui-textbox"/>
+                <td><input id="stayTime" type="text" name="stayTime" class="easyui-validatebox easyui-numberbox"/>
                 </td>
             </tr>
             <tr>

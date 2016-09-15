@@ -2,9 +2,11 @@ package com.gs.controller;
 
 import com.gs.bean.Customer;
 import com.gs.bean.Publish;
+import com.gs.bean.PublishResourceDetail;
 import com.gs.common.Constants;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
+import com.gs.common.util.DateFormatUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.PublishService;
@@ -21,6 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -60,6 +63,49 @@ public class PublishController {
             return new Pager4EasyUI<Publish>(pager.getTotalRecords(), publishs);
         } else {
             logger.info("客户未登录，不能分页显示消息发布");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "search_chosen_res/{planId}/{area}", method = RequestMethod.GET)
+    public Pager4EasyUI<PublishResourceDetail> searchChosenPager(@PathVariable("planId") String planId, @PathVariable("area") int area, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("分页显示资源信息");
+            if (planId.equals("none")) {
+                return null;
+            } else {
+                Publish publish = new Publish();
+                publish.setPublishPlanId(planId);
+                publish.setArea(area);
+                int total = publishService.countByCriteria(publish);
+                Pager pager = PagerUtil.getPager(1, 100, total);
+                List<Publish> publishes = publishService.queryByPagerAndCriteria(pager, publish);
+                List<PublishResourceDetail> publishResourceDetails = new ArrayList<PublishResourceDetail>();
+                for (Publish p : publishes) {
+                    PublishResourceDetail detail = new PublishResourceDetail();
+                    detail.setArea(p.getArea());
+                    detail.setSegments(p.getSegments() == null ? "" : p.getSegments());
+                    detail.setResourceId(p.getResource().getId());
+                    detail.setResourceName(p.getResource().getName());
+                    detail.setEndTime(p.getEndTime());
+                    if (detail.getEndTime() != null) {
+                        detail.setEndTimeStr(DateFormatUtil.format(detail.getEndTime(), "yyyy-MM-dd"));
+                    }
+                    detail.setShowType(p.getShowType());
+                    detail.setStartTime(p.getStartTime());
+                    if (detail.getStartTime() != null) {
+                        detail.setStartTimeStr(DateFormatUtil.format(detail.getStartTime(), "yyyy-MM-dd"));
+                    }
+                    detail.setStayTime(p.getStayTime());
+                    if (!publishResourceDetails.contains(detail)) {
+                        publishResourceDetails.add(detail);
+                    }
+                }
+                return new Pager4EasyUI<PublishResourceDetail>(pager.getTotalRecords(), publishResourceDetails);
+            }
+        } else {
+            logger.info("客户未登录，不能分页显示资源列表");
             return null;
         }
     }

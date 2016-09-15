@@ -21,6 +21,7 @@ public class Publish {
     private Date endTime;
     private String endTimeStr;
     private String stayTime;
+    private String segments;
     private Date publishTime;
     private String publishLog;
 
@@ -120,6 +121,14 @@ public class Publish {
 
     public void setStayTime(String stayTime) {
         this.stayTime = stayTime;
+    }
+
+    public String getSegments() {
+        return segments;
+    }
+
+    public void setSegments(String segments) {
+        this.segments = segments;
     }
 
     public Date getPublishTime() {

@@ -34,4 +34,8 @@ public interface PublishDAO extends BaseDAO<Publish, String> {
 
     public List<Publish> queryByPlanId(String planId);
 
+    public void deleteByPlanId(String planId);
+
+    public List<Publish> allDevByPlanId(String planId);
+
 }

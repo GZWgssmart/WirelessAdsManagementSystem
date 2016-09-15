@@ -36,8 +36,8 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="85">终端号</th>
-        <th field="version" width="50" formatter="formatterVersion">版本</th>
-        <th field="deviceGroup" width="60" formatter="formatterDevice">终端分组</th>
+        <th field="version" width="50" formatter="formatterName">版本</th>
+        <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
         <th field="phone" width="80">手机号</th>
         <th field="busNo" width="60">车路线</th>

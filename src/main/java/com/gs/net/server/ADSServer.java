@@ -53,8 +53,6 @@ public class ADSServer {
     private PublishPlanService publishPlanService;
     @Resource
     private ResourceTypeService resourceTypeService;
-    @Resource
-    private TimeSegmentService timeSegmentService;
 
     static {
         Config config = new Config();
@@ -335,9 +333,9 @@ public class ADSServer {
                         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
                         publishServer.setRestype(resourceType.getName());
                         if (publish.getShowType().equals("segment")) {
-                            String[] segments = getSegments(publish.getId());
-                            publishServer.setSegcount(Integer.valueOf(segments[0]));
-                            publishServer.setSegments(segments[1]);
+                            String[] segments = publish.getSegments().split(",");
+                            publishServer.setSegcount(segments.length);
+                            publishServer.setSegments(publish.getSegments());
                         } else {
                             publishServer.setSegments("");
                         }
@@ -539,19 +537,6 @@ public class ADSServer {
             return false;
         }
         return true;
-    }
-
-    private String[] getSegments(String pubId) {
-        List<TimeSegment> segments = timeSegmentService.queryByPubId(pubId);
-        String segmentsStr = "";
-        for (TimeSegment segment : segments) {
-            if (!segmentsStr.equals("")) {
-                segmentsStr = segmentsStr + "," + segment.getStartTime() + "-" + segment.getEndTime();
-            } else {
-                segmentsStr = segment.getStartTime() + "-" + segment.getEndTime();
-            }
-        }
-        return new String[]{String.valueOf(segments.size()), segmentsStr};
     }
 
 }

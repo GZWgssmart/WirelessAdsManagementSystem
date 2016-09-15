@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>终端列表-青岛宝瑞无线广告管理系统</title>
+    <title>终端列表-青岛宝瑞液晶信息屏发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -24,42 +24,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        $(function() {
-            setPagination("#list")
-        });
-
-        function doSearch() {
-            $("#list").datagrid({
-                url:'<%=path %>/device/search_pager_admin/${customerId }',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function searchAll() {
-            $("#searchForm").form("clear");
-            $("#list").datagrid({
-                url:'<%=path %>/device/search_pager_admin/${customerId }',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function refreshAll() {
-            $("#list").datagrid("reload");
-        }
-
-        function formatterDevice(value) {
-            return value.name;
-        }
-
-        function formatterVersion(value) {
-            return value.name;
-        }
-    </script>
+    <script src="<%=path %>/js/device/devices_admin.js"></script>
 </head>
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
@@ -83,8 +48,8 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="85">终端号</th>
-        <th field="version" width="50" formatter="formatterVersion">版本</th>
-        <th field="deviceGroup" width="60" formatter="formatterDevice">终端分组</th>
+        <th field="version" width="50" formatter="formatterName">版本</th>
+        <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
         <th field="phone" width="80">手机号</th>
         <th field="busNo" width="60">车路线</th>

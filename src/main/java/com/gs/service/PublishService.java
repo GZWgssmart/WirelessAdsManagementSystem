@@ -31,4 +31,8 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public List<Publish> queryByPlanId(String planId);
 
+    public void deleteByPlanId(String planId);
+
+    public List<Publish> allDevByPlanId(String planId);
+
 }

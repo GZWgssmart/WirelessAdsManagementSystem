@@ -3,11 +3,9 @@ package com.gs.controller;
 import com.alibaba.fastjson.JSON;
 import com.gs.bean.*;
 import com.gs.common.Constants;
-import com.gs.common.bean.ComboBox4EasyUI;
 import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
-import com.gs.common.util.DateFormatUtil;
 import com.gs.common.util.DateParseUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
@@ -15,7 +13,6 @@ import com.gs.common.web.SessionUtil;
 import com.gs.net.parser.Common;
 import com.gs.service.PublishPlanService;
 import com.gs.service.PublishService;
-import com.gs.service.TimeSegmentService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +28,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -47,79 +43,72 @@ public class PublishPlanController {
     private PublishPlanService publishPlanService;
     @Resource
     private PublishService publishService;
-    @Resource
-    private TimeSegmentService timeSegmentService;
 
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ControllerResult add(PublishPlan publishPlan, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            System.out.println(publishPlan.getDeviceCode());
-            System.out.println(publishPlan.getDeviceId());
-            publishPlan.setCustomerId(customer.getId());
-            List<String> deviceIds = publishPlanService.getDeviceIds(customer.getId(), publishPlan.getType(), publishPlan.getDeviceId(), publishPlan.getVersionId());
-            String name = "";
-            if (publishPlan.getType().equals("multiple")) {
-                if (deviceIds.size() == 1) {
-                    name = publishPlan.getDeviceCode();
-                    publishPlan.setType("one");
-                } else {
-                    name = "多个终端";
-                }
-            } else if (publishPlan.getType().equals("group")) {
-                name = "分组终端";
-            } else if (publishPlan.getType().equals("all")) {
-                name = "全部终端";
-            }
-            publishPlan.setName(name);
-            PublishPlan pp = publishPlanService.insertBack(publishPlan);
-            List<PublishResourceDetail> details = JSON.parseArray("[" + publishPlan.getResourceDetails() + "]", PublishResourceDetail.class);
-            List<Publish> publishs = new ArrayList<Publish>();
-            for (String deviceId : deviceIds) {
-                for (PublishResourceDetail detail : details) {
-                    Publish publish = new Publish();
-                    publish.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
-                    publish.setDeviceId(deviceId);
-                    publish.setResourceId(detail.getResourceId());
-                    publish.setPublishPlanId(pp.getId());
-                    publish.setArea(detail.getArea());
-                    publish.setShowType(detail.getShowType());
-                    publish.setStartTime(detail.getStartTime());
-                    publish.setEndTime(detail.getEndTime());
-                    publish.setStayTime(detail.getStayTime());
-                    publishs.add(publish);
-                    publishService.insert(publish);
-                    addSegment(publish.getId(), detail.getSegments());
-                }
-            }
-            publishPlan.setDevCount(publishs.size());
-            publishPlan.setNotFinishCount(publishs.size());
-            publishPlan.setFinishCount(0);
-            publishPlanService.updateCount(publishPlan);
+            addOrEditPubPlan("add", customer, publishPlan);
             return ControllerResult.getSuccessResult("成功添加计划");
         }
         return null;
     }
 
-    private void addSegment(String pubId, String segments) {
-        String[] segmentArray = segments.split(",");
-        int order = 0;
-        List<TimeSegment> timeSegments = new ArrayList<TimeSegment>();
-        for (String s : segmentArray) {
-            String[] time = s.split("-");
-            if (time.length == 2) {
-                TimeSegment segment = new TimeSegment();
-                segment.setStartTime(time[0]);
-                segment.setEndTime(time[1]);
-                segment.setQueueOrder(order++);
-                segment.setPubId(pubId);
-                timeSegments.add(segment);
+    private void addOrEditPubPlan(String addOrEdit, Customer customer, PublishPlan publishPlan) {
+        publishPlan.setCustomerId(customer.getId());
+        List<String> deviceIds = publishPlanService.getDeviceIds(customer.getId(), publishPlan.getType(), publishPlan.getDeviceId(), publishPlan.getVersionId());
+        String name = "";
+        if (publishPlan.getType().equals("multiple")) {
+            if (deviceIds.size() == 1) {
+                name = publishPlan.getDeviceCode();
+                publishPlan.setType("one");
+            } else {
+                name = "多个终端";
+            }
+        } else if (publishPlan.getType().equals("group")) {
+            name = "分组终端";
+        } else if (publishPlan.getType().equals("all")) {
+            name = "全部终端";
+        }
+        publishPlan.setName(name);
+        PublishPlan pp = null;
+        if (addOrEdit.equals("add")) {
+            pp = publishPlanService.insertBack(publishPlan);
+        } else if (addOrEdit.equals("edit")) { // 如果是修改计划，则直接把该计划下原有的所有发布信息删除掉,重新添加发布信息到此计划下
+            pp = publishPlan;
+            publishPlanService.update(publishPlan);
+            publishService.deleteByPlanId(publishPlan.getId());
+        }
+        List<PublishResourceDetail> details = JSON.parseArray("[" + publishPlan.getResourceDetails() + "]", PublishResourceDetail.class);
+        List<Publish> publishs = new ArrayList<Publish>();
+        for (String deviceId : deviceIds) {
+            for (PublishResourceDetail detail : details) {
+                Publish publish = new Publish();
+                publish.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
+                publish.setDeviceId(deviceId);
+                publish.setResourceId(detail.getResourceId());
+                publish.setPublishPlanId(pp.getId());
+                publish.setArea(detail.getArea());
+                publish.setShowType(detail.getShowType());
+                if (detail.getStartTimeStr() != null) {
+                    detail.setStartTime(DateParseUtil.parseDate(detail.getStartTimeStr(), "yyyy-MM-dd"));
+                }
+                publish.setStartTime(detail.getStartTime());
+                if (detail.getEndTimeStr() != null) {
+                    detail.setEndTime(DateParseUtil.parseDate(detail.getEndTimeStr(), "yyyy-MM-dd"));
+                }
+                publish.setEndTime(detail.getEndTime());
+                publish.setStayTime(detail.getStayTime());
+                publish.setSegments(detail.getSegments());
+                publishs.add(publish);
             }
         }
-        if (timeSegments.size() > 0) {
-            timeSegmentService.batchInsert(timeSegments);
-        }
+        publishService.batchInsert(publishs);
+        publishPlan.setDevCount(publishs.size());
+        publishPlan.setNotFinishCount(publishs.size());
+        publishPlan.setFinishCount(0);
+        publishPlanService.updateCount(publishPlan);
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
@@ -201,14 +190,37 @@ public class PublishPlanController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "all_dev/{planId}", method = RequestMethod.GET)
+    public ControllerResult queryAllDevices(@PathVariable("planId") String planId, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("查询计划下所有设备id");
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            List<Publish> publishs = publishService.allDevByPlanId(planId);
+            String devIds = "";
+            if (publishs != null) {
+                for (Publish p : publishs) {
+                    if (devIds.equals("")) {
+                        devIds = p.getDeviceId();
+                    } else {
+                        if (devIds.indexOf(p.getDeviceId()) < 0) {
+                            devIds += "," + p.getDeviceId();
+                        }
+                    }
+                }
+            }
+            return new ControllerResult(200, devIds, "成功查询计划下所有设备");
+        } else {
+            return ControllerResult.getFailResult("查询计划下所有设备失败");
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(PublishPlan publishPlan, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             logger.info("更新消息计划");
-            publishPlan.setName(publishPlan.getDeviceCode());
-            publishPlanService.update(publishPlan);
-//            timeSegmentService.deleteByPlanId(publishPlan.getId());
-//            addSegment(publishPlan.getId(), publishPlan.getSegments());
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            addOrEditPubPlan("edit", customer, publishPlan);
             return ControllerResult.getSuccessResult("成功更新消息计划");
         } else {
             return ControllerResult.getFailResult("更新消息计划失败");

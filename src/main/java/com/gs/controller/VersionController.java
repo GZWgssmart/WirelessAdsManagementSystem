@@ -102,6 +102,19 @@ public class VersionController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "querybyid/{versionId}", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+    public String queryById(@PathVariable("versionId") String versionId, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("根据版本id查询版本信息");
+            Version version = versionService.queryById(versionId);
+            return version.getPath();
+        } else {
+            logger.info("管理员未登录，不能分页显示版本信息");
+            return null;
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "list_combo/{id}/{status}", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(@PathVariable("id") String id, @PathVariable("status") String status, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;

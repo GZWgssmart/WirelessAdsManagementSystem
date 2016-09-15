@@ -122,4 +122,14 @@ public class PublishServiceImpl implements PublishService {
         return publishDAO.queryByPlanId(planId);
     }
 
+    @Override
+    public void deleteByPlanId(String planId) {
+        publishDAO.deleteByPlanId(planId);
+    }
+
+    @Override
+    public List<Publish> allDevByPlanId(String planId) {
+        return publishDAO.allDevByPlanId(planId);
+    }
+
 }

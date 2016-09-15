@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-    <title>管理员信息-青岛宝瑞无线广告管理系统</title>
+    <title>管理员信息-青岛宝瑞液晶信息屏发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -26,26 +26,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        function edit() {
-            toValidate("editForm");
-            if (validateForm("editForm")) {
-                $.post("<%=path %>/admin/update",
-                    $("#editForm").serialize(),
-                        function(data) {
-                            if(data.result == "success") {
-                                closeWin("editWin");
-                                $.messager.alert("提示", data.message, "info", function() {
-                                    window.location.href = "<%=path %>/admin/query/${requestScope.admin.id }";
-                                });
-                            } else {
-                                $("#errMsg").html(data.message);
-                            }
-                        }
-                );
-            }
-        }
-    </script>
+    <script src="<%=path %>/js/admin/info.js"></script>
 
 
 </head>

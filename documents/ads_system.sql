@@ -215,7 +215,8 @@ CREATE TABLE t_publish(
   show_type VARCHAR(20) NOT NULL COMMENT '显示方式，包括即时显示,定时显示(定时),不定时显示(顺序)',
   start_time DATETIME COMMENT '定时播放的开始时间',
   end_time DATETIME COMMENT '定时播放的结束时间',
-  stay_time VARCHAR(10) COMMENT '停留时间,以秒为单位'
+  stay_time VARCHAR(10) COMMENT '停留时间,以秒为单位',
+  segments VARCHAR(500) COMMENT '所有时段组成的字符串'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 ALTER TABLE t_publish ADD CONSTRAINT fk_publish_device_id
@@ -229,16 +230,4 @@ FOREIGN KEY (pub_plan_id) REFERENCES t_publish_plan(id);
 
 ALTER TABLE t_publish ADD CONSTRAINT ck_publish_show_type
 CHECK (show_type in ('now', 'order', 'segment'));
-
-DROP TABLE IF EXISTS t_time_segment;
-CREATE TABLE t_time_segment(
-  id VARCHAR(128) NOT NULL PRIMARY KEY COMMENT '时段编号',
-  pub_id VARCHAR(128) NOT NULL COMMENT '计划编号',
-  start_time VARCHAR(20) NOT NULL COMMENT '开始时间',
-  end_time VARCHAR(20) NOT NULL COMMENT '结束时间',
-  queue_order int COMMENT '序号'
-);
-
-ALTER TABLE t_time_segment ADD CONSTRAINT fk_time_segment_pub_id
-FOREIGN KEY (pub_id) REFERENCES t_publish(id);
 

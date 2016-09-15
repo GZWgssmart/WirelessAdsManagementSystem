@@ -14,7 +14,6 @@
         <typeAlias type="com.gs.bean.Device" alias="device" />
         <typeAlias type="com.gs.bean.Publish" alias="publish" />
         <typeAlias type="com.gs.bean.Version" alias="version" />
-        <typeAlias type="com.gs.bean.TimeSegment" alias="timeSegment" />
         <typeAlias type="com.gs.bean.PublishPlan" alias="publishPlan" />
     </typeAliases>
 

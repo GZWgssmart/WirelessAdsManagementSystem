@@ -9,10 +9,13 @@ import java.util.List;
 public class PublishResourceDetail {
 
     private String resourceId;
+    private String resourceName;
     private int area;
     private String showType;
     private Date startTime;
+    private String startTimeStr;
     private Date endTime;
+    private String endTimeStr;
     private String stayTime;
     private String segments;
 
@@ -22,6 +25,14 @@ public class PublishResourceDetail {
 
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
+    }
+
+    public String getResourceName() {
+        return resourceName;
+    }
+
+    public void setResourceName(String resourceName) {
+        this.resourceName = resourceName;
     }
 
     public int getArea() {
@@ -48,12 +59,28 @@ public class PublishResourceDetail {
         this.startTime = startTime;
     }
 
+    public String getStartTimeStr() {
+        return startTimeStr;
+    }
+
+    public void setStartTimeStr(String startTimeStr) {
+        this.startTimeStr = startTimeStr;
+    }
+
     public Date getEndTime() {
         return endTime;
     }
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getEndTimeStr() {
+        return endTimeStr;
+    }
+
+    public void setEndTimeStr(String endTimeStr) {
+        this.endTimeStr = endTimeStr;
     }
 
     public String getStayTime() {
@@ -70,5 +97,21 @@ public class PublishResourceDetail {
 
     public void setSegments(String segments) {
         this.segments = segments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PublishResourceDetail detail = (PublishResourceDetail) o;
+
+        return resourceId.equals(detail.resourceId);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return resourceId.hashCode();
     }
 }

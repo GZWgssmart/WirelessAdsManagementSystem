@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>终端列表-青岛宝瑞无线广告管理系统</title>
+    <title>终端列表-青岛宝瑞液晶信息屏发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -24,138 +24,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        $(function() {
-            doSearch();
-        });
-
-        function add() {
-            toValidate("addForm");
-            if (validateForm("addForm")) {
-                $('#addForm').ajaxSubmit({
-                    url:'<%=path %>/device/add',
-                    type:'post',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.result == "success") {
-                            $("#addWin").window("close");
-                            dataGridReload("list");
-                            $("#addForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
-                        }
-                    }
-                });
-            }
-        }
-
-        function showEdit() {
-            var row = selectedRow("list");
-            if (row) {
-                $("#deviceGroupId").combobox({
-                    url:'<%=path %>/devgroup/list_combo/Y/' + row.deviceGroup.id,
-                    method:'get',
-                    valueField:'id',
-                    textField:'text',
-                    panelHeight:'auto'
-                });
-                $("#editForm").form("load", row);
-                openWin("editWin");
-            } else {
-                $.messager.alert("提示", "请选择需要修改的终端设备", "info");
-            }
-        }
-
-        function edit() {
-            toValidate("editForm");
-            if (validateForm("editForm")) {
-                $('#editForm').ajaxSubmit({
-                    url:'<%=path %>/device/update',
-                    type:'post',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.result == "success") {
-                            closeWin("editWin");
-                            dataGridReload("list");
-                            $("#editForm").form("clear");
-                        } else {
-                            $.messager.alert("提示", data.message, "info");
-                        }
-                    }
-                });
-            }
-        }
-
-        function inactive() {
-            var row = selectedRow("list");
-            if (row) {
-                if (row.status == 'N') {
-                    $.messager.alert("提示", "终端设备不可用,无需冻结", "info");
-                } else {
-                    $.get("<%=path %>/device/inactive?id=" + row.id,
-                            function (data) {
-                                if (data.result == "success") {
-                                    $.messager.alert("提示", data.message, "info");
-                                    dataGridReload("list");
-                                }
-                            });
-                }
-            } else {
-                $.messager.alert("提示", "请选择需要冻结的终端设备", "info");
-            }
-        }
-
-        function active() {
-            var row = selectedRow("list");
-            if (row) {
-                if (row.status == 'Y') {
-                    $.messager.alert("提示", "终端设备可用,无需激活", "info");
-                } else {
-                    $.get("<%=path %>/device/active?id=" + row.id,
-                            function (data) {
-                                if (data.result == "success") {
-                                    $.messager.alert("提示", data.message, "info");
-                                    dataGridReload("list");
-                                }
-                            });
-                }
-            } else {
-                $.messager.alert("提示", "请选择需要激活的终端设备", "info");
-            }
-        }
-
-        function doSearch() {
-            $("#list").datagrid({
-                url:'<%=path %>/device/search_pager',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function searchAll() {
-            $("#searchForm").form("clear");
-            $("#versionId").val("${versionId }");
-            $("#list").datagrid({
-                url:'<%=path %>/device/search_pager',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function refreshAll() {
-            $("#list").datagrid("reload");
-        }
-
-        function formatterDevice(value) {
-            return value.name;
-        }
-
-        function formatterVersion(value) {
-            return value.name;
-        }
-    </script>
+    <script src="<%=path %>/js/device/device_version.js"></script>
 </head>
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
@@ -179,8 +48,8 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="85">终端号</th>
-        <th field="version" width="50" formatter="formatterVersion">版本</th>
-        <th field="deviceGroup" width="60" formatter="formatterDevice">终端分组</th>
+        <th field="version" width="50" formatter="formatterName">版本</th>
+        <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
         <th field="phone" width="80">手机号</th>
         <th field="busNo" width="60">车路线</th>
