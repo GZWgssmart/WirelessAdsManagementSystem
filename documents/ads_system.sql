@@ -192,9 +192,6 @@ CREATE TABLE t_publish_plan(
 ALTER TABLE t_publish_plan ADD CONSTRAINT fk_pub_plan_version_id
 FOREIGN KEY (version_id) REFERENCES t_version(id);
 
-ALTER TABLE t_publish_plan ADD CONSTRAINT fk_pub_plan_resource_id
-FOREIGN KEY (resource_id) REFERENCES t_resource(id);
-
 ALTER TABLE t_publish_plan ADD CONSTRAINT ck_publish_type
 CHECK (type in ('one', 'multiple', 'group', 'all'));
 
