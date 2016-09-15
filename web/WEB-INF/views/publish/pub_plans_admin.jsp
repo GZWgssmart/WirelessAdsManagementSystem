@@ -97,9 +97,9 @@
                             }]">
                 </select>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-                       onclick="doSearch();">搜索</a>
+                       onclick="doSearch('${customerId }');">搜索</a>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-                       onclick="searchAll();">查询所有</a>
+                       onclick="searchAll('${customerId }');">查询所有</a>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
                        onclick="refreshAll();">刷新</a>
                 </form>

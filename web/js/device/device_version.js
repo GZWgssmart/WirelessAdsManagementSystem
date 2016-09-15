@@ -108,9 +108,9 @@ function doSearch() {
     setPagination("#list");
 }
 
-function searchAll() {
+function searchAll(versionId) {
     $("#searchForm").form("clear");
-    $("#versionId").val("${versionId }");
+    $("#versionId").val(versionId);
     $("#list").datagrid({
         url:contextPath + '/device/search_pager',
         pageSize:20,

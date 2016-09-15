@@ -4,19 +4,19 @@ $(function() {
     setPagination("#list")
 });
 
-function doSearch() {
+function doSearch(customerId) {
     $("#list").datagrid({
-        url:contextPath + '/res/search_pager_admin/${customerId }',
+        url:contextPath + '/res/search_pager_admin/' + customerId,
         pageSize:20,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
 }
 
-function searchAll() {
+function searchAll(customerId) {
     $("#searchForm").form("clear");
     $("#list").datagrid({
-        url:contextPath + '/res/search_pager_admin/${customerId }',
+        url:contextPath + '/res/search_pager_admin/' + customerId,
         pageSize:20,
         queryParams:getQueryParams("list", "searchForm")
     });
