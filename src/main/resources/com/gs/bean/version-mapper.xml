@@ -5,6 +5,7 @@
     <resultMap id="versionResultMap" type="version">
         <id property="id" column="id" />
         <result property="areaCount" column="area_count" />
+        <result property="ofileName" column="ofile_name" />
         <result property="fileName" column="file_name" />
         <result property="createTime" column="create_time" />
     </resultMap>
@@ -60,7 +61,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="version">
         <![CDATA[
-        insert into t_version(id, name, area_count, path, full_path, file_name, des, create_time) values(uuid(), #{name}, #{areaCount}, #{path}, #{fullPath}, #{fileName}, #{des}, CURRENT_TIMESTAMP)
+        insert into t_version(id, name, area_count, path, full_path, ofile_name, file_name, des, create_time)
+        values(uuid(), #{name}, #{areaCount}, #{path}, #{fullPath}, #{ofileName}, #{fileName}, #{des}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
@@ -73,6 +75,9 @@
         </if>
         <if test="fullPath != null">
             full_path = #{fullPath},
+        </if>
+        <if test="ofileName != null">
+            ofile_name = #{ofileName},
         </if>
         <if test="fileName != null">
             file_name = #{fileName},

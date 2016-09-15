@@ -11,6 +11,7 @@ public class Resource {
     private String name;
     private String path;
     private String fullPath;
+    private String ofileName;
     private String fileName;
     private long fileSize;
     private String des;
@@ -50,6 +51,14 @@ public class Resource {
 
     public void setFullPath(String fullPath) {
         this.fullPath = fullPath;
+    }
+
+    public String getOfileName() {
+        return ofileName;
+    }
+
+    public void setOfileName(String ofileName) {
+        this.ofileName = ofileName;
     }
 
     public String getFileName() {

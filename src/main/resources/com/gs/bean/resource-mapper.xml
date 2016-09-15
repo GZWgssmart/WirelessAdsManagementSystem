@@ -7,6 +7,7 @@
         <result property="name" column="name" />
         <result property="resourceTypeId" column="resource_type_id" />
         <result property="path" column="path" />
+        <result property="ofileName" column="ofile_name" />
         <result property="fileName" column="file_name" />
         <result property="des" column="des" />
         <result property="createTime" column="create_time" />
@@ -70,7 +71,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resource">
         <![CDATA[
-        insert into t_resource(id, name, resource_type_id, path, full_path, file_name, file_size, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{fileName}, #{fileSize}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
+        insert into t_resource(id, name, resource_type_id, path, full_path, ofile_name, file_name, file_size, des, customer_id, create_time)
+        values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{ofileName}, #{fileName}, #{fileSize}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
@@ -83,6 +85,9 @@
         </if>
         <if test="fullPath != null">
             full_path = #{fullPath},
+        </if>
+        <if test="ofileName != null">
+            ofile_name = #{ofileName},
         </if>
         <if test="fileName != null">
             file_name = #{fileName},

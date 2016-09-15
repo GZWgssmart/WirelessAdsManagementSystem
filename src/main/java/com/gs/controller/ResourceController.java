@@ -9,6 +9,7 @@ import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.FileUtil;
 import com.gs.common.util.PagerUtil;
+import com.gs.common.util.UUIDUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.ResourceService;
 import com.gs.service.ResourceTypeService;
@@ -52,18 +53,21 @@ public class ResourceController {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             resource.setCustomerId(customer.getId());
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                resource.setOfileName(ofileName);
                 resource.setFileName(fileName);
                 resource.setPath(FileUtil.uploadFilePath(targetFile));
                 resource.setFullPath(targetFile.getAbsolutePath());
                 resource.setFileSize(targetFile.length());
             } else {
+                resource.setOfileName("无");
                 resource.setFileName("无");
                 resource.setPath("无");
                 resource.setFullPath("无");
@@ -133,13 +137,15 @@ public class ResourceController {
             logger.info("更新资源信息");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                resource.setOfileName(ofileName);
                 resource.setFileName(fileName);
                 resource.setPath(FileUtil.uploadFilePath(targetFile));
                 resource.setFullPath(targetFile.getAbsolutePath());

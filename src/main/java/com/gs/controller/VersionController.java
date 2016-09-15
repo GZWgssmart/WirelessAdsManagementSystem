@@ -11,6 +11,7 @@ import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.FileUtil;
 import com.gs.common.util.PagerUtil;
+import com.gs.common.util.UUIDUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.ResourceService;
 import com.gs.service.ResourceTypeService;
@@ -54,7 +55,8 @@ public class VersionController {
     public ControllerResult add(Version version, MultipartFile file, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 if (FileUtil.checkExtension(fileName, VERSION_IMG_TYPE)) {
                     File targetFile = new File(FileUtil.uploadPath(session, VERSION_DIR), fileName);
                     try {
@@ -62,6 +64,7 @@ public class VersionController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    version.setOfileName(ofileName);
                     version.setFileName(fileName);
                     version.setPath(FileUtil.uploadFilePath(targetFile));
                     version.setFullPath(targetFile.getAbsolutePath());
@@ -166,13 +169,15 @@ public class VersionController {
             logger.info("更新版本信息");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 File targetFile = new File(FileUtil.uploadPath(session, VERSION_DIR), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                version.setOfileName(ofileName);
                 version.setFileName(fileName);
                 version.setPath(FileUtil.uploadFilePath(targetFile));
                 version.setFullPath(targetFile.getAbsolutePath());
