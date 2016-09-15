@@ -116,7 +116,7 @@
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
-                    <button type="button" onclick="edit();">确认</button>
+                    <button type="button" onclick="edit('${requestScope.customer.id }');">确认</button>
                 </td>
             </tr>
         </table>

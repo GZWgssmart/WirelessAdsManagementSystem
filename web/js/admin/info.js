@@ -1,6 +1,6 @@
 var contextPath = '';
 
-function edit() {
+function edit(id) {
     toValidate("editForm");
     if (validateForm("editForm")) {
         $.post(contextPath + "/admin/update",
@@ -9,7 +9,7 @@ function edit() {
                 if(data.result == "success") {
                     closeWin("editWin");
                     $.messager.alert("提示", data.message, "info", function() {
-                        window.location.href = contextPath + "/admin/query/${requestScope.admin.id }";
+                        window.location.href = contextPath + "/admin/query/" + id;
                     });
                 } else {
                     $("#errMsg").html(data.message);

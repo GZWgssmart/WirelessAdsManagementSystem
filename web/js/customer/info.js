@@ -1,6 +1,6 @@
 var contextPath = '';
 
-function edit() {
+function edit(id) {
     toValidate("editForm");
     if (validateForm("editForm")) {
         $.post(contextPath + "/customer/update",
@@ -9,7 +9,7 @@ function edit() {
                 if(data.result == "success") {
                     closeWin("editWin");
                     $.messager.alert("提示", data.message, "info", function() {
-                        window.location.href = contextPath + "/customer/query/${requestScope.customer.id }";
+                        window.location.href = contextPath + "/customer/query/" + id;
                     });
                 } else {
                     $("#errMsg").html(data.message);
