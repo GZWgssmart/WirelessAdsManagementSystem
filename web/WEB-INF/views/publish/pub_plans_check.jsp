@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>消息发布列表-青岛宝瑞液晶信息屏发布系统</title>
+    <title>发布计划列表-青岛宝瑞液晶信息屏发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>

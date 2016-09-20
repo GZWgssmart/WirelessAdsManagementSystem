@@ -43,8 +43,8 @@
             <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/dev" class="site-navi-tab">终端列表</a></p>
             <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/devgroup" class="site-navi-tab">终端分组列表</a></p>
         </div>
-        <div title="消息发布" class="site_menu">
-            <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/pub" class="site-navi-tab">消息发布列表</a></p>
+        <div title="发布计划" class="site_menu">
+            <a href="javascript:void(0);" src="<%=path %>/customer/list_page_admin/pub" class="site-navi-tab">发布计划列表</a></p>
         </div>
         <div title="系统管理" class="site_menu">
             <c:if test="${sessionScope.admin.role == 'super' }">

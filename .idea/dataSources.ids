@@ -623,6 +623,12 @@
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
+      <foreign-key id="140" parent="10" name="fk_publish_pub_plan_id1">
+        <columns>pub_plan_id</columns>
+        <ref-key>t_publish_plan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
     </database-model>
   </data-source>
 </component>
