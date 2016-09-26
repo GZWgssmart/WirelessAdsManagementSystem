@@ -11,6 +11,12 @@ $(function() {
         }
     });
     $("#list").datagrid("hideColumn", 'versionId');
+    $("#chosenResWin").window({
+            onClose:function () {
+                confirmAllRes();
+            }
+        }
+    );
 });
 
 function showAdd() {
