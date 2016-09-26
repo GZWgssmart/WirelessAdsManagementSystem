@@ -135,22 +135,22 @@
             <tr>
                 <td>驾驶员:</td>
                 <td><input type="text" name="driver" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
+                           data-options="required:false,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>手机:</td>
                 <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>
                 <td><input type="text" name="busNo" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
+                           data-options="required:false,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>车牌号:</td>
                 <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
+                           data-options="required:false,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>安装时间:</td>
@@ -197,22 +197,22 @@
             <tr>
                 <td>驾驶员:</td>
                 <td><input type="text" name="driver" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
+                           data-options="required:false,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>手机:</td>
                 <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>
                 <td><input type="text" name="busNo" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
+                           data-options="required:false,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>车牌号:</td>
                 <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true" /></td>
+                           data-options="required:false,novalidate:true" /></td>
             </tr>
             <tr>
                 <td>安装时间:</td>
