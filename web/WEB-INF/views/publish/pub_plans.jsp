@@ -241,7 +241,7 @@
         <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
            onclick="deleteRes();">删除</a>
         <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-           onclick="confirmAllRes();">确认所有资源</a>
+           onclick="confirmAllResAndClose();">确认所有资源</a>
     </div>
 </div>
 <div class="easyui-window site_win_big_wider input_big" id="resWin" style="padding:0;" data-options="title:'选择资源',resizable:false,mode:true,closed:true">

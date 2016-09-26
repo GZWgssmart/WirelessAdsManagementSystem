@@ -480,6 +480,10 @@ function confirmAllRes() {
     var data = $("#chresList").datagrid("getData");
     var details = JSON.stringify(data.rows);
     $("#resourceDetails" + currentArea).val(details);
+}
+
+function confirmAllResAndClose() {
+    confirmAllRes();
     closeWin("chosenResWin");
 }
 
