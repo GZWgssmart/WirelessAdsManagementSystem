@@ -41,6 +41,7 @@
         </div>
         <div title="终端管理" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/device/list_page" class="site-navi-tab">终端列表</a></p>
+            <%--
             <ul class="easyui-tree" style="padding-bottom:10px;">
                 <li>
                     <span>终端版本</span>
@@ -53,6 +54,7 @@
                     </ul>
                 </li>
             </ul>
+            --%>
             <a href="javascript:void(0);" src="<%=path %>/devgroup/list_page" class="site-navi-tab">终端分组列表</a></p>
         </div>
         <div title="发布计划" class="site_menu">
