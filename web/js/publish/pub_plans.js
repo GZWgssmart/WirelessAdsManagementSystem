@@ -1,6 +1,7 @@
 var contextPath = '';
 
 var planId = "none";
+var addOrDeleteRes = false;
 
 $(function() {
     setPagination("#list");
@@ -21,6 +22,7 @@ $(function() {
 
 function showAdd() {
     planId = 'none';
+    addOrDeleteRes = false;
     $("#addAreaR").html("");
     $("#addVersionImg").attr("src", "");
     $("#addForm").form("clear");
@@ -79,6 +81,7 @@ function showEdit() {
     var row = selectedRow("list");
     if (row) {
         planId = row.id;
+        addOrDeleteRes = false;
         $("#editAreaR").html("");
         $("#editForm").form("load", row);
         $("#editArea").combobox({
@@ -376,7 +379,7 @@ function showChosenResWin(planId, area) {
     currentArea = area;
     var rowsJSON = {'rows':[]};
     var rowsData = $("#resourceDetails" + area).val();
-    if (planId != 'none' && (rowsData == '' || rowsData == '[]')) {
+    if (planId != 'none' && !addOrDeleteRes) {
         $("#chresList").datagrid({
             url:contextPath + '/publish/search_chosen_res/' + planId + "/" + area,
             method:'get'
@@ -441,6 +444,7 @@ function confirmAddResourceToArea() {
         $("#chresList").datagrid("loadData", rowsJSON);
         $("#detailForm").form("clear");
         $("#addSegmentForm").form("clear");
+        addOrDeleteRes = true;
         closeWin("detailWin");
         closeWin("resWin");
     }
@@ -471,6 +475,7 @@ function deleteRes() {
     if (row) {
         var index = $("#chresList").datagrid("getRowIndex", row);
         $('#chresList').datagrid('deleteRow', index);
+        addOrDeleteRes = true;
     } else {
         $.messager.alert("提示", "请选择需要删除的资源", "info");
     }
