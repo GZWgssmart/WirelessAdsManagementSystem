@@ -141,9 +141,12 @@
                                onclick="showDevWin();">选择设备</a></td>
                     </tr>
                     <tr>
+                        <td></td>
+                        <td><img id="addVersionImg"/></td>
+                    </tr>
+                    <tr>
                         <td>区域资源:</td>
                         <td id="addAreaR"></td>
-                        <td><img id="addVersionImg"/></td>
                     </tr>
 
                     <tr>
@@ -183,9 +186,12 @@
                                onclick="showDevWin();">选择设备</a></td>
                     </tr>
                     <tr>
+                        <td></td>
+                        <td><img id="editVersionImg"/></td>
+                    </tr>
+                    <tr>
                         <td>区域资源:</td>
                         <td id="editAreaR"></td>
-                        <td><img id="editVersionImg"/></td>
                     </tr>
 
                     <tr>
