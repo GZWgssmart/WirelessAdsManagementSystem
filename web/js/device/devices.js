@@ -6,7 +6,7 @@ $(function() {
 
 function showAdd() {
     $("#addDeviceGroupId").combobox({
-        url:contextPath + '/devgroup/list_combo/all/add',
+        url:contextPath + '/devgroup/list_combo/Y/add',
         method:'get',
         valueField:'id',
         textField:'text',
