@@ -23,7 +23,6 @@
     <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
-    <script src="<%=path %>/js/file_type.js"></script>
 
     <script src="<%=path %>/js/resource/resources.js"></script>
 </head>
