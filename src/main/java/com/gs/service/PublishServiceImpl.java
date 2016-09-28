@@ -7,6 +7,7 @@ import com.gs.dao.PublishDAO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -132,4 +133,32 @@ public class PublishServiceImpl implements PublishService {
         return publishDAO.allDevByPlanId(planId);
     }
 
+    @Override
+    public List<Publish> queryResByPager(Pager pager, String planId) {
+        // 开始剔除已经排好序的重复的资源
+        List<Publish> publishes = publishDAO.queryResByPager(pager, planId);
+        if (publishes != null && publishes.size() > 0) {
+            Publish currentPublish = publishes.get(0);
+            Iterator<Publish> ite = publishes.iterator();
+            int i = 0;
+            while (ite.hasNext()) {
+                Publish p = ite.next();
+                if (i == 0) {
+                    i++;
+                    continue;
+                }
+                if (p.getResource().getId().equals(currentPublish.getResource().getId())) {
+                    ite.remove();
+                } else {
+                    currentPublish = p;
+                }
+            }
+        }
+        return publishes;
+    }
+
+    @Override
+    public int countRes(String planId) {
+        return publishDAO.countRes(planId);
+    }
 }

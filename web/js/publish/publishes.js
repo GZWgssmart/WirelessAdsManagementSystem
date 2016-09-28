@@ -64,3 +64,10 @@ function showAlreadySegments(segments) {
     }
 }
 
+function showAllRes(planId) {
+    $("#resList").datagrid({
+        url:contextPath + '/publish/search_res_pager/' + planId
+    });
+    openWinFitPos("allResWin");
+}
+

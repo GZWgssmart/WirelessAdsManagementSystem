@@ -35,4 +35,8 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public List<Publish> allDevByPlanId(String planId);
 
+    public List<Publish> queryResByPager(Pager pager, String planId);
+
+    public int countRes(String planId);
+
 }

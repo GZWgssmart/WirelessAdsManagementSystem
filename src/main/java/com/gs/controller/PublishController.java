@@ -68,6 +68,22 @@ public class PublishController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "search_res_pager/{planId}", method = RequestMethod.GET)
+    public Pager4EasyUI<Publish> searchResPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("分页显示消息发布里的所有资源");
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            int total = publishService.countRes(planId);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<Publish> publishs = publishService.queryResByPager(pager, planId);
+            return new Pager4EasyUI<Publish>(pager.getTotalRecords(), publishs);
+        } else {
+            logger.info("客户未登录，不能分页显示消息发布里的所有资源");
+            return null;
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "search_chosen_res/{planId}/{area}", method = RequestMethod.GET)
     public Pager4EasyUI<PublishResourceDetail> searchChosenPager(@PathVariable("planId") String planId, @PathVariable("area") int area, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {

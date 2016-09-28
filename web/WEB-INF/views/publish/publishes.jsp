@@ -56,6 +56,8 @@
 <div id="tb">
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
        onclick="showSegments();">查看时段</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+       onclick="showAllRes('${planId }');">查看所有资源</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="publish">
             终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>
@@ -68,6 +70,30 @@
                onclick="refreshAll();">刷新</a>
         </form>
     </div>
+</div>
+
+<div class="easyui-window site_win_big_wider input_big" id="allResWin" style="padding:0;" data-options="title:'所有资源',resizable:false,mode:true,closed:true">
+    <table id="resList" class="easyui-datagrid" style="height:100%;"
+           data-options="
+        method:'get',
+				rownumbers:true,
+				singleSelect:true,
+				autoRowHeight:false,
+				pagination:true,
+				border:false,
+				pageSize:20">
+        <thead>
+        <tr>
+            <th field="id" checkbox="true" width="50">用户ID</th>
+            <th field="resource" width="100" formatter="formatterName">资源名称</th>
+            <th field="area" width="60" formatter="formatterArea">显示区域</th>
+            <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
+            <th field="startTime" width="120" formatter="formatterDate">开始日期</th>
+            <th field="endTime" width="120" formatter="formatterDate">结束日期</th>
+            <th field="stayTime" width="70">停留时间(S)</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 <div class="easyui-window site_win_normal_wider input_small" id="addSegment" data-options="title:'所有时段',resizable:false,mode:true,closed:true">
