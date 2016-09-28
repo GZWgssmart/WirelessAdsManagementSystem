@@ -394,6 +394,9 @@ function showChosenResWin(planId, area) {
 }
 
 function showResWin() {
+    $("#resList").datagrid({
+        url:contextPath + '/res/search_pager'
+    });
     openWinFitPos("resWin");
 }
 

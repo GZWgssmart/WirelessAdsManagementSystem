@@ -253,7 +253,6 @@
 <div class="easyui-window site_win_big_wider input_big" id="resWin" style="padding:0;" data-options="title:'选择资源',resizable:false,mode:true,closed:true">
     <table id="resList" class="easyui-datagrid" toolbar="#restb" style="height:100%;"
            data-options="
-        url:'<%=path %>/res/search_pager',
         method:'get',
 				rownumbers:true,
 				singleSelect:true,
