@@ -49,6 +49,7 @@
         <th field="startTime" width="120" formatter="formatterDate">开始日期</th>
         <th field="endTime" width="120" formatter="formatterDate">结束日期</th>
         <th field="stayTime" width="70">停留时间(S)</th>
+        <th field="showCount" width="70">播放次数</th>
         <th field="segments" width="200" formatter="formatterLong">时段</th>
     </tr>
     </thead>
@@ -91,6 +92,7 @@
             <th field="startTime" width="120" formatter="formatterDate">开始日期</th>
             <th field="endTime" width="120" formatter="formatterDate">结束日期</th>
             <th field="stayTime" width="70">停留时间(S)</th>
+            <th field="showCount" width="70">播放次数</th>
         </tr>
         </thead>
     </table>

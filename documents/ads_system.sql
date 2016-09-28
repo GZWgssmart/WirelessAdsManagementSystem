@@ -215,6 +215,7 @@ CREATE TABLE t_publish(
   start_time DATETIME COMMENT '定时播放的开始时间',
   end_time DATETIME COMMENT '定时播放的结束时间',
   stay_time VARCHAR(10) COMMENT '停留时间,以秒为单位',
+  show_count VARCHAR(10) COMMENT '播放次数',
   segments VARCHAR(500) COMMENT '所有时段组成的字符串'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 

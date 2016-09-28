@@ -26,8 +26,6 @@ function showAdd() {
     $("#addAreaR").html("");
     $("#addVersionImg").attr("src", "");
     $("#addForm").form("clear");
-    $("#stayTime").textbox({"required":false,"novalidate":true});
-    $("#stayTimeTR").attr("style", "display:none");
     $("#confirmSeg").removeAttr("disabled");
     $("#cancelSeg").removeAttr("disabled");
     $("#moreSeg").removeAttr("disabled");
@@ -403,10 +401,13 @@ function showResWin() {
 function addResourceToArea() {
     var row = selectedRow("resList");
     if (row) {
+        hideStayTime();
+        hideShowCount();
         if (row.status == 'Y') {
             if (row.resourceType.name == '图片' || row.resourceType.name == '文字') {
-                $("#stayTime").textbox({"required":true,"novalidate":true});
-                $("#stayTimeTR").attr("style", "");
+                showStayTime();
+            } else if (row.resourceType.name == '视频') {
+                showShowCount();
             }
             $("#resourceId").val(row.id);
             openWinFitPos("detailWin");
@@ -428,7 +429,8 @@ function confirmAddResourceToArea() {
         if (resRow) {
             var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",'
                 + '"area":' + currentArea + ',"showType":"' + $("#showType").combobox("getValue") + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
-                + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue") + '","segments":"' + getSegments() + '"}';
+                + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue")
+                + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + getSegments() + '"}';
             var detailJSON = JSON.parse(detail);
             rowsJSON.rows.push(detailJSON);
         } else {
@@ -437,6 +439,7 @@ function confirmAddResourceToArea() {
             chresRow.startTimeStr = $("#startTimeStr").datebox("getValue");
             chresRow.endTimeStr = $("#endTimeStr").datebox("getValue");
             chresRow.stayTime = $("#stayTime").textbox("getValue");
+            chresRow.showCount = $("#showCount").textbox("getValue");
             chresRow.segments = getSegments();
             $.each(rowsJSON.rows, function (index, data) {
                 if (data.resourceId == chresRow.resourceId) {
@@ -458,19 +461,43 @@ function showResEdit() {
     if (row) {
         $("#resourceId").val(row.id);
         $("#detailForm").form("load", row);
-        $("#stayTime").textbox({"required":false,"novalidate":true});
-        $("#stayTimeTR").attr("style", "display:none");
+        hideStayTime();
+        hideShowCount();
         if (row.stayTime != '') {
-            $("#stayTime").textbox({"required":true,"novalidate":true});
-            $("#stayTimeTR").attr("style", "");
+            showStayTime();
         } else {
             $("#stayTime").textbox("setValue", "");
+        }
+        if (row.showCount != '') {
+            showShowCount();
+        } else {
+            $("#showCount").textbox("setValue", "");
         }
         $("#segments").val(row.segments);
         openWinFitPos("detailWin");
     } else {
         $.messager.alert("提示", "请选择需要修改的资源", "info");
     }
+}
+
+function hideStayTime() {
+    $("#stayTime").textbox({"required":false,"novalidate":true});
+    $("#stayTimeTR").attr("style", "display:none");
+}
+
+function showStayTime() {
+    $("#stayTime").textbox({"required":true,"novalidate":true});
+    $("#stayTimeTR").attr("style", "");
+}
+
+function hideShowCount() {
+    $("#showCount").textbox({"required":false,"novalidate":true});
+    $("#showCountTR").attr("style", "display:none");
+}
+
+function showShowCount() {
+    $("#showCount").textbox({"required":true,"novalidate":true});
+    $("#showCountTR").attr("style", "");
 }
 
 function deleteRes() {

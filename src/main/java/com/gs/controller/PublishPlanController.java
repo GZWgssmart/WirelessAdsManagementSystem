@@ -100,6 +100,7 @@ public class PublishPlanController {
                 }
                 publish.setEndTime(detail.getEndTime());
                 publish.setStayTime(detail.getStayTime());
+                publish.setShowCount(detail.getShowCount());
                 publish.setSegments(detail.getSegments());
                 publishs.add(publish);
             }

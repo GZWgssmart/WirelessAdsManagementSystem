@@ -235,6 +235,7 @@
             <th field="startTimeStr" width="120" formatter="formatterDate">开始日期</th>
             <th field="endTimeStr" width="120" formatter="formatterDate">结束日期</th>
             <th field="stayTime" width="70">停留时间(S)</th>
+            <th field="showCount" width="70">播放次数</th>
             <th field="segments" width="150">时段</th>
         </tr>
         </thead>
@@ -338,6 +339,11 @@
             <tr id="stayTimeTR" style="display:none">
                 <td>停留时间(S):</td>
                 <td><input id="stayTime" type="text" name="stayTime" class="easyui-validatebox easyui-numberbox"/>
+                </td>
+            </tr>
+            <tr id="showCountTR" style="display:none">
+                <td>播放次数:</td>
+                <td><input id="showCount" type="text" name="showCount" class="easyui-validatebox easyui-numberbox"/>
                 </td>
             </tr>
             <tr>

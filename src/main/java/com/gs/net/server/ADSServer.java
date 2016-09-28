@@ -339,10 +339,11 @@ public class ADSServer {
                         } else {
                             publishServer.setSegments("");
                         }
-                        publishServer.setShowcount(0); // showCount还没做
+                        String showCount = publish.getShowCount();
+                        publishServer.setShowcount(showCount != null && !showCount.equals("") ? Integer.valueOf(showCount) : 0); // showCount还没做
                         publishServer.setShowtype(publish.getShowType());
                         String stayTime = publish.getStayTime();
-                        publishServer.setStaytime(stayTime != null && !stayTime.equals("") ? Integer.valueOf(publish.getStayTime()) : 0);
+                        publishServer.setStaytime(stayTime != null && !stayTime.equals("") ? Integer.valueOf(stayTime) : 0);
                         publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
                         long delay = 0;
                         if (autoRun) {

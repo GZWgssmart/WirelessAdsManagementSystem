@@ -12,6 +12,7 @@
         <result property="startTime" column="start_time" />
         <result property="endTime" column="end_time" />
         <result property="stayTime" column="stay_time" />
+        <result property="showCount" column="show_count" />
         <result property="segments" column="segments" />
         <result property="deviceId" column="device_id" />
         <association property="device" javaType="com.gs.bean.Device">
@@ -131,18 +132,18 @@
             select uuid() from dual
         </selectKey>
         <![CDATA[
-        insert into t_publish(id, device_id, resource_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time, segments)
-        values(#{id}, #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{segments})
+        insert into t_publish(id, device_id, resource_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time, show_count, segments)
+        values(#{id}, #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{show_count}, #{segments})
         ]]>
     </insert>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
         <![CDATA[
-        insert into t_publish(id, device_id, resource_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time, segments) VALUES
+        insert into t_publish(id, device_id, resource_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time, show_count, segments) VALUES
         ]]>
         <foreach collection="list" item="item" index="index" separator=",">
             <![CDATA[
-            (uuid(), #{item.deviceId}, #{item.resourceId}, #{item.publishLog}, #{item.publishPlanId}, #{item.area}, #{item.showType}, #{item.startTime}, #{item.endTime}, #{item.stayTime}, #{item.segments})
+            (uuid(), #{item.deviceId}, #{item.resourceId}, #{item.publishLog}, #{item.publishPlanId}, #{item.area}, #{item.showType}, #{item.startTime}, #{item.endTime}, #{item.stayTime}, #{item.showCount}, #{item.segments})
             ]]>
         </foreach>
 

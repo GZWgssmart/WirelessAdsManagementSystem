@@ -21,6 +21,7 @@ public class Publish {
     private Date endTime;
     private String endTimeStr;
     private String stayTime;
+    private String showCount;
     private String segments;
     private Date publishTime;
     private String publishLog;
@@ -121,6 +122,14 @@ public class Publish {
 
     public void setStayTime(String stayTime) {
         this.stayTime = stayTime;
+    }
+
+    public String getShowCount() {
+        return showCount;
+    }
+
+    public void setShowCount(String showCount) {
+        this.showCount = showCount;
     }
 
     public String getSegments() {

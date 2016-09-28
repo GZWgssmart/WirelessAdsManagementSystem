@@ -17,6 +17,7 @@ public class PublishResourceDetail {
     private Date endTime;
     private String endTimeStr;
     private String stayTime;
+    private String showCount;
     private String segments;
 
     public String getResourceId() {
@@ -89,6 +90,14 @@ public class PublishResourceDetail {
 
     public void setStayTime(String stayTime) {
         this.stayTime = stayTime;
+    }
+
+    public String getShowCount() {
+        return showCount;
+    }
+
+    public void setShowCount(String showCount) {
+        this.showCount = showCount;
     }
 
     public String getSegments() {
