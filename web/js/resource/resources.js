@@ -4,17 +4,6 @@ $(function() {
     setPagination("#list")
 });
 
-function expectedFileType(id) {
-    var resType = $('#' + id).combobox("getText");
-    var types;
-    $.each(fileTypes, function(index, data) {
-        if (resType == data.name) {
-            types = data.value;
-        }
-    });
-    return types;
-}
-
 function add() {
     toValidate("addForm");
     if (validateForm("addForm")) {
