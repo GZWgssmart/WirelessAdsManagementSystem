@@ -84,24 +84,9 @@ public class PublishPlanController {
         List<Publish> publishs = new ArrayList<Publish>();
         for (String deviceId : deviceIds) {
             for (PublishResourceDetail detail : details) {
-                Publish publish = new Publish();
-                publish.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
+                Publish publish = copyFromDetail(detail);
                 publish.setDeviceId(deviceId);
-                publish.setResourceId(detail.getResourceId());
                 publish.setPublishPlanId(pp.getId());
-                publish.setArea(detail.getArea());
-                publish.setShowType(detail.getShowType());
-                if (detail.getStartTimeStr() != null) {
-                    detail.setStartTime(DateParseUtil.parseDate(detail.getStartTimeStr(), "yyyy-MM-dd"));
-                }
-                publish.setStartTime(detail.getStartTime());
-                if (detail.getEndTimeStr() != null) {
-                    detail.setEndTime(DateParseUtil.parseDate(detail.getEndTimeStr(), "yyyy-MM-dd"));
-                }
-                publish.setEndTime(detail.getEndTime());
-                publish.setStayTime(detail.getStayTime());
-                publish.setShowCount(detail.getShowCount());
-                publish.setSegments(detail.getSegments());
                 publishs.add(publish);
             }
         }
@@ -110,6 +95,26 @@ public class PublishPlanController {
         publishPlan.setNotFinishCount(publishs.size());
         publishPlan.setFinishCount(0);
         publishPlanService.updateCount(publishPlan);
+    }
+
+    private Publish copyFromDetail(PublishResourceDetail detail) {
+        Publish publish = new Publish();
+        publish.setPublishLog(PublishLog.NOT_SUBMIT_TO_CHECK);
+        publish.setResourceId(detail.getResourceId());
+        publish.setArea(detail.getArea());
+        publish.setShowType(detail.getShowType());
+        if (detail.getStartTimeStr() != null) {
+            detail.setStartTime(DateParseUtil.parseDate(detail.getStartTimeStr(), "yyyy-MM-dd"));
+        }
+        publish.setStartTime(detail.getStartTime());
+        if (detail.getEndTimeStr() != null) {
+            detail.setEndTime(DateParseUtil.parseDate(detail.getEndTimeStr(), "yyyy-MM-dd"));
+        }
+        publish.setEndTime(detail.getEndTime());
+        publish.setStayTime(detail.getStayTime());
+        publish.setShowCount(detail.getShowCount());
+        publish.setSegments(detail.getSegments());
+        return publish;
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
