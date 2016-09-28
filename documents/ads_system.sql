@@ -3,7 +3,7 @@ DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
 USE ads_system;
 
---t_admin管理员表
+/**t_admin管理员表*/
 DROP TABLE IF EXISTS t_admin;
 CREATE TABLE t_admin(
   id VARCHAR(128) PRIMARY KEY COMMENT '管理员id',
@@ -26,7 +26,7 @@ CHECK (role in('super', 'normal'));
 
 INSERT INTO t_admin(id, email, password, name, phone, role) VALUES (uuid(), 'admin@126.com', '6khXbzC+FmmXFpnAmtBclA==', 'admin', '18888888888', 'super');
 
---t_customer客户信息表
+/**t_customer客户信息表*/
 DROP TABLE IF EXISTS t_customer;
 CREATE TABLE t_customer (
   id VARCHAR(128) PRIMARY KEY COMMENT '客户id',
@@ -44,18 +44,18 @@ CREATE TABLE t_customer (
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '客户是否在可用状态'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
---为last_update_by_role添加检查约束,只能是admin或self
+/**为last_update_by_role添加检查约束,只能是admin或self*/
 ALTER TABLE t_customer ADD CONSTRAINT ck_customer_last_update_by_role
 CHECK(last_update_by_role in ('admin', 'self'));
 
---如果last_update_by_role为admin,则说明由管理员修改了客户信息,此时需要记录管理员id到last_update_by_admin字段
+/**如果last_update_by_role为admin,则说明由管理员修改了客户信息,此时需要记录管理员id到last_update_by_admin字段*/
 ALTER TABLE t_customer ADD CONSTRAINT fk_last_update_by_admin
 FOREIGN KEY(last_update_by_admin) REFERENCES t_admin(id);
 
 ALTER TABLE t_customer ADD CONSTRAINT ck_customer_status
 CHECK (status in ('Y', 'N'));
 
---t_resource_type资源类型表
+/**t_resource_type资源类型表*/
 DROP TABLE IF EXISTS t_resource_type;
 CREATE TABLE t_resource_type (
   id VARCHAR(128) PRIMARY KEY COMMENT '资源类型id',
@@ -69,7 +69,7 @@ CREATE TABLE t_resource_type (
 ALTER TABLE t_resource_type ADD CONSTRAINT ck_resource_type_status
 CHECK (status in ('Y', 'N'));
 
---t_resource资源表,每个用户的资源都不一样
+/**t_resource资源表,每个用户的资源都不一样*/
 DROP TABLE IF EXISTS t_resource;
 CREATE TABLE t_resource(
   id VARCHAR(128) PRIMARY KEY COMMENT '资源id',
@@ -112,7 +112,7 @@ CREATE TABLE t_version(
 ALTER TABLE t_version ADD CONSTRAINT ck_version_status
 CHECK (status in ('Y', 'N'));
 
---t_device_group终端设备分组信息表,每个客户都可以有多个分组
+/**t_device_group终端设备分组信息表,每个客户都可以有多个分组*/
 DROP TABLE IF EXISTS t_device_group;
 CREATE TABLE t_device_group(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端分组',
@@ -129,7 +129,7 @@ FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 ALTER TABLE t_device_group ADD CONSTRAINT ck_device_group_status
 CHECK (status in ('Y', 'N'));
 
---t_device终端设备表,每个客户可以有多个终端设备
+/**t_device终端设备表,每个客户可以有多个终端设备*/
 DROP TABLE IF EXISTS t_device;
 CREATE TABLE t_device(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备id',
@@ -166,7 +166,7 @@ CHECK (status in ('Y', 'N'));
 ALTER TABLE t_device ADD CONSTRAINT ck_device_online
 CHECK (online in ('Y', 'N'));
 
---t_publish_plan发布计划表,三种发布计划，单个终端,分组终端和全部终端
+/**t_publish_plan发布计划表,三种发布计划，单个终端,分组终端和全部终端*/
 DROP TABLE IF EXISTS t_publish_plan;
 CREATE TABLE t_publish_plan(
   id VARCHAR(128) PRIMARY KEY COMMENT '发布计划编号',
@@ -201,7 +201,7 @@ CHECK (check_status in ('not_submit', 'checking', 'checked', 'finish'));
 ALTER TABLE t_publish_plan ADD CONSTRAINT ck_publish_plan_status
 CHECK (status in ('Y', 'N'));
 
---t_publish设备资源表,不同的资源下发到不同的设备
+/**t_publish设备资源表,不同的资源下发到不同的设备*/
 DROP TABLE IF EXISTS t_publish;
 CREATE TABLE t_publish(
   id VARCHAR(128) PRIMARY KEY COMMENT '终端设备与资源关联id',
