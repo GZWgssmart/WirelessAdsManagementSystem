@@ -441,7 +441,7 @@ function confirmAddResourceToArea() {
             chresRow.endTimeStr = $("#endTimeStr").datebox("getValue");
             chresRow.stayTime = $("#stayTime").textbox("getValue");
             chresRow.showCount = $("#showCount").textbox("getValue");
-            chresRow.segments = getSegments();
+            chresRow.segments = $("#segments").val();
             rowsJSON.rows[chresRowindex] = chresRow;
         }
         $("#chresList").datagrid("loadData", rowsJSON);

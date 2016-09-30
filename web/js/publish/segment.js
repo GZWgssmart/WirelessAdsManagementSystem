@@ -30,6 +30,7 @@ function showAlreadySegments(segments) {
 }
 
 function confirmSegment() {
+    $("#segments").val(getSegments());
     closeWin("addSegment");
 }
 

@@ -7,17 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/PublishPlanServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/PublishPlanServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/service/PublishServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/service/PublishServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/config/mybatis.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/config/mybatis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/pub_plans.js" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/publishes.js" afterPath="$PROJECT_DIR$/web/js/publish/publishes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/segment.js" afterPath="$PROJECT_DIR$/web/js/publish/segment.js" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,8 +45,8 @@
       <file leaf-file-name="pub_plans.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="234" column="27" selection-start-line="234" selection-start-column="23" selection-end-line="234" selection-end-column="27" />
+            <state relative-caret-position="78">
+              <caret line="313" column="27" selection-start-line="313" selection-start-column="19" selection-end-line="313" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -71,26 +62,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pub_plans.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pub_plans.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/js/publish/pub_plans.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="443" column="43" selection-start-line="443" selection-start-column="32" selection-end-line="443" selection-end-column="43" />
+            <state relative-caret-position="102">
+              <caret line="443" column="52" selection-start-line="443" selection-start-column="52" selection-end-line="443" selection-end-column="52" />
               <folding>
-                <marker date="1475206455000" expanded="true" signature="12420:12426" ph="&amp;nbsp;" />
-                <marker date="1475206455000" expanded="true" signature="12426:12432" ph="&amp;nbsp;" />
-                <marker date="1475206455000" expanded="true" signature="12432:12438" ph="&amp;nbsp;" />
-                <marker date="1475206455000" expanded="true" signature="12438:12444" ph="&amp;nbsp;" />
+                <marker date="1475207245000" expanded="true" signature="12420:12426" ph="&amp;nbsp;" />
+                <marker date="1475207245000" expanded="true" signature="12426:12432" ph="&amp;nbsp;" />
+                <marker date="1475207245000" expanded="true" signature="12432:12438" ph="&amp;nbsp;" />
+                <marker date="1475207245000" expanded="true" signature="12438:12444" ph="&amp;nbsp;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="segment.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="segment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/publish/segment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-126">
-              <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -244,7 +235,6 @@
         <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/publishes.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" />
-        <option value="$PROJECT_DIR$/web/js/publish/segment.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/service/PublishPlanServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" />
@@ -253,6 +243,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/bean/PublishResourceDetail.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/config/mybatis.xml" />
+        <option value="$PROJECT_DIR$/web/js/publish/segment.js" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans.js" />
       </list>
     </option>
@@ -1156,12 +1147,12 @@
       <workItem from="1474878962646" duration="536000" />
       <workItem from="1474879680730" duration="154000" />
       <workItem from="1474879910338" duration="48000" />
-      <workItem from="1474879979537" duration="39889000" />
+      <workItem from="1474879979537" duration="40572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="874074000" />
+    <option name="totallyTimeSpent" value="874757000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1174,11 +1165,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33773863" sideWeight="0.53311795" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.47134787" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32892805" sideWeight="0.47134787" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1717,32 +1708,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/publish/segment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="234" column="27" selection-start-line="234" selection-start-column="23" selection-end-line="234" selection-end-column="27" />
+        <state relative-caret-position="78">
+          <caret line="313" column="27" selection-start-line="313" selection-start-column="19" selection-end-line="313" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/publish/pub_plans.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="443" column="43" selection-start-line="443" selection-start-column="32" selection-end-line="443" selection-end-column="43" />
+        <state relative-caret-position="102">
+          <caret line="443" column="52" selection-start-line="443" selection-start-column="52" selection-end-line="443" selection-end-column="52" />
           <folding>
-            <marker date="1475206455000" expanded="true" signature="12420:12426" ph="&amp;nbsp;" />
-            <marker date="1475206455000" expanded="true" signature="12426:12432" ph="&amp;nbsp;" />
-            <marker date="1475206455000" expanded="true" signature="12432:12438" ph="&amp;nbsp;" />
-            <marker date="1475206455000" expanded="true" signature="12438:12444" ph="&amp;nbsp;" />
+            <marker date="1475207245000" expanded="true" signature="12420:12426" ph="&amp;nbsp;" />
+            <marker date="1475207245000" expanded="true" signature="12426:12432" ph="&amp;nbsp;" />
+            <marker date="1475207245000" expanded="true" signature="12432:12438" ph="&amp;nbsp;" />
+            <marker date="1475207245000" expanded="true" signature="12438:12444" ph="&amp;nbsp;" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/publish/segment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
