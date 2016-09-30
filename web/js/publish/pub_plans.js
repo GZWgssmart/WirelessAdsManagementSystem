@@ -29,7 +29,6 @@ function showAdd() {
     $("#confirmSeg").removeAttr("disabled");
     $("#cancelSeg").removeAttr("disabled");
     $("#moreSeg").removeAttr("disabled");
-    $("input[id*='resourceDetails']").val("");
     openWinFitPos('addWin');
 }
 
@@ -63,7 +62,7 @@ function getResourceDetails() {
     var resourceDetails = "";
     for (var i = 0; i < detailInputs.size() - 1; i++) {
         var oDetail = $("#resourceDetails" + (i + 1)).val();
-        if (oDetail != undefined && oDetail != '') {
+        if (oDetail != undefined && oDetail != '[]') {
             var detail = oDetail.substring(1, oDetail.length - 1);
             if (resourceDetails == "") {
                 resourceDetails = detail;
@@ -99,7 +98,6 @@ function showEdit() {
         $("#confirmSeg").removeAttr("disabled");
         $("#cancelSeg").removeAttr("disabled");
         $("#moreSeg").removeAttr("disabled");
-        $("input[id*='resourceDetails']").val("");
         showArea(planId, row.versionId);
         openWin("editWin");
     } else {
@@ -345,6 +343,7 @@ function showArea(planId, versionId) {
         function (data) {
             $("#addAreaR").html("");
             $("#editAreaR").html("");
+            $("#resourceDetailDiv").html("");
             $.get(contextPath + "/version/querybyid/" + versionId, function (data) {
                 if (data != null && data != "") {
                     $("#addVersionImg").attr("src", "/" + data);
@@ -359,13 +358,13 @@ function showArea(planId, versionId) {
                     $("#editAreaR").append("<br />");
                 }
                 var str = "<a href='javascript:;' onclick='showChosenResWin(\"" + planId + "\", " + item.id + ")'>区域" +  item.id + "资源</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                $("#addAreaR").append(str);
+                $("#editAreaR").append(str);
+                $("#resourceDetailDiv").append('<input id="resourceDetails' + (idx + 1) + '" type="hidden" name="resourceDetails' + (idx + 1) + '" />');
                 $.get(contextPath + '/publish/search_chosen_res/' + planId + "/" + item.id, function (data) {
                     var details = JSON.stringify(data.rows);
                     $("#resourceDetails" + item.id).val(details);
                 });
-                $("#addAreaR").append(str);
-                $("#editAreaR").append(str);
-                $("#addForm").append('<input id="resourceDetails' + (idx + 1) + '" type="hidden" name="resourceDetails' + (idx + 1) + '" />');
             });
         }, "json"
     );
@@ -423,29 +422,27 @@ function confirmAddResourceToArea() {
     toValidate("detailForm");
     if (validateForm("detailForm")) {
         var resRow = selectedRow("resList");
+        var chresRow = selectedRow("chresList");
         var resourceId = '';
         var resourceName = '';
         var rowsJSON = $("#chresList").datagrid("getData");
-        if (resRow) {
+        if (resRow) { // 否则如果是添加资源
             var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",'
                 + '"area":' + currentArea + ',"showType":"' + $("#showType").combobox("getValue") + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
                 + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue")
                 + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + getSegments() + '"}';
             var detailJSON = JSON.parse(detail);
             rowsJSON.rows.push(detailJSON);
-        } else {
-            var chresRow = selectedRow("chresList");
+            $('#resList').datagrid('clearSelections');
+        } else if (chresRow) { // 如果是修改已经添加的资源
+            var chresRowindex = $("#chresList").datagrid("getRowIndex", chresRow);
             chresRow.showType = $("#showType").combobox("getValue");
             chresRow.startTimeStr = $("#startTimeStr").datebox("getValue");
             chresRow.endTimeStr = $("#endTimeStr").datebox("getValue");
             chresRow.stayTime = $("#stayTime").textbox("getValue");
             chresRow.showCount = $("#showCount").textbox("getValue");
             chresRow.segments = getSegments();
-            $.each(rowsJSON.rows, function (index, data) {
-                if (data.resourceId == chresRow.resourceId) {
-                    rowsJSON.rows[index] = chresRow;
-                }
-            });
+            rowsJSON.rows[chresRowindex] = chresRow;
         }
         $("#chresList").datagrid("loadData", rowsJSON);
         $("#detailForm").form("clear");
@@ -459,19 +456,15 @@ function confirmAddResourceToArea() {
 function showResEdit() {
     var row = selectedRow("chresList");
     if (row) {
-        $("#resourceId").val(row.id);
-        $("#detailForm").form("load", row);
         hideStayTime();
         hideShowCount();
-        if (row.stayTime != '') {
+        $("#resourceId").val(row.id);
+        $("#detailForm").form("load", row);
+        if (row.stayTime != null && row.stayTime != '') {
             showStayTime();
-        } else {
-            $("#stayTime").textbox("setValue", "");
         }
-        if (row.showCount != '') {
+        if (row.showCount != null && row.showCount != '') {
             showShowCount();
-        } else {
-            $("#showCount").textbox("setValue", "");
         }
         $("#segments").val(row.segments);
         openWinFitPos("detailWin");
@@ -483,6 +476,7 @@ function showResEdit() {
 function hideStayTime() {
     $("#stayTime").textbox({"required":false,"novalidate":true});
     $("#stayTimeTR").attr("style", "display:none");
+    $("#stayTime").textbox("setValue", "");
 }
 
 function showStayTime() {
@@ -493,6 +487,7 @@ function showStayTime() {
 function hideShowCount() {
     $("#showCount").textbox({"required":false,"novalidate":true});
     $("#showCountTR").attr("style", "display:none");
+    $("#showCount").textbox("setValue", "");
 }
 
 function showShowCount() {
@@ -522,24 +517,6 @@ function confirmAllResAndClose() {
     closeWin("chosenResWin");
 }
 
-function getSegments() {
-    var segments = "";
-    for (var i = 0; i < 24; i++) {
-        var start = $("#startTime" + i).timespinner("getValue");
-        var end = $("#endTime" + i).timespinner("getValue");
-        if (segments == "") {
-            if (start != "" && end != "") {
-                segments = start + "-" + end;
-            }
-        } else {
-            if (start != "" && end != "") {
-                segments += "," + start + "-" + end;
-            }
-        }
-    }
-    return segments;
-}
-
 function doSearchRes() {
     $("#resList").datagrid({
         url:contextPath + '/res/search_pager',
@@ -557,58 +534,4 @@ function searchAllRes() {
         queryParams:getQueryParams("resList", "resSearchForm")
     });
     setPagination("#list");
-}
-
-function showAddSegmentWin() {
-    var v = $("#showType").combobox("getValue");
-    if (v == "segment") {
-        showAlreadySegments($("#segments").val())
-        openWinFitPos("addSegment");
-    } else {
-        $.messager.alert("提示", "时段播放模式才可设置时段", "info");
-    }
-}
-
-function showAlreadySegments(segments) {
-    if (segments != null && segments != "") {
-        var data = segments.split(",");
-        if (data) {
-            if (data.length > 6 && data.length <= 12) {
-                moreSegment();
-            } else if (data.length > 12 && data.length <= 18) {
-                moreSegment();
-                moreSegment();
-            } else if (data.length > 18) {
-                moreSegment();
-                moreSegment();
-                moreSegment();
-            }
-            for (var i = 0; i < data.length; i++) {
-                var time = data[i].split("-");
-                $("#startTime" + i).timespinner("setValue", time[0]);
-                $("#endTime" + i).timespinner("setValue", time[1]);
-            }
-        }
-    }
-}
-
-function confirmSegment() {
-    closeWin("addSegment");
-}
-
-function cancelSegment() {
-    $("#addSegmentForm").form("clear");
-    closeWin("addSegment")
-}
-
-function moreSegment() {
-    var trs = $("tr[style='display:none;']");
-    if (trs.length > 0) {
-        for (var i = 0; i < 3; i++) {
-            var tr = trs[i];
-            $(tr).removeAttr("style")
-        }
-    } else {
-        $.messager.alert("提示", "最多支持设置24个时段", "info");
-    }
 }

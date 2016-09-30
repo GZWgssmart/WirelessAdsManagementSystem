@@ -105,7 +105,7 @@ public class PublishPlanServiceImpl implements PublishPlanService {
     @Override
     public List<String> getDeviceIds(String customerId, String type, String deviceIds, String versionId) {
         List<String> allDeviceIds = new ArrayList<String>();
-        if (type.equals("multiple")) {
+        if (type.equals("multiple") || type.equals("one")) {
             String[] strs = deviceIds.split(",");
             for (String id : strs) {
                 allDeviceIds.add(id);

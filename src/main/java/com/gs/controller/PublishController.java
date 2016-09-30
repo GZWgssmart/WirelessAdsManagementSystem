@@ -114,9 +114,8 @@ public class PublishController {
                         detail.setStartTimeStr(DateFormatUtil.format(detail.getStartTime(), "yyyy-MM-dd"));
                     }
                     detail.setStayTime(p.getStayTime());
-                    if (!publishResourceDetails.contains(detail)) {
-                        publishResourceDetails.add(detail);
-                    }
+                    detail.setShowCount(p.getShowCount());
+                    publishResourceDetails.add(detail);
                 }
                 return new Pager4EasyUI<PublishResourceDetail>(pager.getTotalRecords(), publishResourceDetails);
             }

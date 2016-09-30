@@ -59,16 +59,19 @@ public class PublishPlanController {
         publishPlan.setCustomerId(customer.getId());
         List<String> deviceIds = publishPlanService.getDeviceIds(customer.getId(), publishPlan.getType(), publishPlan.getDeviceId(), publishPlan.getVersionId());
         String name = "";
-        if (publishPlan.getType().equals("multiple")) {
+        String addType = publishPlan.getType();
+        if (addType.equals("one")) {
+            name = publishPlan.getDeviceCode();
+        } else if (addType.equals("multiple")) {
             if (deviceIds.size() == 1) {
                 name = publishPlan.getDeviceCode();
                 publishPlan.setType("one");
             } else {
                 name = "多个终端";
             }
-        } else if (publishPlan.getType().equals("group")) {
+        } else if (addType.equals("group")) {
             name = "分组终端";
-        } else if (publishPlan.getType().equals("all")) {
+        } else if (addType.equals("all")) {
             name = "全部终端";
         }
         publishPlan.setName(name);

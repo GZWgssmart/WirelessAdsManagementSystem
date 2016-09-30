@@ -25,6 +25,7 @@
     <script src="<%=path %>/js/json2.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
+    <script src="<%=path %>/js/publish/segment.js"></script>
     <script src="<%=path %>/js/publish/pub_plans.js"></script>
 </head>
 <body>
@@ -126,6 +127,7 @@
                 <input id="addVersionId" type="hidden" name="versionId" />
                 <input id="addVersionName" type="hidden" name="versionName" />
                 <input id="resourceDetails" type="hidden" name="resourceDetails" />
+                <div id="resourceDetailDiv" style="display:none;"></div>
                 <table>
                     <tr>
                         <td>计划名称:</td>
@@ -357,174 +359,175 @@
 </div>
 
 <div class="easyui-window site_win_normal_wider input_small" id="addSegment" data-options="title:'设置时段',resizable:false,mode:true,closed:true">
+    <input type="hidden" id="segBeginIndex" value="0" />
     <form id="addSegmentForm" modelAttribute="publishPlan">
         <table>
-            <tr>
+            <tr style="display:none;">
                 <td>时段1:</td>
                 <td>
-                    <input id="startTime0" name="segments[0].startTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="startTime0" name="segments[0].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime0" name="segments[0].endTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="endTime0" name="segments[0].endTime" style="width:120px;"/>
                 </td>
                 <td>时段2:</td>
                 <td>
-                    <input id="startTime1" name="segments[1].startTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="startTime1" name="segments[1].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime1" name="segments[1].endTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="endTime1" name="segments[1].endTime" style="width:120px;"/>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <td>时段3:</td>
                 <td>
-                    <input id="startTime2" name="segments[2].startTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="startTime2" name="segments[2].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime2" name="segments[2].endTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="endTime2" name="segments[2].endTime" style="width:120px;"/>
                 </td>
                 <td>时段4:</td>
                 <td>
-                    <input id="startTime3" name="segments[3].startTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="startTime3" name="segments[3].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime3" name="segments[3].endTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="endTime3" name="segments[3].endTime" style="width:120px;"/>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <td>时段5:</td>
                 <td>
-                    <input id="startTime4" name="segments[4].startTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="startTime4" name="segments[4].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime4" name="segments[4].endTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="endTime4" name="segments[4].endTime" style="width:120px;"/>
                 </td>
                 <td>时段6:</td>
                 <td>
-                    <input id="startTime5" name="segments[5].startTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="startTime5" name="segments[5].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime5" name="segments[5].endTime" class="easyui-timespinner" data-options="showSeconds:true" style="width:120px;"/>
+                    <input id="endTime5" name="segments[5].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段7:</td>
                 <td>
-                    <input id="startTime6" name="segments[6].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime6" name="segments[6].startTime"/>
                     -
-                    <input id="endTime6" name="segments[6].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime6" name="segments[6].endTime"/>
                 </td>
                 <td>时段8:</td>
                 <td>
-                    <input id="startTime7" name="segments[7].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime7" name="segments[7].startTime" />
                     -
-                    <input id="endTime7" name="segments[7].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime7" name="segments[7].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段9:</td>
                 <td>
-                    <input id="startTime8" name="segments[8].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime8" name="segments[8].startTime" />
                     -
-                    <input id="endTime8" name="segments[8].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime8" name="segments[8].endTime" />
                 </td>
                 <td>时段10:</td>
                 <td>
-                    <input id="startTime9" name="segments[9].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime9" name="segments[9].startTime" />
                     -
-                    <input id="endTime9" name="segments[9].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime9" name="segments[9].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段11:</td>
                 <td>
-                    <input id="startTime10" name="segments[10].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime10" name="segments[10].startTime" />
                     -
-                    <input id="endTime10" name="segments[10].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime10" name="segments[10].endTime" />
                 </td>
                 <td>时段12:</td>
                 <td>
-                    <input id="startTime11" name="segments[11].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime11" name="segments[11].startTime" />
                     -
-                    <input id="endTime11" name="segments[11].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime11" name="segments[11].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段13:</td>
                 <td>
-                    <input id="startTime12" name="segments[12].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime12" name="segments[12].startTime" />
                     -
-                    <input id="endTime12" name="segments[12].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime12" name="segments[12].endTime" />
                 </td>
                 <td>时段14:</td>
                 <td>
-                    <input id="startTime13" name="segments[13].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime13" name="segments[13].startTime" />
                     -
-                    <input id="endTime13" name="segments[13].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime13" name="segments[13].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段15:</td>
                 <td>
-                    <input id="startTime14" name="segments[14].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime14" name="segments[14].startTime" />
                     -
-                    <input id="endTime14" name="segments[14].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime14" name="segments[14].endTime" />
                 </td>
                 <td>时段16:</td>
                 <td>
-                    <input id="startTime15" name="segments[15].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime15" name="segments[15].startTime" />
                     -
-                    <input id="endTime15" name="segments[15].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime15" name="segments[15].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段17:</td>
                 <td>
-                    <input id="startTime16" name="segments[16].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime16" name="segments[16].startTime" />
                     -
-                    <input id="endTime16" name="segments[16].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime16" name="segments[16].endTime" />
                 </td>
                 <td>时段18:</td>
                 <td>
-                    <input id="startTime17" name="segments[17].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime17" name="segments[17].startTime" />
                     -
-                    <input id="endTime17" name="segments[17].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime17" name="segments[17].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段19:</td>
                 <td>
-                    <input id="startTime18" name="segments[18].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime18" name="segments[18].startTime" />
                     -
-                    <input id="endTime18" name="segments[18].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime18" name="segments[18].endTime" />
                 </td>
                 <td>时段20:</td>
                 <td>
-                    <input id="startTime19" name="segments[19].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime19" name="segments[19].startTime" />
                     -
-                    <input id="endTime19" name="segments[19].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime19" name="segments[19].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段21:</td>
                 <td>
-                    <input id="startTime20" name="segments[20].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime20" name="segments[20].startTime" />
                     -
-                    <input id="endTime20" name="segments[20].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime20" name="segments[20].endTime" />
                 </td>
                 <td>时段22:</td>
                 <td>
-                    <input id="startTime21" name="segments[21].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime21" name="segments[21].startTime" />
                     -
-                    <input id="endTime21" name="segments[21].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime21" name="segments[21].endTime" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段23:</td>
                 <td>
-                    <input id="startTime22" name="segments[22].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime22" name="segments[22].startTime" />
                     -
-                    <input id="endTime22" name="segments[22].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime22" name="segments[22].endTime" />
                 </td>
                 <td>时段24:</td>
                 <td>
-                    <input id="startTime23" name="segments[23].startTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="startTime23" name="segments[23].startTime" />
                     -
-                    <input id="endTime23" name="segments[23].endTime" class="easyui-timespinner" data-options="showSeconds:true"/>
+                    <input id="endTime23" name="segments[23].endTime" />
                 </td>
             </tr>
             <tr>

@@ -27,43 +27,6 @@ function refreshAll() {
     $("#list").datagrid("reload");
 }
 
-function showSegments() {
-    var row = selectedRow("list");
-    if (row) {
-        if (row.showType == "segment") {
-            showAlreadySegments(row.segments);
-            openWinFitPos("addSegment")
-        } else {
-            $.messager.alert("提示", "请选择时段播放的计划查看", "info");
-        }
-    } else {
-        $.messager.alert("提示", "请选择时段播放的计划查看", "info");
-    }
-}
-
-function showAlreadySegments(segments) {
-    if (segments != null && segments != "") {
-        var data = segments.split(",");
-        if (data) {
-            if (data.length > 6 && data.length <= 12) {
-                moreSegment();
-            } else if (data.length > 12 && data.length <= 18) {
-                moreSegment();
-                moreSegment();
-            } else if (data.length > 18) {
-                moreSegment();
-                moreSegment();
-                moreSegment();
-            }
-            for (var i = 0; i < data.length; i++) {
-                var time = data[i].split("-");
-                $("#startTime" + i).timespinner("setValue", time[0]);
-                $("#endTime" + i).timespinner("setValue", time[1]);
-            }
-        }
-    }
-}
-
 function showAllRes(planId) {
     $("#resList").datagrid({
         url:contextPath + '/publish/search_res_pager/' + planId

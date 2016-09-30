@@ -133,7 +133,7 @@
         </selectKey>
         <![CDATA[
         insert into t_publish(id, device_id, resource_id, publish_log, pub_plan_id, area, show_type, start_time, end_time, stay_time, show_count, segments)
-        values(#{id}, #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{show_count}, #{segments})
+        values(#{id}, #{deviceId}, #{resourceId}, #{publishLog}, #{publishPlanId}, #{area}, #{showType}, #{startTime}, #{endTime}, #{stayTime}, #{showCount}, #{segments})
         ]]>
     </insert>
 
