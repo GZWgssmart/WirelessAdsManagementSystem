@@ -246,7 +246,7 @@
 				border:false,
 				pageSize:20,
                 rowStyler: function(index,row){
-					if (row.deleteStatus = '可删除') {
+					if (row.deleteStatus == '可删除') {
 					    return 'color:green;';
 					}
 				}">
