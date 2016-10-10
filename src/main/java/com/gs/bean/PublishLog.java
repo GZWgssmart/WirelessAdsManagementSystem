@@ -13,4 +13,7 @@ public final class PublishLog {
     public static final String PUBLISHING = "正在发布消息";
     public static final String PUBLISHED = "发布消息成功";
     public static final String NOT_PUBLISHED = "发布消息失败";
+    public static final String RESOURCE_DELETING = "资源正在删除";
+    public static final String RESOURCE_DELETED = "删除资源成功";
+    public static final String RESOURCE_NOT_DELETED = "删除资源失败";
 }

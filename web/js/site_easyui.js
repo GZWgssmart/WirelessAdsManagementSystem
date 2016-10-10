@@ -341,4 +341,12 @@ function formatterPlanType(value) {
 function formatterName(value) {
     return value.name;
 }
+
+function formatterBoolean(value) {
+    if (value) {
+        return "是";
+    } else {
+        return "否";
+    }
+}
 /////////////////////////////////////

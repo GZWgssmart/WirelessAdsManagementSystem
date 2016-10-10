@@ -74,6 +74,8 @@
        onclick="inactive()">冻结</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
        onclick="active()">激活</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+       onclick="showAllRes();">查看所有资源</a>
     <div class="input_small">
         <form id="searchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
@@ -230,6 +232,40 @@
             </tr>
         </table>
     </form>
+</div>
+
+<div class="easyui-window site_win_big_wider input_big" id="allResWin" style="padding:0;" data-options="title:'所有资源',resizable:false,mode:true,closed:true">
+    <table id="resList" class="easyui-datagrid" toolbar="#restb" style="height:100%;"
+           data-options="
+        method:'get',
+                idField:'id',
+				rownumbers:true,
+				singleSelect:false,
+				autoRowHeight:false,
+				pagination:true,
+				border:false,
+				pageSize:20,
+                rowStyler: function(index,row){
+					if (row.deleteStatus = '可删除') {
+					    return 'color:green;';
+					}
+				}">
+        <thead>
+        <tr>
+            <th field="id" checkbox="true" width="50">用户ID</th>
+            <th field="name" width="100">资源名称</th>
+            <th field="deleteStatus" width="100">删除状态</th>
+            <th field="des" width="300">说明</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="restb">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
+           onclick="deleteRes();">删除选择的资源</a>
+        <div class="input_small">
+            <input type="hidden" id="deviceId" name="deviceId" />
+        </div>
+    </div>
 </div>
 
 </body>

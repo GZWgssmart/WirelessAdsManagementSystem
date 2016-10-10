@@ -64,6 +64,41 @@
         <form id="searchForm" modalAttribute="publish">
             终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>
             资源名称:<input type="text" name="resourceName" class="easyui-textbox"/>
+            发布日志:<select name="publishLog" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    data: [{
+                        id: '未提交审核',
+                        text: '未提交审核'
+                    },{
+                        id: '已提交审核',
+                        text: '已提交审核'
+                    },{
+                        id: '正在下载文件',
+                        text: '正在下载文件'
+                    },{
+                        id: '下载文件成功',
+                        text: '下载文件成功'
+                    },{
+                        id: '下载文件失败',
+                        text: '下载文件失败'
+                    },{
+                        id: '正在发布消息',
+                        text: '正在发布消息'
+                    },{
+                        id: '发布消息成功',
+                        text: '发布消息成功'
+                    },{
+                        id: '发布消息失败',
+                        text: '发布消息失败'
+                    },{
+                        id: '资源正在删除',
+                        text: '资源正在删除'
+                    },{
+                        id: '删除资源成功',
+                        text: '删除资源成功'
+                    },{
+                        id: '删除资源失败',
+                        text: '删除资源失败'
+                    }]"></select>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                onclick="doSearch('${planId }');">搜索</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

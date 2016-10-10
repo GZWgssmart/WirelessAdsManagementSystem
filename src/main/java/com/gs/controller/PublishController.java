@@ -1,14 +1,16 @@
 package com.gs.controller;
 
-import com.gs.bean.Customer;
-import com.gs.bean.Publish;
-import com.gs.bean.PublishResourceDetail;
+import com.gs.bean.*;
 import com.gs.common.Constants;
+import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.DateFormatUtil;
+import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
+import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
+import com.gs.net.parser.Common;
 import com.gs.service.PublishService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -72,11 +74,50 @@ public class PublishController {
     public Pager4EasyUI<Publish> searchResPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             logger.info("分页显示消息发布里的所有资源");
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             int total = publishService.countRes(planId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Publish> publishs = publishService.queryResByPager(pager, planId);
             return new Pager4EasyUI<Publish>(pager.getTotalRecords(), publishs);
+        } else {
+            logger.info("客户未登录，不能分页显示消息发布里的所有资源");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "search_res_pager_dev/{deviceId}", method = RequestMethod.GET)
+    public Pager4EasyUI<PubResource> searchResPagerDev(@Param("page")String page, @Param("rows")String rows, @PathVariable("deviceId") String deviceId, Publish publish, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("分页显示消息发布里的所有资源");
+            publish.setDeviceId(deviceId);
+            int total = publishService.countResByDevId(publish);
+            Pager pager = PagerUtil.getPager(page, rows, total);
+            List<PubResource> pubResources = publishService.queryResByDevId(pager, publish);
+            return new Pager4EasyUI<PubResource>(pager.getTotalRecords(), pubResources);
+        } else {
+            logger.info("客户未登录，不能分页显示消息发布里的所有资源");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "delete_res/{deviceId}/{resIds}", method = RequestMethod.GET)
+    public ControllerResult deleteRes(@PathVariable("deviceId") String deviceId, @PathVariable("resIds") String resIds, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("删除已经发布的资源");
+            List<Publish> publishes = publishService.queryByDevIdAndResIds(deviceId, resIds);
+            for (Publish publish : publishes) {
+                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDelete(publish, false);
+                if (result.equals(Common.DEVICE_NOT_CONNECT)) {
+                    // return ControllerResult.getFailResult("消息发布: 此终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
+                } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
+                    // return ControllerResult.getFailResult("消息发布: 此终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
+                } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
+                    publishService.updatePublishLog(publish.getId(), PublishLog.RESOURCE_DELETING);
+                    // return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
+                }
+            }
+            return ControllerResult.getSuccessResult("资源删除消息已经开始处理，请关注每个发布的发布日志！");
         } else {
             logger.info("客户未登录，不能分页显示消息发布里的所有资源");
             return null;

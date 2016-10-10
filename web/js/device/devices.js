@@ -1,7 +1,7 @@
 var contextPath = '';
 
 $(function() {
-    setPagination("#list")
+    setPagination("#list");
 });
 
 function showAdd() {
@@ -138,4 +138,70 @@ function searchAll() {
 
 function refreshAll() {
     $("#list").datagrid("reload");
+}
+
+function showAllRes() {
+    var row = selectedRow("list");
+    if (row) {
+        $("#deviceId").val(row.id);
+        $("#resList").datagrid({
+            url: contextPath + '/publish/search_res_pager_dev/' + row.id
+        });
+        openWinFitPos("allResWin");
+    } else {
+        $.messager.alert("提示", "请先选择需要要查看资源的设备", "info");
+    }
+}
+
+function doResSearch() {
+    $("#resList").datagrid({
+        url:contextPath + '/publish/search_res_pager_dev/' + $("#deviceId").val(),
+        pageSize:20,
+        queryParams:getQueryParams("resList", "ressearchForm")
+    });
+    setPagination("#resList");
+}
+
+function searchAllRes() {
+    $("#ressearchForm").form("clear");
+    $("#resList").datagrid({
+        url:contextPath + '/publish/search_res_pager_dev/' + $("#deviceId").val(),
+        pageSize:20,
+        queryParams:getQueryParams("resList", "ressearchForm")
+    });
+    setPagination("#resList");
+}
+
+function refreshAllRes() {
+    $("#resList").datagrid("reload");
+}
+
+function deleteRes() {
+    var rows = selectedRows("resList");
+    if (rows) {
+        var resIds = "";
+        var canDo = true;
+        $.each(rows, function (index, row) {
+            if (row.deleteStatus != '可删除') {
+                canDo = false;
+            }
+            if (resIds == "") {
+                resIds = row.id;
+            } else {
+                resIds += "," + row.id;
+            }
+        });
+        if (canDo) {
+            $.get(contextPath + "/publish/delete_res/" + $("#deviceId").val() + "/" + resIds,
+                function (data) {
+                    if (data.result == "success") {
+                        $.messager.alert("提示", data.message, "info");
+                        dataGridReload("resList");
+                    }
+                });
+        } else {
+            $.messager.alert("提示", "请只选择可删除的资源", "info");
+        }
+    }
+
 }

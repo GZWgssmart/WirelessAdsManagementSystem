@@ -1,8 +1,9 @@
 package com.gs.service;
 
+import com.gs.bean.PubResource;
 import com.gs.bean.Publish;
-import com.gs.bean.PublishPlan;
 import com.gs.common.bean.Pager;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -38,5 +39,11 @@ public interface PublishService extends BaseService<Publish, String> {
     public List<Publish> queryResByPager(Pager pager, String planId);
 
     public int countRes(String planId);
+
+    public List<PubResource> queryResByDevId(Pager pager, Publish publish);
+
+    public int countResByDevId(Publish publish);
+
+    public List<Publish> queryByDevIdAndResIds(String deviceId, String resIds);
 
 }

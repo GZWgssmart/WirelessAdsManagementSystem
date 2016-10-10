@@ -42,4 +42,10 @@ public interface PublishDAO extends BaseDAO<Publish, String> {
 
     public int countRes(String planId);
 
+    public List<Publish> queryResByDevId(@Param("pager") Pager pager, @Param("publish") Publish publish);
+
+    public int countResByDevId(Publish publish);
+
+    public List<Publish> queryByDevIdAndResIds(@Param("deviceId") String deviceId, @Param("resIds") String resIds);
+
 }

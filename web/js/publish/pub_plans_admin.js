@@ -7,6 +7,7 @@ $(function() {
             showPlanDetail();
         }
     });
+    $("#list").datagrid("hideColumn", 'versionId');
 });
 
 function showPlanDetail() {

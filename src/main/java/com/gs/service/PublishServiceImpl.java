@@ -1,14 +1,14 @@
 package com.gs.service;
 
+import com.gs.bean.PubResource;
 import com.gs.bean.Publish;
-import com.gs.bean.PublishPlan;
+import com.gs.bean.PublishLog;
 import com.gs.common.bean.Pager;
 import com.gs.dao.PublishDAO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by WangGenshen on 5/30/16.
@@ -141,5 +141,59 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public int countRes(String planId) {
         return publishDAO.countRes(planId);
+    }
+
+    @Override
+    public List<PubResource> queryResByDevId(Pager pager, Publish publish) {
+        List<Publish> publishes = publishDAO.queryResByDevId(pager, publish);
+        List<PubResource> pubResources = new ArrayList<PubResource>();
+        if (publishes != null && publishes.size() > 0) {
+            Map<com.gs.bean.Resource, String> resources = getResources(publishes);
+            for (Publish p : publishes) {
+                if (p.getPublishLog().equals(PublishLog.PUBLISHED)) {
+                    resources.put(p.getResource(), PubResource.CAN_DELETED);
+                } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETED)) {
+                    resources.put(p.getResource(), PubResource.DELETED);
+                } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETING)) {
+                    resources.put(p.getResource(), PubResource.DELETING);
+                } else {
+                    resources.put(p.getResource(), PubResource.CAN_NOT_DELETED);
+                }
+            }
+            for (Map.Entry<com.gs.bean.Resource, String> entry : resources.entrySet()) {
+                PubResource pubResource = new PubResource();
+                com.gs.bean.Resource resource = entry.getKey();
+                pubResource.setId(resource.getId());
+                pubResource.setName(resource.getName());
+                pubResource.setDeleteStatus(entry.getValue());
+                if (pubResource.getDeleteStatus().equals(PubResource.CAN_DELETED)) {
+                    pubResource.setDes(PubResource.CAN_DELETE_MSG);
+                } else {
+                    pubResource.setDes(PubResource.CAN_NOT_DELETE_MSG);
+                }
+                pubResources.add(pubResource);
+            }
+        }
+        return pubResources;
+    }
+
+    private Map<com.gs.bean.Resource, String> getResources(List<Publish> publishes) {
+        Map<com.gs.bean.Resource, String> resources = new HashMap<com.gs.bean.Resource, String>();
+        if (publishes != null && publishes.size() > 0) {
+            for (Publish p : publishes) {
+                resources.put(p.getResource(), PubResource.CAN_DELETED);
+            }
+        }
+        return resources;
+    }
+
+    @Override
+    public int countResByDevId(Publish publish) {
+        return publishDAO.countResByDevId(publish);
+    }
+
+    @Override
+    public List<Publish> queryByDevIdAndResIds(String deviceId, String resIds) {
+        return publishDAO.queryByDevIdAndResIds(deviceId, resIds);
     }
 }

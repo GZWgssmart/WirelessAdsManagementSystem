@@ -340,7 +340,7 @@ public class ADSServer {
                             publishServer.setSegments("");
                         }
                         String showCount = publish.getShowCount();
-                        publishServer.setShowcount(showCount != null && !showCount.equals("") ? Integer.valueOf(showCount) : 0); // showCount还没做
+                        publishServer.setShowcount(showCount != null && !showCount.equals("") ? Integer.valueOf(showCount) : 0);
                         publishServer.setShowtype(publish.getShowType());
                         String stayTime = publish.getStayTime();
                         publishServer.setStaytime(stayTime != null && !stayTime.equals("") ? Integer.valueOf(stayTime) : 0);
@@ -361,7 +361,7 @@ public class ADSServer {
         return Common.DEVICE_NOT_CONNECT;
     }
 
-    public String writeFileDelete(Publish publish) {
+    public String writeFileDelete(Publish publish, boolean autoRun) {
         String deviceCode = publish.getDevice().getCode();
         ADSSocket adsSocket = adsSockets.get(deviceCode);
         if (adsSocket != null) {
@@ -370,7 +370,19 @@ public class ADSServer {
                     if (!handlingDevices.contains(deviceCode)) {
                         logger.info("发送文件删除通知到" + adsSocket.getDeviceCode() + "客户端");
                         FileDeleteServer fileDeleteServer = new FileDeleteServer();
-                        startWrite(adsSocket, JSON.toJSONString(fileDeleteServer), 0);
+                        fileDeleteServer.setDevcode(deviceCode);
+                        com.gs.bean.Resource resource = publish.getResource();
+                        fileDeleteServer.setFilename(resource.getFileName());
+                        fileDeleteServer.setPubid(publish.getId());
+                        fileDeleteServer.setType(Common.TYPE_DELETE);
+                        ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
+                        fileDeleteServer.setRestype(resourceType.getName());
+                        fileDeleteServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
+                        long delay = 0;
+                        if (autoRun) {
+                            delay = autoRunDelay;
+                        }
+                        startWrite(adsSocket, JSON.toJSONString(fileDeleteServer), delay);
                         handlingDevices.add(deviceCode);
                         return Common.DEVICE_WRITE_OUT;
                     } else {
@@ -450,6 +462,11 @@ public class ADSServer {
     private void readFileDelete(String msg) {
         logger.info("读取到客户端文件删除反馈......");
         FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
+        if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
+            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
+        } else {
+            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+        }
         handlingDevices.remove(fileDeleteClient.getDevcode());
         System.out.println(fileDeleteClient);
     }
@@ -486,7 +503,11 @@ public class ADSServer {
                     if (result.equals(Common.DEVICE_WRITE_OUT)) {
                         publishService.updatePublishLog(publish.getId(), PublishLog.PUBLISHING);
                     }
-
+                } else if (publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
+                    String result = writeFileDelete(publish, true);
+                    if (result.equals(Common.DEVICE_WRITE_OUT)) {
+                        publishService.updatePublishLog(publish.getId(), PublishLog.RESOURCE_DELETING);
+                    }
                 }
             }
         }

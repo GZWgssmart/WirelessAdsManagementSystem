@@ -77,29 +77,33 @@ function getResourceDetails() {
 function showEdit() {
     var row = selectedRow("list");
     if (row) {
-        planId = row.id;
-        addOrDeleteRes = false;
-        $("#editAreaR").html("");
-        $("#editForm").form("load", row);
-        $("#editArea").combobox({
-            url:contextPath + '/version/list_combo_area/' + row.versionId + '/' + row.area,
-            method:'get',
-            valueField:'id',
-            textField:'text',
-            panelHeight:'auto'
-        });
-        $.get(contextPath + "/pubplan/all_dev/" + planId, function (data) {
-            if (data.code == 200) {
-                $("#editDeviceId").val(data.result);
-            }
-        });
-        $("#editDeviceCode").textbox("setValue", row.name);
-        $("#editResourceName").textbox("setValue", row.resourceName);
-        $("#confirmSeg").removeAttr("disabled");
-        $("#cancelSeg").removeAttr("disabled");
-        $("#moreSeg").removeAttr("disabled");
-        showArea(planId, row.versionId);
-        openWin("editWin");
+        if (row.checkStatus == 'not_submit') {
+            planId = row.id;
+            addOrDeleteRes = false;
+            $("#editAreaR").html("");
+            $("#editForm").form("load", row);
+            $("#editArea").combobox({
+                url: contextPath + '/version/list_combo_area/' + row.versionId + '/' + row.area,
+                method: 'get',
+                valueField: 'id',
+                textField: 'text',
+                panelHeight: 'auto'
+            });
+            $.get(contextPath + "/pubplan/all_dev/" + planId, function (data) {
+                if (data.code == 200) {
+                    $("#editDeviceId").val(data.result);
+                }
+            });
+            $("#editDeviceCode").textbox("setValue", row.name);
+            $("#editResourceName").textbox("setValue", row.resourceName);
+            $("#confirmSeg").removeAttr("disabled");
+            $("#cancelSeg").removeAttr("disabled");
+            $("#moreSeg").removeAttr("disabled");
+            showArea(planId, row.versionId);
+            openWin("editWin");
+        } else {
+            $.messager.alert("提示", "请选择未提交审核的计划", "info");
+        }
     } else {
         $.messager.alert("提示", "请选择需要修改的计划", "info");
     }
