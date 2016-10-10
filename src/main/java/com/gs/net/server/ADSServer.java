@@ -283,7 +283,7 @@ public class ADSServer {
                         fileDownloadServer.setDevcode(deviceCode);
                         fileDownloadServer.setPubid(publish.getId());
                         fileDownloadServer.setType(Common.TYPE_DOWNLOAD);
-                        fileDownloadServer.setFilename(resource.getFileName());
+                        fileDownloadServer.setFilename(resource.getOfileName());
                         fileDownloadServer.setFilesize(resource.getFileSize());
                         fileDownloadServer.setUrl(siteDomain + "/" + resource.getPath());
                         fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
@@ -329,7 +329,7 @@ public class ADSServer {
                         publishServer.setDevcode(deviceCode);
                         publishServer.setEnddate(DateFormatUtil.format(publish.getEndTime(), Common.DATE_PATTERN));
                         publishServer.setStartdate(DateFormatUtil.format(publish.getStartTime(), Common.DATE_PATTERN));
-                        publishServer.setFilename(resource.getFileName());
+                        publishServer.setFilename(resource.getOfileName());
                         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
                         publishServer.setRestype(resourceType.getName());
                         if (publish.getShowType().equals("segment")) {

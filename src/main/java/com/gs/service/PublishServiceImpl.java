@@ -155,7 +155,7 @@ public class PublishServiceImpl implements PublishService {
                 } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETED)) {
                     resources.put(p.getResource(), PubResource.DELETED);
                 } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETING)) {
-                    resources.put(p.getResource(), PubResource.DELETING);
+                    resources.put(p.getResource(), PubResource.CAN_NOT_DELETED);
                 } else {
                     resources.put(p.getResource(), PubResource.CAN_NOT_DELETED);
                 }
