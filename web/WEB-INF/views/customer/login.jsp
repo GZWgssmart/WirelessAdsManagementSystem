@@ -13,7 +13,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>客户登录-青岛宝瑞液晶信息屏发布系统</title>
+    <title>客户登录-青岛宝瑞液晶综合信息屏媒体系统</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
