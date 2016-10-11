@@ -415,8 +415,19 @@ function addResourceToArea() {
             } else if (row.resourceType.name == '视频') {
                 showShowCount();
             }
-            $("#resourceId").val(row.id);
-            openWinFitPos("detailWin");
+            var canAdd = true;
+            var data = $("#chresList").datagrid("getData"); // 获取所有已经选择的资源
+            $.each(data.rows, function (index, rowItem) {
+                if (rowItem.resourceId == row.id) {
+                    canAdd = false;
+                }
+            });
+            if (!canAdd) {
+                $.messager.alert("提示", "不能重复添加资源到设备中", "info");
+            } else {
+                $("#resourceId").val(row.id);
+                openWinFitPos("detailWin");
+            }
         } else {
             $.messager.alert("提示", "必须选择可用状态的资源", "info");
         }
