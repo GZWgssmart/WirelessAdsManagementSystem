@@ -142,3 +142,13 @@ a:hover {
     max-height:280px;
 }
 
+#layer {
+    background-color:white;
+    height:3000px;
+    width:3000px;
+    z-index:1000;
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+

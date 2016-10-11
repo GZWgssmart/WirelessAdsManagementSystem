@@ -29,6 +29,7 @@
     <script src="<%=path %>/js/publish/pub_plans.js"></script>
 </head>
 <body>
+<div id="layer"></div>
 <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
     <div title="计划">
         <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"

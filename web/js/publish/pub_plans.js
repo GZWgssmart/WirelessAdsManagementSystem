@@ -20,6 +20,7 @@ $(function() {
             }
         }
     );
+    $("#layer").remove();
 });
 
 function showAdd() {
