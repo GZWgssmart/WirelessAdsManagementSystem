@@ -476,7 +476,7 @@ function confirmAddResourceToArea() {
         }
         $("#chresList").datagrid("loadData", rowsJSON);
         $("#detailForm").form("clear");
-        $("#addSegmentForm").form("clear");
+        // $("#addSegmentForm").form("clear"); // 不清空时段设置，下次还可继续使用
         addOrDeleteRes = true;
         closeWin("detailWin");
         closeWin("resWin");
