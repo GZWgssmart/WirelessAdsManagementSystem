@@ -49,6 +49,7 @@
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="80">名称</th>
         <th field="extension" width="100">可用后缀</th>
+        <th field="showDetailSetting" width="100" formatter="formatterYN">是否显示详情设置</th>
         <th field="des" width="100">描述</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
@@ -66,7 +67,7 @@
        onclick="active()">激活</a>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加资源类型',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_normal input_big" id="addWin" data-options="title:'添加资源类型',resizable:false,mode:true,closed:true">
     <form:form id="addForm" modelAttribute="resourceType">
         <table>
             <tr>
@@ -78,6 +79,19 @@
                 <td>可用后缀:</td>
                 <td><input type="text" name="extension" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>显示详情设置:</td>
+                <td>
+                    <select name="showDetailSetting" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',
+                            data: [{
+                                id: 'Y',
+                                text: '显示'
+                            },{
+                                id: 'N',
+                                text: '不显示'
+                            }],required:true,novalidate:true"></select>
+                </td>
             </tr>
             <tr>
                 <td>描述:</td>
@@ -93,7 +107,7 @@
     </form:form>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="editWin" data-options="title:'修改资源类型',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_normal input_big" id="editWin" data-options="title:'修改资源类型',resizable:false,mode:true,closed:true">
     <div id="errMsg"></div>
     <form id="editForm" method="post" modelAttribute="resourceType">
         <input type="hidden" name="id" />
@@ -107,6 +121,12 @@
                 <td>可用后缀:</td>
                 <td><input type="text" name="extension" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>显示详情设置:</td>
+                <td>
+                    <select id="editShowDetailSetting" name="showDetailSetting" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',required:true,novalidate:true"></select>
+                </td>
             </tr>
             <tr>
                 <td>描述:</td>

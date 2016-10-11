@@ -25,6 +25,24 @@ function addType() {
 function showEdit() {
     var row = selectedRow("list");
     if (row) {
+        var show = false;
+        var notShow = false;
+        if (row.showDetailSetting == "Y") {
+            show = true;
+        } else {
+            notShow = true;
+        }
+        $("#editShowDetailSetting").combobox({
+            data:[{
+                id: 'Y',
+                text: '显示',
+                selected:show
+            },{
+                id: 'N',
+                text: '不显示',
+                selected:notShow
+            }]
+        });
         $("#editForm").form("load", row);
         openWin("editWin");
     } else {

@@ -108,19 +108,6 @@
                 </td>
             </tr>
             <tr>
-                <td>显示详情设置:</td>
-                <td>
-                    <select name="showDetailSetting" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',
-                            data: [{
-                                id: 'Y',
-                                text: '显示'
-                            },{
-                                id: 'N',
-                                text: '不显示'
-                            }],required:true,novalidate:true"></select>
-                </td>
-            </tr>
-            <tr>
                 <td>选择文件:</td>
                 <td><input name="file" class="easyui-filebox" data-options="prompt:'请选择文件',buttonText:'选择文件'" /></td>
             </tr>
@@ -153,12 +140,6 @@
                 <td>
                     <select id="resourceTypeId" name="resourceTypeId" class="easyui-validatebox easyui-combobox"
                             data-options="editable:false,required:true,novalidate:true"></select>
-                </td>
-            </tr>
-            <tr>
-                <td>显示详情设置:</td>
-                <td>
-                    <select id="editShowDetailSetting" name="showDetailSetting" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',required:true,novalidate:true"></select>
                 </td>
             </tr>
             <tr>

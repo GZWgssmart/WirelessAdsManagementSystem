@@ -12,7 +12,7 @@
         <result property="des" column="des" />
         <result property="createTime" column="create_time" />
         <result property="status" column="status" />
-        <result property="showDetailSetting" column="show_detail_setting" />
+        <result property="showDetailSetting" column="detail_setting" />
         <association property="resourceType" javaType="com.gs.bean.ResourceType">
             <id property="id" column="t_id"/>
             <result property="name" column="t_name"/>
@@ -33,7 +33,7 @@
 
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="resourceResultMap">
         <![CDATA[
-        select r.*, rt.id as t_id, rt.name as t_name from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
+        select r.*, rt.id as t_id, rt.name as t_name, rt.show_detail_setting as detail_setting from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
         ]]>
         <if test="resource.name != null and resource.name != ''">
             and r.name like concat('%', #{resource.name}, '%')
@@ -72,14 +72,14 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resource">
         <![CDATA[
-        insert into t_resource(id, name, resource_type_id, path, full_path, ofile_name, file_name, file_size, des, show_detail_setting, customer_id, create_time)
-        values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{ofileName}, #{fileName}, #{fileSize}, #{des}, #{showDetailSetting}, #{customerId}, CURRENT_TIMESTAMP)
+        insert into t_resource(id, name, resource_type_id, path, full_path, ofile_name, file_name, file_size, des, customer_id, create_time)
+        values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{ofileName}, #{fileName}, #{fileSize}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="resource">
         <![CDATA[
-        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId}, show_detail_setting = #{showDetailSetting},
+        update t_resource set name = #{name}, resource_type_id = #{resourceTypeId},
         ]]>
         <if test="path != null ">
             path = #{path},

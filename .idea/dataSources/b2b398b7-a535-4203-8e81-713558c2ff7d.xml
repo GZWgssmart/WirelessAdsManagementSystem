@@ -559,60 +559,60 @@
       <data-type>varchar(100)|0</data-type>
       <default-expression>&apos;无&apos;</default-expression>
     </column>
-    <column id="134" parent="15" name="show_detail_setting">
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
-    </column>
-    <index id="135" parent="15" name="fk_resource_customer_id">
+    <index id="134" parent="15" name="fk_resource_customer_id">
       <columns>customer_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="136" parent="15" name="fk_resource_type_id">
+    <index id="135" parent="15" name="fk_resource_type_id">
       <columns>resource_type_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="137" parent="15" name="PRIMARY">
+    <key id="136" parent="15" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <foreign-key id="138" parent="15" name="fk_resource_type_id">
+    <foreign-key id="137" parent="15" name="fk_resource_type_id">
       <columns>resource_type_id</columns>
       <ref-key>~.t_resource_type.PRIMARY</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="139" parent="15" name="fk_resource_customer_id">
+    <foreign-key id="138" parent="15" name="fk_resource_customer_id">
       <columns>customer_id</columns>
       <ref-key>~.t_customer.PRIMARY</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="140" parent="16" name="id">
+    <column id="139" parent="16" name="id">
       <comment>资源类型id</comment>
       <mandatory>1</mandatory>
       <data-type>varchar(128)|0</data-type>
     </column>
-    <column id="141" parent="16" name="name">
+    <column id="140" parent="16" name="name">
       <comment>资源类型名称</comment>
       <mandatory>1</mandatory>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="142" parent="16" name="extension">
+    <column id="141" parent="16" name="extension">
       <comment>类型文件后缀</comment>
       <data-type>varchar(100)|0</data-type>
     </column>
-    <column id="143" parent="16" name="des">
+    <column id="142" parent="16" name="des">
       <comment>资源类型描述</comment>
       <data-type>varchar(200)|0</data-type>
     </column>
-    <column id="144" parent="16" name="create_time">
+    <column id="143" parent="16" name="create_time">
       <comment>资源类型创建时间</comment>
       <data-type>datetime|0</data-type>
       <default-expression>CURRENT_TIMESTAMP</default-expression>
     </column>
-    <column id="145" parent="16" name="status">
+    <column id="144" parent="16" name="status">
       <comment>资源类型是否在可用状态</comment>
       <mandatory>1</mandatory>
+      <data-type>varchar(2)|0</data-type>
+      <default-expression>&apos;Y&apos;</default-expression>
+    </column>
+    <column id="145" parent="16" name="show_detail_setting">
       <data-type>varchar(2)|0</data-type>
       <default-expression>&apos;Y&apos;</default-expression>
     </column>
