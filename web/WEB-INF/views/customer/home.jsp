@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>客户主页-青岛宝瑞无线广告管理系统</title>
+    <title>客户主页-青岛宝瑞液晶综合信息屏媒体系统</title>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
     <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
@@ -41,6 +41,7 @@
         </div>
         <div title="终端管理" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/device/list_page" class="site-navi-tab">终端列表</a></p>
+            <%--
             <ul class="easyui-tree" style="padding-bottom:10px;">
                 <li>
                     <span>终端版本</span>
@@ -53,26 +54,29 @@
                     </ul>
                 </li>
             </ul>
+            --%>
             <a href="javascript:void(0);" src="<%=path %>/devgroup/list_page" class="site-navi-tab">终端分组列表</a></p>
         </div>
-        <div title="消息发布" class="site_menu">
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page" class="site-navi-tab">消息发布列表</a></p>
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checking" class="site-navi-tab">消息发布审核</a></p>
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_checked" class="site-navi-tab">已审核未完成发布消息列表</a></p>
-            <a href="javascript:void(0);" src="<%=path %>/devres/list_page_finish" class="site-navi-tab">已完成发布消息列表</a></p>
+        <div title="发布计划" class="site_menu">
+            <a href="javascript:void(0);" src="<%=path %>/pubplan/list_page" class="site-navi-tab">发布计划列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/pubplan/list_page_checking" class="site-navi-tab">发布计划审核</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/pubplan/list_page_checked" class="site-navi-tab">已审核未完成发布计划列表</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/pubplan/list_page_finish" class="site-navi-tab">已完成发布计划列表</a></p>
         </div>
     </div>
 </div>
 <div id="mainPanle" data-options="region:'center',border:true">
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div title="主页">
-            青岛宝瑞无线广告管理系统
+            青岛宝瑞液晶综合信息屏媒体系统
         </div>
     </div>
 </div>
 
-<div data-options="region:'south',border:false">
-    青岛宝瑞无线广告管理系统V1.0&nbsp;&nbsp;地址：山东青岛&nbsp;&nbsp;技术支持:Wgssmart(QQ:847315251 微信:Wgssmart)
+<div data-options="region:'south',border:false" style="padding-left:10px;text-align:center;">
+    青岛宝瑞液晶综合信息屏媒体系统V1.0<br />
+    地址：山东省青岛市崂山区株洲路140号<br />
+    技术支持:0532-80678775/80678776
 </div>
 
 <div id="mm" class="easyui-menu">

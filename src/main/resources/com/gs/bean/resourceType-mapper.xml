@@ -4,18 +4,13 @@
 
     <resultMap id="resourceTypeResultMap" type="resourceType">
         <id property="id" column="id" />
+        <result property="showDetailSetting" column="show_detail_setting" />
         <result property="createTime" column="create_time" />
     </resultMap>
 
     <select id="queryById" parameterType="string" resultMap="resourceTypeResultMap">
         <![CDATA[
         select * from t_resource_type where id=#{id}
-        ]]>
-    </select>
-
-    <select id="query" parameterType="resourceType" resultMap="resourceTypeResultMap">
-        <![CDATA[
-        select * from t_resource_type where id = #{id}
         ]]>
     </select>
 
@@ -42,13 +37,13 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resourceType">
         <![CDATA[
-        insert into t_resource_type(id, name, extension, des, create_time) values(uuid(), #{name}, #{extension}, #{des}, CURRENT_TIMESTAMP )
+        insert into t_resource_type(id, name, extension, des, show_detail_setting, create_time) values(uuid(), #{name}, #{extension}, #{des}, #{showDetailSetting}, CURRENT_TIMESTAMP )
         ]]>
     </insert>
 
     <update id="update" keyProperty="id" parameterType="resourceType">
         <![CDATA[
-        update t_resource_type set name = #{name}, extension = #{extension}, des = #{des} where id = #{id}
+        update t_resource_type set name = #{name}, extension = #{extension}, des = #{des}, show_detail_setting = #{showDetailSetting} where id = #{id}
         ]]>
     </update>
 

@@ -104,36 +104,6 @@ public class DeviceController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<Device> list(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("显示所有终端设备");
-            return deviceService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<Device> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示终端设备");
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            int total = deviceService.count();
-            Pager pager = PagerUtil.getPager(page, rows, total);
-            List<Device> devices = deviceService.queryByPagerAndCustomerId(pager, customer.getId());
-            for (Device d : devices) {
-                d.setInstallTimeStr(DateFormatUtil.format(d.getInstallTime(), Constants.DATETIME_PATTERN));
-            }
-            return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
-        } else {
-            logger.info("客户未登录，不能分页显示终端设备");
-            return null;
-        }
-    }
-
-    @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Device> searchPager(@Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
@@ -172,18 +142,6 @@ public class DeviceController {
             logger.info("管理员未登录，不能分页显示终端设备");
             return null;
         }
-    }
-
-    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("根据终端设备id: " + id + "查询终端设备");
-            ModelAndView mav = new ModelAndView("device/device_info");
-            Device device = deviceService.queryById(id);
-            mav.addObject("device", device);
-            return mav;
-        }
-        return null;
     }
 
     @ResponseBody

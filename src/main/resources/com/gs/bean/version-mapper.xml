@@ -5,6 +5,7 @@
     <resultMap id="versionResultMap" type="version">
         <id property="id" column="id" />
         <result property="areaCount" column="area_count" />
+        <result property="ofileName" column="ofile_name" />
         <result property="fileName" column="file_name" />
         <result property="createTime" column="create_time" />
     </resultMap>
@@ -12,12 +13,6 @@
     <select id="queryById" parameterType="string" resultMap="versionResultMap">
         <![CDATA[
         select * from t_version where id=#{id}
-        ]]>
-    </select>
-
-    <select id="query" parameterType="version" resultMap="versionResultMap">
-        <![CDATA[
-        select * from t_version where id = #{id}
         ]]>
     </select>
 
@@ -37,12 +32,6 @@
         ]]>
     </select>
 
-    <select id="queryByPager" resultType="list" resultMap="versionResultMap" parameterType="com.gs.common.bean.Pager">
-        <![CDATA[
-        select * from t_version limit #{beginIndex}, #{pageSize}
-        ]]>
-    </select>
-
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="versionResultMap">
         <![CDATA[
         select * from t_version where 1 = 1
@@ -58,18 +47,12 @@
 
     </select>
 
-    <select id="count" resultType="int">
-        <![CDATA[
-        select count(1) from t_version;
-        ]]>
-    </select>
-
     <select id="countByCriteria" resultType="int">
         <![CDATA[
         select count(1) from t_version where 1 = 1
         ]]>
         <if test="version.name != null and version.name != ''">
-            and name = #{version.name}
+            and name like concat('%', #{version.name}, '%')
         </if>
         <if test="version.status != null and version.status != ''">
             and status = #{version.status}
@@ -78,7 +61,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="version">
         <![CDATA[
-        insert into t_version(id, name, area_count, path, full_path, file_name, des, create_time) values(uuid(), #{name}, #{areaCount}, #{path}, #{fullPath}, #{fileName}, #{des}, CURRENT_TIMESTAMP)
+        insert into t_version(id, name, area_count, path, full_path, ofile_name, file_name, des, create_time)
+        values(uuid(), #{name}, #{areaCount}, #{path}, #{fullPath}, #{ofileName}, #{fileName}, #{des}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
@@ -91,6 +75,9 @@
         </if>
         <if test="fullPath != null">
             full_path = #{fullPath},
+        </if>
+        <if test="ofileName != null">
+            ofile_name = #{ofileName},
         </if>
         <if test="fileName != null">
             file_name = #{fileName},

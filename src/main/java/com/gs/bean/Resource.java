@@ -11,6 +11,7 @@ public class Resource {
     private String name;
     private String path;
     private String fullPath;
+    private String ofileName;
     private String fileName;
     private long fileSize;
     private String des;
@@ -19,6 +20,7 @@ public class Resource {
     private ResourceType resourceType;
     private Date createTime;
     private String status;
+    private String showDetailSetting;
 
     public String getId() {
         return id;
@@ -50,6 +52,14 @@ public class Resource {
 
     public void setFullPath(String fullPath) {
         this.fullPath = fullPath;
+    }
+
+    public String getOfileName() {
+        return ofileName;
+    }
+
+    public void setOfileName(String ofileName) {
+        this.ofileName = ofileName;
     }
 
     public String getFileName() {
@@ -114,5 +124,29 @@ public class Resource {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getShowDetailSetting() {
+        return showDetailSetting;
+    }
+
+    public void setShowDetailSetting(String showDetailSetting) {
+        this.showDetailSetting = showDetailSetting;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Resource resource = (Resource) o;
+
+        return id != null ? id.equals(resource.id) : resource.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

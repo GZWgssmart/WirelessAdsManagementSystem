@@ -73,17 +73,6 @@ public class DeviceGroupController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<DeviceGroup> list(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("显示所有终端分组信息");
-            return deviceGroupService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
     @RequestMapping(value = "list_pager", method = RequestMethod.GET)
     public Pager4EasyUI<DeviceGroup> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
@@ -176,18 +165,6 @@ public class DeviceGroupController {
             }
         }
         return comboBox4EasyUIs;
-    }
-
-    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("根据终端分组id: " + id + "查询终端分组信息");
-            ModelAndView mav = new ModelAndView("device/devgroup_info");
-            DeviceGroup deviceGroup = deviceGroupService.queryById(id);
-            mav.addObject("deviceGroup", deviceGroup);
-            return mav;
-        }
-        return null;
     }
 
     @ResponseBody

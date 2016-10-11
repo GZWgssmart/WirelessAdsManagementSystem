@@ -7,33 +7,17 @@
         <result property="name" column="name" />
         <result property="resourceTypeId" column="resource_type_id" />
         <result property="path" column="path" />
+        <result property="ofileName" column="ofile_name" />
         <result property="fileName" column="file_name" />
         <result property="des" column="des" />
         <result property="createTime" column="create_time" />
         <result property="status" column="status" />
+        <result property="showDetailSetting" column="detail_setting" />
         <association property="resourceType" javaType="com.gs.bean.ResourceType">
             <id property="id" column="t_id"/>
             <result property="name" column="t_name"/>
         </association>
     </resultMap>
-
-    <select id="queryById" parameterType="string" resultMap="resourceResultMap">
-        <![CDATA[
-        select * from t_resource where id=#{id}
-        ]]>
-    </select>
-
-    <select id="query" parameterType="resource" resultMap="resourceResultMap">
-        <![CDATA[
-        select * from t_resource where id = #{id}
-        ]]>
-    </select>
-
-    <select id="queryAll" resultType="list" resultMap="resourceResultMap">
-        <![CDATA[
-        select * from t_resource
-        ]]>
-    </select>
 
     <select id="queryByPager" resultType="list" resultMap="resourceResultMap" parameterType="com.gs.common.bean.Pager">
         <![CDATA[
@@ -49,7 +33,7 @@
 
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="resourceResultMap">
         <![CDATA[
-        select r.*, rt.id as t_id, rt.name as t_name from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
+        select r.*, rt.id as t_id, rt.name as t_name, rt.show_detail_setting as detail_setting from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
         ]]>
         <if test="resource.name != null and resource.name != ''">
             and r.name like concat('%', #{resource.name}, '%')
@@ -71,12 +55,6 @@
         ]]>
     </select>
 
-    <select id="count" resultType="int">
-        <![CDATA[
-        select count(1) from t_resource;
-        ]]>
-    </select>
-
     <select id="countByCriteria" resultType="int">
         <![CDATA[
         select count(1) from t_resource where customer_id = #{customerId}
@@ -94,7 +72,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="resource">
         <![CDATA[
-        insert into t_resource(id, name, resource_type_id, path, full_path, file_name, file_size, des, customer_id, create_time) values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{fileName}, #{fileSize}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
+        insert into t_resource(id, name, resource_type_id, path, full_path, ofile_name, file_name, file_size, des, customer_id, create_time)
+        values(uuid(), #{name}, #{resourceTypeId}, #{path}, #{fullPath}, #{ofileName}, #{fileName}, #{fileSize}, #{des}, #{customerId}, CURRENT_TIMESTAMP)
         ]]>
     </insert>
 
@@ -107,6 +86,9 @@
         </if>
         <if test="fullPath != null">
             full_path = #{fullPath},
+        </if>
+        <if test="ofileName != null">
+            ofile_name = #{ofileName},
         </if>
         <if test="fileName != null">
             file_name = #{fileName},

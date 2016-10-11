@@ -149,6 +149,87 @@ function setPagination(tableId) {
     });
 }
 
+function openWin(id) {
+    $("#" + id).window("open");
+}
+
+function openWinFitPos(id) {
+    var top = ($(document.body).height() - $("#" + id).height()) / 2 - 28;
+    var left = ($(document.body).width() - $("#" + id).width()) / 2 - 18;
+    $("#" + id).window({
+        top:top,
+        left:left
+    });
+    openWin(id);
+}
+
+function closeWin(id) {
+    $("#" + id).window("close");
+}
+
+function selectedRow(id) {
+    return $("#" + id).datagrid("getSelected");
+}
+
+function selectedRows(id) {
+    return $("#" + id).datagrid("getChecked");
+}
+
+function dataGridReload(id) {
+    $("#" + id).datagrid("reload");
+}
+
+function closeTab(title) {
+    $('#tabs').tabs('close', title);
+}
+
+$(function(){
+    $('.validatebox-text').bind('blur', function(){
+        $(this).validatebox('enableValidation').validatebox('validate');
+    });
+})
+
+function toValidate(formId) {
+    $('#' + formId + ' .validatebox-text').validatebox('enableValidation').validatebox('validate');
+}
+
+function validateForm(id) {
+    return $("#" + id).form("validate");
+}
+
+function getQueryParams(dataGridId, formId) {
+    var fields =$('#' + formId).serializeArray();
+    var params = $("#" + dataGridId).datagrid('options').queryParams;
+    $.each( fields, function(i, field){
+        params[field.name] = field.value;
+    });
+    return params;
+}
+
+function toPage(url) {
+    window.location.href = url;
+}
+
+function checkFile(name, index, type, size) {
+    var file = document.getElementsByName(name)[index].files[0];
+    if (file != undefined) {
+        var fileName = file.name;
+        var fileType = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+        var maxSize = size * 1024 * 1024;
+        if (file.size >= maxSize) {
+            $.messager.alert("提示", "文件大小最大为" + size + "MB", "info");
+            return false;
+        }
+        if (type.indexOf(fileType) < 0) {
+            $.messager.alert("提示", "文件后缀只能为" + type, "info");
+            return false;
+        }
+    }
+    return true;
+}
+
+//////////////////////////////////////
+
 function formatterDate(value) {
     if (value == undefined || value == null || value == '') {
         return "";
@@ -213,77 +294,67 @@ function formatterLong(value) {
     }
 }
 
-function openWin(id) {
-    $("#" + id).window("open");
-}
-
-function openWinFitPos(id) {
-    var top = ($(document.body).height() - $("#" + id).height()) / 2 - 28;
-    var left = ($(document.body).width() - $("#" + id).width()) / 2 - 18;
-    $("#" + id).window({
-        top:top,
-        left:left
-    });
-    openWin(id);
-}
-
-function closeWin(id) {
-    $("#" + id).window("close");
-}
-
-function selectedRow(id) {
-    return $("#" + id).datagrid("getSelected");
-}
-
-function dataGridReload(id) {
-    $("#" + id).datagrid("reload");
-}
-
-function closeTab(title) {
-    $('#tabs').tabs('close', title);
-}
-
-$(function(){
-    $('.validatebox-text').bind('blur', function(){
-        $(this).validatebox('enableValidation').validatebox('validate');
-    });
-})
-
-function toValidate(formId) {
-    $('#' + formId + ' .validatebox-text').validatebox('enableValidation').validatebox('validate');
-}
-
-function validateForm(id) {
-    return $("#" + id).form("validate");
-}
-
-function getQueryParams(dataGridId, formId) {
-    var fields =$('#' + formId).serializeArray();
-    var params = $("#" + dataGridId).datagrid('options').queryParams;
-    $.each( fields, function(i, field){
-        params[field.name] = field.value;
-    });
-    return params;
-}
-
-function toPage(url) {
-    window.location.href = url;
-}
-
-function checkFile(name, index, type, size) {
-    var file = document.getElementsByName(name)[index].files[0];
-    if (file != undefined) {
-        var fileName = file.name;
-        var fileType = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
-        var maxSize = size * 1024 * 1024;
-        if (file.size >= maxSize) {
-            $.messager.alert("提示", "文件大小最大为" + size + "MB", "info");
-            return false;
-        }
-        if (type.indexOf(fileType) < 0) {
-            $.messager.alert("提示", "文件后缀只能为" + type, "info");
-            return false;
-        }
+function formatterShowType(value) {
+    if (value == 'order') {
+        return "顺序播放";
+    } else if (value == 'now') {
+        return "即时播放";
+    } else if (value == "segment") {
+        return "时段播放";
     }
-    return true;
+
 }
+
+function formatterCode(value, row, index) {
+    return row.device.code;
+}
+
+function formatterArea(value) {
+    return "区域" + value;
+}
+
+function formatterCheckStatus(value) {
+    if (value == 'not_submit') {
+        return "未提交";
+    } else if (value == 'checking') {
+        return "审核中";
+    } else if (value == "checked") {
+        return "已审核";
+    } else if (value == "finish") {
+        return "已完成";
+    }
+
+}
+
+function formatterPlanType(value) {
+    if (value == 'one') {
+        return '单个';
+    } else if (value == 'multiple') {
+        return '多个';
+    } else if (value == 'group') {
+        return '分组';
+    } else if (value == 'all') {
+        return '全部';
+    }
+}
+
+function formatterName(value) {
+    return value.name;
+}
+
+function formatterBoolean(value) {
+    if (value) {
+        return "是";
+    } else {
+        return "否";
+    }
+}
+
+function formatterYN(value) {
+    if (value == 'Y') {
+        return "是";
+    } else {
+        return "否";
+    }
+}
+/////////////////////////////////////

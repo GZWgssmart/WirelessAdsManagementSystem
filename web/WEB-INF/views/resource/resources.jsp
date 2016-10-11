@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>资源列表-青岛宝瑞无线广告管理系统</title>
+    <title>资源列表-青岛宝瑞液晶综合信息屏媒体系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -23,180 +23,11 @@
     <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
-    <script src="<%=path %>/js/file_type.js"></script>
 
-    <script>
-        $(function() {
-            setPagination("#list")
-        });
-
-        function expectedFileType(id) {
-            var resType = $('#' + id).combobox("getText");
-            var types;
-            $.each(fileTypes, function(index, data) {
-                if (resType == data.name) {
-                    types = data.value;
-                }
-            });
-            return types;
-        }
-
-        function add() {
-            toValidate("addForm");
-            if (validateForm("addForm")) {
-                var resTypeId = $("#addResourceTypeId").combobox("getValue");
-                $.get("<%=path %>/restype/queryJSON/" + resTypeId, function (data) {
-                    if (data != undefined && data.extension != undefined && data.extension != '') {
-                        if (checkFile('file', 0, data.extension, 200)) {
-                            $('#addForm').ajaxSubmit({
-                                url: '<%=path %>/res/add',
-                                type: 'post',
-                                dataType: 'json',
-                                beforeSend: function () {
-                                    $("#addBtn").text("正在添加...");
-                                    $("#addBtn").attr("disabled", "true");
-                                },
-                                success: function (data) {
-                                    if (data.result == "success") {
-                                        $("#addWin").window("close");
-                                        dataGridReload("list");
-                                        $("#addForm").form("clear");
-                                    } else {
-                                        $.messager.alert("提示", data.message, "info");
-                                    }
-                                },
-                                complete: function () {
-                                    $("#addBtn").text("确认");
-                                    $("#addBtn").removeAttr("disabled");
-                                }
-                            });
-                        }
-                    }
-                }, "json");
-            }
-        }
-
-        function showEdit() {
-            var row = selectedRow("list");
-            if (row) {
-                $("#resourceTypeId").combobox({
-                    url:'<%=path %>/res/list_combo/' + row.id + "/Y",
-                    method:'get',
-                    valueField:'id',
-                    textField:'text',
-                    panelHeight:'auto'
-                });
-                $("#editForm").form("load", row);
-                openWin("editWin");
-            } else {
-                $.messager.alert("提示", "请选择需要修改的资源类型信息", "info");
-            }
-        }
-
-        function edit() {
-            toValidate("editForm");
-            if (validateForm("editForm")) {
-                var resTypeId = $("#resourceTypeId").combobox("getValue");
-                $.get("<%=path %>/restype/queryJSON/" + resTypeId, function (data) {
-                    if (data != undefined && data.extension != undefined && data.extension != '') {
-                        if (checkFile('file', 1, data.extension, 200)) {
-                            $('#editForm').ajaxSubmit({
-                                url: '<%=path %>/res/update',
-                                type: 'post',
-                                dataType: 'json',
-                                beforeSend: function () {
-                                    $("#editBtn").text("正在修改...");
-                                    $("#cancelBtn").attr("disabled", "true");
-                                    $("#editBtn").attr("disabled", "true");
-                                },
-                                success: function (data) {
-                                    if (data.result == "success") {
-                                        closeWin("editWin");
-                                        dataGridReload("list");
-                                        $("#editForm").form("clear");
-                                    } else {
-                                        $.messager.alert("提示", data.message, "info");
-                                    }
-                                },
-                                complete: function () {
-                                    $("#editBtn").text("确认");
-                                    $("#cancelBtn").removeAttr("disabled");
-                                    $("#editBtn").removeAttr("disabled");
-                                }
-                            });
-                        }
-                    }
-                }, "json");
-            }
-        }
-
-        function inactive() {
-            var row = selectedRow("list");
-            if (row) {
-                if (row.status == 'N') {
-                    $.messager.alert("提示", "资源类型不可用,无需冻结", "info");
-                } else {
-                    $.get("<%=path %>/res/inactive?id=" + row.id,
-                            function (data) {
-                                if (data.result == "success") {
-                                    $.messager.alert("提示", data.message, "info");
-                                    dataGridReload("list");
-                                }
-                            });
-                }
-            } else {
-                $.messager.alert("提示", "请选择需要冻结的资源类型", "info");
-            }
-        }
-
-        function active() {
-            var row = selectedRow("list");
-            if (row) {
-                if (row.status == 'Y') {
-                    $.messager.alert("提示", "资源类型可用,无需激活", "info");
-                } else {
-                    $.get("<%=path %>/res/active?id=" + row.id,
-                            function (data) {
-                                if (data.result == "success") {
-                                    $.messager.alert("提示", data.message, "info");
-                                    dataGridReload("list");
-                                }
-                            });
-                }
-            } else {
-                $.messager.alert("提示", "请选择需要激活的资源类型", "info");
-            }
-        }
-
-        function doSearch() {
-            $("#list").datagrid({
-                url:'<%=path %>/res/search_pager',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function searchAll() {
-            $("#searchForm").form("clear");
-            $("#list").datagrid({
-                url:'<%=path %>/res/search_pager',
-                pageSize:20,
-                queryParams:getQueryParams("list", "searchForm")
-            });
-            setPagination("#list");
-        }
-
-        function refreshAll() {
-            $("#list").datagrid("reload");
-        }
-
-        function formatterType(value) {
-            return value.name;
-        }
-    </script>
+    <script src="<%=path %>/js/resource/resources.js"></script>
 </head>
 <body>
+<div id="resLayer" class="layer"></div>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
         url:'<%=path %>/res/search_pager',
@@ -216,8 +47,10 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="80">名称</th>
-        <th field="resourceType" width="80" formatter="formatterType">类型</th>
-        <th field="fileName" width="150">文件名</th>
+        <th field="resourceType" width="80" formatter="formatterName">类型</th>
+        <th field="ofileName" width="150">原始文件名</th>
+        <th field="showDetailSetting" width="100" formatter="formatterYN">是否显示详情设置</th>
+        <th field="fileName" width="150" formatter="formatterLong">文件名</th>
         <th field="path" width="200" formatter="formatterLong">路径</th>
         <th field="des" width="100">描述</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>

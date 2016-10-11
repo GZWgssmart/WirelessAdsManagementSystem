@@ -90,18 +90,8 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public String queryByDeviceId(String id) {
-        return deviceDAO.queryByDeviceId(id);
-    }
-
-    @Override
     public Device queryByCode(String code) {
         return deviceDAO.queryByCode(code);
-    }
-
-    @Override
-    public int updateStatus(Device device) {
-        return deviceDAO.updateStatus(device);
     }
 
     public void updateDeviceStatus(String devCode, String status) {
@@ -121,4 +111,5 @@ public class DeviceServiceImpl implements DeviceService {
     public int updatePublishTime(Device device) {
         return deviceDAO.updatePublishTime(device);
     }
+
 }

@@ -143,37 +143,10 @@ public class CustomerController {
             } else if(type.equals("devgroup")) {
                 return "customer/customers_devg_admin";
             } else if (type.equals("pub")) {
-                return "customer/customers_pub_admin";
+                return "customer/customers_pubplan_admin";
             }
         }
         return "redirect:/admin/login_page";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<Customer> list(HttpSession session) {
-        if (SessionUtil.isAdmin(session)) {
-            logger.info("显示所有客户信息");
-            return customerService.queryAll();
-        } else {
-            logger.info("管理员未登录，不能显示客户列表");
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<Customer> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示客户信息");
-            int total = customerService.count();
-            Pager pager = PagerUtil.getPager(page, rows, total);
-            List<Customer> customers = customerService.queryByPager(pager);
-            return new Pager4EasyUI<Customer>(pager.getTotalRecords(), customers);
-        } else {
-            logger.info("管理员未登录，不能分页显示客户列表");
-            return null;
-        }
     }
 
     @ResponseBody

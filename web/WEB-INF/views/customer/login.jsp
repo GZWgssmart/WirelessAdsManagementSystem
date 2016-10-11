@@ -13,7 +13,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>客户登录-青岛宝瑞无线广告管理系统</title>
+    <title>客户登录-青岛宝瑞液晶综合信息屏媒体系统</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
@@ -22,21 +22,7 @@
     <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
 
-    <script>
-        function login() {
-            $.post("<%=path %>/customer/login",
-                    $("#login_form").serialize(),
-                    function (data) {
-                        var result = data.result;
-                        if(result == "success") {
-                            window.location.href = "<%=path %>/customer/home";
-                        } else {
-                            $("#errMsg").html(data.message);
-                        }
-                    }
-            );
-        }
-    </script>
+    <script src="<%=path %>/js/customer/login.js"></script>
 </head>
 <body>
 <div class="login_container">

@@ -9,9 +9,10 @@ public class Version {
 
     private String id;
     private String name;
-    private String areaCount;
+    private int areaCount;
     private String path;
     private String fullPath;
+    private String ofileName;
     private String fileName;
     private String des;
     private Date createTime;
@@ -33,11 +34,11 @@ public class Version {
         this.name = name;
     }
 
-    public String getAreaCount() {
+    public int getAreaCount() {
         return areaCount;
     }
 
-    public void setAreaCount(String areaCount) {
+    public void setAreaCount(int areaCount) {
         this.areaCount = areaCount;
     }
 
@@ -55,6 +56,14 @@ public class Version {
 
     public void setFullPath(String fullPath) {
         this.fullPath = fullPath;
+    }
+
+    public String getOfileName() {
+        return ofileName;
+    }
+
+    public void setOfileName(String ofileName) {
+        this.ofileName = ofileName;
     }
 
     public String getFileName() {

@@ -17,11 +17,7 @@ public interface DeviceService extends BaseService<Device, String> {
 
     public int countByCriteria(Device device, String customerId);
 
-    public String queryByDeviceId(String id);
-
     public Device queryByCode(String code);
-
-    public int updateStatus(Device device);
 
     public void updateDeviceStatus(String devCode, String status);
 

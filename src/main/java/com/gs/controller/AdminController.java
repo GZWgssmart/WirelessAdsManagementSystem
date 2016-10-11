@@ -106,32 +106,6 @@ public class AdminController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<Admin> list(HttpSession session) {
-        if (SessionUtil.isSuperAdmin(session)) {
-            logger.info("显示所有管理员信息");
-            return adminService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<Admin> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        if (SessionUtil.isSuperAdmin(session)) {
-            logger.info("分页显示管理员信息");
-            int total = adminService.count();
-            Pager pager = PagerUtil.getPager(page, rows, total);
-            List<Admin> admins = adminService.queryByPager(pager);
-            Pager4EasyUI<Admin> pager4EasyUI = new Pager4EasyUI<Admin>(pager.getTotalRecords(), admins);
-            return pager4EasyUI;
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Admin> searchPager(@Param("page")String page, @Param("rows")String rows, Admin admin, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {

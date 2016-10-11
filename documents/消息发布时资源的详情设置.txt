@@ -1,0 +1,5 @@
+[
+{"resourceId":"****","resourceName":"****", "push":true, ""area":1,"showType":"segment","startTime":"2016-08-30",
+"endTime":"2016-08-31","stayTime":"5", "showCount":"5", "segments":"08:00:00-09:00:00,10:00:00-11:00:00"}
+]
+在服务端直接解析此JSON字符串为对象

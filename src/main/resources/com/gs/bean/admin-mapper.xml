@@ -21,12 +21,6 @@
         ]]>
     </select>
 
-    <select id="queryByPager" resultType="list" resultMap="adminResultMap" parameterType="com.gs.common.bean.Pager">
-        <![CDATA[
-        select * from t_admin limit #{beginIndex}, #{pageSize}
-        ]]>
-    </select>
-
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="adminResultMap">
         <![CDATA[
         select * from t_admin where 1 = 1
@@ -46,12 +40,6 @@
         order by create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
-    </select>
-
-    <select id="count" resultType="int">
-        <![CDATA[
-        select count(1) from t_admin;
-        ]]>
     </select>
 
     <select id="countByCriteria" resultType="int">
@@ -108,15 +96,4 @@
         ]]>
     </update>
 
-    <insert id="batchInsert" useGeneratedKeys="true" keyProperty="list" parameterType="list">
-        <![CDATA[
-        insert into t_admin(email, password) VALUES
-        ]]>
-        <foreach collection="list" item="item" index="index" separator=",">
-            <![CDATA[
-            (#{item.email}, #{item.password})
-            ]]>
-        </foreach>
-
-    </insert>
 </mapper>

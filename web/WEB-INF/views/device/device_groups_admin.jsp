@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>客户列表-青岛宝瑞无线广告管理系统</title>
+    <title>客户列表-青岛宝瑞液晶综合信息屏媒体系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -24,12 +24,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        $(function() {
-            setPagination("#list")
-        });
-
-    </script>
+    <script src="<%=path %>/js/device/device_groups_admin.js"></script>
 </head>
 <body>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"

@@ -9,6 +9,7 @@ import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.FileUtil;
 import com.gs.common.util.PagerUtil;
+import com.gs.common.util.UUIDUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.ResourceService;
 import com.gs.service.ResourceTypeService;
@@ -52,18 +53,21 @@ public class ResourceController {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             resource.setCustomerId(customer.getId());
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                resource.setOfileName(ofileName);
                 resource.setFileName(fileName);
                 resource.setPath(FileUtil.uploadFilePath(targetFile));
                 resource.setFullPath(targetFile.getAbsolutePath());
                 resource.setFileSize(targetFile.length());
             } else {
+                resource.setOfileName("无");
                 resource.setFileName("无");
                 resource.setPath("无");
                 resource.setFullPath("无");
@@ -84,15 +88,6 @@ public class ResourceController {
         }
     }
 
-    @RequestMapping(value = "list_page_choose", method = RequestMethod.GET)
-    public String toListChoosePage(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            return "resource/resources_choose";
-        } else {
-            return "redirect:/index";
-        }
-    }
-
     @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
     public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
@@ -100,33 +95,6 @@ public class ResourceController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<com.gs.bean.Resource> list(HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("显示所有资源信息");
-            return resourceService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<com.gs.bean.Resource> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示资源信息");
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            int total = resourceService.count();
-            Pager pager = PagerUtil.getPager(page, rows, total);
-            List<com.gs.bean.Resource> resources = resourceService.queryByPagerAndCustomerId(pager, customer.getId());
-            return new Pager4EasyUI<com.gs.bean.Resource>(pager.getTotalRecords(), resources);
-        } else {
-            logger.info("客户未登录，不能分页显示资源列表");
             return null;
         }
     }
@@ -162,18 +130,6 @@ public class ResourceController {
         }
     }
 
-    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
-            logger.info("根据资源id: " + id + "查询资源信息");
-            ModelAndView mav = new ModelAndView("res/res_info");
-            com.gs.bean.Resource resource = resourceService.queryById(id);
-            mav.addObject("resource", resource);
-            return mav;
-        }
-        return null;
-    }
-
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(com.gs.bean.Resource resource, MultipartFile file, HttpSession session) {
@@ -181,13 +137,15 @@ public class ResourceController {
             logger.info("更新资源信息");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                resource.setOfileName(ofileName);
                 resource.setFileName(fileName);
                 resource.setPath(FileUtil.uploadFilePath(targetFile));
                 resource.setFullPath(targetFile.getAbsolutePath());

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.PublishPlanDAO">
+
+    <resultMap id="publishPlanResultMap" type="publishPlan">
+        <id property="id" column="id" />
+        <result property="planName" column="plan_name" />
+        <result property="name" column="name" />
+        <result property="type" column="type" />
+        <result property="versionId" column="version_id" />
+        <result property="versionName" column="version_name" />
+        <result property="devCount" column="dev_count" />
+        <result property="finishCount" column="finish_count" />
+        <result property="notFinishCount" column="not_finish_count" />
+        <result property="groupName" column="group_name" />
+        <result property="des" column="des" />
+        <result property="submitCheckTime" column="submit_check_time" />
+        <result property="checkComment" column="check_comment" />
+        <result property="checkStatus" column="check_status" />
+        <result property="checkTime" column="check_time" />
+        <result property="createTime" column="create_time" />
+        <result property="status" column="status" />
+
+    </resultMap>
+
+    <select id="queryWithResourceById" parameterType="string" resultMap="publishPlanResultMap">
+        <![CDATA[
+        select pp.* from t_publish_plan pp where pp.id=#{id}
+        ]]>
+    </select>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="publishPlanResultMap">
+        <![CDATA[
+        select distinct pp.* from t_publish_plan pp, t_publish p, t_device d, t_resource r
+        where pp.customer_id = #{customerId}
+        ]]>
+        <if test="publishPlan.deviceCode != null and publishPlan.deviceCode !=''" >
+            and pp.id = p.pub_plan_id and p.device_id = d.id and d.id in(select id from t_device where code like concat('%', #{publishPlan.deviceCode}, "%"))
+        </if>
+        <if test="publishPlan.checkStatus != null and publishPlan.checkStatus !=''">
+            and pp.check_status = #{publishPlan.checkStatus}
+        </if>
+        order by pp.create_time desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
+
+    </select>
+
+    <select id="countByCriteria" resultType="int">
+        <![CDATA[
+        select count(distinct pp.id) from t_publish_plan pp, t_publish p, t_device d, t_resource r
+        where pp.customer_id = #{customerId}
+        ]]>
+        <if test="publishPlan.deviceCode != null and publishPlan.deviceCode !=''" >
+           and pp.id = p.pub_plan_id and p.device_id = d.id and d.id in(select id from t_device where code like concat('%', #{publishPlan.deviceCode}, "%"))
+        </if>
+        <if test="publishPlan.checkStatus != null and publishPlan.checkStatus !=''">
+            and pp.check_status = #{publishPlan.checkStatus}
+        </if>
+    </select>
+
+    <insert id="insert" parameterType="publishPlan">
+        <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
+            select uuid() from dual
+        </selectKey>
+        <![CDATA[
+        insert into t_publish_plan(id, plan_name, customer_id, name, type, group_name, version_id, version_name, des, create_time)
+        values(#{id}, #{planName}, #{customerId}, #{name}, #{type}, #{groupName}, #{versionId}, #{versionName}, #{des}, CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+
+    <update id="update" keyProperty="id" parameterType="publishPlan">
+        <![CDATA[
+        update t_publish_plan set plan_name = #{planName}, name=#{name}, type = #{type}, group_name = #{groupName}, version_id = #{versionId}, version_name = #{versionName},
+        des = #{des} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updateCount" keyProperty="id" parameterType="publishPlan">
+        <![CDATA[
+        update t_publish_plan set dev_count=#{devCount}, finish_count = #{finishCount}, not_finish_count = #{notFinishCount} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updateCountByPubId" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_publish_plan set finish_count = finish_count + 1, not_finish_count = not_finish_count - 1
+        where id = (select pub_plan_id from t_publish where id = #{pubId})
+        ]]>
+    </update>
+
+    <update id="inactive" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_publish_plan set status = 'N' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="active" keyProperty="id" parameterType="string">
+        <![CDATA[
+        update t_publish_plan set status = 'Y' where id = #{id}
+        ]]>
+    </update>
+
+    <update id="check" keyProperty="id">
+        <![CDATA[
+        update t_publish_plan set check_status = #{checkStatus} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="finishByPubId" keyProperty="id">
+        <![CDATA[
+        update t_publish_plan set check_status = 'finish' where not_finish_count = 0
+        and id = (select pub_plan_id from t_publish where id = #{pubId})
+        ]]>
+    </update>
+
+</mapper>

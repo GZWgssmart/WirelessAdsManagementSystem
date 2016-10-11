@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-    <title>用户账号设置-青岛宝瑞无线广告管理系统</title>
+    <title>用户账号设置-青岛宝瑞液晶综合信息屏媒体系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -26,24 +26,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        function updatePwd() {
-            toValidate("updateForm");
-            if (validateForm("updateForm")) {
-                $.post("<%=path %>/customer/update_pwd",
-                        $("#updateForm").serialize(),
-                        function (data) {
-                            if (data.result == "success") {
-                                $.messager.alert("提示", data.message, "info");
-                                $("#updateForm").form("clear");
-                            } else {
-                                $("#errMsg").html(data.message);
-                            }
-                        }
-                );
-            }
-        }
-    </script>
+    <script src="<%=path %>/js/customer/setting.js"></script>
 
 
 </head>

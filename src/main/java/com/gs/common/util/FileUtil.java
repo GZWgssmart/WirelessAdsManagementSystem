@@ -41,4 +41,9 @@ public class FileUtil {
         }
         return false;
     }
+
+    public static String getExtension(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."));
+    }
+
 }

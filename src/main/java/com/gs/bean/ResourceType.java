@@ -11,6 +11,7 @@ public class ResourceType {
     private String name;
     private String extension;
     private String des;
+    private String showDetailSetting;
     private Date createTime;
     private String status;
 
@@ -44,6 +45,14 @@ public class ResourceType {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public String getShowDetailSetting() {
+        return showDetailSetting;
+    }
+
+    public void setShowDetailSetting(String showDetailSetting) {
+        this.showDetailSetting = showDetailSetting;
     }
 
     public Date getCreateTime() {

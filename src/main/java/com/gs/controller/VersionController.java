@@ -11,6 +11,7 @@ import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.FileUtil;
 import com.gs.common.util.PagerUtil;
+import com.gs.common.util.UUIDUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.service.ResourceService;
 import com.gs.service.ResourceTypeService;
@@ -54,7 +55,8 @@ public class VersionController {
     public ControllerResult add(Version version, MultipartFile file, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 if (FileUtil.checkExtension(fileName, VERSION_IMG_TYPE)) {
                     File targetFile = new File(FileUtil.uploadPath(session, VERSION_DIR), fileName);
                     try {
@@ -62,6 +64,7 @@ public class VersionController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    version.setOfileName(ofileName);
                     version.setFileName(fileName);
                     version.setPath(FileUtil.uploadFilePath(targetFile));
                     version.setFullPath(targetFile.getAbsolutePath());
@@ -87,32 +90,6 @@ public class VersionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<Version> list(HttpSession session) {
-        if (SessionUtil.isAdmin(session)) {
-            logger.info("显示所有版本信息");
-            return versionService.queryAll();
-        } else {
-            return null;
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "list_pager", method = RequestMethod.GET)
-    public Pager4EasyUI<Version> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
-        if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示版本信息");
-            int total = versionService.count();
-            Pager pager = PagerUtil.getPager(page, rows, total);
-            List<Version> versions = versionService.queryByPager(pager);
-            return new Pager4EasyUI<Version>(pager.getTotalRecords(), versions);
-        } else {
-            logger.info("管理员未登录，不能分页显示版本信息");
-            return null;
-        }
-    }
-
-    @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Version> searchPager(@Param("page")String page, @Param("rows")String rows, Version version, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
@@ -128,12 +105,24 @@ public class VersionController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "querybyid/{versionId}", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+    public String queryById(@PathVariable("versionId") String versionId, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("根据版本id查询版本信息");
+            Version version = versionService.queryById(versionId);
+            return version.getPath();
+        } else {
+            logger.info("管理员未登录，不能分页显示版本信息");
+            return null;
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "list_combo/{id}/{status}", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(@PathVariable("id") String id, @PathVariable("status") String status, HttpSession session) {
         List<ComboBox4EasyUI> comboBox4EasyUIs = null;
         if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             String theStatus = null;
             if (status.equals("Y")) {
                 theStatus = "Y";
@@ -152,16 +141,25 @@ public class VersionController {
         return comboBox4EasyUIs;
     }
 
-    @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
-        if (SessionUtil.isAdmin(session)) {
-            logger.info("根据资源id: " + id + "查询资源信息");
-            ModelAndView mav = new ModelAndView("version/version_info");
+    @ResponseBody
+    @RequestMapping(value = "list_combo_area/{id}/{area}", method = RequestMethod.GET)
+    public List<ComboBox4EasyUI> listArea4Combobox(@PathVariable("id") String id, @PathVariable("area") int area, HttpSession session) {
+        List<ComboBox4EasyUI> comboBox4EasyUIs = null;
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
+            comboBox4EasyUIs = new ArrayList<ComboBox4EasyUI>();
             Version version = versionService.queryById(id);
-            mav.addObject("version", version);
-            return mav;
+            int count = version.getAreaCount();
+            for (int i = 1; i <= count; i++) {
+                ComboBox4EasyUI comboBox4EasyUI = new ComboBox4EasyUI();
+                comboBox4EasyUI.setId(String.valueOf(i));
+                comboBox4EasyUI.setText("区域" + i);
+                if (i == area) {
+                    comboBox4EasyUI.setSelected(true);
+                }
+                comboBox4EasyUIs.add(comboBox4EasyUI);
+            }
         }
-        return null;
+        return comboBox4EasyUIs;
     }
 
     @ResponseBody
@@ -171,13 +169,15 @@ public class VersionController {
             logger.info("更新版本信息");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (file != null) {
-                String fileName = file.getOriginalFilename();
+                String ofileName = file.getOriginalFilename();
+                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
                 File targetFile = new File(FileUtil.uploadPath(session, VERSION_DIR), fileName);
                 try {
                     file.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                version.setOfileName(ofileName);
                 version.setFileName(fileName);
                 version.setPath(FileUtil.uploadFilePath(targetFile));
                 version.setFullPath(targetFile.getAbsolutePath());

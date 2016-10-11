@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-    <title>管理员信息-青岛宝瑞无线广告管理系统</title>
+    <title>管理员信息-青岛宝瑞液晶综合信息屏媒体系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -26,26 +26,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script>
-        function edit() {
-            toValidate("editForm");
-            if (validateForm("editForm")) {
-                $.post("<%=path %>/customer/update",
-                        $("#editForm").serialize(),
-                        function(data) {
-                            if(data.result == "success") {
-                                closeWin("editWin");
-                                $.messager.alert("提示", data.message, "info", function() {
-                                    window.location.href = "<%=path %>/customer/query/${requestScope.customer.id }";
-                                });
-                            } else {
-                                $("#errMsg").html(data.message);
-                            }
-                        }
-                );
-            }
-        }
-    </script>
+    <script src="<%=path %>/js/customer/info.js"></script>
 
 
 </head>
@@ -135,7 +116,7 @@
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
                 <td>
-                    <button type="button" onclick="edit();">确认</button>
+                    <button type="button" onclick="edit('${requestScope.customer.id }');">确认</button>
                 </td>
             </tr>
         </table>
