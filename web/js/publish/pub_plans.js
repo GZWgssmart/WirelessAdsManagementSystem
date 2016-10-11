@@ -445,21 +445,33 @@ function confirmAddResourceToArea() {
         var resourceName = '';
         var rowsJSON = $("#chresList").datagrid("getData");
         if (resRow) { // 否则如果是添加资源
+            var showType = $("#showType").combobox("getValue");
+            var segments = getSegments();
+            if (showType == "segment" && segments == "") {
+                $.messager.alert("提示", "请为时段播放模式的资源设置时段", "info");
+                return;
+            }
             var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",'
-                + '"area":' + currentArea + ',"showType":"' + $("#showType").combobox("getValue") + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
+                + '"area":' + currentArea + ',"showType":"' + showType + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
                 + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue")
-                + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + getSegments() + '"}';
+                + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + segments + '"}';
             var detailJSON = JSON.parse(detail);
             rowsJSON.rows.push(detailJSON);
             $('#resList').datagrid('clearSelections');
         } else if (chresRow) { // 如果是修改已经添加的资源
+            var showType = $("#showType").combobox("getValue");
+            var segments = $("#segments").val();
+            if (showType == "segment" && segments == "") {
+                $.messager.alert("提示", "请为时段播放模式的资源设置时段", "info");
+                return;
+            }
             var chresRowindex = $("#chresList").datagrid("getRowIndex", chresRow);
-            chresRow.showType = $("#showType").combobox("getValue");
+            chresRow.showType = showType;
             chresRow.startTimeStr = $("#startTimeStr").datebox("getValue");
             chresRow.endTimeStr = $("#endTimeStr").datebox("getValue");
             chresRow.stayTime = $("#stayTime").textbox("getValue");
             chresRow.showCount = $("#showCount").textbox("getValue");
-            chresRow.segments = $("#segments").val();
+            chresRow.segments = segments;
             rowsJSON.rows[chresRowindex] = chresRow;
         }
         $("#chresList").datagrid("loadData", rowsJSON);
