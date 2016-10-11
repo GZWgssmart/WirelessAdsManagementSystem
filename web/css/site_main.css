@@ -57,6 +57,10 @@ a:hover {
     width: 240px;
 }
 
+.input_small input[type=checkbox], .input_normal input[type=checkbox], .input_big input[type=checkbox] {
+    width:auto;
+}
+
 .main_logo {
     width:100px;
     height:60px;
