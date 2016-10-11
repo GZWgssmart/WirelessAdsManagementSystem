@@ -1,7 +1,9 @@
 var contextPath = '';
 
 $(function() {
-    setPagination("#list")
+    setPagination("#list");
+    $("#list").datagrid("hideColumn", 'fileName');
+    $("#list").datagrid("hideColumn", 'path');
 });
 
 function add() {

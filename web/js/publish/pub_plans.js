@@ -12,6 +12,8 @@ $(function() {
         }
     });
     $("#list").datagrid("hideColumn", 'versionId');
+    $("#resList").datagrid("hideColumn", 'fileName');
+    $("#resList").datagrid("hideColumn", 'path');
     $("#chosenResWin").window({
             onClose:function () {
                 confirmAllRes();
@@ -361,7 +363,7 @@ function showArea(planId, versionId) {
                     $("#addAreaR").append("<br />");
                     $("#editAreaR").append("<br />");
                 }
-                var str = "<a href='javascript:;' onclick='showChosenResWin(\"" + planId + "\", " + item.id + ")'>区域" +  item.id + "资源</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                var str = "<a style='font-size:16px;' href='javascript:;' onclick='showChosenResWin(\"" + planId + "\", " + item.id + ")'>区域" +  item.id + "资源</a>&nbsp;&nbsp;&nbsp;&nbsp;";
                 $("#addAreaR").append(str);
                 $("#editAreaR").append(str);
                 $("#resourceDetailDiv").append('<input id="resourceDetails' + (idx + 1) + '" type="hidden" name="resourceDetails' + (idx + 1) + '" />');
