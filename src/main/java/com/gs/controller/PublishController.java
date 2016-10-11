@@ -55,7 +55,7 @@ public class PublishController {
     @ResponseBody
     @RequestMapping(value = "search_pager/{planId}", method = RequestMethod.GET)
     public Pager4EasyUI<Publish> searchPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, Publish publish, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             logger.info("分页显示消息发布");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             publish.setPublishPlanId(planId);
@@ -72,7 +72,7 @@ public class PublishController {
     @ResponseBody
     @RequestMapping(value = "search_res_pager/{planId}", method = RequestMethod.GET)
     public Pager4EasyUI<Publish> searchResPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             logger.info("分页显示消息发布里的所有资源");
             int total = publishService.countRes(planId);
             Pager pager = PagerUtil.getPager(page, rows, total);
@@ -87,7 +87,7 @@ public class PublishController {
     @ResponseBody
     @RequestMapping(value = "search_res_pager_dev/{deviceId}", method = RequestMethod.GET)
     public Pager4EasyUI<PubResource> searchResPagerDev(@Param("page")String page, @Param("rows")String rows, @PathVariable("deviceId") String deviceId, Publish publish, HttpSession session) {
-        if (SessionUtil.isCustomer(session)) {
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
             logger.info("分页显示消息发布里的所有资源");
             publish.setDeviceId(deviceId);
             int total = publishService.countResByDevId(publish);
