@@ -4,6 +4,7 @@ $(function() {
     setPagination("#list");
     $("#list").datagrid("hideColumn", 'fileName');
     $("#list").datagrid("hideColumn", 'path');
+    $("#resAdminLayer").remove();
 });
 
 function doSearch(customerId) {

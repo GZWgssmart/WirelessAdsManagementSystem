@@ -142,7 +142,7 @@ a:hover {
     max-height:280px;
 }
 
-#layer {
+.layer {
     background-color:white;
     height:3000px;
     width:3000px;

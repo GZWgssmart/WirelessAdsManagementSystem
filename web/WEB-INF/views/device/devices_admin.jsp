@@ -27,6 +27,7 @@
     <script src="<%=path %>/js/device/devices_admin.js"></script>
 </head>
 <body>
+<div id="devAdminLayer" class="layer"></div>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
         url:'<%=path %>/device/search_pager_admin/${customerId }',

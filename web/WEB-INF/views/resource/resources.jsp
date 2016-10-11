@@ -27,6 +27,7 @@
     <script src="<%=path %>/js/resource/resources.js"></script>
 </head>
 <body>
+<div id="resLayer" class="layer"></div>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
         url:'<%=path %>/res/search_pager',

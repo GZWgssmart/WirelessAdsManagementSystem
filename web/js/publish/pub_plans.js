@@ -20,7 +20,7 @@ $(function() {
             }
         }
     );
-    $("#layer").remove();
+    $("#planLayer").remove();
 });
 
 function showAdd() {

@@ -28,6 +28,7 @@
     <script src="<%=path %>/js/publish/publishes.js"></script>
 </head>
 <body>
+<div id="pubLayer" class="layer"></div>
 <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
        data-options="
         url:'<%=path %>/publish/search_pager/${planId }',

@@ -2,6 +2,7 @@ var contextPath = '';
 
 $(function() {
     setPagination("#list");
+    $("#pubLayer").remove();
 });
 
 function doSearch(planId) {

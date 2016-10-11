@@ -27,6 +27,7 @@
     <script src="<%=path %>/js/publish/pub_plans_checked.js"></script>
 </head>
 <body>
+<div id="planCheckedLayer" class="layer"></div>
 <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
     <div title="发布计划">
         <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"

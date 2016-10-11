@@ -2,6 +2,7 @@ var contextPath = '';
 
 $(function() {
     setPagination("#list");
+    $("#devLayer").remove();
 });
 
 function showAdd() {

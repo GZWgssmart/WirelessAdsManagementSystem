@@ -1,7 +1,8 @@
 var contextPath = '';
 
 $(function() {
-    setPagination("#list")
+    setPagination("#list");
+    $("#devAdminLayer").remove();
 });
 
 function doSearch(customerId) {

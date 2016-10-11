@@ -8,6 +8,7 @@ $(function() {
         }
     });
     $("#list").datagrid("hideColumn", 'versionId');
+    $("#planAdminLayer").remove();
 });
 
 function showPlanDetail() {
