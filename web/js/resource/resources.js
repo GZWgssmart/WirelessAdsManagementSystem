@@ -51,6 +51,24 @@ function showEdit() {
             textField:'text',
             panelHeight:'auto'
         });
+        var show = false;
+        var notShow = false;
+        if (row.showDetailSetting) {
+            show = true;
+        } else {
+            notShow = true;
+        }
+        $("#editShowDetailSetting").combobox({
+            data:[{
+                id: 'Y',
+                text: '显示',
+                selected:show
+            },{
+                id: 'N',
+                text: '不显示',
+                selected:notShow
+            }]
+        });
         $("#editForm").form("load", row);
         openWin("editWin");
     } else {

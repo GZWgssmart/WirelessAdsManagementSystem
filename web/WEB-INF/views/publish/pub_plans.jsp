@@ -278,6 +278,7 @@
             <th field="resourceType" width="80" formatter="formatterName">类型</th>
             <th field="fileName" width="150" formatter="formatterLong">文件名</th>
             <th field="path" width="200" formatter="formatterLong">路径</th>
+            <th field="showDetailSetting" formatter="formatterYN">是否显示详情设置</th>
             <th field="des" width="100">描述</th>
             <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
             <th field="status" width="50" formatter="formatterStatus">状态</th>
@@ -352,7 +353,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button type="button" onclick="confirmAddResourceToArea();">确认</button>
+                    <button type="button" onclick="confirmAddResourceToArea(true);">确认</button>
                 </td>
             </tr>
         </table>

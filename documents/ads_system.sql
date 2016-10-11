@@ -81,6 +81,7 @@ CREATE TABLE t_resource(
   file_name VARCHAR(100) NOT NULL DEFAULT '无' COMMENT '资源文件的名称',
   file_size bigint NOT NULL DEFAULT 0 COMMENT '文件大小,以字节为单位',
   des VARCHAR(500) COMMENT '资源描述,或者当用户选择文本信息时保存的文本',
+  show_detail_setting VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '是否显示设置详情',
   create_time DATETIME DEFAULT current_timestamp COMMENT '资源添加的时间',
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '资源是否可用'

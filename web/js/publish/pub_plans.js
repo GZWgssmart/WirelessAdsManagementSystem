@@ -425,8 +425,11 @@ function addResourceToArea() {
             if (!canAdd) {
                 $.messager.alert("提示", "不能重复添加资源到设备中", "info");
             } else {
-                $("#resourceId").val(row.id);
-                openWinFitPos("detailWin");
+                if (row.showDetailSetting == "Y") {
+                    openWinFitPos("detailWin");
+                } else {
+                    confirmAddResourceToArea(false);
+                }
             }
         } else {
             $.messager.alert("提示", "必须选择可用状态的资源", "info");
@@ -436,12 +439,15 @@ function addResourceToArea() {
     }
 }
 
-function confirmAddResourceToArea() {
-    toValidate("detailForm");
-    if (validateForm("detailForm")) {
+function confirmAddResourceToArea(needValidate) { // 对不需要设置详情的资源不需要检查表单的值
+    var validated = true;
+    if (needValidate) {
+        toValidate("detailForm");
+        validated = validateForm("detailForm");
+    }
+    if (validated) {
         var resRow = selectedRow("resList");
         var chresRow = selectedRow("chresList");
-        var resourceId = '';
         var resourceName = '';
         var rowsJSON = $("#chresList").datagrid("getData");
         if (resRow) { // 否则如果是添加资源
@@ -488,7 +494,6 @@ function showResEdit() {
     if (row) {
         hideStayTime();
         hideShowCount();
-        $("#resourceId").val(row.id);
         $("#detailForm").form("load", row);
         if (row.stayTime != null && row.stayTime != '') {
             showStayTime();

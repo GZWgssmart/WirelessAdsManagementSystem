@@ -349,4 +349,12 @@ function formatterBoolean(value) {
         return "否";
     }
 }
+
+function formatterYN(value) {
+    if (value == 'Y') {
+        return "是";
+    } else {
+        return "否";
+    }
+}
 /////////////////////////////////////

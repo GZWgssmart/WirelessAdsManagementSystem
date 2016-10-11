@@ -20,6 +20,7 @@ public class Resource {
     private ResourceType resourceType;
     private Date createTime;
     private String status;
+    private String showDetailSetting;
 
     public String getId() {
         return id;
@@ -123,6 +124,14 @@ public class Resource {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getShowDetailSetting() {
+        return showDetailSetting;
+    }
+
+    public void setShowDetailSetting(String showDetailSetting) {
+        this.showDetailSetting = showDetailSetting;
     }
 
     @Override
