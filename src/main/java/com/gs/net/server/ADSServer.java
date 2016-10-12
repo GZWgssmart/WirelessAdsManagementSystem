@@ -372,7 +372,7 @@ public class ADSServer {
                         FileDeleteServer fileDeleteServer = new FileDeleteServer();
                         fileDeleteServer.setDevcode(deviceCode);
                         com.gs.bean.Resource resource = publish.getResource();
-                        fileDeleteServer.setFilename(resource.getFileName());
+                        fileDeleteServer.setFilename(resource.getOfileName());
                         fileDeleteServer.setPubid(publish.getId());
                         fileDeleteServer.setType(Common.TYPE_DELETE);
                         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
