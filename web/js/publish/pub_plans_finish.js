@@ -20,23 +20,6 @@ function showPlanDetail() {
     }
 }
 
-function toCheck() {
-    var row = selectedRow("list");
-    if (row) {
-        $.get(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checked",
-            function (data) {
-                if (data.result == "success") {
-                    $.messager.alert("提示", data.message, "info");
-                    dataGridReload("list");
-                } else {
-                    $.messager.alert("提示", data.message, "info");
-                }
-            });
-    } else {
-        $.messager.alert("提示", "请选择需要审核的计划", "info");
-    }
-}
-
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/pubplan/search_pager',

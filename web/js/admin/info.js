@@ -11,6 +11,10 @@ function edit(id) {
                     $.messager.alert("提示", data.message, "info", function() {
                         window.location.href = contextPath + "/admin/query/" + id;
                     });
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toAdminLoginPage();
+                    });
                 } else {
                     $("#errMsg").html(data.message);
                 }

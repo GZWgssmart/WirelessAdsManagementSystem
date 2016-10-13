@@ -48,7 +48,7 @@ public class PublishController {
             mav.addObject("planId", planId);
             return mav;
         } else {
-            return new ModelAndView("redirect:/index");
+            return new ModelAndView("redirect:/redirect_index");
         }
     }
 
@@ -120,7 +120,7 @@ public class PublishController {
             return ControllerResult.getSuccessResult("资源删除消息已经开始处理，请关注每个发布的发布日志！");
         } else {
             logger.info("客户未登录，不能分页显示消息发布里的所有资源");
-            return null;
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

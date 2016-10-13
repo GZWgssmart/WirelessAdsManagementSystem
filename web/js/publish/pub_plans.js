@@ -52,6 +52,10 @@ function add() {
                         $("#addWin").window("close");
                         dataGridReload("list");
                         $("#addForm").form("clear");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     } else {
                         $.messager.alert("提示", data.message, "info");
                     }
@@ -124,6 +128,10 @@ function edit() {
                     closeWin("editWin");
                     dataGridReload("list");
                     $("#editForm").form("clear");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toCustomerLoginPage();
+                    });
                 } else {
                     $.messager.alert("提示", data.message, "info");
                 }
@@ -153,6 +161,10 @@ function toCheck() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     } else {
                         $.messager.alert("提示", data.message, "info");
                     }
@@ -174,6 +186,10 @@ function inactive() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     }
                 });
         }
@@ -193,6 +209,10 @@ function active() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     }
                 });
         }

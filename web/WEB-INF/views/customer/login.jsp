@@ -24,7 +24,7 @@
 
     <script src="<%=path %>/js/customer/login.js"></script>
 </head>
-<body>
+<body onload="redirectIndex('${redirect}');">
 <div class="login_container">
     <img class="login_logo" src="<%=path %>/images/logo.jpg" alt="公司图片" title="公司图片"/>
 

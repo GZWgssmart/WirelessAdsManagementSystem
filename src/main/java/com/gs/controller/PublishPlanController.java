@@ -51,8 +51,9 @@ public class PublishPlanController {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             addOrEditPubPlan("add", customer, publishPlan);
             return ControllerResult.getSuccessResult("成功添加计划");
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
-        return null;
     }
 
     private void addOrEditPubPlan(String addOrEdit, Customer customer, PublishPlan publishPlan) {
@@ -125,7 +126,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -134,7 +135,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_check";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -143,7 +144,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_checked";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -152,7 +153,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_finish";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -163,7 +164,7 @@ public class PublishPlanController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/admin/redirect_login_page");
         }
     }
 
@@ -219,7 +220,7 @@ public class PublishPlanController {
             }
             return new ControllerResult(200, devIds, "成功查询计划下所有设备");
         } else {
-            return ControllerResult.getFailResult("查询计划下所有设备失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -232,7 +233,7 @@ public class PublishPlanController {
             addOrEditPubPlan("edit", customer, publishPlan);
             return ControllerResult.getSuccessResult("成功更新消息计划");
         } else {
-            return ControllerResult.getFailResult("更新消息计划失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -243,7 +244,7 @@ public class PublishPlanController {
             publishPlanService.inactive(id);
             return ControllerResult.getSuccessResult("冻结消息计划成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结消息计划");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -254,7 +255,7 @@ public class PublishPlanController {
             publishPlanService.active(id);
             return ControllerResult.getSuccessResult("已解除消息计划冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活消息计划");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -286,7 +287,7 @@ public class PublishPlanController {
             }
             return ControllerResult.getFailResult("您可能正在尝试其他操作,请联系技术支持");
         } else {
-            return ControllerResult.getFailResult("没有权限提交消息计划审核");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

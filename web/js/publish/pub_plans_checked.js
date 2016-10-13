@@ -28,6 +28,10 @@ function toCheck() {
                 if (data.result == "success") {
                     $.messager.alert("提示", data.message, "info");
                     dataGridReload("list");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toCustomerLoginPage();
+                    });
                 } else {
                     $.messager.alert("提示", data.message, "info");
                 }

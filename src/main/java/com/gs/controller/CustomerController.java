@@ -83,7 +83,7 @@ public class CustomerController {
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute(Constants.SESSION_CUSTOMER);
-        return "redirect:/index";
+        return "redirect:/redirect_index";
     }
 
     @RequestMapping(value = "reg_page", method = RequestMethod.GET)
@@ -108,7 +108,7 @@ public class CustomerController {
             customerService.insert(customer);
             return ControllerResult.getSuccessResult("成功添加客户信息");
         }
-        return null;
+        return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
     }
 
     @RequestMapping(value = "home", method = RequestMethod.GET)
@@ -129,7 +129,7 @@ public class CustomerController {
         if (SessionUtil.isAdmin(session)) {
             return "customer/customers";
         } else {
-            return "redirect:/admin/login_page";
+            return "redirect:/admin/redirect_login_page";
         }
     }
 
@@ -146,7 +146,7 @@ public class CustomerController {
                 return "customer/customers_pubplan_admin";
             }
         }
-        return "redirect:/admin/login_page";
+        return "redirect:/admin/redirect_login_page";
     }
 
     @ResponseBody
@@ -173,7 +173,7 @@ public class CustomerController {
             mav.addObject("customer", customer);
             return mav;
         }
-        return null;
+        return new ModelAndView("redirect:/index");
     }
 
     @ResponseBody
@@ -185,7 +185,7 @@ public class CustomerController {
             customerService.update(customer);
             return ControllerResult.getSuccessResult("成功更新用户信息");
         } else {
-            return ControllerResult.getFailResult("更新用户信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -194,7 +194,7 @@ public class CustomerController {
         if (SessionUtil.isCustomer(session)) {
             return "customer/setting";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -212,7 +212,7 @@ public class CustomerController {
                 return ControllerResult.getFailResult("原密码错误,或新密码与确认密码不一致");
             }
         } else {
-            return ControllerResult.getFailResult("无法更新用户密码");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -224,7 +224,7 @@ public class CustomerController {
             customerService.updatePassword(customer);
             return ControllerResult.getSuccessResult("更新用户密码成功");
         } else {
-            return ControllerResult.getFailResult("无法更新用户密码");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -235,7 +235,7 @@ public class CustomerController {
             customerService.inactive(id);
             return ControllerResult.getSuccessResult("冻结客户账号成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结客户账号");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -246,7 +246,7 @@ public class CustomerController {
             customerService.active(id);
             return ControllerResult.getSuccessResult("已解除客户账号冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活客户账号");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

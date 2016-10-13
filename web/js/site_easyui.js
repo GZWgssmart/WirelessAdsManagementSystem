@@ -210,6 +210,14 @@ function toPage(url) {
     window.location.href = url;
 }
 
+function toCustomerLoginPage() {
+    top.location.href =  "/index";
+}
+
+function toAdminLoginPage() {
+    top.location.href = "/admin/login_page";
+}
+
 function checkFile(name, index, type, size) {
     var file = document.getElementsByName(name)[index].files[0];
     if (file != undefined) {

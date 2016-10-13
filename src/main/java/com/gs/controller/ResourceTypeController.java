@@ -51,7 +51,7 @@ public class ResourceTypeController {
             resourceTypeService.insert(resourceType);
             return ControllerResult.getSuccessResult("成功添加资源类型");
         }
-        return null;
+        return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
@@ -59,7 +59,7 @@ public class ResourceTypeController {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
             return "resource/resource_types";
         } else {
-            return "redirect:/admin/login_page";
+            return "redirect:/admin/redirect_login_page";
         }
     }
 
@@ -117,7 +117,7 @@ public class ResourceTypeController {
             resourceTypeService.update(resourceType);
             return ControllerResult.getSuccessResult("成功更新资源类型信息");
         } else {
-            return ControllerResult.getFailResult("更新资源类型信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -128,7 +128,7 @@ public class ResourceTypeController {
             resourceTypeService.inactive(id);
             return ControllerResult.getSuccessResult("冻结资源类型成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结资源类型");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -139,7 +139,7 @@ public class ResourceTypeController {
             resourceTypeService.active(id);
             return ControllerResult.getSuccessResult("已解除资源类型冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活资源类型");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

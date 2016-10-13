@@ -59,8 +59,9 @@ public class DeviceController {
             } else {
                 return ControllerResult.getFailResult("已经存在该终端号的设备");
             }
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
-        return null;
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
@@ -68,7 +69,7 @@ public class DeviceController {
         if (SessionUtil.isCustomer(session)) {
             return "device/devices";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -79,7 +80,7 @@ public class DeviceController {
             mav.addObject("versionId", versionId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/redirect_index");
         }
     }
 
@@ -90,7 +91,7 @@ public class DeviceController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/admin/redirect_login_page");
         }
     }
 
@@ -99,7 +100,7 @@ public class DeviceController {
         if (SessionUtil.isCustomer(session)) {
             return "device/devices_choose";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -153,7 +154,7 @@ public class DeviceController {
             deviceService.update(device);
             return ControllerResult.getSuccessResult("成功更新终端设备");
         } else {
-            return ControllerResult.getFailResult("更新终端设备失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -164,7 +165,7 @@ public class DeviceController {
             deviceService.inactive(id);
             return ControllerResult.getSuccessResult("冻结终端设备成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结终端设备");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -175,7 +176,7 @@ public class DeviceController {
             deviceService.active(id);
             return ControllerResult.getSuccessResult("已解除终端设备冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活终端设备");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

@@ -46,6 +46,13 @@ public class AdminController {
         return "admin/login";
     }
 
+    @RequestMapping(value = "redirect_login_page", method = RequestMethod.GET)
+    public String redirectLoginPage(Model model) {
+        model.addAttribute(new Admin());
+        model.addAttribute("redirect", "redirect");
+        return "admin/login";
+    }
+
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ControllerResult login(Admin admin, @Param("checkCode")String checkCode, HttpSession session) {
@@ -83,7 +90,7 @@ public class AdminController {
             logger.info("成功添加管理员");
             return ControllerResult.getSuccessResult("成功添加管理员");
         } else {
-            return ControllerResult.getFailResult("没有权限添加管理员");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -101,7 +108,7 @@ public class AdminController {
         if (SessionUtil.isSuperAdmin(session)) {
             return "admin/admins";
         } else {
-            return "redirect:login_page";
+            return "redirect:redirect_login_page";
         }
     }
 
@@ -127,7 +134,7 @@ public class AdminController {
             adminService.inactive(id);
             return ControllerResult.getSuccessResult("冻结管理员成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结管理员");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -138,7 +145,7 @@ public class AdminController {
             adminService.active(id);
             return ControllerResult.getSuccessResult("已解除管理员冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活管理员");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -150,7 +157,7 @@ public class AdminController {
             mav.addObject("admin", admin);
             return mav;
         }
-        return null;
+        return new ModelAndView("redirect:/admin/redirect_login_page");
     }
 
     @ResponseBody
@@ -161,7 +168,7 @@ public class AdminController {
             adminService.update(admin);
             return ControllerResult.getSuccessResult("成功更新管理员信息");
         } else {
-            return ControllerResult.getFailResult("更新管理员信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -170,7 +177,7 @@ public class AdminController {
         if (SessionUtil.isAdmin(session)) {
             return "admin/setting";
         } else {
-            return "redirect:login_page";
+            return "redirect:redirect_login_page";
         }
     }
 
@@ -188,7 +195,7 @@ public class AdminController {
                 return ControllerResult.getFailResult("原密码错误,或新密码与确认密码不一致");
             }
         } else {
-            return ControllerResult.getFailResult("无法更新管理员密码");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -200,7 +207,7 @@ public class AdminController {
             adminService.updatePassword(admin);
             return ControllerResult.getSuccessResult("更新管理员密码成功");
         } else {
-            return ControllerResult.getFailResult("无法更新管理员密码");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

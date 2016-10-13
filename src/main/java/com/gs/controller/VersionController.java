@@ -85,7 +85,7 @@ public class VersionController {
         if (SessionUtil.isAdmin(session)) {
             return "version/versions";
         } else {
-            return "redirect:/admin/login_page";
+            return "redirect:/admin/redirect_login_page";
         }
     }
 
@@ -185,7 +185,7 @@ public class VersionController {
             versionService.update(version);
             return ControllerResult.getSuccessResult("成功更新版本信息");
         } else {
-            return ControllerResult.getFailResult("更新版本信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -196,7 +196,7 @@ public class VersionController {
             versionService.inactive(id);
             return ControllerResult.getSuccessResult("冻结版本信息成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结版本信息");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -207,7 +207,7 @@ public class VersionController {
             versionService.active(id);
             return ControllerResult.getSuccessResult("已解除版本信息冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活版本信息");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

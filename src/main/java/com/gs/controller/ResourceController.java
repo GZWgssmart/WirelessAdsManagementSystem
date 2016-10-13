@@ -84,7 +84,7 @@ public class ResourceController {
         if (SessionUtil.isCustomer(session)) {
             return "resource/resources";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 

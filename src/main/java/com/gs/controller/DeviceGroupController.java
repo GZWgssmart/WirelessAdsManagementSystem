@@ -49,7 +49,7 @@ public class DeviceGroupController {
             deviceGroupService.insert(deviceGroup);
             return ControllerResult.getSuccessResult("成功添加终端分组");
         }
-        return null;
+        return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class DeviceGroupController {
         if (SessionUtil.isCustomer(session)) {
             return "device/device_groups";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -68,7 +68,7 @@ public class DeviceGroupController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/admin/redirect_login_page");
         }
     }
 
@@ -175,7 +175,7 @@ public class DeviceGroupController {
             deviceGroupService.update(deviceGroup);
             return ControllerResult.getSuccessResult("成功更新终端分组信息");
         } else {
-            return ControllerResult.getFailResult("更新终端分组信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -186,7 +186,7 @@ public class DeviceGroupController {
             deviceGroupService.inactive(id);
             return ControllerResult.getSuccessResult("冻结终端分组成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结终端分组");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -197,7 +197,7 @@ public class DeviceGroupController {
             deviceGroupService.active(id);
             return ControllerResult.getSuccessResult("已解除终端分组冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活终端分组");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
