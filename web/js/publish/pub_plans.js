@@ -277,7 +277,7 @@ function chooseDev(type) {
     $("#editType").val(type);
     if (type == "multiple") {
         var rows = selectedRows("devList");
-        if (rows) {
+        if (rows && rows != undefined && rows != '') {
             var deviceIds = "";
             var deviceCodes = "";
             var versionId = '';
