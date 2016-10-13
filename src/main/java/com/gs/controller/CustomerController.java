@@ -83,7 +83,7 @@ public class CustomerController {
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute(Constants.SESSION_CUSTOMER);
-        return "redirect:/redirect_index";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "reg_page", method = RequestMethod.GET)
