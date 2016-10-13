@@ -73,10 +73,9 @@
     </div>
 </div>
 
-<div data-options="region:'south',border:false" style="padding-left:10px;text-align:center;">
+<div data-options="region:'south',border:false" style="padding:10px auto 10px auto;text-align:center;">
     青岛宝瑞液晶综合信息屏媒体系统V1.0<br />
-    地址：山东省青岛市崂山区株洲路140号<br />
-    技术支持:0532-80678775/80678776
+    地址：山东省青岛市崂山区株洲路140号&nbsp;&nbsp;技术支持:0532-80678775/80678776
 </div>
 
 <div id="mm" class="easyui-menu">
