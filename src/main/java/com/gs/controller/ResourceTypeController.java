@@ -88,13 +88,13 @@ public class ResourceTypeController {
     @RequestMapping(value = "list_pager", method = RequestMethod.GET)
     public Pager4EasyUI<ResourceType> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
-            logger.info("分页显示资源类型信息");
+            logger.info("show res types by pager");
             int total = resourceTypeService.count();
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<ResourceType> resourceTypes = resourceTypeService.queryByPager(pager);
             return new Pager4EasyUI<ResourceType>(pager.getTotalRecords(), resourceTypes);
         } else {
-            logger.info("管理员未登录，不能分页显示资源类型列表");
+            logger.info("can not show res types by pager cause admin is nog login");
             return null;
         }
     }
@@ -103,7 +103,7 @@ public class ResourceTypeController {
     @RequestMapping(value = "queryJSON/{id}", method = RequestMethod.GET)
     public ResourceType queryByIdJSON(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("根据资源类型id: " + id + "查询资源类型信息");
+            logger.info("query res type by id: " + id);
             return resourceTypeService.queryById(id);
         }
         return null;
@@ -113,7 +113,7 @@ public class ResourceTypeController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(ResourceType resourceType, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("更新资源类型信息");
+            logger.info("update res type info by admin");
             resourceTypeService.update(resourceType);
             return ControllerResult.getSuccessResult("成功更新资源类型信息");
         } else {

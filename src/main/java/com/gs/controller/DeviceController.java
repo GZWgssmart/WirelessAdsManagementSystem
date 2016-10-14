@@ -108,7 +108,7 @@ public class DeviceController {
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Device> searchPager(@Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示终端设备");
+            logger.info("show devices by pager for customer");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             int total = deviceService.countByCriteria(device, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
@@ -120,7 +120,7 @@ public class DeviceController {
             }
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {
-            logger.info("客户未登录，不能分页显示终端设备");
+            logger.info("can not show devices by pager cause customer is not login");
             return null;
         }
     }
@@ -129,7 +129,7 @@ public class DeviceController {
     @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
     public Pager4EasyUI<Device> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示终端设备");
+            logger.info("show devices by pager for admin");
             int total = deviceService.countByCriteria(device, customerId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Device> devices = deviceService.queryByPagerAndCriteria(pager, device, customerId);
@@ -140,7 +140,7 @@ public class DeviceController {
             }
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {
-            logger.info("管理员未登录，不能分页显示终端设备");
+            logger.info("can not show devices by pager cause admin is not login");
             return null;
         }
     }
@@ -149,7 +149,7 @@ public class DeviceController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("更新终端设备");
+            logger.info("update device info");
             device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
             deviceService.update(device);
             return ControllerResult.getSuccessResult("成功更新终端设备");

@@ -153,13 +153,13 @@ public class CustomerController {
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Customer> searchPager(@Param("page")String page, @Param("rows")String rows, Customer customer, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示客户信息");
+            logger.info("show customers by pager");
             int total = customerService.countByCriteria(customer);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Customer> customers = customerService.queryByPagerAndCriteria(pager, customer);
             return new Pager4EasyUI<Customer>(pager.getTotalRecords(), customers);
         } else {
-            logger.info("管理员未登录，不能分页显示客户列表");
+            logger.info("can not show customer by pager cause admin is no login");
             return null;
         }
     }
@@ -167,7 +167,7 @@ public class CustomerController {
     @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("根据客户id: " + id + "查询客户信息");
+            logger.info("query customer info by id: " + id);
             ModelAndView mav = new ModelAndView("customer/info");
             Customer customer = customerService.queryById(id);
             mav.addObject("customer", customer);
@@ -180,8 +180,7 @@ public class CustomerController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Customer customer, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("更新客户信息");
-            logger.info(customer.getAddress());
+            logger.info("update customer info");
             customerService.update(customer);
             return ControllerResult.getSuccessResult("成功更新用户信息");
         } else {

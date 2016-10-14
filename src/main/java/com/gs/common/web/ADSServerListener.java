@@ -21,7 +21,7 @@ public class ADSServerListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        logger.info("应用启动....消息服务器ADSServer即将被启动，并且保存到应用上下文中");
+        logger.info("Application initialized....ADSServer will be started，and saved to application context");
         ServletContext servletContext = servletContextEvent.getServletContext();
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
         ADSServer adsServer = (ADSServer) webApplicationContext.getBean("adsServer");
@@ -31,7 +31,7 @@ public class ADSServerListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        logger.info("应用销毁....消息服务器ADSServer即将被关闭，并且从应用上下文中删除");
+        logger.info("Application destroyed....ADSServer will be shutdown，and delete from application context");
         ServletContext servletContext = servletContextEvent.getServletContext();
         ADSServer adsServer = (ADSServer) servletContext.getAttribute(Constants.ADSSERVER);
         adsServer.stopServer();

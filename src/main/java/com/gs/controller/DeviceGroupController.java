@@ -76,14 +76,14 @@ public class DeviceGroupController {
     @RequestMapping(value = "list_pager", method = RequestMethod.GET)
     public Pager4EasyUI<DeviceGroup> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示资源分组信息");
+            logger.info("show device group by pager for customer");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             int total = deviceGroupService.countByCustomerId(customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<DeviceGroup> deviceGroups = deviceGroupService.queryByPagerAndCustomerId(pager, customer.getId());
             return new Pager4EasyUI<DeviceGroup>(pager.getTotalRecords(), deviceGroups);
         } else {
-            logger.info("客户未登录，不能分页显示终端分组列表");
+            logger.info("can not show device group by pager cause customer is not login");
             return null;
         }
     }
@@ -92,13 +92,13 @@ public class DeviceGroupController {
     @RequestMapping(value = "list_pager_admin/{customerId}", method = RequestMethod.GET)
     public Pager4EasyUI<DeviceGroup> listPager(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示资源分组信息");
+            logger.info("show device group by pager for admin");
             int total = deviceGroupService.count();
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<DeviceGroup> deviceGroups = deviceGroupService.queryByPagerAndCustomerId(pager, customerId);
             return new Pager4EasyUI<DeviceGroup>(pager.getTotalRecords(), deviceGroups);
         } else {
-            logger.info("管理员未登录，不能分页显示终端分组列表");
+            logger.info("can not show device group by pager cause admin is not login");
             return null;
         }
     }
@@ -171,7 +171,7 @@ public class DeviceGroupController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(DeviceGroup deviceGroup, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("更新终端分组信息");
+            logger.info("update device group info by customer");
             deviceGroupService.update(deviceGroup);
             return ControllerResult.getSuccessResult("成功更新终端分组信息");
         } else {

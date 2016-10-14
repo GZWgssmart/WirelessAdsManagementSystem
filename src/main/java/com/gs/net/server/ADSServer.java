@@ -74,7 +74,7 @@ public class ADSServer {
     public void startServer() {
         serverStarted = true;
         new Thread(new ConnectThread()).start();
-        logger.info("ADSServer服务器已经启动......");
+        logger.info("ADSServer has been started......");
     }
 
     public void stopServer() {
@@ -83,7 +83,7 @@ public class ADSServer {
             try {
                 serverSocket.close();
                 adsSockets = null;
-                logger.info("ADSServer服务器已经被停止......");
+                logger.info("ADSServer has been stopped......");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -96,9 +96,9 @@ public class ADSServer {
             try {
                 serverSocket = new ServerSocket(port);
                 while (serverStarted) {
-                    logger.info("等待客户端的连接...");
+                    logger.info("the server is waiting connects from device...");
                     Socket socket = serverSocket.accept();
-                    logger.info("一个客户端连接上......");
+                    logger.info("one device has connected to the server......");
                     InetAddress inetAddress = socket.getInetAddress();
                     ADSSocket adsSocket = new ADSSocket();
                     adsSocket.setDeviceIP(inetAddress.getHostAddress());
@@ -107,7 +107,7 @@ public class ADSServer {
                 }
             } catch (SocketException e) {
                 stopServer();
-                logger.info("服务器连接被关闭......");
+                logger.info("SocketExcpeption occured, the server connection shutdown......");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -133,22 +133,25 @@ public class ADSServer {
                         byte[] bytes = new byte[in.available()];
                         in.read(bytes);
                         String msg = StringUnicodeUtil.unicodeToString(new String(bytes, Constants.DEFAULT_ENCODING));
-                        logger.info("接收来自客户端的信息: " + msg);
                         if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
+                            logger.info("read heart beat from device: " + msg);
                             readHeartBeat(adsSocket, msg);
                         } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                            logger.info("read file download msg from device: " + msg);
                             readFileDownload(msg);
                         } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                            logger.info("read publish msg from device: " + msg);
                             readPublish(msg);
                         } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                            logger.info("reead file delete msg from device: " + msg);
                             readFileDelete(msg);
                         } else {
-                            logger.info("读取到其他消息......");
+                            logger.info("read other msg from device......");
                         }
                     }
                 } catch (SocketException e) {
                     needRunning = false;
-                    logger.info("读取客户端信息:客户端与服务端失去连接......");
+                    logger.info("SocketException occured when try to read msg from device, connection lost......");
                     // 失去了连接，需要把此客户端从ADSSocket列表中移除
                     lostDeviceConnection(adsSocket);
                 } catch (IOException e) {
@@ -186,13 +189,13 @@ public class ADSServer {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                logger.info("开始判断指定时间" + time + "ms内是否收到至少" + heartBeatCheckCount + "个心跳包....");
+                logger.info("begin to check " + time + "ms time get " + heartBeatCheckCount + " heart beats???....");
                 if (deviceHeartBeatCount.get(adsSocket.getDeviceCode()) < heartBeatCheckCount) {
-                    logger.info("指定时间" + time + "ms内未收到至少" + heartBeatCheckCount + "个心跳包,连接断开....");
+                    logger.info("specified " + time + "ms do not get " + heartBeatCheckCount + " heart beats....");
                     lostDeviceConnection(adsSocket); // 如果在指定的时间后，收到的心跳包个数小于这个时间段内可接收到的心跳数,则说明终端连接有问题,应该关闭连接并修改在线状态
                     break;
                 } else {
-                    logger.info("指定时间" + time + "ms内收到至少" + heartBeatCheckCount + "个心跳包,连接正常....");
+                    logger.info("specified " + time + "ms get" + heartBeatCheckCount + " heart beats, connection from device is OK!!!!....");
                 }
                 deviceHeartBeatCount.put(adsSocket.getDeviceCode(), 0); // 重新开始心跳包计数
             }
@@ -229,10 +232,10 @@ public class ADSServer {
                     Socket socket = adsSocket.getSocket();
                     OutputStream out = socket.getOutputStream();
                     out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
-                    logger.info("发送信息到客户端: " + msg);
+                    logger.info("send msg to device: " + msg);
                 }
             } catch(SocketException e) {
-                logger.info("写出信息到客户端:客户端与服务端失去连接......");
+                logger.info("SocketException occured when send msg to deivce, connection lost......");
                 // 失去了连接，需要把此客户端从ADSSocket列表中移除
                 lostDeviceConnection(adsSocket);
             } catch (IOException e) {
@@ -258,7 +261,7 @@ public class ADSServer {
 
     private String writeHeartBeat(ADSSocket adsSocket) {
         if (isDeviceWork(adsSocket)) {
-            logger.info("发送心跳反馈到" + adsSocket.getDeviceCode() + "客户端");
+            logger.info("send heart beat to " + adsSocket.getDeviceCode());
             HeartBeatServer heartBeatServer = new HeartBeatServer();
             heartBeatServer.setDevcode(adsSocket.getDeviceCode());
             heartBeatServer.setType(Common.TYPE_CHECK);
@@ -277,7 +280,7 @@ public class ADSServer {
             if (isDeviceWork(adsSocket)) {
                 synchronized (Object.class) {
                     if (!handlingDevices.contains(deviceCode)) { // 如果此时指定的客户端没有在处理,则可以下载通知
-                        logger.info("发送文件下载通知到" + adsSocket.getDeviceCode() + "客户端");
+                        logger.info("send file download to " + adsSocket.getDeviceCode());
                         com.gs.bean.Resource resource = publish.getResource();
                         FileDownloadServer fileDownloadServer = new FileDownloadServer();
                         fileDownloadServer.setDevcode(deviceCode);
@@ -295,7 +298,7 @@ public class ADSServer {
                         handlingDevices.add(deviceCode);
                         return Common.DEVICE_WRITE_OUT;
                     } else {
-                        logger.info("终端" + adsSocket.getDeviceCode() + "正在忙");
+                        logger.info(adsSocket.getDeviceCode() + " is busy when send file download to it from server...");
                         return Common.DEVICE_IS_HANDLING;
                     }
                 }
@@ -314,13 +317,13 @@ public class ADSServer {
             if (isDeviceWork(adsSocket)) {
                 synchronized (Object.class) {
                     if (autoRun && handlingDevices.contains(deviceCode)) {
-                        logger.info("终端" + adsSocket.getDeviceCode() + "正在忙");
+                        logger.info(adsSocket.getDeviceCode() + " is busy when send publish msg to it from server....");
                         return Common.DEVICE_IS_HANDLING;
                     } else if (autoRun && !handlingDevices.contains(deviceCode)) {
                         handlingDevices.add(deviceCode);
                     }
                     if (handlingDevices.contains(deviceCode)) {
-                        logger.info("发送消息发布通知到" + adsSocket.getDeviceCode() + "客户端");
+                        logger.info("send publish msg to " + adsSocket.getDeviceCode());
                         com.gs.bean.Resource resource = publish.getResource();
                         PublishServer publishServer = new PublishServer();
                         publishServer.setType(Common.TYPE_PUBLISH);
@@ -368,7 +371,7 @@ public class ADSServer {
             if (isDeviceWork(adsSocket)) {
                 synchronized (Object.class) {
                     if (!handlingDevices.contains(deviceCode)) {
-                        logger.info("发送文件删除通知到" + adsSocket.getDeviceCode() + "客户端");
+                        logger.info("send file delete msg to " + adsSocket.getDeviceCode());
                         FileDeleteServer fileDeleteServer = new FileDeleteServer();
                         fileDeleteServer.setDevcode(deviceCode);
                         com.gs.bean.Resource resource = publish.getResource();
@@ -386,6 +389,7 @@ public class ADSServer {
                         handlingDevices.add(deviceCode);
                         return Common.DEVICE_WRITE_OUT;
                     } else {
+                        logger.info(adsSocket.getDeviceCode() + " is busy when send file delete msg to it from server....");
                         return Common.DEVICE_IS_HANDLING;
                     }
                 }
@@ -398,13 +402,13 @@ public class ADSServer {
     }
 
     private void readHeartBeat(ADSSocket adsSocket, String msg) {
-        logger.info("读取到客户端心跳包信息.....");
         // 接收客户端心跳包并解析
         HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
         String deviceCode = heartBeatClient.getDevcode();
+        logger.info("read the heat beat from device....." + deviceCode);
         adsSocket.setDeviceCode(deviceCode);
         if (adsSockets.get(deviceCode) == null) { // 每次重新连接收到终端心跳包时,启动检测线程
-            logger.info("终端" + deviceCode + "第一次连接,或失去连接后重新连接上服务器");
+            logger.info(deviceCode + " connect to the server first time...");
             updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
             deviceHeartBeatCount.put(deviceCode, 1);
             startCheckDeviceConnection(adsSocket);
@@ -419,7 +423,7 @@ public class ADSServer {
     }
 
     private void readFileDownload(String msg) {
-        logger.info("读取到客户端文件下载反馈......");
+        logger.info("read file download msg from device......");
         FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
         if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
             publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
@@ -437,7 +441,7 @@ public class ADSServer {
     }
 
     private void readPublish(String msg) {
-        logger.info("读取到客户端消息发布反馈......");
+        logger.info("read publish msg from device......");
         PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
         if (publishClient.getResult().equals(Common.RESULT_N)) {
             publishService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
@@ -460,7 +464,7 @@ public class ADSServer {
     }
 
     private void readFileDelete(String msg) {
-        logger.info("读取到客户端文件删除反馈......");
+        logger.info("read the file delete from device......");
         FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
         if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
             publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
@@ -489,9 +493,9 @@ public class ADSServer {
         }
         if (publishs != null && publishs.size() > 0) {
             // 有消息发布还未处理完,则需要顺序处理这些消息发布
-            logger.info("终端" + deviceCode + "开始自动处理消息发布......");
+            logger.info("the device " + deviceCode + " begin to handle the publishes automatically......");
             for (Publish publish : publishs) {
-                logger.info("消息编号: " + publish.getId());
+                logger.info("automatically handle publish id: " + publish.getId());
                 String publishLog = publish.getPublishLog();
                 if (publishLog.equals(PublishLog.SUBMIT_TO_CHECK) || publishLog.equals(PublishLog.FILE_DOWNLOADING) || publishLog.equals(PublishLog.FILE_NOT_DOWNLOADED)) {
                     String result = writeFileDownload(publish, true);
@@ -518,7 +522,7 @@ public class ADSServer {
      * @param status
      */
     private void updateDeviceStatus(ADSSocket adsSocket, String status) {
-        logger.info("更新" +adsSocket.getDeviceCode() + "终端在线状态为:" + status);
+        logger.info("update " +adsSocket.getDeviceCode() + " to " + status);
         deviceService.updateDeviceStatus(adsSocket.getDeviceCode(), status);
     }
 
@@ -547,11 +551,11 @@ public class ADSServer {
      */
     private boolean isDeviceWork(ADSSocket adsSocket) {
         try {
-            logger.info("开始检测客户端" + adsSocket.getDeviceCode() + "是否连接......");
+            logger.info("begin to check device " + adsSocket.getDeviceCode() + " is online");
             OutputStream out = adsSocket.getSocket().getOutputStream();
             out.write(0); // 发送空字符
         } catch (SocketException e) {
-            logger.info("在尝试发送消息到客户端时出现客户端不能连接的错误.....");
+            logger.info("SocketException occured when try to connect to the device.....");
             lostDeviceConnection(adsSocket);
             return false;
         } catch (IOException e) {

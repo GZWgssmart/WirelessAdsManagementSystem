@@ -87,7 +87,7 @@ public class AdminController {
         if (SessionUtil.isSuperAdmin(session)) {
             admin.setPassword(EncryptUtil.md5Encrypt(admin.getPassword()));
             adminService.insert(admin);
-            logger.info("成功添加管理员");
+            logger.info("Add admin successfully");
             return ControllerResult.getSuccessResult("成功添加管理员");
         } else {
             return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
@@ -116,13 +116,13 @@ public class AdminController {
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Admin> searchPager(@Param("page")String page, @Param("rows")String rows, Admin admin, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示管理员信息");
+            logger.info("show admin info by pager");
             int total = adminService.countByCriteria(admin);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Admin> admins = adminService.queryByPagerAndCriteria(pager, admin);
             return new Pager4EasyUI<Admin>(pager.getTotalRecords(), admins);
         } else {
-            logger.info("管理员未登录，不能分页显示管理员列表");
+            logger.info("can not show admin info by pager cause admin is not login");
             return null;
         }
     }
@@ -164,7 +164,7 @@ public class AdminController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Admin admin, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("更新管理员信息");
+            logger.info("update admin info successfully");
             adminService.update(admin);
             return ControllerResult.getSuccessResult("成功更新管理员信息");
         } else {

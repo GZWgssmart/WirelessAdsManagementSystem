@@ -103,14 +103,14 @@ public class ResourceController {
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<com.gs.bean.Resource> searchPager(@Param("page")String page, @Param("rows")String rows, com.gs.bean.Resource resource, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示资源信息");
+            logger.info("show resources by pager");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             int total = resourceService.countByCriteria(resource, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<com.gs.bean.Resource> resources = resourceService.queryByPagerAndCriteria(pager, resource, customer.getId());
             return new Pager4EasyUI<com.gs.bean.Resource>(pager.getTotalRecords(), resources);
         } else {
-            logger.info("客户未登录，不能分页显示资源列表");
+            logger.info("can not show resources by pager cause customer is not login");
             return null;
         }
     }
@@ -119,13 +119,13 @@ public class ResourceController {
     @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
     public Pager4EasyUI<com.gs.bean.Resource> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, com.gs.bean.Resource resource, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示资源信息");
+            logger.info("show resources for admin");
             int total = resourceService.countByCriteria(resource, customerId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<com.gs.bean.Resource> resources = resourceService.queryByPagerAndCriteria(pager, resource, customerId);
             return new Pager4EasyUI<com.gs.bean.Resource>(pager.getTotalRecords(), resources);
         } else {
-            logger.info("客户未登录，不能分页显示资源列表");
+            logger.info("can not show resources cause admin is not login");
             return null;
         }
     }
@@ -134,7 +134,7 @@ public class ResourceController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(com.gs.bean.Resource resource, MultipartFile file, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("更新资源信息");
+            logger.info("update resource info");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (file != null) {
                 String ofileName = file.getOriginalFilename();

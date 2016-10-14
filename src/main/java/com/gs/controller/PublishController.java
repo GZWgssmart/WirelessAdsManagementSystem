@@ -11,6 +11,7 @@ import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.net.parser.Common;
+import com.gs.net.server.ADSServer;
 import com.gs.service.PublishService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -56,7 +57,7 @@ public class PublishController {
     @RequestMapping(value = "search_pager/{planId}", method = RequestMethod.GET)
     public Pager4EasyUI<Publish> searchPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, Publish publish, HttpSession session) {
         if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
-            logger.info("分页显示消息发布");
+            logger.info("show publishes by pager for specified planid");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             publish.setPublishPlanId(planId);
             int total = publishService.countByCriteria(publish);
@@ -64,7 +65,7 @@ public class PublishController {
             List<Publish> publishs = publishService.queryByPagerAndCriteria(pager, publish);
             return new Pager4EasyUI<Publish>(pager.getTotalRecords(), publishs);
         } else {
-            logger.info("客户未登录，不能分页显示消息发布");
+            logger.info("can not show publishes by pager for specified planid cause is not login");
             return null;
         }
     }
@@ -73,13 +74,13 @@ public class PublishController {
     @RequestMapping(value = "search_res_pager/{planId}", method = RequestMethod.GET)
     public Pager4EasyUI<Publish> searchResPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, HttpSession session) {
         if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
-            logger.info("分页显示消息发布里的所有资源");
+            logger.info("show all resources by pager for specified plan");
             int total = publishService.countRes(planId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Publish> publishs = publishService.queryResByPager(pager, planId);
             return new Pager4EasyUI<Publish>(pager.getTotalRecords(), publishs);
         } else {
-            logger.info("客户未登录，不能分页显示消息发布里的所有资源");
+            logger.info("can not show all resources by pager for specified plan cause is not login");
             return null;
         }
     }
@@ -88,14 +89,14 @@ public class PublishController {
     @RequestMapping(value = "search_res_pager_dev/{deviceId}", method = RequestMethod.GET)
     public Pager4EasyUI<PubResource> searchResPagerDev(@Param("page")String page, @Param("rows")String rows, @PathVariable("deviceId") String deviceId, Publish publish, HttpSession session) {
         if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
-            logger.info("分页显示消息发布里的所有资源");
+            logger.info("show resources by pager for specified device");
             publish.setDeviceId(deviceId);
             int total = publishService.countResByDevId(publish);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<PubResource> pubResources = publishService.queryResByDevId(pager, publish);
             return new Pager4EasyUI<PubResource>(pager.getTotalRecords(), pubResources);
         } else {
-            logger.info("客户未登录，不能分页显示消息发布里的所有资源");
+            logger.info("can not show resources by pager for specified device cause is not login");
             return null;
         }
     }
@@ -104,10 +105,11 @@ public class PublishController {
     @RequestMapping(value = "delete_res/{deviceId}/{resIds}", method = RequestMethod.GET)
     public ControllerResult deleteRes(@PathVariable("deviceId") String deviceId, @PathVariable("resIds") String resIds, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("删除已经发布的资源");
+            logger.info("delete resources which published");
             List<Publish> publishes = publishService.queryByDevIdAndResIds(deviceId, resIds);
+            ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
             for (Publish publish : publishes) {
-                String result = ADSServerUtil.getADSServerFromServletContext().writeFileDelete(publish, false);
+                String result = adsServer.writeFileDelete(publish, false);
                 if (result.equals(Common.DEVICE_NOT_CONNECT)) {
                     // return ControllerResult.getFailResult("消息发布: 此终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
                 } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
@@ -119,7 +121,7 @@ public class PublishController {
             }
             return ControllerResult.getSuccessResult("资源删除消息已经开始处理，请关注每个发布的发布日志！");
         } else {
-            logger.info("客户未登录，不能分页显示消息发布里的所有资源");
+            logger.info("can not show all the resource for the publish cause customer is not login");
             return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
@@ -128,7 +130,7 @@ public class PublishController {
     @RequestMapping(value = "search_chosen_res/{planId}/{area}", method = RequestMethod.GET)
     public Pager4EasyUI<PublishResourceDetail> searchChosenPager(@PathVariable("planId") String planId, @PathVariable("area") int area, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示资源信息");
+            logger.info("show resources by pager for specified planId and area");
             if (planId.equals("none")) {
                 return null;
             } else {
@@ -161,7 +163,7 @@ public class PublishController {
                 return new Pager4EasyUI<PublishResourceDetail>(pager.getTotalRecords(), publishResourceDetails);
             }
         } else {
-            logger.info("客户未登录，不能分页显示资源列表");
+            logger.info("can not show resources by pager for specified planId and area cause customer is not login");
             return null;
         }
     }
