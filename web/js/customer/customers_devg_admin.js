@@ -7,6 +7,13 @@ $(function() {
             showDevg();
         }
     });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function showDevg() {

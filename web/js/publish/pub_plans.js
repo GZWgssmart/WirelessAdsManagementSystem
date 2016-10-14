@@ -21,6 +21,48 @@ $(function() {
         }
     );
     $("#planLayer").remove();
+    $("#checkSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#deviceGroupId").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchDev();
+            }
+        }
+    });
+    $("#versionId").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchDev();
+            }
+        }
+    });
+    $("#resTypeSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchRes();
+            }
+        }
+    });
+    $("#resStatusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchRes();
+            }
+        }
+    });
 });
 
 function showAdd() {
@@ -245,8 +287,10 @@ function refreshAll() {
 }
 
 function showDevWin() {
+    $("#devList").datagrid({
+        url:contextPath + '/device/search_pager'
+    });
     openWinFitPos("devWin");
-    $("#devWin").window("refresh", contextPath + "/device/list_page_choose");
 }
 
 function doSearchDev() {

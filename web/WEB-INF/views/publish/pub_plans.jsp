@@ -87,7 +87,7 @@
                 <form id="searchForm" modalAttribute="publishPlan">
                     终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>
                     资源名称:<input type="text" name="resourceName" class="easyui-textbox"/>
-                    审核状态:<select name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    审核状态:<select id="checkSearch" name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                             data: [{
                                 id: 'not_submit',
                                 text: '未提交'
@@ -102,7 +102,7 @@
                                 text: '已完成'
                             }]">
                 </select>
-                    状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                             data: [{
                                 id: 'Y',
                                 text: '可用'
@@ -212,7 +212,90 @@
         </div>
     </div>
 </div>
-<div class="easyui-window site_win_big_wider input_big" id="devWin" style="padding:0;" data-options="title:'选择设备',resizable:false,mode:true,closed:true"></div>
+<div class="easyui-window site_win_big_wider input_big" id="devWin" style="padding:0;" data-options="title:'选择设备',resizable:false,mode:true,closed:true">
+    <table id="devList" class="easyui-datagrid" toolbar="#devtb" style="height:100%;"
+           data-options="
+        method:'get',
+                idField:'id',
+				rownumbers:true,
+				singleSelect:false,
+				autoRowHeight:false,
+				pagination:true,
+				border:false,
+				pageSize:20,
+				rowStyler: function(index,row){
+				    if (row.status == 'N') {
+					    return 'color:red;';
+					} else if (row.online == 'N') {
+					    return 'color:blue;';
+					}
+				}">
+        <thead>
+        <tr>
+            <th field="id" checkbox="true" width="50">用户ID</th>
+            <th field="code" width="85">终端号</th>
+            <th field="version" width="50" formatter="formatterName">版本</th>
+            <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
+            <th field="driver" width="60">驾驶员</th>
+            <th field="phone" width="80">手机号</th>
+            <th field="busNo" width="60">车路线</th>
+            <th field="busPlateNo" width="75">车牌号</th>
+            <th field="online" width="60" formatter="formatterOnline">在线状态</th>
+            <th field="onlineTime" width="120" formatter="formatterDate">上线时间</th>
+            <th field="offlineTime" width="120" formatter="formatterDate">离线时间</th>
+            <th field="adsUpdateTime" width="120" formatter="formatterDate">广告更新时间</th>
+            <th field="installTimeStr" width="120">安装时间</th>
+            <th field="des" width="100">描述</th>
+            <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+            <th field="status" width="50" formatter="formatterStatus">状态</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="devtb">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+           onclick="chooseDev('multiple');">确定已选终端</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+           onclick="chooseDev('group');">确定分组终端</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+           onclick="chooseDev('all');">确定指定版本的全部终端</a>
+        <div class="input_small">
+            <form id="devSearchForm" modalAttribute="device">
+                终端号:<input type="text" name="code" class="easyui-textbox"/>
+                分组:<select id="deviceGroupId" name="deviceGroupId" class="easyui-combobox"
+                           data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                版本:<select id="versionId" name="versionId" class="easyui-combobox"
+                           data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                <%--
+                <br />
+                是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                        data: [{
+                            id: 'Y',
+                            text: '在线'
+                        },{
+                            id: 'N',
+                            text: '离线'
+                        }]">
+            </select>
+                状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                        data: [{
+                            id: 'Y',
+                            text: '可用'
+                        },{
+                            id: 'N',
+                            text: '不可用'
+                        }]">
+            </select>
+            --%>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
+                   onclick="doSearchDev();">搜索</a>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
+                   onclick="searchAllDev();">查询所有</a>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
+                   onclick="refreshAllDev();">刷新</a>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="easyui-window site_win_big_wider input_big" id="chosenResWin" style="padding:0;" data-options="title:'已选资源',resizable:false,mode:true,closed:true">
     <table id="chresList" class="easyui-datagrid" toolbar="#chrestb" style="height:100%;"
            data-options="
@@ -290,9 +373,9 @@
            onclick="addResourceToArea();">添加到区域</a>
         <div class="input_small">
             <form id="resSearchForm" modalAttribute="resource">
-                类型:<select name="resourceTypeId" class="easyui-combobox"
+                类型:<select id="resTypeSearch" name="resourceTypeId" class="easyui-combobox"
                            data-options="url:'<%=path %>/restype/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-                状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                状态:<select id="resStatusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '可用'

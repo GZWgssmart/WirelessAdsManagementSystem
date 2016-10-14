@@ -5,6 +5,20 @@ $(function() {
     $("#list").datagrid("hideColumn", 'fileName');
     $("#list").datagrid("hideColumn", 'path');
     $("#resLayer").remove();
+    $("#resTypeSearch").combobox({
+        onChange:function(n, o){
+                if (n != o) {
+                    doSearch();
+                }
+            }
+        });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function add() {

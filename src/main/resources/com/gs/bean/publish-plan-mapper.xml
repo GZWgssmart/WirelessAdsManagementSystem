@@ -40,6 +40,9 @@
         <if test="publishPlan.checkStatus != null and publishPlan.checkStatus !=''">
             and pp.check_status = #{publishPlan.checkStatus}
         </if>
+        <if test="publishPlan.status != null and publishPlan.status !=''">
+            and pp.status = #{publishPlan.status}
+        </if>
         order by pp.create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
@@ -55,6 +58,9 @@
         </if>
         <if test="publishPlan.checkStatus != null and publishPlan.checkStatus !=''">
             and pp.check_status = #{publishPlan.checkStatus}
+        </if>
+        <if test="publishPlan.status != null and publishPlan.status !=''">
+            and pp.status = #{publishPlan.status}
         </if>
     </select>
 

@@ -9,6 +9,20 @@ $(function() {
     });
     $("#list").datagrid("hideColumn", 'versionId');
     $("#planAdminLayer").remove();
+    $("#checkSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function showPlanDetail() {
@@ -20,19 +34,19 @@ function showPlanDetail() {
     }
 }
 
-function doSearch(customerId) {
+function doSearch() {
     $("#list").datagrid({
-        url:contextPath + '/pubplan/search_pager_admin/' + customerId,
+        url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
         pageSize:20,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
 }
 
-function searchAll(customerId) {
+function searchAll() {
     $("#searchForm").form("clear");
     $("#list").datagrid({
-        url:contextPath + '/pubplan/search_pager_admin/' + customerId,
+        url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
         pageSize:20,
         queryParams:getQueryParams("list", "searchForm")
     });

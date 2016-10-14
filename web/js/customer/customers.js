@@ -1,7 +1,14 @@
 var contextPath = '';
 
 $(function() {
-    setPagination("#list")
+    setPagination("#list");
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function add() {

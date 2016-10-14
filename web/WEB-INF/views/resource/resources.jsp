@@ -70,9 +70,9 @@
     <div class="input_small">
         <form id="searchForm" modalAttribute="resource">
             名称:<input type="text" name="name" class="easyui-textbox"/>
-            类型:<select name="resourceTypeId" class="easyui-combobox"
+            类型:<select id="resTypeSearch" name="resourceTypeId" class="easyui-combobox"
                        data-options="url:'<%=path %>/restype/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '可用'

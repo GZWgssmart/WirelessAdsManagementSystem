@@ -3,6 +3,34 @@ var contextPath = '';
 $(function() {
     setPagination("#list");
     $("#devLayer").remove();
+    $("#devGroupSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#versionSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#onlineSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function showAdd() {

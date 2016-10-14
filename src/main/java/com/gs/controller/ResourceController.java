@@ -95,7 +95,7 @@ public class ResourceController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/admin/redirect_login_page");
         }
     }
 

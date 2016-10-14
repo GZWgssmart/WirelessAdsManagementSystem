@@ -3,6 +3,13 @@ var contextPath = '';
 $(function() {
     setPagination("#list");
     $("#pubLayer").remove();
+    $("#publishLogSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function doSearch(planId) {

@@ -73,7 +73,7 @@
             邮箱:<input type="email" name="email" class="easyui-textbox"/>
             姓名:<input type="text" name="name" class="easyui-textbox"/>
             手机:<input type="text" name="phone" class="easyui-textbox"/>
-            状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '可用'
