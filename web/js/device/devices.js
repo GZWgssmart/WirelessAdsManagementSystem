@@ -223,7 +223,7 @@ function refreshAllRes() {
 
 function deleteRes() {
     var rows = selectedRows("resList");
-    if (rows) {
+    if (rows && rows != undefined && rows != '') {
         var resIds = "";
         var canDo = true;
         $.each(rows, function (index, row) {
@@ -251,6 +251,8 @@ function deleteRes() {
         } else {
             $.messager.alert("提示", "请只选择可删除的资源", "info");
         }
+    } else {
+        $.messager.alert("提示", "请只选择可删除的资源", "info");
     }
 
 }

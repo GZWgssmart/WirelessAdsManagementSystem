@@ -11,7 +11,7 @@ public class PubResource {
     public static final String DELETING = "删除中";
 
     public static final String CAN_DELETE_MSG = "此资源已经完成发布，可以删除";
-    public static final String CAN_NOT_DELETE_MSG = "此资源没有完成发布或正在删除中，无需删除";
+    public static final String CAN_NOT_DELETE_MSG = "此资源没有完成发布或正在删除中或已删除，无需删除";
 
     private String id;
     private String name;
@@ -48,5 +48,21 @@ public class PubResource {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PubResource that = (PubResource) o;
+
+        return id != null ? id.equals(that.id) : that.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

@@ -151,6 +151,7 @@
         where p.resource_id = r.id and p.device_id = d.id and d.id = #{publish.deviceId}
         ]]>
         order by r.name
+        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
     <select id="countResByDevId" resultType="int" parameterType="string">
