@@ -162,12 +162,12 @@ public class PublishServiceImpl implements PublishService {
             com.gs.bean.Resource resource = iterator.next();
             boolean canDelete = true;
             for (Publish p : publishes) {
-                if (p.getResource().getId().equals(resource.getId()) && !p.getPublishLog().equals(PublishLog.PUBLISHED)) {
+                if (p.getResource().getId().equals(resource.getId()) && (!p.getPublishLog().equals(PublishLog.PUBLISHED) && !p.getPublishLog().equals(PublishLog.RESOURCE_NOT_DELETED))) {
                     canDelete = false;
                 }
             }
             if (canDelete) {
-                resources.remove(resource);
+                iterator.remove();
                 PubResource pubResource = new PubResource();
                 pubResource.setId(resource.getId());
                 pubResource.setName(resource.getName());
@@ -191,7 +191,7 @@ public class PublishServiceImpl implements PublishService {
                 }
             }
             if (deleted) {
-                resources.remove(resource);
+                iterator.remove();
                 PubResource pubResource = new PubResource();
                 pubResource.setId(resource.getId());
                 pubResource.setName(resource.getName());
@@ -215,7 +215,7 @@ public class PublishServiceImpl implements PublishService {
                 }
             }
             if (deleting) {
-                resources.remove(resource);
+                iterator.remove();
                 PubResource pubResource = new PubResource();
                 pubResource.setId(resource.getId());
                 pubResource.setName(resource.getName());

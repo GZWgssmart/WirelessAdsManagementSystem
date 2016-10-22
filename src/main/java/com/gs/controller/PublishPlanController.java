@@ -275,15 +275,7 @@ public class PublishPlanController {
                 List<Publish> publishs = publishService.queryByPlanId(id);
                 ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
                 for (Publish publish : publishs) {
-                    String result = adsServer.writeFileDownload(publish, false);
-                    if (result.equals(Common.DEVICE_NOT_CONNECT)) {
-                        // return ControllerResult.getFailResult("消息发布: 此终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
-                    } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
-                        // return ControllerResult.getFailResult("消息发布: 此终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
-                    } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
-                        publishService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
-                        // return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
-                    }
+                    adsServer.writeFileDownload(publish);
                 }
                 return ControllerResult.getSuccessResult("此计划已经开始处理,请关注计划下每个终端的发布日志");
             }
