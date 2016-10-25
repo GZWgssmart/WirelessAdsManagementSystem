@@ -149,10 +149,15 @@ public class DeviceController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("update device info");
-            device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
-            deviceService.update(device);
-            return ControllerResult.getSuccessResult("成功更新终端设备");
+            List<Device> devices = deviceService.queryByCodeNotSelf(device);
+            if (devices == null || devices.size() == 0) {
+                logger.info("update device info");
+                device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
+                deviceService.update(device);
+                return ControllerResult.getSuccessResult("成功更新终端设备");
+            } else {
+                return ControllerResult.getFailResult("已经存在该终端号的设备");
+            }
         } else {
             return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }

@@ -35,6 +35,12 @@
         ]]>
     </select>
 
+    <select id="queryByCodeNotSelf" resultType="list" resultMap="deviceResultMap">
+        <![CDATA[
+        select * from t_device where code=#{device.code} and id != #{device.id}
+        ]]>
+    </select>
+
     <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceResultMap">
         <![CDATA[
         select d.*, dg.id as g_id, dg.name as g_name from t_device d, t_device_group dg where d.customer_id = #{customerId} and d.device_group_id = dg.id limit #{pager.beginIndex}, #{pager.pageSize}

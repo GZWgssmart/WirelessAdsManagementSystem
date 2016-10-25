@@ -112,4 +112,8 @@ public class DeviceServiceImpl implements DeviceService {
         return deviceDAO.updatePublishTime(device);
     }
 
+    @Override
+    public List<Device> queryByCodeNotSelf(Device device) {
+        return deviceDAO.queryByCodeNotSelf(device);
+    }
 }

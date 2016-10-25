@@ -96,4 +96,8 @@ public class ResourceServiceImpl implements ResourceService {
     public Resource queryByName(String name) {
         return resourceDAO.queryByName(name);
     }
+
+    public List<Resource> queryByNameNotSelf(Resource resource) {
+        return resourceDAO.queryByNameNotSelf(resource);
+    }
 }

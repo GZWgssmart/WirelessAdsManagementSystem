@@ -76,9 +76,9 @@ public class ResourceController {
                 }
                 resourceService.insert(resource);
                 return ControllerResult.getSuccessResult("成功添加资源");
+            } else {
+                return ControllerResult.getFailResult("已经存在该名称的资源");
             }
-        } else {
-            return ControllerResult.getFailResult("已经存在该名称的资源");
         }
         return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
     }
@@ -138,27 +138,32 @@ public class ResourceController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(com.gs.bean.Resource resource, MultipartFile file, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("update resource info");
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            if (file != null) {
-                String ofileName = file.getOriginalFilename();
-                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
-                File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
-                try {
-                    file.transferTo(targetFile);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            List<com.gs.bean.Resource> resources = resourceService.queryByNameNotSelf(resource);
+            if (resources == null || resources.size() == 0) {
+                logger.info("update resource info");
+                Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+                if (file != null) {
+                    String ofileName = file.getOriginalFilename();
+                    String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
+                    File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
+                    try {
+                        file.transferTo(targetFile);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    resource.setOfileName(ofileName);
+                    resource.setFileName(fileName);
+                    resource.setPath(FileUtil.uploadFilePath(targetFile));
+                    resource.setFullPath(targetFile.getAbsolutePath());
+                    resource.setFileSize(targetFile.length());
                 }
-                resource.setOfileName(ofileName);
-                resource.setFileName(fileName);
-                resource.setPath(FileUtil.uploadFilePath(targetFile));
-                resource.setFullPath(targetFile.getAbsolutePath());
-                resource.setFileSize(targetFile.length());
+                resourceService.update(resource);
+                return ControllerResult.getSuccessResult("成功更新资源信息");
+            } else {
+                return ControllerResult.getFailResult("已经存在该名称的资源");
             }
-            resourceService.update(resource);
-            return ControllerResult.getSuccessResult("成功更新资源信息");
         } else {
-            return ControllerResult.getFailResult("更新资源信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

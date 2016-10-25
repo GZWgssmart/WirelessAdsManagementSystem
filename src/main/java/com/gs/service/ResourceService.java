@@ -20,4 +20,6 @@ public interface ResourceService extends BaseService<Resource, String> {
 
     public Resource queryByName(String name);
 
+    public List<Resource> queryByNameNotSelf(Resource resource);
+
 }

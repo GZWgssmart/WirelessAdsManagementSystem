@@ -31,9 +31,15 @@
         ]]>
     </select>
 
-    <select id="queryByName" parameterType="string" resultMap="deviceResultMap">
+    <select id="queryByName" parameterType="string" resultMap="resourceResultMap">
         <![CDATA[
         select * from t_resource where name=#{name}
+        ]]>
+    </select>
+
+    <select id="queryByNameNotSelf" resultType="list" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where name=#{resource.name} and id != #{resource.id}
         ]]>
     </select>
 

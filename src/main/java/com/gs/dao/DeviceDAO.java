@@ -31,4 +31,6 @@ public interface DeviceDAO extends BaseDAO<Device, String> {
 
     public List<Device> queryByCustomerIdAndVersionId(@Param("customerId") String customerId, @Param("versionId") String versionId);
 
+    public List<Device> queryByCodeNotSelf(@Param("device") Device device);
+
 }
