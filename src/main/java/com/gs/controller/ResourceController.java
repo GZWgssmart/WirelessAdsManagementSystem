@@ -50,33 +50,37 @@ public class ResourceController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ControllerResult add(com.gs.bean.Resource resource, MultipartFile file, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            resource.setCustomerId(customer.getId());
-            if (file != null) {
-                String ofileName = file.getOriginalFilename();
-                String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
-                File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
-                try {
-                    file.transferTo(targetFile);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if (resourceService.queryByName(resource.getName()) == null) {
+                Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+                resource.setCustomerId(customer.getId());
+                if (file != null) {
+                    String ofileName = file.getOriginalFilename();
+                    String fileName = UUIDUtil.uuid() + FileUtil.getExtension(ofileName);
+                    File targetFile = new File(FileUtil.uploadPath(session, customer.getId()), fileName);
+                    try {
+                        file.transferTo(targetFile);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    resource.setOfileName(ofileName);
+                    resource.setFileName(fileName);
+                    resource.setPath(FileUtil.uploadFilePath(targetFile));
+                    resource.setFullPath(targetFile.getAbsolutePath());
+                    resource.setFileSize(targetFile.length());
+                } else {
+                    resource.setOfileName("无");
+                    resource.setFileName("无");
+                    resource.setPath("无");
+                    resource.setFullPath("无");
+                    resource.setFileSize(0);
                 }
-                resource.setOfileName(ofileName);
-                resource.setFileName(fileName);
-                resource.setPath(FileUtil.uploadFilePath(targetFile));
-                resource.setFullPath(targetFile.getAbsolutePath());
-                resource.setFileSize(targetFile.length());
-            } else {
-                resource.setOfileName("无");
-                resource.setFileName("无");
-                resource.setPath("无");
-                resource.setFullPath("无");
-                resource.setFileSize(0);
+                resourceService.insert(resource);
+                return ControllerResult.getSuccessResult("成功添加资源");
             }
-            resourceService.insert(resource);
-            return ControllerResult.getSuccessResult("成功添加资源");
+        } else {
+            return ControllerResult.getFailResult("已经存在该名称的资源");
         }
-        return null;
+        return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)

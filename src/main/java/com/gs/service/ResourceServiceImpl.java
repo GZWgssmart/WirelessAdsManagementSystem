@@ -91,4 +91,9 @@ public class ResourceServiceImpl implements ResourceService {
     public String queryByResourceId(String id) {
         return resourceDAO.queryByResourceId(id);
     }
+
+    @Override
+    public Resource queryByName(String name) {
+        return resourceDAO.queryByName(name);
+    }
 }

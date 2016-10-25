@@ -1,11 +1,8 @@
 package com.gs.service;
 
-import com.gs.bean.DeviceGroup;
 import com.gs.bean.Resource;
-import com.gs.bean.ResourceType;
 import com.gs.common.bean.Pager;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -20,5 +17,7 @@ public interface ResourceService extends BaseService<Resource, String> {
     public int countByCriteria(Resource resource, String customerId);
 
     public String queryByResourceId(String id);
+
+    public Resource queryByName(String name);
 
 }

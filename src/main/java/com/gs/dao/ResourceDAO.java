@@ -24,4 +24,6 @@ public interface ResourceDAO extends BaseDAO<Resource, String> {
 
     public String queryByResourceId(String id);
 
+    public Resource queryByName(String name);
+
 }

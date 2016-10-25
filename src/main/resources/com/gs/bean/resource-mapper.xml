@@ -31,6 +31,12 @@
         ]]>
     </select>
 
+    <select id="queryByName" parameterType="string" resultMap="deviceResultMap">
+        <![CDATA[
+        select * from t_resource where name=#{name}
+        ]]>
+    </select>
+
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="resourceResultMap">
         <![CDATA[
         select r.*, rt.id as t_id, rt.name as t_name, rt.show_detail_setting as detail_setting from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id
