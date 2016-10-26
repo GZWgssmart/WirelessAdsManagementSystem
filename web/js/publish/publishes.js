@@ -42,3 +42,7 @@ function showAllRes(planId) {
     openWinFitPos("allResWin");
 }
 
+function formatterTypeName(value, row, index) {
+    return row.resource.resourceTypeName;
+}
+

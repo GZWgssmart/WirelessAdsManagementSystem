@@ -135,7 +135,20 @@ public class PublishServiceImpl implements PublishService {
 
     @Override
     public List<Publish> queryResByPager(Pager pager, String planId) {
-        return publishDAO.queryResByPager(pager, planId);
+        List<Publish> publishes = publishDAO.queryResByPager(pager, planId);
+        List<Publish> retPubs = new ArrayList<Publish>();
+        Publish currentPublish = null;
+        if (publishes != null && publishes.size() > 0) {
+            currentPublish = publishes.get(0);
+            retPubs.add(currentPublish);
+        }
+        for (Publish p : publishes) {
+            if (!currentPublish.getResource().getId().equals(p.getResource().getId())) {
+                currentPublish = p;
+                retPubs.add(currentPublish);
+            }
+        }
+        return retPubs;
     }
 
     @Override
