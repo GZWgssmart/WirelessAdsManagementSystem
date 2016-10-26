@@ -10,6 +10,7 @@ public class PublishResourceDetail {
 
     private String resourceId;
     private String resourceName;
+    private String resourceType;
     private int area;
     private String showType;
     private Date startTime;
@@ -34,6 +35,14 @@ public class PublishResourceDetail {
 
     public void setResourceName(String resourceName) {
         this.resourceName = resourceName;
+    }
+
+    public String getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
     }
 
     public int getArea() {

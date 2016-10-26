@@ -521,7 +521,7 @@ function confirmAddResourceToArea(needValidate) { // 对不需要设置详情的
                 $.messager.alert("提示", "请为时段播放模式的资源设置时段", "info");
                 return;
             }
-            var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",'
+            var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",' + '"resourceType":"' + resRow.resourceType.name + '",'
                 + '"area":' + currentArea + ',"showType":"' + showType + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
                 + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue")
                 + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + segments + '"}';

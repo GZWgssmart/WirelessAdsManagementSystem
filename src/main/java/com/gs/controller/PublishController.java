@@ -130,7 +130,7 @@ public class PublishController {
                 publish.setPublishPlanId(planId);
                 publish.setArea(area);
                 int total = publishService.countByCriteria(publish);
-                Pager pager = PagerUtil.getPager(1, 100, total);
+                Pager pager = PagerUtil.getPager(1, 200, total);
                 List<Publish> publishes = publishService.queryByPagerAndCriteria(pager, publish);
                 List<PublishResourceDetail> publishResourceDetails = new ArrayList<PublishResourceDetail>();
                 for (Publish p : publishes) {
@@ -139,6 +139,7 @@ public class PublishController {
                     detail.setSegments(p.getSegments() == null ? "" : p.getSegments());
                     detail.setResourceId(p.getResource().getId());
                     detail.setResourceName(p.getResource().getName());
+                    detail.setResourceType(p.getResource().getResourceTypeName());
                     detail.setEndTime(p.getEndTime());
                     if (detail.getEndTime() != null) {
                         detail.setEndTimeStr(DateFormatUtil.format(detail.getEndTime(), "yyyy-MM-dd"));

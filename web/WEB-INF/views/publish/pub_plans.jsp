@@ -316,6 +316,7 @@
         <tr>
             <th field="resourceId" checkbox="true" width="50">用户ID</th>
             <th field="resourceName" width="80">名称</th>
+            <th field="resourceType" width="80">类型</th>
             <th field="area" width="60" formatter="formatterArea">显示区域</th>
             <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
             <th field="startTimeStr" width="120" formatter="formatterDate">开始日期</th>
