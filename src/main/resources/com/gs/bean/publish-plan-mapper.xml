@@ -29,14 +29,26 @@
         ]]>
     </select>
 
-    <select id="queryByPagerAndCriteria" resultType="list" resultMap="publishPlanResultMap">
-        <![CDATA[
-        select distinct pp.* from t_publish_plan pp, t_publish p, t_device d, t_resource r
+    <sql id="selectPubPlan">
+        select distinct pp.* from t_publish_plan pp
         where pp.customer_id = #{customerId}
-        ]]>
-        <if test="publishPlan.deviceCode != null and publishPlan.deviceCode !=''" >
-            and pp.id = p.pub_plan_id and p.device_id = d.id and d.id in(select id from t_device where code like concat('%', #{publishPlan.deviceCode}, "%"))
-        </if>
+    </sql>
+
+    <sql id="selectPubPlanWithDevice">
+        select distinct pp.* from t_publish_plan pp, t_publish p, t_device d
+        where pp.customer_id = #{customerId}
+    </sql>
+
+    <select id="queryByPagerAndCriteria" resultType="list" resultMap="publishPlanResultMap">
+        <choose>
+            <when test="publishPlan.deviceCode == null or publishPlan.deviceCode ==''">
+                <include refid="selectPubPlan" />
+            </when>
+            <otherwise>
+                <include refid="selectPubPlanWithDevice" />
+                and pp.id = p.pub_plan_id and p.device_id = d.id and d.id in(select id from t_device where code like concat('%', #{publishPlan.deviceCode}, "%"))
+            </otherwise>
+        </choose>
         <if test="publishPlan.checkStatus != null and publishPlan.checkStatus !=''">
             and pp.check_status = #{publishPlan.checkStatus}
         </if>
@@ -48,14 +60,26 @@
 
     </select>
 
-    <select id="countByCriteria" resultType="int">
-        <![CDATA[
-        select count(distinct pp.id) from t_publish_plan pp, t_publish p, t_device d, t_resource r
+    <sql id="countPubPlan">
+        select count(distinct pp.id) from t_publish_plan pp
         where pp.customer_id = #{customerId}
-        ]]>
-        <if test="publishPlan.deviceCode != null and publishPlan.deviceCode !=''" >
-           and pp.id = p.pub_plan_id and p.device_id = d.id and d.id in(select id from t_device where code like concat('%', #{publishPlan.deviceCode}, "%"))
-        </if>
+    </sql>
+
+    <sql id="countPubPlanWithDevice">
+        select count(distinct pp.id) from t_publish_plan pp, t_publish p, t_device d
+        where pp.customer_id = #{customerId}
+    </sql>
+
+    <select id="countByCriteria" resultType="int">
+        <choose>
+            <when test="publishPlan.deviceCode == null or publishPlan.deviceCode ==''">
+                <include refid="countPubPlan" />
+            </when>
+            <otherwise>
+                <include refid="countPubPlanWithDevice" />
+                and pp.id = p.pub_plan_id and p.device_id = d.id and d.id in(select id from t_device where code like concat('%', #{publishPlan.deviceCode}, "%"))
+            </otherwise>
+        </choose>
         <if test="publishPlan.checkStatus != null and publishPlan.checkStatus !=''">
             and pp.check_status = #{publishPlan.checkStatus}
         </if>
