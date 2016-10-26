@@ -141,11 +141,11 @@ public class PublishServiceImpl implements PublishService {
         if (publishes != null && publishes.size() > 0) {
             currentPublish = publishes.get(0);
             retPubs.add(currentPublish);
-        }
-        for (Publish p : publishes) {
-            if (!currentPublish.getResource().getId().equals(p.getResource().getId())) {
-                currentPublish = p;
-                retPubs.add(currentPublish);
+            for (Publish p : publishes) {
+                if (!currentPublish.getResource().getId().equals(p.getResource().getId())) {
+                    currentPublish = p;
+                    retPubs.add(currentPublish);
+                }
             }
         }
         return retPubs;
