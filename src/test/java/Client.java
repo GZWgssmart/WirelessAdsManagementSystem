@@ -73,7 +73,7 @@ public class Client {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(120 * 1000);
+                    Thread.sleep(10 * 1000);
                     OutputStream out = sockets.get(devCode).getOutputStream();
                     out.write(StringUnicodeUtil.stringToUnicode(getFirstBeatString(devCode)).getBytes(Constants.DEFAULT_ENCODING));
                 } catch (InterruptedException e) {
