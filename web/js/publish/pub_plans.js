@@ -524,7 +524,12 @@ function confirmAddResourceToArea(needValidate) { // 对不需要设置详情的
             var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",' + '"resourceType":"' + resRow.resourceType.name + '",'
                 + '"area":' + currentArea + ',"showType":"' + showType + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
                 + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue")
-                + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + segments + '"}';
+                + '","showCount":"' + $("#showCount").textbox("getValue");
+            if (showType == "segment") {
+                detail += '","segments":"' + segments + '"}';
+            } else {
+                detail += '","segments":""}';
+            }
             var detailJSON = JSON.parse(detail);
             rowsJSON.rows.push(detailJSON);
             $('#resList').datagrid('clearSelections');
@@ -541,7 +546,11 @@ function confirmAddResourceToArea(needValidate) { // 对不需要设置详情的
             chresRow.endTimeStr = $("#endTimeStr").datebox("getValue");
             chresRow.stayTime = $("#stayTime").textbox("getValue");
             chresRow.showCount = $("#showCount").textbox("getValue");
-            chresRow.segments = segments;
+            if (showType == 'segment') {
+                chresRow.segments = segments;
+            } else {
+                chresRow.segments = "";
+            }
             rowsJSON.rows[chresRowindex] = chresRow;
         }
         $("#chresList").datagrid("loadData", rowsJSON);
