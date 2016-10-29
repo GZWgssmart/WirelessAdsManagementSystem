@@ -490,6 +490,7 @@ function addResourceToArea() {
                 $.messager.alert("提示", "不能重复添加资源到设备中", "info");
             } else {
                 if (row.showDetailSetting == "Y") {
+                    $("#detailForm").form("clear");
                     openWinFitPos("detailWin");
                 } else {
                     confirmAddResourceToArea(false);

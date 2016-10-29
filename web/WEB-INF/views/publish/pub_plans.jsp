@@ -403,9 +403,6 @@
                 <td>播放模式:</td>
                 <td><select id="showType" name="showType" class="easyui-combobox" data-options="editable:false, valueField: 'id',textField: 'text',panelHeight:'auto',
                             data: [{
-                                id: 'now',
-                                text: '即时播放'
-                            },{
                                 id: 'order',
                                 text: '顺序播放'
                             },{
