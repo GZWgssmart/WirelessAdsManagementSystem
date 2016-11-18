@@ -188,7 +188,10 @@ CREATE TABLE t_publish_plan(
   check_status VARCHAR(10) NOT NULL DEFAULT 'not_submit' COMMENT '审核状态',
   status VARCHAR(2) NOT NULL DEFAULT 'Y' COMMENT '是否在用或删除',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间'
-);
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+ALTER TABLE t_publish_plan ADD CONSTRAINT fk_pub_plan_customer_id
+FOREIGN KEY (customer_id) REFERENCES t_customer(id);
 
 ALTER TABLE t_publish_plan ADD CONSTRAINT fk_pub_plan_version_id
 FOREIGN KEY (version_id) REFERENCES t_version(id);
