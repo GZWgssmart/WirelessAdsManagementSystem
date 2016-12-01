@@ -98,7 +98,6 @@ public class Client {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(10 * 1000);
                     InputStream in = sockets.get(devCode).getInputStream();
                     int dataLength = in.available();
                     OutputStream out = sockets.get(devCode).getOutputStream();
@@ -147,8 +146,6 @@ public class Client {
                     }
 
                 } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }

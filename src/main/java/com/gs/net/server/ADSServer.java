@@ -167,14 +167,16 @@ public class ADSServer {
     }
 
     private void readHeartBeat(ADSSocket adsSocket, String msg) {
+        logger.info("begin to execute readHeartBeat method...");
         synchronized (ADSServer.class) {
             // 接收客户端心跳包并解析
+            logger.info("enter readHeartBeat synchronized...");
             HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
             String deviceCode = heartBeatClient.getDevcode();
             logger.info("read the heat beat from device....." + deviceCode);
             adsSocket.setDeviceCode(deviceCode);
             if (adsSockets.get(deviceCode) == null) { // 表示原先并没有连接上，是首次连接或重新连接，则需要把设备状态更新成在线状态
-                logger.info(deviceCode + " connect to the server...");
+                logger.info(deviceCode + " connect to the server first...");
                 adsSockets.put(deviceCode, adsSocket);
                 updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
             }
@@ -384,7 +386,9 @@ public class ADSServer {
          *
          */
         private void write() {
+            logger.info("begin to write....");
             synchronized (ADSServer.class) {
+                logger.info("enter write method synchronized...");
                 if (msg != null && msg.length() > 0) {
                     logger.info("start to check if can send msg to device: " + deviceCode + ", thread: " + Thread.currentThread().getName());
                     if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
@@ -419,6 +423,7 @@ public class ADSServer {
                                     lostDeviceConnection(adsSocket);
                                 }
                             } else { // 如果设备在处理中，则等待指定时间后继续执行此线程
+                                logger.info("waiting the device for 5 seconds....");
                                 try {
                                     Thread.sleep(5 * 1000);
                                 } catch (InterruptedException e) {
@@ -426,6 +431,7 @@ public class ADSServer {
                                 }
                             }
                         } else { // 没有连接，则不需要写出消息
+                            logger.info("do not write cause the device is not connected...");
                             needRun = false;
                         }
                     }
