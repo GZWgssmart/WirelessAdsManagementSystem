@@ -57,7 +57,6 @@ public class ADSServer {
     public ADSServer() {
         adsSockets = new HashMap<String, ADSSocket>();
         handlingDevices = new ArrayList<String>();
-        handlingDevices = new ArrayList<String>();
     }
 
     public void startServer() {
@@ -124,7 +123,7 @@ public class ADSServer {
                 try {
                     Socket socket = adsSocket.getSocket();
                     InputStream in = socket.getInputStream();
-                    byte[] bytes = new byte[2048];
+                    byte[] bytes = new byte[4096];
                     int total = in.read(bytes);
                     if (total > 0) {
                         String msg = StringUnicodeUtil.unicodeToString(new String(bytes, 0, total, Constants.DEFAULT_ENCODING));
@@ -159,6 +158,8 @@ public class ADSServer {
                     lostDeviceConnection(adsSocket);
                 } catch (IOException e) {
                     needRunning = false;
+                    logger.info("IOException occured when try to read msg from device, connection lost......");
+                    lostDeviceConnection(adsSocket);
                 }
 
             }
@@ -413,6 +414,10 @@ public class ADSServer {
                                         handlingDevices.remove(deviceCode);
                                     }
                                     needRun = false;
+                                } catch (SocketTimeoutException e) {
+                                    needRun = false;
+                                    logger.info("SocketTimeoutException occured when send msg to deivce, connection lost......");
+                                    lostDeviceConnection(adsSocket);
                                 } catch (SocketException e) {
                                     needRun = false;
                                     logger.info("SocketException occured when send msg to deivce, connection lost......");
@@ -463,7 +468,6 @@ public class ADSServer {
                 e.printStackTrace();
             }
         }
-        socket = null;
         handlingDevices.remove(adsSocket.getDeviceCode());
         adsSockets.remove(adsSocket.getDeviceCode());
     }
