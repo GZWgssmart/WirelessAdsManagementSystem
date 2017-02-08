@@ -31,9 +31,9 @@ public class ADSServer {
     private static String siteDomain;
     private static int offlineTimeout;
     private ServerSocket serverSocket;
-    private Map<String, ADSSocket> adsSockets;
+    private Hashtable<String, ADSSocket> adsSockets;
 
-    private List<String> handlingDevices;
+    private Vector<String> handlingDevices;
 
     private boolean serverStarted;
 
@@ -55,8 +55,8 @@ public class ADSServer {
     }
 
     public ADSServer() {
-        adsSockets = new HashMap<String, ADSSocket>();
-        handlingDevices = new ArrayList<String>();
+        adsSockets = new Hashtable<String, ADSSocket>();
+        handlingDevices = new Vector<String>();
     }
 
     public void startServer() {
@@ -133,13 +133,13 @@ public class ADSServer {
                             readHeartBeat(adsSocket, msg);
                         } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
                             logger.info("read file download msg from device: " + msg);
-                            readFileDownload(msg);
+                            readFileDownload(adsSocket, msg);
                         } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
                             logger.info("read publish msg from device: " + msg);
-                            readPublish(msg);
+                            readPublish(adsSocket, msg);
                         } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
                             logger.info("read file delete msg from device: " + msg);
-                            readFileDelete(msg);
+                            readFileDelete(adsSocket, msg);
                         } else {
                             logger.info("read other msg from device......");
                         }
@@ -169,7 +169,7 @@ public class ADSServer {
 
     private void readHeartBeat(ADSSocket adsSocket, String msg) {
         logger.info("begin to execute readHeartBeat method...");
-        synchronized (ADSServer.class) {
+        synchronized (adsSocket.getSocket()) {
             // 接收客户端心跳包并解析
             logger.info("enter readHeartBeat synchronized...");
             HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
@@ -198,8 +198,8 @@ public class ADSServer {
         startWrite(null, heartBeatServer.getDevcode(), JSON.toJSONString(heartBeatServer));
     }
 
-    private void readFileDownload(String msg) {
-        synchronized (ADSServer.class) {
+    private void readFileDownload(ADSSocket adsSocket, String msg) {
+        synchronized (adsSocket.getSocket()) {
             logger.info("read file download msg from device......");
             FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
             handlingDevices.remove(fileDownloadClient.getDevcode());
@@ -214,8 +214,8 @@ public class ADSServer {
         }
     }
 
-    private synchronized void readPublish(String msg) {
-        synchronized (ADSServer.class) {
+    private synchronized void readPublish(ADSSocket adsSocket, String msg) {
+        synchronized (adsSocket.getSocket()) {
             logger.info("read publish msg from device......");
             PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
             handlingDevices.remove(publishClient.getDevcode());
@@ -239,8 +239,8 @@ public class ADSServer {
         }
     }
 
-    private void readFileDelete(String msg) {
-        synchronized (ADSServer.class) {
+    private void readFileDelete(ADSSocket adsSocket, String msg) {
+        synchronized (adsSocket.getSocket()) {
             logger.info("read the file delete from device......");
             FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
             handlingDevices.remove(fileDeleteClient.getDevcode());
@@ -388,22 +388,23 @@ public class ADSServer {
          */
         private void write() {
             logger.info("begin to write....");
-            synchronized (ADSServer.class) {
-                logger.info("enter write method synchronized...");
-                if (msg != null && msg.length() > 0) {
-                    logger.info("start to check if can send msg to device: " + deviceCode + ", thread: " + Thread.currentThread().getName());
-                    if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                        publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
-                    } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                        publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
-                    } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                        publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
-                    }
-                    boolean needRun = true;
-                    while (needRun) {
-                        ADSSocket adsSocket = adsSockets.get(deviceCode);
-                        if (adsSocket != null) {
-                            if (!handlingDevices.contains(deviceCode)) {
+            ADSSocket adsSocket = adsSockets.get(deviceCode);
+            if (adsSocket != null) {
+                synchronized (adsSocket.getSocket()) {
+                    logger.info("enter write method synchronized...");
+                    if (msg != null && msg.length() > 0) {
+                        logger.info("start to check if can send msg to device: " + deviceCode + ", thread: " + Thread.currentThread().getName());
+                        if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                            publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
+                        } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                            publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
+                        } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                            publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
+                        }
+                        boolean needRun = true;
+                        int count = 0;
+                        while (needRun) {
+                            if (adsSockets.get(deviceCode) != null && !handlingDevices.contains(deviceCode)) {
                                 handlingDevices.add(deviceCode);
                                 try {
                                     Socket socket = adsSocket.getSocket();
@@ -430,17 +431,22 @@ public class ADSServer {
                             } else { // 如果设备在处理中，则等待指定时间后继续执行此线程
                                 logger.info("waiting the device for 5 seconds....");
                                 try {
-                                    Thread.sleep(5 * 1000);
+                                    if (++count > 5) { // 最多休眠5次，如果大于5次了，则停止此线程
+                                        needRun = false;
+                                        logger.info("waiting for the device over 5 times, do not need to run any more......");
+                                        lostDeviceConnection(adsSocket);
+                                    } else {
+                                        Thread.sleep(5 * 1000);
+                                    }
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
-                        } else { // 没有连接，则不需要写出消息
-                            logger.info("do not write cause the device is not connected...");
-                            needRun = false;
                         }
                     }
                 }
+            } else { // 没有连接，则不需要写出消息
+                logger.info("do not write cause the device is not connected...");
             }
         }
     }
