@@ -169,23 +169,21 @@ public class ADSServer {
 
     private void readHeartBeat(ADSSocket adsSocket, String msg) {
         logger.info("begin to execute readHeartBeat method...");
-        synchronized (adsSocket.getSocket()) {
-            // 接收客户端心跳包并解析
-            logger.info("enter readHeartBeat synchronized...");
-            HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
-            String deviceCode = heartBeatClient.getDevcode();
-            logger.info("read the heat beat from device....." + deviceCode);
-            adsSocket.setDeviceCode(deviceCode);
-            if (adsSockets.get(deviceCode) == null) { // 表示原先并没有连接上，是首次连接或重新连接，则需要把设备状态更新成在线状态
-                logger.info(deviceCode + " connect to the server first...");
-                adsSockets.put(deviceCode, adsSocket);
-                updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
-            }
-            // 服务端反馈心跳到客户端
-            writeHeartBeat(adsSocket);
-            if (heartBeatClient.getFirstbeat().equals(Common.RESULT_Y)) {
-                autoPublish(adsSocket, heartBeatClient);
-            }
+        // 接收客户端心跳包并解析
+        logger.info("enter readHeartBeat synchronized...");
+        HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
+        String deviceCode = heartBeatClient.getDevcode();
+        logger.info("read the heat beat from device....." + deviceCode);
+        adsSocket.setDeviceCode(deviceCode);
+        if (adsSockets.get(deviceCode) == null) { // 表示原先并没有连接上，是首次连接或重新连接，则需要把设备状态更新成在线状态
+            logger.info(deviceCode + " connect to the server first...");
+            adsSockets.put(deviceCode, adsSocket);
+            updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
+        }
+        // 服务端反馈心跳到客户端
+        writeHeartBeat(adsSocket);
+        if (heartBeatClient.getFirstbeat().equals(Common.RESULT_Y)) {
+            autoPublish(adsSocket, heartBeatClient);
         }
     }
 
@@ -199,57 +197,49 @@ public class ADSServer {
     }
 
     private void readFileDownload(ADSSocket adsSocket, String msg) {
-        synchronized (adsSocket.getSocket()) {
-            logger.info("read file download msg from device......");
-            FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
-            handlingDevices.remove(fileDownloadClient.getDevcode());
-            if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
-                publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
-            } else {
-                // 如果客户端成功下载文件，则需要进行发布操作
-                publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
-                Publish publish = publishService.queryByDRId(fileDownloadClient.getPubid());
-                writePublish(publish);
-            }
+        logger.info("read file download msg from device......");
+        FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
+        handlingDevices.remove(fileDownloadClient.getDevcode());
+        if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
+            publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
+        } else {
+            // 如果客户端成功下载文件，则需要进行发布操作
+            publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
+            Publish publish = publishService.queryByDRId(fileDownloadClient.getPubid());
+            writePublish(publish);
         }
     }
 
-    private synchronized void readPublish(ADSSocket adsSocket, String msg) {
-        synchronized (adsSocket.getSocket()) {
-            logger.info("read publish msg from device......");
-            PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
-            handlingDevices.remove(publishClient.getDevcode());
-            if (publishClient.getResult().equals(Common.RESULT_N)) {
-                publishService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
-            } else {
-                Publish publish = new Publish();
-                publish.setPublishLog(PublishLog.PUBLISHED);
-                publish.setId(publishClient.getPubid());
-                Date time = Calendar.getInstance().getTime();
-                publish.setPublishTime(time);
-                publishService.updateWhenPublished(publish);
-                Device device = new Device();
-                device.setAdsUpdateTime(time);
-                device.setCode(publishClient.getDevcode());
-                deviceService.updatePublishTime(device);
-                publishPlanService.updateCountByPubId(publishClient.getPubid());
-                publishPlanService.finishByPubId(publishClient.getPubid());
-            }
-            System.out.println(publishClient);
+    private void readPublish(ADSSocket adsSocket, String msg) {
+        logger.info("read publish msg from device......");
+        PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
+        handlingDevices.remove(publishClient.getDevcode());
+        if (publishClient.getResult().equals(Common.RESULT_N)) {
+            publishService.updatePublishLog(publishClient.getPubid(), PublishLog.NOT_PUBLISHED);
+        } else {
+            Publish publish = new Publish();
+            publish.setPublishLog(PublishLog.PUBLISHED);
+            publish.setId(publishClient.getPubid());
+            Date time = Calendar.getInstance().getTime();
+            publish.setPublishTime(time);
+            publishService.updateWhenPublished(publish);
+            Device device = new Device();
+            device.setAdsUpdateTime(time);
+            device.setCode(publishClient.getDevcode());
+            deviceService.updatePublishTime(device);
+            publishPlanService.updateCountByPubId(publishClient.getPubid());
+            publishPlanService.finishByPubId(publishClient.getPubid());
         }
     }
 
     private void readFileDelete(ADSSocket adsSocket, String msg) {
-        synchronized (adsSocket.getSocket()) {
-            logger.info("read the file delete from device......");
-            FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
-            handlingDevices.remove(fileDeleteClient.getDevcode());
-            if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
-                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
-            } else {
-                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
-            }
-            System.out.println(fileDeleteClient);
+        logger.info("read the file delete from device......");
+        FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
+        handlingDevices.remove(fileDeleteClient.getDevcode());
+        if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
+            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
+        } else {
+            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
         }
     }
 
@@ -387,62 +377,60 @@ public class ADSServer {
          *
          */
         private void write() {
-            logger.info("begin to write....");
+            logger.info("begin to write, the msg: " + msg);
             ADSSocket adsSocket = adsSockets.get(deviceCode);
             if (adsSocket != null) {
-                synchronized (adsSocket.getSocket()) {
-                    logger.info("enter write method synchronized...");
-                    if (msg != null && msg.length() > 0) {
-                        logger.info("start to check if can send msg to device: " + deviceCode + ", thread: " + Thread.currentThread().getName());
-                        if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                            publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
-                        } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                            publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
-                        } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                            publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
-                        }
-                        boolean needRun = true;
-                        int count = 0;
+                Socket socket = adsSocket.getSocket();
+                if (msg != null && msg.length() > 0) {
+                    logger.info("start to check if can send msg to device: " + deviceCode + ", thread: " + Thread.currentThread().getName());
+                    if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                        publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
+                    } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                        publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
+                    } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                        publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
+                    }
+                    boolean needRun = true;
+                    try {
+                        OutputStream out = socket.getOutputStream();
                         while (needRun) {
-                            if (adsSockets.get(deviceCode) != null && !handlingDevices.contains(deviceCode)) {
-                                handlingDevices.add(deviceCode);
-                                try {
-                                    Socket socket = adsSocket.getSocket();
-                                    OutputStream out = socket.getOutputStream();
+                            try {
+                                if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) { // 如果是心跳消息，则直接及时回馈，不要判断当前终端是否在使用中
+                                    handlingDevices.add(deviceCode);
                                     out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
                                     logger.info("send msg to device: " + msg);
                                     if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
                                         handlingDevices.remove(deviceCode);
                                     }
                                     needRun = false;
-                                } catch (SocketTimeoutException e) {
-                                    needRun = false;
-                                    logger.info("SocketTimeoutException occured when send msg to deivce, connection lost......");
-                                    lostDeviceConnection(adsSocket);
-                                } catch (SocketException e) {
-                                    needRun = false;
-                                    logger.info("SocketException occured when send msg to deivce, connection lost......");
-                                    lostDeviceConnection(adsSocket);
-                                } catch (IOException e) {
-                                    needRun = false;
-                                    logger.info("IOException occured when send msg to deivce, connection lost......");
-                                    lostDeviceConnection(adsSocket);
-                                }
-                            } else { // 如果设备在处理中，则等待指定时间后继续执行此线程
-                                logger.info("waiting the device for 5 seconds....");
-                                try {
-                                    if (++count > 5) { // 最多休眠5次，如果大于5次了，则停止此线程
+                                } else { // 如果不是心跳消息，则需要等待终端有反馈后才能从服务端把消息发出去
+                                    if (!handlingDevices.contains(deviceCode)) {
+                                        handlingDevices.add(deviceCode);
+                                        out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
+                                        logger.info("send msg to device: " + msg);
                                         needRun = false;
-                                        logger.info("waiting for the device over 5 times, do not need to run any more......");
-                                        lostDeviceConnection(adsSocket);
-                                    } else {
-                                        Thread.sleep(5 * 1000);
+                                    } else { // 如果设备在处理中，则等待指定时间后继续执行此线程，一直执行到设备不在使用中
+                                        logger.info("waiting the device for 5 seconds....");
+                                        try {
+                                            Thread.sleep(5 * 1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
                                 }
+                            } catch (SocketTimeoutException e) {
+                                needRun = false;
+                                logger.info("SocketTimeoutException occured when send msg to device, connection lost......");
+                                lostDeviceConnection(adsSocket);
+                            } catch (SocketException e) {
+                                needRun = false;
+                                logger.info("SocketException occured when send msg to device, connection lost......");
+                                lostDeviceConnection(adsSocket);
                             }
                         }
+                    } catch (IOException e) {
+                        logger.info("IOException occured when send msg to device, connection lost......");
+                        lostDeviceConnection(adsSocket);
                     }
                 }
             } else { // 没有连接，则不需要写出消息
