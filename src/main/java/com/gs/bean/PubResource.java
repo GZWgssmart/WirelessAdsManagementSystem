@@ -11,7 +11,7 @@ public class PubResource {
     public static final String DELETING = "删除中";
 
     public static final String CAN_DELETE_MSG = "此资源已经完成发布，可以删除";
-    public static final String CAN_NOT_DELETE_MSG = "此资源没有完成发布或正在删除中或已删除，无需删除";
+    public static final String CAN_NOT_DELETE_MSG = "此资源没有完成发布或已提交删除或正在删除中或已删除，无需删除";
 
     private String id;
     private String name;
