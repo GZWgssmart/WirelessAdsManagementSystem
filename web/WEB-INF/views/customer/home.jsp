@@ -68,7 +68,7 @@
 <div id="mainPanle" data-options="region:'center',border:true">
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div title="主页">
-            青岛宝瑞液晶综合信息屏媒体系统
+            <img src="<%=path %>/images/home.png" style="width: 100%;height: 100%;"/>
         </div>
     </div>
 </div>
