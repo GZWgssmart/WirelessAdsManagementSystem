@@ -108,6 +108,11 @@ public class PublishController {
             logger.info("delete resources which published");
             String[] resIds = resIdss.split(",");
             List<Publish> publishes = publishService.queryByDevIdAndResIds(deviceId, resIds);
+            String[] ids = new String[publishes.size()];
+            for (int i = 0; i < publishes.size(); i++) {
+                ids[i] = publishes.get(i).getId();
+            }
+            publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
             ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
             for (Publish publish : publishes) {
                 adsServer.writeFileDelete(publish);

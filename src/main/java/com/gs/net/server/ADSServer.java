@@ -337,7 +337,7 @@ public class ADSServer {
                     writeFileDownload(publish);
                 } else if (publishLog.equals(PublishLog.FILE_DOWNLOADED) || publishLog.equals(PublishLog.PUBLISHING) || publishLog.equals(PublishLog.NOT_PUBLISHED)) {
                     writePublish(publish);
-                } else if (publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
+                } else if (publishLog.equals(PublishLog.SUBMIT_TO_DELETE) || publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
                     writeFileDelete(publish);
                 }
             }

@@ -192,6 +192,15 @@
         ]]>
     </update>
 
+    <update id="updatePublishLogs" keyProperty="id">
+        <![CDATA[
+        update t_publish set publish_log = #{publishLog} where id in
+        ]]>
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
     <update id="updatePublishLogByPlanId" keyProperty="id">
         <![CDATA[
         update t_publish set publish_log = #{publishLog} where pub_plan_id = #{pubPlanId}

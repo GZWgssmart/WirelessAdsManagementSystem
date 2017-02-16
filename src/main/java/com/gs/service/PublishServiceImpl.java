@@ -109,6 +109,11 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
+    public int updatePublishLogs(String[] ids, String publishLog) {
+        return publishDAO.updatePublishLogs(ids, publishLog);
+    }
+
+    @Override
     public int updatePublishLogByPlanId(String pubPlanId, String publishLog) {
         return publishDAO.updatePublishLogByPlanId(pubPlanId, publishLog);
     }
