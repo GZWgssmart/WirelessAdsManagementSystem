@@ -114,7 +114,7 @@
     <update id="updateCountByPubId" keyProperty="id" parameterType="string">
         <![CDATA[
         update t_publish_plan set finish_count = finish_count + 1, not_finish_count = not_finish_count - 1
-        where id = (select pub_plan_id from t_publish where id = #{pubId})
+        where check_status != 'finish' and id = (select pub_plan_id from t_publish where id = #{pubId})
         ]]>
     </update>
 
