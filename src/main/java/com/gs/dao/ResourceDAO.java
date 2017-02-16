@@ -26,6 +26,8 @@ public interface ResourceDAO extends BaseDAO<Resource, String> {
 
     public Resource queryByName(String name);
 
+    public Resource queryByNameAndCustomer(@Param("name") String name, @Param("customerId") String customerId);
+
     public List<Resource> queryByNameNotSelf(@Param("resource") Resource resource);
 
 }

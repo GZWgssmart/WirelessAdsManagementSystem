@@ -37,6 +37,12 @@
         ]]>
     </select>
 
+    <select id="queryByNameAndCustomer" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where name=#{name} and customer_id = #{customerId}
+        ]]>
+    </select>
+
     <select id="queryByNameNotSelf" resultType="list" resultMap="resourceResultMap">
         <![CDATA[
         select * from t_resource where name=#{resource.name} and id != #{resource.id}

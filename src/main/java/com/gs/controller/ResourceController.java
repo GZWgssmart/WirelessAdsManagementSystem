@@ -50,8 +50,8 @@ public class ResourceController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ControllerResult add(com.gs.bean.Resource resource, MultipartFile file, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            if (resourceService.queryByName(resource.getName()) == null) {
-                Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            if (resourceService.queryByNameAndCustomer(resource.getName(), customer.getId()) == null) {
                 resource.setCustomerId(customer.getId());
                 if (file != null) {
                     String ofileName = file.getOriginalFilename();
