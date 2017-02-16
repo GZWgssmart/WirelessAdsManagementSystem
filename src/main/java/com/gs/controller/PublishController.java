@@ -103,9 +103,10 @@ public class PublishController {
 
     @ResponseBody
     @RequestMapping(value = "delete_res/{deviceId}/{resIds}", method = RequestMethod.GET)
-    public ControllerResult deleteRes(@PathVariable("deviceId") String deviceId, @PathVariable("resIds") String resIds, HttpSession session) {
+    public ControllerResult deleteRes(@PathVariable("deviceId") String deviceId, @PathVariable("resIds") String resIdss, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             logger.info("delete resources which published");
+            String[] resIds = resIdss.split(",");
             List<Publish> publishes = publishService.queryByDevIdAndResIds(deviceId, resIds);
             ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
             for (Publish publish : publishes) {

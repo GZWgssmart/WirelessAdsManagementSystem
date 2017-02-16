@@ -44,6 +44,6 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public int countResByDevId(Publish publish);
 
-    public List<Publish> queryByDevIdAndResIds(String deviceId, String resIds);
+    public List<Publish> queryByDevIdAndResIds(String deviceId, String[] resIds);
 
 }

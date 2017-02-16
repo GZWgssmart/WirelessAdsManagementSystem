@@ -274,7 +274,7 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
-    public List<Publish> queryByDevIdAndResIds(String deviceId, String resIds) {
+    public List<Publish> queryByDevIdAndResIds(String deviceId, String[] resIds) {
         return publishDAO.queryByDevIdAndResIds(deviceId, resIds);
     }
 }
