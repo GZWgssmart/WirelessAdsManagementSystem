@@ -49,7 +49,7 @@
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="email" width="150">邮箱</th>
         <th field="name" width="100">姓名</th>
-        <th field="phone" width="80">手机号</th>
+        <th field="phone" width="95">手机号</th>
         <th field="company" width="100">公司</th>
         <th field="address" width="200">地址</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
@@ -113,8 +113,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+                <td><input type="text" name="phone" class="easyui-validatebox easyui-textbox"
+                           data-options="required:false,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>公司:</td>
@@ -150,8 +150,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+                <td><input type="text" name="phone" class="easyui-validatebox easyui-textbox"
+                           data-options="required:false,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>公司:</td>

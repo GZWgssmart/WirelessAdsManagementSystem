@@ -10,7 +10,7 @@ CREATE TABLE t_admin(
   email VARCHAR(100) NOT NULL UNIQUE COMMENT '登录邮箱',
   password VARCHAR(50) NOT NULL COMMENT '登录密码',
   name VARCHAR(20) NOT NULL COMMENT '姓名',
-  phone VARCHAR(11) NOT NULL COMMENT '手机号',
+  phone VARCHAR(13) NOT NULL COMMENT '手机号，用空格或-隔开',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间',
   last_login_time DATETIME COMMENT '最近一次登录时间',
   login_time DATETIME COMMENT '登录时间',
@@ -24,7 +24,7 @@ CHECK (status in ('Y', 'N'));
 ALTER TABLE t_admin ADD CONSTRAINT ck_admin_role
 CHECK (role in('super', 'normal'));
 
-INSERT INTO t_admin(id, email, password, name, phone, role) VALUES (uuid(), 'admin@126.com', '6khXbzC+FmmXFpnAmtBclA==', 'admin', '18888888888', 'super');
+INSERT INTO t_admin(id, email, password, name, phone, role) VALUES (uuid(), 'admin@126.com', '6khXbzC+FmmXFpnAmtBclA==', 'admin', '188-8888-8888', 'super');
 
 /**t_customer客户信息表*/
 DROP TABLE IF EXISTS t_customer;
@@ -35,7 +35,7 @@ CREATE TABLE t_customer (
   name VARCHAR(20) COMMENT '姓名',
   company VARCHAR(50) COMMENT '公司名称',
   address VARCHAR(100) COMMENT '地址',
-  phone VARCHAR(11) COMMENT '手机号',
+  phone VARCHAR(13) COMMENT '手机号，用空格或-隔开',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间',
   last_login_time DATETIME COMMENT '最近一次登录时间',
   login_time DATETIME COMMENT '登录时间',
@@ -142,7 +142,7 @@ CREATE TABLE t_device(
   bus_no VARCHAR(10) COMMENT '公交车路数',
   bus_plate_no VARCHAR(10) COMMENT '公交车牌号',
   driver VARCHAR(50) COMMENT '驾驶员',
-  phone VARCHAR(11) COMMENT '手机号',
+  phone VARCHAR(13) COMMENT '手机号，用空格或-隔开',
   customer_id VARCHAR(128) NOT NULL COMMENT '客户id',
   device_group_id VARCHAR(128) COMMENT '终端设备分组id',
   create_time DATETIME DEFAULT current_timestamp COMMENT '终端添加时间',

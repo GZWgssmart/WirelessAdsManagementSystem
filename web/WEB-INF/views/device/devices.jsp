@@ -52,7 +52,7 @@
         <th field="version" width="50" formatter="formatterName">版本</th>
         <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
-        <th field="phone" width="80">手机号</th>
+        <th field="phone" width="95">手机号</th>
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
@@ -142,8 +142,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+                <td><input type="text" name="phone" class="easyui-validatebox easyui-textbox"
+                           data-options="required:false,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>
@@ -204,8 +204,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+                <td><input type="text" name="phone" class="easyui-validatebox easyui-textbox"
+                           data-options="required:false,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>

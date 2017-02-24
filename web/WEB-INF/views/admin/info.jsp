@@ -111,8 +111,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><form:input type="text" path="phone" class="easyui-numberbox easyui-textbox"
-                                data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+                <td><form:input type="text" path="phone" class="easyui-validatebox easyui-textbox"
+                                data-options="required:true,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td><button type="button" onclick="closeWin('editWin');">取消</button></td>
