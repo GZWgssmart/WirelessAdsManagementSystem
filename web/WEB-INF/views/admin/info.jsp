@@ -32,7 +32,7 @@
 </head>
 <body>
 <table id="info" class="site_table">
-    <caption>我的基本信息</caption>
+    <caption style="font-size: 16px; font-weight: bold; padding-top:10px; padding-bottom: 10px;">我的基本信息</caption>
     <thead>
     <tr>
         <th>名称</th>
