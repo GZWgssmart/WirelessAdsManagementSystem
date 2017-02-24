@@ -50,6 +50,7 @@
         <th field="email" width="150">邮箱</th>
         <th field="name" width="100">姓名</th>
         <th field="phone" width="80">手机号</th>
+        <th field="company" width="100">公司</th>
         <th field="address" width="200">地址</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="loginTime" width="120" formatter="formatterDate">最近登录时间</th>
@@ -116,6 +117,10 @@
                            data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
             </tr>
             <tr>
+                <td>公司:</td>
+                <td><input type="text" name="company" class="easyui-textbox"/></td>
+            </tr>
+            <tr>
                 <td>地址:</td>
                 <td><input type="text" name="address" class="easyui-textbox"/></td>
             </tr>
@@ -147,6 +152,10 @@
                 <td>手机:</td>
                 <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
                            data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>公司:</td>
+                <td><input type="text" name="company" class="easyui-textbox"/></td>
             </tr>
             <tr>
                 <td>地址:</td>

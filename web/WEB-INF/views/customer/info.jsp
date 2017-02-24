@@ -49,7 +49,11 @@
     <tr>
         <td>手机</td>
         <td>${requestScope.customer.phone }</td>
+    </tr><tr>
+        <td>公司</td>
+        <td>${requestScope.customer.company }</td>
     </tr>
+
     <tr>
         <td>地址</td>
         <td>${requestScope.customer.address }</td>
@@ -108,6 +112,10 @@
                 <td>手机:</td>
                 <td><form:input type="text" path="phone" class="easyui-numberbox easyui-textbox"
                                 data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>公司:</td>
+                <td><form:input type="text" path="company" class="easyui-textbox"/></td>
             </tr>
             <tr>
                 <td>地址:</td>

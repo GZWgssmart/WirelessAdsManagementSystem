@@ -74,7 +74,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="customer">
         <![CDATA[
-        insert into t_customer(id, email, password, name, phone, address) values(uuid(), #{email}, #{password}, #{name}, #{phone}, #{address})
+        insert into t_customer(id, email, password, name, phone, address, company) values(uuid(), #{email}, #{password}, #{name}, #{phone}, #{address}, #{company})
         ]]>
     </insert>
 
@@ -86,7 +86,7 @@
 
     <update id="update" keyProperty="id" parameterType="customer">
         <![CDATA[
-        update t_customer set name = #{name}, phone = #{phone}, address = #{address}, last_update_time = CURRENT_TIMESTAMP where id = #{id}
+        update t_customer set name = #{name}, phone = #{phone}, address = #{address}, company = #{company}, last_update_time = CURRENT_TIMESTAMP where id = #{id}
         ]]>
     </update>
 

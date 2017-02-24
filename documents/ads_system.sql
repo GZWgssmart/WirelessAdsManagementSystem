@@ -33,6 +33,7 @@ CREATE TABLE t_customer (
   email VARCHAR(100) NOT NULL UNIQUE COMMENT '登录邮箱',
   password VARCHAR(50) NOT NULL COMMENT '登录密码',
   name VARCHAR(20) COMMENT '姓名',
+  company VARCHAR(50) COMMENT '公司名称',
   address VARCHAR(100) COMMENT '地址',
   phone VARCHAR(11) COMMENT '手机号',
   create_time DATETIME DEFAULT current_timestamp COMMENT '创建时间',
