@@ -95,21 +95,21 @@
     <form:form id="addForm" modelAttribute="resource" enctype="multipart/form-data">
         <table>
             <tr>
-                <td>名称:</td>
-                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
-            </tr>
-            <tr>
                 <td>类型:</td>
                 <td>
                     <select id="addResourceTypeId" name="resourceTypeId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/restype/list_combo/Y',method:'get',valueField:'id',textField:'text',
+                            data-options="url:'<%=path %>/restype/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
             <tr>
                 <td>选择文件:</td>
                 <td><input name="file" class="easyui-filebox" data-options="prompt:'请选择文件',buttonText:'选择文件'" /></td>
+            </tr>
+            <tr>
+                <td>名称:</td>
+                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>描述:</td>
