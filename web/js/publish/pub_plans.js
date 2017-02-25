@@ -483,6 +483,7 @@ function addResourceToArea() {
     if (row) {
         hideStayTime();
         hideShowCount();
+        $("#detailForm").form("clear");
         if (row.status == 'Y') {
             if (row.resourceType.name == '图片' || row.resourceType.name == '文字') {
                 showStayTime();
@@ -500,7 +501,6 @@ function addResourceToArea() {
                 $.messager.alert("提示", "不能重复添加资源到设备中", "info");
             } else {
                 if (row.showDetailSetting == "Y") {
-                    $("#detailForm").form("clear");
                     openWinFitPos("detailWin");
                 } else {
                     confirmAddResourceToArea(false);
@@ -595,22 +595,22 @@ function showResEdit() {
 function hideStayTime() {
     $("#stayTime").textbox({"required":false,"novalidate":true});
     $("#stayTimeTR").attr("style", "display:none");
-    $("#stayTime").textbox("setValue", "");
 }
 
 function showStayTime() {
     $("#stayTime").textbox({"required":true,"novalidate":true});
+    $("#stayTime").textbox("setValue", "8")
     $("#stayTimeTR").attr("style", "");
 }
 
 function hideShowCount() {
     $("#showCount").textbox({"required":false,"novalidate":true});
     $("#showCountTR").attr("style", "display:none");
-    $("#showCount").textbox("setValue", "");
 }
 
 function showShowCount() {
     $("#showCount").textbox({"required":true,"novalidate":true});
+    $("#showCount").textbox("setValue", "1");
     $("#showCountTR").attr("style", "");
 }
 
