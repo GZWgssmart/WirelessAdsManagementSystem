@@ -52,7 +52,7 @@
         <th field="version" width="50" formatter="formatterName">版本</th>
         <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
-        <th field="phone" width="80">手机号</th>
+        <th field="phone" width="95">手机号</th>
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
@@ -71,6 +71,7 @@
         <input type="hidden" id="customerId" value="${customerId }" />
         <form id="searchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
+            车牌号:<input type="text" name="busPlateNo" class="easyui-textbox"/>
             分组:<select id="groupSearch" name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo_admin/${customerId }/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             版本:<select id="versionSearch" name="versionId" class="easyui-combobox"

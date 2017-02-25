@@ -82,6 +82,7 @@
     <div class="input_small">
         <form id="searchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
+            车牌号:<input type="text" name="busPlateNo" class="easyui-textbox"/>
             分组:<select id="devGroupSearch" name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             版本:<select id="versionSearch" name="versionId" class="easyui-combobox"
