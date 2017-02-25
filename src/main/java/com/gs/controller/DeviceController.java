@@ -152,7 +152,7 @@ public class DeviceController {
             List<Device> devices = deviceService.queryByCodeNotSelf(device);
             if (devices == null || devices.size() == 0) {
                 logger.info("update device info");
-                device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
+                device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr() == null ? "" : device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
                 deviceService.update(device);
                 return ControllerResult.getSuccessResult("成功更新终端设备");
             } else {
