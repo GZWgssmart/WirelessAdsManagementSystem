@@ -319,8 +319,8 @@
             <th field="resourceType" width="80">类型</th>
             <th field="area" width="60" formatter="formatterArea">显示区域</th>
             <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
-            <th field="startTimeStr" width="120" formatter="formatterDate">开始日期</th>
-            <th field="endTimeStr" width="120" formatter="formatterDate">结束日期</th>
+            <th field="startTimeStr" width="120" formatter="formatterDate1">开始日期</th>
+            <th field="endTimeStr" width="120" formatter="formatterDate1">结束日期</th>
             <th field="stayTime" width="70">停留时间(S)</th>
             <th field="showCount" width="70">播放次数</th>
             <th field="segments" width="150">时段</th>

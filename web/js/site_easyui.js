@@ -273,6 +273,27 @@ function formatterDate(value) {
     }
 }
 
+function formatterDate1(value) {
+    if (value == undefined || value == null || value == '') {
+        return "";
+    }
+    else {
+        var date = new Date(value);
+        var year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+
+        return year + "-" + month + "-" + day;
+    }
+}
+
+
 function formatterRole(value) {
     if (value == 'super') {
         return "超级管理员";
