@@ -59,7 +59,9 @@
         <th field="onlineTime" width="120" formatter="formatterDate">上线时间</th>
         <th field="offlineTime" width="120" formatter="formatterDate">离线时间</th>
         <th field="adsUpdateTime" width="120" formatter="formatterDate">广告更新时间</th>
+        <!--
         <th field="installTimeStr" width="120">安装时间</th>
+        -->
         <th field="des" width="100">描述</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
@@ -155,10 +157,12 @@
                 <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
                            data-options="required:false,novalidate:true" /></td>
             </tr>
+            <!--
             <tr>
                 <td>安装时间:</td>
                 <td><input type="text" name="installTime" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
+            -->
             <tr>
                 <td>描述:</td>
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
@@ -217,10 +221,12 @@
                 <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
                            data-options="required:false,novalidate:true" /></td>
             </tr>
+            <!--
             <tr>
                 <td>安装时间:</td>
                 <td><input type="text" name="installTimeStr" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
+            -->
             <tr>
                 <td>描述:</td>
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
