@@ -1,7 +1,7 @@
 var contextPath = '';
 
 $(function() {
-    setPagination("#list");
+    setPagination("#list", 50);
     $("#devLayer").remove();
     $("#devGroupSearch").combobox({
         onChange:function(n, o){

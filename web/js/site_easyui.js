@@ -134,11 +134,15 @@ $(function() {
     });
 });
 
-function setPagination(tableId) {
+function setPagination(tableId, pageSize) {
+    var ps = 20;
+    if (typeof pageSize === 'number') {
+        ps = pageSize;
+    }
     var p = $(tableId).datagrid('getPager');
     $(p).pagination({
-        pageSize: 20,
-        pageList: [10, 15, 20, 25],
+        pageSize: ps,
+        pageList: [20, 30, 40, 50],
         beforePageText: '第',
         afterPageText: '页    共 {pages} 页',
         displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
