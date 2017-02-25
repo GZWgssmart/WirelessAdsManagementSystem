@@ -63,6 +63,16 @@ $(function() {
             }
         }
     });
+
+    $("#showType").combobox({
+        onChange:function(n, o){
+            if (n == "segment") {
+                $("#setSegment").attr("style", "");
+            } else {
+                $("#setSegment").attr("style", "display:none");
+            }
+        }
+    });
 });
 
 function showAdd() {

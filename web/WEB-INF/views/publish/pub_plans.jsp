@@ -409,8 +409,8 @@
                                 id: 'segment',
                                 text: '时段播放'
                             }],required:true,novalidate:true"></select>
-                    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"
-                       onclick="showAddSegmentWin();">设置时段</a>
+                    <a id="setSegment" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"
+                       onclick="showAddSegmentWin();" style="display: none;">设置时段</a>
                 </td>
             </tr>
             <tr>
