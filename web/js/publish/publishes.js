@@ -3,6 +3,13 @@ var contextPath = '';
 $(function() {
     setPagination("#list");
     $("#pubLayer").remove();
+    $("#publishLogSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function doSearch(planId) {
@@ -33,5 +40,9 @@ function showAllRes(planId) {
         url:contextPath + '/publish/search_res_pager/' + planId
     });
     openWinFitPos("allResWin");
+}
+
+function formatterTypeName(value, row, index) {
+    return row.resource.resourceTypeName;
 }
 

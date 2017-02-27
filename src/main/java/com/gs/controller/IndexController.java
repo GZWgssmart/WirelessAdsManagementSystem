@@ -18,4 +18,12 @@ public class IndexController {
         model.addAttribute(new Customer());
         return "customer/login";
     }
+
+    @RequestMapping(value = "redirect_index",method = RequestMethod.GET)
+    public String redirectHome(Model model) {
+        model.addAttribute(new Customer());
+        model.addAttribute("redirect", "redirect");
+        return "customer/login";
+    }
+
 }

@@ -17,18 +17,11 @@ public class Common {
     public static final String RESULT_Y = "Y";
     public static final String RESULT_N = "N";
 
-    public static final String DEVICE_IS_HANDLING = "handling";
-    public static final String DEVICE_WRITE_OUT = "writeOut";
-    public static final String DEVICE_NOT_CONNECT = "notConnect";
-
     public static final String DEVICE_ONLINE = "Y";
     public static final String DEVICE_OFFLINE = "N";
 
     public static final String PORT = "port";
-    public static final String HEART_BEAT_TIME = "heart_beat_time";
-    public static final String HEART_BEAT_CHECK_COUNT = "heart_beat_check_count";
-    public static final String HEART_BEAT_CHECK_EXTRA_TIME = "heart_beat_check_extra_time";
     public static final String SITE_DOMAIN = "site_domain";
-    public static final String AUTO_RUN_DELAY = "auto_run_delay";
+    public static final String  OFFLINE_TIMEOUT = "offline_timeout";
 
 }

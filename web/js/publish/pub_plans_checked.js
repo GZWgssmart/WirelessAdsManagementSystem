@@ -14,7 +14,7 @@ $(function() {
 function showPlanDetail() {
     var row = selectedRow("list");
     if (row) {
-        addTab(row.name + "计划详情", contextPath + "/publish/list_page/" + row.id);
+        addTab(row.planName + " 计划详情", contextPath + "/publish/list_page/" + row.id);
     } else {
         $.messager.alert("提示", "请先选择计划", "info");
     }
@@ -28,6 +28,10 @@ function toCheck() {
                 if (data.result == "success") {
                     $.messager.alert("提示", data.message, "info");
                     dataGridReload("list");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toCustomerLoginPage();
+                    });
                 } else {
                     $.messager.alert("提示", data.message, "info");
                 }

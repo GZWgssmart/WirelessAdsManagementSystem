@@ -32,7 +32,7 @@
 </head>
 <body>
 <table id="info" class="site_table">
-    <caption>我的基本信息</caption>
+    <caption style="font-size: 16px; font-weight: bold; padding-top:10px; padding-bottom: 10px;">我的基本信息</caption>
     <thead>
     <tr>
         <th>名称</th>
@@ -49,7 +49,11 @@
     <tr>
         <td>手机</td>
         <td>${requestScope.customer.phone }</td>
+    </tr><tr>
+        <td>公司</td>
+        <td>${requestScope.customer.company }</td>
     </tr>
+
     <tr>
         <td>地址</td>
         <td>${requestScope.customer.address }</td>
@@ -106,8 +110,12 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><form:input type="text" path="phone" class="easyui-numberbox easyui-textbox"
-                                data-options="required:true,validType:'length[11,11]',novalidate:true"/></td>
+                <td><form:input type="text" path="phone" class="easyui-validatebox easyui-textbox"
+                                data-options="required:true,validType:'length[11,13]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>公司:</td>
+                <td><form:input type="text" path="company" class="easyui-textbox"/></td>
             </tr>
             <tr>
                 <td>地址:</td>

@@ -21,6 +21,58 @@ $(function() {
         }
     );
     $("#planLayer").remove();
+    $("#checkSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#deviceGroupId").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchDev();
+            }
+        }
+    });
+    $("#versionId").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchDev();
+            }
+        }
+    });
+    $("#resTypeSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchRes();
+            }
+        }
+    });
+    $("#resStatusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearchRes();
+            }
+        }
+    });
+
+    $("#showType").combobox({
+        onChange:function(n, o){
+            if (n == "segment") {
+                $("#setSegment").attr("style", "");
+            } else {
+                $("#setSegment").attr("style", "display:none");
+            }
+        }
+    });
 });
 
 function showAdd() {
@@ -52,6 +104,10 @@ function add() {
                         $("#addWin").window("close");
                         dataGridReload("list");
                         $("#addForm").form("clear");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     } else {
                         $.messager.alert("提示", data.message, "info");
                     }
@@ -124,6 +180,10 @@ function edit() {
                     closeWin("editWin");
                     dataGridReload("list");
                     $("#editForm").form("clear");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toCustomerLoginPage();
+                    });
                 } else {
                     $.messager.alert("提示", data.message, "info");
                 }
@@ -136,7 +196,7 @@ function edit() {
 function showPlanDetail() {
     var row = selectedRow("list");
     if (row) {
-        addTab(row.name + "计划详情", contextPath + "/publish/list_page/" + row.id);
+        addTab(row.planName + " 计划详情", contextPath + "/publish/list_page/" + row.id);
     } else {
         $.messager.alert("提示", "请先选择计划", "info");
     }
@@ -153,6 +213,10 @@ function toCheck() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     } else {
                         $.messager.alert("提示", data.message, "info");
                     }
@@ -174,6 +238,10 @@ function inactive() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     }
                 });
         }
@@ -193,6 +261,10 @@ function active() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toCustomerLoginPage();
+                        });
                     }
                 });
         }
@@ -225,8 +297,10 @@ function refreshAll() {
 }
 
 function showDevWin() {
+    $("#devList").datagrid({
+        url:contextPath + '/device/search_pager'
+    });
     openWinFitPos("devWin");
-    $("#devWin").window("refresh", contextPath + "/device/list_page_choose");
 }
 
 function doSearchDev() {
@@ -257,7 +331,7 @@ function chooseDev(type) {
     $("#editType").val(type);
     if (type == "multiple") {
         var rows = selectedRows("devList");
-        if (rows) {
+        if (rows && rows != undefined && rows != '') {
             var deviceIds = "";
             var deviceCodes = "";
             var versionId = '';
@@ -409,6 +483,7 @@ function addResourceToArea() {
     if (row) {
         hideStayTime();
         hideShowCount();
+        $("#detailForm").form("clear");
         if (row.status == 'Y') {
             if (row.resourceType.name == '图片' || row.resourceType.name == '文字') {
                 showStayTime();
@@ -457,10 +532,15 @@ function confirmAddResourceToArea(needValidate) { // 对不需要设置详情的
                 $.messager.alert("提示", "请为时段播放模式的资源设置时段", "info");
                 return;
             }
-            var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",'
+            var detail = '{"resourceId":"' + resRow.id + '","resourceName":"' + resRow.name + '",' + '"resourceType":"' + resRow.resourceType.name + '",'
                 + '"area":' + currentArea + ',"showType":"' + showType + '","startTimeStr":"' + $("#startTimeStr").datebox("getValue") + '","'
                 + 'endTimeStr":"' + $("#endTimeStr").datebox("getValue") + '","stayTime":"' + $("#stayTime").textbox("getValue")
-                + '","showCount":"' + $("#showCount").textbox("getValue")+ '","segments":"' + segments + '"}';
+                + '","showCount":"' + $("#showCount").textbox("getValue");
+            if (showType == "segment") {
+                detail += '","segments":"' + segments + '"}';
+            } else {
+                detail += '","segments":""}';
+            }
             var detailJSON = JSON.parse(detail);
             rowsJSON.rows.push(detailJSON);
             $('#resList').datagrid('clearSelections');
@@ -477,7 +557,11 @@ function confirmAddResourceToArea(needValidate) { // 对不需要设置详情的
             chresRow.endTimeStr = $("#endTimeStr").datebox("getValue");
             chresRow.stayTime = $("#stayTime").textbox("getValue");
             chresRow.showCount = $("#showCount").textbox("getValue");
-            chresRow.segments = segments;
+            if (showType == 'segment') {
+                chresRow.segments = segments;
+            } else {
+                chresRow.segments = "";
+            }
             rowsJSON.rows[chresRowindex] = chresRow;
         }
         $("#chresList").datagrid("loadData", rowsJSON);
@@ -511,22 +595,22 @@ function showResEdit() {
 function hideStayTime() {
     $("#stayTime").textbox({"required":false,"novalidate":true});
     $("#stayTimeTR").attr("style", "display:none");
-    $("#stayTime").textbox("setValue", "");
 }
 
 function showStayTime() {
     $("#stayTime").textbox({"required":true,"novalidate":true});
+    $("#stayTime").textbox("setValue", "8")
     $("#stayTimeTR").attr("style", "");
 }
 
 function hideShowCount() {
     $("#showCount").textbox({"required":false,"novalidate":true});
     $("#showCountTR").attr("style", "display:none");
-    $("#showCount").textbox("setValue", "");
 }
 
 function showShowCount() {
     $("#showCount").textbox({"required":true,"novalidate":true});
+    $("#showCount").textbox("setValue", "1");
     $("#showCountTR").attr("style", "");
 }
 

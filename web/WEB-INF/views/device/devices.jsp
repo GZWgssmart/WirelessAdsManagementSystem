@@ -52,14 +52,16 @@
         <th field="version" width="50" formatter="formatterName">版本</th>
         <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
-        <th field="phone" width="80">手机号</th>
+        <th field="phone" width="95">手机号</th>
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
         <th field="onlineTime" width="120" formatter="formatterDate">上线时间</th>
         <th field="offlineTime" width="120" formatter="formatterDate">离线时间</th>
         <th field="adsUpdateTime" width="120" formatter="formatterDate">广告更新时间</th>
+        <!--
         <th field="installTimeStr" width="120">安装时间</th>
+        -->
         <th field="des" width="100">描述</th>
         <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
@@ -80,11 +82,12 @@
     <div class="input_small">
         <form id="searchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
-            分组:<select name="deviceGroupId" class="easyui-combobox"
+            车牌号:<input type="text" name="busPlateNo" class="easyui-textbox"/>
+            分组:<select id="devGroupSearch" name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            版本:<select name="versionId" class="easyui-combobox"
+            版本:<select id="versionSearch" name="versionId" class="easyui-combobox"
                        data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            是否在线:<select id="onlineSearch" name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '在线'
@@ -93,7 +96,7 @@
                         text: '离线'
                     }]">
         </select>
-            状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '可用'
@@ -142,8 +145,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+                <td><input type="text" name="phone" class="easyui-validatebox easyui-textbox"
+                           data-options="required:false,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>
@@ -155,10 +158,12 @@
                 <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
                            data-options="required:false,novalidate:true" /></td>
             </tr>
+            <!--
             <tr>
                 <td>安装时间:</td>
                 <td><input type="text" name="installTime" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
+            -->
             <tr>
                 <td>描述:</td>
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>
@@ -204,8 +209,8 @@
             </tr>
             <tr>
                 <td>手机:</td>
-                <td><input type="text" name="phone" class="easyui-numberbox easyui-textbox"
-                           data-options="required:false,validType:'length[11,11]',novalidate:true"/></td>
+                <td><input type="text" name="phone" class="easyui-validatebox easyui-textbox"
+                           data-options="required:false,validType:'length[11,13]',novalidate:true"/></td>
             </tr>
             <tr>
                 <td>车路线:</td>
@@ -217,10 +222,12 @@
                 <td><input type="text" name="busPlateNo" class="easyui-validatebox easyui-textbox"
                            data-options="required:false,novalidate:true" /></td>
             </tr>
+            <!--
             <tr>
                 <td>安装时间:</td>
                 <td><input type="text" name="installTimeStr" class="easyui-datetimebox" data-options="editable:false"/></td>
             </tr>
+            -->
             <tr>
                 <td>描述:</td>
                 <td><input name="des" class="easyui-textbox" data-options="multiline:true" style="height:100px;"/></td>

@@ -108,7 +108,7 @@ public class CustomerController {
             customerService.insert(customer);
             return ControllerResult.getSuccessResult("成功添加客户信息");
         }
-        return null;
+        return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
     }
 
     @RequestMapping(value = "home", method = RequestMethod.GET)
@@ -129,7 +129,7 @@ public class CustomerController {
         if (SessionUtil.isAdmin(session)) {
             return "customer/customers";
         } else {
-            return "redirect:/admin/login_page";
+            return "redirect:/admin/redirect_login_page";
         }
     }
 
@@ -146,20 +146,20 @@ public class CustomerController {
                 return "customer/customers_pubplan_admin";
             }
         }
-        return "redirect:/admin/login_page";
+        return "redirect:/admin/redirect_login_page";
     }
 
     @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Customer> searchPager(@Param("page")String page, @Param("rows")String rows, Customer customer, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示客户信息");
+            logger.info("show customers by pager");
             int total = customerService.countByCriteria(customer);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Customer> customers = customerService.queryByPagerAndCriteria(pager, customer);
             return new Pager4EasyUI<Customer>(pager.getTotalRecords(), customers);
         } else {
-            logger.info("管理员未登录，不能分页显示客户列表");
+            logger.info("can not show customer by pager cause admin is no login");
             return null;
         }
     }
@@ -167,25 +167,24 @@ public class CustomerController {
     @RequestMapping(value = "query/{id}", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") String id, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("根据客户id: " + id + "查询客户信息");
+            logger.info("query customer info by id: " + id);
             ModelAndView mav = new ModelAndView("customer/info");
             Customer customer = customerService.queryById(id);
             mav.addObject("customer", customer);
             return mav;
         }
-        return null;
+        return new ModelAndView("redirect:/index");
     }
 
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Customer customer, HttpSession session) {
         if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
-            logger.info("更新客户信息");
-            logger.info(customer.getAddress());
+            logger.info("update customer info");
             customerService.update(customer);
             return ControllerResult.getSuccessResult("成功更新用户信息");
         } else {
-            return ControllerResult.getFailResult("更新用户信息失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -194,7 +193,7 @@ public class CustomerController {
         if (SessionUtil.isCustomer(session)) {
             return "customer/setting";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -212,7 +211,7 @@ public class CustomerController {
                 return ControllerResult.getFailResult("原密码错误,或新密码与确认密码不一致");
             }
         } else {
-            return ControllerResult.getFailResult("无法更新用户密码");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -224,7 +223,7 @@ public class CustomerController {
             customerService.updatePassword(customer);
             return ControllerResult.getSuccessResult("更新用户密码成功");
         } else {
-            return ControllerResult.getFailResult("无法更新用户密码");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -235,7 +234,7 @@ public class CustomerController {
             customerService.inactive(id);
             return ControllerResult.getSuccessResult("冻结客户账号成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结客户账号");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -246,7 +245,7 @@ public class CustomerController {
             customerService.active(id);
             return ControllerResult.getSuccessResult("已解除客户账号冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活客户账号");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

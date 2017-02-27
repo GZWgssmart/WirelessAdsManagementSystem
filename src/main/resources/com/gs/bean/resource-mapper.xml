@@ -31,6 +31,24 @@
         ]]>
     </select>
 
+    <select id="queryByName" parameterType="string" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where name=#{name}
+        ]]>
+    </select>
+
+    <select id="queryByNameAndCustomer" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where name=#{name} and customer_id = #{customerId}
+        ]]>
+    </select>
+
+    <select id="queryByNameNotSelf" resultType="list" resultMap="resourceResultMap">
+        <![CDATA[
+        select * from t_resource where name=#{resource.name} and id != #{resource.id}
+        ]]>
+    </select>
+
     <select id="queryByPagerAndCriteria" resultType="list" resultMap="resourceResultMap">
         <![CDATA[
         select r.*, rt.id as t_id, rt.name as t_name, rt.show_detail_setting as detail_setting from t_resource r, t_resource_type rt where customer_id = #{customerId} and r.resource_type_id = rt.id

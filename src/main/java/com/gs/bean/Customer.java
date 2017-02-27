@@ -8,6 +8,7 @@ import java.util.Date;
 public class Customer extends User {
 
     private String address;
+    private String company;
     private Date lastUpdateTime;
     private String lastUpdateByRole;
     private String lastUpdateByAdmin;
@@ -18,6 +19,14 @@ public class Customer extends User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public Date getLastUpdateTime() {

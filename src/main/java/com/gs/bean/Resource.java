@@ -18,6 +18,7 @@ public class Resource {
     private String customerId;
     private String resourceTypeId;
     private ResourceType resourceType;
+    private String resourceTypeName;
     private Date createTime;
     private String status;
     private String showDetailSetting;
@@ -108,6 +109,14 @@ public class Resource {
 
     public void setResourceType(ResourceType resourceType) {
         this.resourceType = resourceType;
+    }
+
+    public String getResourceTypeName() {
+        return resourceTypeName;
+    }
+
+    public void setResourceTypeName(String resourceTypeName) {
+        this.resourceTypeName = resourceTypeName;
     }
 
     public Date getCreateTime() {

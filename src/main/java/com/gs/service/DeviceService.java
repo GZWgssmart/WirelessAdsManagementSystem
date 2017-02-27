@@ -23,4 +23,6 @@ public interface DeviceService extends BaseService<Device, String> {
 
     public int updatePublishTime(Device device);
 
+    public List<Device> queryByCodeNotSelf(Device device);
+
 }

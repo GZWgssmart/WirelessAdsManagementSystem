@@ -9,30 +9,44 @@ $(function() {
     });
     $("#list").datagrid("hideColumn", 'versionId');
     $("#planAdminLayer").remove();
+    $("#checkSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function showPlanDetail() {
     var row = selectedRow("list");
     if (row) {
-        addTab(row.name + "计划详情", contextPath + "/publish/list_page/" + row.id);
+        addTab(row.planName + " 计划详情", contextPath + "/publish/list_page/" + row.id);
     } else {
         $.messager.alert("提示", "请先选择计划", "info");
     }
 }
 
-function doSearch(customerId) {
+function doSearch() {
     $("#list").datagrid({
-        url:contextPath + '/pubplan/search_pager_admin/' + customerId,
+        url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
         pageSize:20,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
 }
 
-function searchAll(customerId) {
+function searchAll() {
     $("#searchForm").form("clear");
     $("#list").datagrid({
-        url:contextPath + '/pubplan/search_pager_admin/' + customerId,
+        url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
         pageSize:20,
         queryParams:getQueryParams("list", "searchForm")
     });

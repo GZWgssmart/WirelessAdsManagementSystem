@@ -59,8 +59,9 @@ public class DeviceController {
             } else {
                 return ControllerResult.getFailResult("已经存在该终端号的设备");
             }
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
-        return null;
     }
 
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
@@ -68,7 +69,7 @@ public class DeviceController {
         if (SessionUtil.isCustomer(session)) {
             return "device/devices";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -79,7 +80,7 @@ public class DeviceController {
             mav.addObject("versionId", versionId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/redirect_index");
         }
     }
 
@@ -90,7 +91,7 @@ public class DeviceController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/admin/redirect_login_page");
         }
     }
 
@@ -99,7 +100,7 @@ public class DeviceController {
         if (SessionUtil.isCustomer(session)) {
             return "device/devices_choose";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -107,7 +108,7 @@ public class DeviceController {
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Device> searchPager(@Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示终端设备");
+            logger.info("show devices by pager for customer");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             int total = deviceService.countByCriteria(device, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
@@ -119,7 +120,7 @@ public class DeviceController {
             }
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {
-            logger.info("客户未登录，不能分页显示终端设备");
+            logger.info("can not show devices by pager cause customer is not login");
             return null;
         }
     }
@@ -128,7 +129,7 @@ public class DeviceController {
     @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
     public Pager4EasyUI<Device> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, Device device, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示终端设备");
+            logger.info("show devices by pager for admin");
             int total = deviceService.countByCriteria(device, customerId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<Device> devices = deviceService.queryByPagerAndCriteria(pager, device, customerId);
@@ -139,7 +140,7 @@ public class DeviceController {
             }
             return new Pager4EasyUI<Device>(pager.getTotalRecords(), devices);
         } else {
-            logger.info("管理员未登录，不能分页显示终端设备");
+            logger.info("can not show devices by pager cause admin is not login");
             return null;
         }
     }
@@ -148,12 +149,17 @@ public class DeviceController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Device device, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("更新终端设备");
-            device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
-            deviceService.update(device);
-            return ControllerResult.getSuccessResult("成功更新终端设备");
+            List<Device> devices = deviceService.queryByCodeNotSelf(device);
+            if (devices == null || devices.size() == 0) {
+                logger.info("update device info");
+                device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr() == null ? "" : device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
+                deviceService.update(device);
+                return ControllerResult.getSuccessResult("成功更新终端设备");
+            } else {
+                return ControllerResult.getFailResult("已经存在该终端号的设备");
+            }
         } else {
-            return ControllerResult.getFailResult("更新终端设备失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -164,7 +170,7 @@ public class DeviceController {
             deviceService.inactive(id);
             return ControllerResult.getSuccessResult("冻结终端设备成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结终端设备");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -175,7 +181,7 @@ public class DeviceController {
             deviceService.active(id);
             return ControllerResult.getSuccessResult("已解除终端设备冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活终端设备");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

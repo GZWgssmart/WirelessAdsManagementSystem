@@ -59,15 +59,14 @@
 <div id="mainPanle" data-options="region:'center',border:true">
     <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
         <div title="主页">
-            青岛宝瑞液晶综合信息屏媒体系统
+            <img src="<%=path %>/images/home.png" style="width: 100%;height: 100%;"/>
         </div>
     </div>
 </div>
 
-<div data-options="region:'south',border:false" style="padding-left:10px;text-align:center;">
-    青岛宝瑞液晶综合信息屏媒体系统V1.0<br />
-    地址：山东省青岛市崂山区株洲路140号<br />
-    技术支持:0532-80678775/80678776
+<div data-options="region:'south',border:false" style="padding:10px auto 10px auto;text-align:center;">
+    <br />青岛宝瑞液晶综合信息屏媒体系统V1.0<br /><br />
+    地址：山东省青岛市崂山区株洲路140号&nbsp;&nbsp;技术支持:0532-80678775/80678776<br /><br />
 </div>
 
 <div id="mm" class="easyui-menu">

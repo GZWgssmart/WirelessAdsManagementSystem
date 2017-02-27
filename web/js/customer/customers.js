@@ -1,7 +1,14 @@
 var contextPath = '';
 
 $(function() {
-    setPagination("#list")
+    setPagination("#list");
+    $("#statusSearch").combobox({
+        onChange:function(n, o){
+            if (n != o) {
+                doSearch();
+            }
+        }
+    });
 });
 
 function add() {
@@ -14,6 +21,10 @@ function add() {
                     $("#addWin").window("close");
                     dataGridReload("list");
                     $("#addForm").form("clear");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toAdminLoginPage();
+                    });
                 } else {
                     $.messager.alert("提示", data.message, "info");
                 }
@@ -43,6 +54,10 @@ function edit() {
                     $.messager.alert("提示", data.message, "info", function () {
                         dataGridReload("list");
                     });
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toAdminLoginPage();
+                    });
                 } else {
                     $("#errMsg").html(data.message);
                 }
@@ -65,7 +80,7 @@ function showUpdatePwd() {
 function updatePwd() {
     toValidate("editPwdForm");
     if (validateForm("editPwdForm")) {
-        $.messager.confirm("提示", "更新该管理员密码，是否继续?", function(r) {
+        $.messager.confirm("提示", "更新该客户密码，是否继续?", function(r) {
             if (r) {
                 $.post(contextPath + "/customer/update_other_pwd",
                     $("#editPwdForm").serialize(),
@@ -74,6 +89,10 @@ function updatePwd() {
                             closeWin("editPwdWin");
                             $.messager.alert("提示", data.message, "info", function () {
                                 // dataGridReload("list");
+                            });
+                        } else if (data.result == 'notLogin') {
+                            $.messager.alert("提示", data.message, "info", function() {
+                                toAdminLoginPage();
                             });
                         } else {
                             $("#errMsg").html(data.message);
@@ -96,6 +115,10 @@ function inactive() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toAdminLoginPage();
+                        });
                     }
                 });
         }
@@ -115,6 +138,10 @@ function active() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toAdminLoginPage();
+                        });
                     }
                 });
         }

@@ -26,6 +26,8 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public int updatePublishLog(String id, String publishLog);
 
+    public int updatePublishLogs(String[] ids, String publishLog);
+
     public int updatePublishLogByPlanId(String pubPlanId, String publishLog);
 
     public int updateWhenPublished(Publish publish);
@@ -44,6 +46,6 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public int countResByDevId(Publish publish);
 
-    public List<Publish> queryByDevIdAndResIds(String deviceId, String resIds);
+    public List<Publish> queryByDevIdAndResIds(String deviceId, String[] resIds);
 
 }

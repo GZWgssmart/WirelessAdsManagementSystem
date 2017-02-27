@@ -52,7 +52,7 @@
         <th field="version" width="50" formatter="formatterName">版本</th>
         <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
-        <th field="phone" width="80">手机号</th>
+        <th field="phone" width="95">手机号</th>
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
@@ -68,13 +68,15 @@
 </table>
 <div id="tb">
     <div class="input_small">
+        <input type="hidden" id="customerId" value="${customerId }" />
         <form id="searchForm" modalAttribute="device">
             终端号:<input type="text" name="code" class="easyui-textbox"/>
-            分组:<select name="deviceGroupId" class="easyui-combobox"
+            车牌号:<input type="text" name="busPlateNo" class="easyui-textbox"/>
+            分组:<select id="groupSearch" name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo_admin/${customerId }/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            版本:<select name="versionId" class="easyui-combobox"
+            版本:<select id="versionSearch" name="versionId" class="easyui-combobox"
                        data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            是否在线:<select id="onlineSearch" name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '在线'
@@ -83,7 +85,7 @@
                         text: '离线'
                     }]">
         </select>
-            状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '可用'
@@ -93,9 +95,9 @@
                     }]">
         </select>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-               onclick="doSearch('${customerId }');">搜索</a>
+               onclick="doSearch();">搜索</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-               onclick="searchAll('${customerId }');">查询所有</a>
+               onclick="searchAll();">查询所有</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
                onclick="refreshAll();">刷新</a>
         </form>

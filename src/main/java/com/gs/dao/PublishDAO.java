@@ -28,6 +28,8 @@ public interface PublishDAO extends BaseDAO<Publish, String> {
 
     public int updatePublishLog(@Param("id") String id, @Param("publishLog") String publishLog);
 
+    public int updatePublishLogs(@Param("ids") String[] ids, @Param("publishLog") String publishLog);
+
     public int updatePublishLogByPlanId(@Param("pubPlanId") String pubPlanId, @Param("publishLog") String pubishLog);
 
     public int updateWhenPublished(Publish publish);
@@ -46,6 +48,6 @@ public interface PublishDAO extends BaseDAO<Publish, String> {
 
     public int countResByDevId(Publish publish);
 
-    public List<Publish> queryByDevIdAndResIds(@Param("deviceId") String deviceId, @Param("resIds") String resIds);
+    public List<Publish> queryByDevIdAndResIds(@Param("deviceId") String deviceId, @Param("resIds") String[] resIds);
 
 }

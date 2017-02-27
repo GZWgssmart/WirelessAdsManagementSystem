@@ -91,4 +91,17 @@ public class ResourceServiceImpl implements ResourceService {
     public String queryByResourceId(String id) {
         return resourceDAO.queryByResourceId(id);
     }
+
+    @Override
+    public Resource queryByName(String name) {
+        return resourceDAO.queryByName(name);
+    }
+
+    public Resource queryByNameAndCustomer(String name, String customerId) {
+        return resourceDAO.queryByNameAndCustomer(name, customerId);
+    }
+
+    public List<Resource> queryByNameNotSelf(Resource resource) {
+        return resourceDAO.queryByNameNotSelf(resource);
+    }
 }

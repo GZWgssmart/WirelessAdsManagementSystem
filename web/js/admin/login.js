@@ -1,5 +1,13 @@
 var contextPath = '';
 
+function redirectIndex(needRedirect) {
+    if (needRedirect == "redirect") {
+        $.messager.alert("提示", "登录信息无效，请重新登录", "info", function() {
+            top.location.href = "/admin/login_page";
+        });
+    }
+}
+
 function login() {
     $.post(contextPath + "/admin/login",
         $("#login_form").serialize(),

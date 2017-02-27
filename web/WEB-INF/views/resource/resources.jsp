@@ -48,7 +48,7 @@
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="name" width="80">名称</th>
         <th field="resourceType" width="80" formatter="formatterName">类型</th>
-        <th field="ofileName" width="150">原始文件名</th>
+        <th field="ofileName" width="300">原始文件名</th>
         <th field="showDetailSetting" width="100" formatter="formatterYN">是否显示详情设置</th>
         <th field="fileName" width="150" formatter="formatterLong">文件名</th>
         <th field="path" width="200" formatter="formatterLong">路径</th>
@@ -70,9 +70,9 @@
     <div class="input_small">
         <form id="searchForm" modalAttribute="resource">
             名称:<input type="text" name="name" class="easyui-textbox"/>
-            类型:<select name="resourceTypeId" class="easyui-combobox"
+            类型:<select id="resTypeSearch" name="resourceTypeId" class="easyui-combobox"
                        data-options="url:'<%=path %>/restype/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
-            状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+            状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
                         text: '可用'
@@ -95,21 +95,21 @@
     <form:form id="addForm" modelAttribute="resource" enctype="multipart/form-data">
         <table>
             <tr>
-                <td>名称:</td>
-                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
-                           data-options="required:true,novalidate:true"/></td>
-            </tr>
-            <tr>
                 <td>类型:</td>
                 <td>
                     <select id="addResourceTypeId" name="resourceTypeId" class="easyui-validatebox easyui-combobox"
-                           data-options="url:'<%=path %>/restype/list_combo/Y',method:'get',valueField:'id',textField:'text',
+                            data-options="url:'<%=path %>/restype/list_combo/Y',method:'get',valueField:'id',textField:'text',
                            panelHeight:'auto',editable:false,required:true,novalidate:true"></select>
                 </td>
             </tr>
             <tr>
                 <td>选择文件:</td>
                 <td><input name="file" class="easyui-filebox" data-options="prompt:'请选择文件',buttonText:'选择文件'" /></td>
+            </tr>
+            <tr>
+                <td>名称:</td>
+                <td><input type="text" name="name" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,novalidate:true"/></td>
             </tr>
             <tr>
                 <td>描述:</td>

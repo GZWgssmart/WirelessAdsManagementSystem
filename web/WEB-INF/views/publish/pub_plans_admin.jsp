@@ -70,10 +70,11 @@
         </table>
         <div id="tb">
             <div class="input_small">
+                <input type="hidden" id="customerId" value="${customerId }"/>
                 <form id="searchForm" modalAttribute="pubplan">
                     终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>
                     资源名称:<input type="text" name="resourceName" class="easyui-textbox"/>
-                    审核状态:<select name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    审核状态:<select id="checkSearch" name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                             data: [{
                                 id: 'not_submit',
                                 text: '未提交'
@@ -88,7 +89,7 @@
                                 text: '已完成'
                             }]">
                 </select>
-                    状态:<select name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
+                    状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                             data: [{
                                 id: 'Y',
                                 text: '可用'
@@ -98,9 +99,9 @@
                             }]">
                 </select>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-                       onclick="doSearch('${customerId }');">搜索</a>
+                       onclick="doSearch();">搜索</a>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
-                       onclick="searchAll('${customerId }');">查询所有</a>
+                       onclick="searchAll();">查询所有</a>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
                        onclick="refreshAll();">刷新</a>
                 </form>

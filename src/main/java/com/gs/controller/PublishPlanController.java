@@ -11,6 +11,7 @@ import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.net.parser.Common;
+import com.gs.net.server.ADSServer;
 import com.gs.service.PublishPlanService;
 import com.gs.service.PublishService;
 import org.apache.ibatis.annotations.Param;
@@ -51,8 +52,9 @@ public class PublishPlanController {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             addOrEditPubPlan("add", customer, publishPlan);
             return ControllerResult.getSuccessResult("成功添加计划");
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
-        return null;
     }
 
     private void addOrEditPubPlan(String addOrEdit, Customer customer, PublishPlan publishPlan) {
@@ -125,7 +127,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -134,7 +136,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_check";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -143,7 +145,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_checked";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -152,7 +154,7 @@ public class PublishPlanController {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_finish";
         } else {
-            return "redirect:/index";
+            return "redirect:/redirect_index";
         }
     }
 
@@ -163,7 +165,7 @@ public class PublishPlanController {
             mav.addObject("customerId", customerId);
             return mav;
         } else {
-            return null;
+            return new ModelAndView("redirect:/admin/redirect_login_page");
         }
     }
 
@@ -171,14 +173,14 @@ public class PublishPlanController {
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<PublishPlan> searchPager(@Param("page")String page, @Param("rows")String rows, PublishPlan publishPlan, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("分页显示消息计划");
+            logger.info("show plan by pager for customer");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             int total = publishPlanService.countByCriteria(publishPlan, customer.getId());
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<PublishPlan> publishPlans = publishPlanService.queryByPagerAndCriteria(pager, publishPlan, customer.getId());
             return new Pager4EasyUI<PublishPlan>(pager.getTotalRecords(), publishPlans);
         } else {
-            logger.info("客户未登录，不能分页显示消息计划");
+            logger.info("can not show plan cause customer is not login");
             return null;
         }
     }
@@ -187,13 +189,13 @@ public class PublishPlanController {
     @RequestMapping(value = "search_pager_admin/{customerId}", method = RequestMethod.GET)
     public Pager4EasyUI<PublishPlan> searchPagerAdmin(@PathVariable("customerId") String customerId, @Param("page")String page, @Param("rows")String rows, PublishPlan publishPlan, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
-            logger.info("分页显示消息计划");
+            logger.info("show plan for admin");
             int total = publishPlanService.countByCriteria(publishPlan, customerId);
             Pager pager = PagerUtil.getPager(page, rows, total);
             List<PublishPlan> publishPlans = publishPlanService.queryByPagerAndCriteria(pager, publishPlan, customerId);
             return new Pager4EasyUI<PublishPlan>(pager.getTotalRecords(), publishPlans);
         } else {
-            logger.info("管理员未登录，不能分页显示消息计划");
+            logger.info("can not show plan for admin cause admin is not login");
             return null;
         }
     }
@@ -202,7 +204,7 @@ public class PublishPlanController {
     @RequestMapping(value = "all_dev/{planId}", method = RequestMethod.GET)
     public ControllerResult queryAllDevices(@PathVariable("planId") String planId, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("查询计划下所有设备id");
+            logger.info("query all devices for specified plan");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             List<Publish> publishs = publishService.allDevByPlanId(planId);
             String devIds = "";
@@ -219,7 +221,7 @@ public class PublishPlanController {
             }
             return new ControllerResult(200, devIds, "成功查询计划下所有设备");
         } else {
-            return ControllerResult.getFailResult("查询计划下所有设备失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -227,12 +229,12 @@ public class PublishPlanController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(PublishPlan publishPlan, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("更新消息计划");
+            logger.info("update plan by customer");
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             addOrEditPubPlan("edit", customer, publishPlan);
             return ControllerResult.getSuccessResult("成功更新消息计划");
         } else {
-            return ControllerResult.getFailResult("更新消息计划失败");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -243,7 +245,7 @@ public class PublishPlanController {
             publishPlanService.inactive(id);
             return ControllerResult.getSuccessResult("冻结消息计划成功");
         } else {
-            return ControllerResult.getFailResult("没有权限冻结消息计划");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -254,7 +256,7 @@ public class PublishPlanController {
             publishPlanService.active(id);
             return ControllerResult.getSuccessResult("已解除消息计划冻结");
         } else {
-            return ControllerResult.getFailResult("没有权限激活消息计划");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 
@@ -271,22 +273,15 @@ public class PublishPlanController {
                 // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
                 // 查找单个计划，及此计划下的所有终端,每一个终端都要开始发送文件下载通知
                 List<Publish> publishs = publishService.queryByPlanId(id);
+                ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
                 for (Publish publish : publishs) {
-                    String result = ADSServerUtil.getADSServerFromServletContext().writeFileDownload(publish, false);
-                    if (result.equals(Common.DEVICE_NOT_CONNECT)) {
-                        // return ControllerResult.getFailResult("消息发布: 此终端未连接上服务器,当终端连接上服务器后,此消息会自动完成发布");
-                    } else if (result.equals(Common.DEVICE_IS_HANDLING)) {
-                        // return ControllerResult.getFailResult("消息发布: 此终端尚在处理之前的消息发布，处理完后服务端会自动发送消息发布到终端");
-                    } else if (result.equals(Common.DEVICE_WRITE_OUT)) {
-                        publishService.updatePublishLog(id, PublishLog.FILE_DOWNLOADING);
-                        // return ControllerResult.getSuccessResult("消息发布开始处理,请关注发布日志");
-                    }
+                    adsServer.writeFileDownload(publish);
                 }
                 return ControllerResult.getSuccessResult("此计划已经开始处理,请关注计划下每个终端的发布日志");
             }
             return ControllerResult.getFailResult("您可能正在尝试其他操作,请联系技术支持");
         } else {
-            return ControllerResult.getFailResult("没有权限提交消息计划审核");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
     }
 

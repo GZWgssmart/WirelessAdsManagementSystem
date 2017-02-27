@@ -14,6 +14,10 @@ function addType() {
                     $("#addWin").window("close");
                     dataGridReload("list");
                     $("#addForm").form("clear");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toAdminLoginPage();
+                    });
                 } else {
                     $.messager.alert("提示", data.message, "info");
                 }
@@ -61,6 +65,10 @@ function editType() {
                     $.messager.alert("提示", data.message, "info", function () {
                         dataGridReload("list");
                     });
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toAdminLoginPage();
+                    });
                 } else {
                     $("#errMsg").html(data.message);
                 }
@@ -80,6 +88,10 @@ function inactive() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toAdminLoginPage();
+                        });
                     }
                 });
         }
@@ -99,6 +111,10 @@ function active() {
                     if (data.result == "success") {
                         $.messager.alert("提示", data.message, "info");
                         dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function() {
+                            toAdminLoginPage();
+                        });
                     }
                 });
         }

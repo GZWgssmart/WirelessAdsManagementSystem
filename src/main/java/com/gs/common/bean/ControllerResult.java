@@ -7,8 +7,10 @@ public class ControllerResult {
 
     public static final int SUCCESS_CODE = 100;
     public static final int FAIL_CODE = 101;
+    public static final int NOT_LOGIN_CODE = 102;
     public static final String SUCCESS_RESULT = "success";
     public static final String FAIL_RESULT = "fail";
+    public static final String NOT_LOGIN_RESULT = "notLogin";
 
     private int code;
     private String result;
@@ -63,5 +65,9 @@ public class ControllerResult {
 
     public static ControllerResult getFailResult(String message) {
         return new ControllerResult(ControllerResult.FAIL_CODE, ControllerResult.FAIL_RESULT, message);
+    }
+
+    public static ControllerResult getNotLoginResult(String message) {
+        return new ControllerResult(ControllerResult.NOT_LOGIN_CODE, ControllerResult.NOT_LOGIN_RESULT, message);
     }
 }

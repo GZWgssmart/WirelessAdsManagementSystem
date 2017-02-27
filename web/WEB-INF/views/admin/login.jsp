@@ -24,11 +24,12 @@
 
     <script src="<%=path %>/js/admin/login.js"></script>
 </head>
-<body>
+<body onload="redirectIndex('${redirect}');">
 <div class="login_container">
     <img class="login_logo" src="<%=path %>/images/logo.jpg" alt="公司图片" title="公司图片"/>
 
     <div class="login_div input_normal">
+        <span style="margin-left:-30px; font-size:12px; font-weight:bold;">青岛宝瑞液晶综合信息屏媒体系统</span>
         <div class="easyui-panel" title="管理员登录" style="width:240px;padding:10px;">
             <div id="errMsg"></div>
             <form:form id="login_form" method="post" modelAttribute="admin">

@@ -134,11 +134,15 @@ $(function() {
     });
 });
 
-function setPagination(tableId) {
+function setPagination(tableId, pageSize) {
+    var ps = 20;
+    if (typeof pageSize === 'number') {
+        ps = pageSize;
+    }
     var p = $(tableId).datagrid('getPager');
     $(p).pagination({
-        pageSize: 20,
-        pageList: [10, 15, 20, 25],
+        pageSize: ps,
+        pageList: [20, 30, 40, 50],
         beforePageText: '第',
         afterPageText: '页    共 {pages} 页',
         displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
@@ -210,6 +214,14 @@ function toPage(url) {
     window.location.href = url;
 }
 
+function toCustomerLoginPage() {
+    top.location.href =  "/index";
+}
+
+function toAdminLoginPage() {
+    top.location.href = "/admin/login_page";
+}
+
 function checkFile(name, index, type, size) {
     var file = document.getElementsByName(name)[index].files[0];
     if (file != undefined) {
@@ -260,6 +272,27 @@ function formatterDate(value) {
         return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
     }
 }
+
+function formatterDate1(value) {
+    if (value == undefined || value == null || value == '') {
+        return "";
+    }
+    else {
+        var date = new Date(value);
+        var year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+
+        return year + "-" + month + "-" + day;
+    }
+}
+
 
 function formatterRole(value) {
     if (value == 'super') {
