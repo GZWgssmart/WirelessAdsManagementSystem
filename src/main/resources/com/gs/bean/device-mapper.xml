@@ -69,6 +69,7 @@
         <if test="device.versionId != null and device.versionId != ''">
             and d.version_id = #{device.versionId}
         </if>
+        order by d.code
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>
