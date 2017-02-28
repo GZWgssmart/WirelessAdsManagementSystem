@@ -105,6 +105,7 @@ public class CustomerController {
     public ControllerResult add(Customer customer, HttpSession session) {
         if (SessionUtil.isAdmin(session) || SessionUtil.isSuperAdmin(session)) {
             customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
+            customer.setCheckPwd(EncryptUtil.md5Encrypt(customer.getCheckPwd()));
             customerService.insert(customer);
             return ControllerResult.getSuccessResult("成功添加客户信息");
         }
@@ -197,6 +198,15 @@ public class CustomerController {
         }
     }
 
+    @RequestMapping(value = "check_pwd_page", method = RequestMethod.GET)
+    public String checkPwdPage(Customer customer, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "customer/check_pwd";
+        } else {
+            return "redirect:/redirect_index";
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "update_pwd", method = RequestMethod.POST)
     public ControllerResult updatePwd(@Param("password")String password, @Param("newPwd")String newPwd, @Param("conPwd")String conPwd, HttpSession session) {
@@ -216,12 +226,42 @@ public class CustomerController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "update_check_pwd", method = RequestMethod.POST)
+    public ControllerResult updateCheckPwd(@Param("checkPwd")String checkPwd, @Param("newPwd")String newPwd, @Param("conPwd")String conPwd, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            if (customer.getCheckPwd().equals(EncryptUtil.md5Encrypt(checkPwd)) && newPwd != null && conPwd != null && newPwd.equals(conPwd)) {
+                customer.setCheckPwd(EncryptUtil.md5Encrypt(newPwd));
+                customerService.updateCheckPwd(customer);
+                session.setAttribute(Constants.SESSION_CUSTOMER, customer);
+                return ControllerResult.getSuccessResult("更新用户审核密码成功");
+            } else {
+                return ControllerResult.getFailResult("原密码错误,或新密码与确认密码不一致");
+            }
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
+        }
+    }
+
+    @ResponseBody
     @RequestMapping(value = "update_other_pwd", method = RequestMethod.POST)
     public ControllerResult updateOtherPwd(Customer customer, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             customer.setPassword(EncryptUtil.md5Encrypt(customer.getPassword()));
             customerService.updatePassword(customer);
             return ControllerResult.getSuccessResult("更新用户密码成功");
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "update_other_chkpwd", method = RequestMethod.POST)
+    public ControllerResult updateOtherCheckPwd(Customer customer, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            customer.setCheckPwd(EncryptUtil.md5Encrypt(customer.getCheckPwd()));
+            customerService.updateCheckPwd(customer);
+            return ControllerResult.getSuccessResult("更新用户审核密码成功");
         } else {
             return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }

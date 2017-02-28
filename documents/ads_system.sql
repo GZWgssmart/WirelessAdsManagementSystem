@@ -32,6 +32,7 @@ CREATE TABLE t_customer (
   id VARCHAR(128) PRIMARY KEY COMMENT '客户id',
   email VARCHAR(100) NOT NULL UNIQUE COMMENT '登录邮箱',
   password VARCHAR(50) NOT NULL COMMENT '登录密码',
+  check_pwd VARCHAR(50) NOT NULL COMMENT '消息发布审核密码',
   name VARCHAR(20) COMMENT '姓名',
   company VARCHAR(50) COMMENT '公司名称',
   address VARCHAR(100) COMMENT '地址',

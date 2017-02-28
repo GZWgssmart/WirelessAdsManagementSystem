@@ -35,6 +35,7 @@
         <div title="用户管理" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/customer/query/${sessionScope.customer.id }" class="site-navi-tab">账号信息</a></p>
             <a href="javascript:void(0);" src="<%=path %>/customer/setting_page" class="site-navi-tab">账号设置</a></p>
+            <a href="javascript:void(0);" src="<%=path %>/customer/check_pwd_page" class="site-navi-tab">审核密码修改</a></p>
         </div>
         <div title="资源管理" class="site_menu">
             <a href="javascript:void(0);" src="<%=path %>/res/list_page" class="site-navi-tab">资源列表</a></p>

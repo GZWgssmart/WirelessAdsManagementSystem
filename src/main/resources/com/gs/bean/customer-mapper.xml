@@ -8,6 +8,7 @@
         <result property="lastLoginTime" column="last_login_time" />
         <result property="loginTime" column="login_time" />
         <result property="lastUpdateTime" column="last_update_time" />
+        <result property="checkPwd" column="check_pwd" />
     </resultMap>
 
     <select id="queryById" parameterType="string" resultMap="customerResultMap">
@@ -74,7 +75,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="customer">
         <![CDATA[
-        insert into t_customer(id, email, password, name, phone, address, company) values(uuid(), #{email}, #{password}, #{name}, #{phone}, #{address}, #{company})
+        insert into t_customer(id, email, password, check_pwd, name, phone, address, company) values(uuid(), #{email}, #{password}, #{checkPwd}, #{name}, #{phone}, #{address}, #{company})
         ]]>
     </insert>
 
@@ -93,6 +94,12 @@
     <update id="updatePassword" keyProperty="id" parameterType="customer">
         <![CDATA[
         update t_customer set password = #{password} where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updateCheckPwd" keyProperty="id" parameterType="customer">
+        <![CDATA[
+        update t_customer set check_pwd = #{checkPwd} where id = #{id}
         ]]>
     </update>
 

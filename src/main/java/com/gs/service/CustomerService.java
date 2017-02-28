@@ -12,6 +12,7 @@ public interface CustomerService extends BaseService<Customer, String> {
 
     public int updateLoginTime(String id);
     public int updatePassword(Customer customer);
+    public int updateCheckPwd(Customer customer);
 
     public List<Customer> queryByPagerAndCriteria(Pager pager, Customer customer);
 

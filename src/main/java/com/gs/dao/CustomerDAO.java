@@ -15,6 +15,7 @@ public interface CustomerDAO extends BaseDAO<Customer,String> {
 
     public int updateLoginTime(String id);
     public int updatePassword(Customer customer);
+    public int updateCheckPwd(Customer customer);
 
     public List<Customer> queryByPagerAndCriteria(@Param("pager")Pager pager,
                                                 @Param("customer") Customer customer);

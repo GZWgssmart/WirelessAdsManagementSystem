@@ -12,6 +12,7 @@ public class Customer extends User {
     private Date lastUpdateTime;
     private String lastUpdateByRole;
     private String lastUpdateByAdmin;
+    private String checkPwd;
 
     public String getAddress() {
         return address;
@@ -53,4 +54,11 @@ public class Customer extends User {
         this.lastUpdateByAdmin = lastUpdateByAdmin;
     }
 
+    public String getCheckPwd() {
+        return checkPwd;
+    }
+
+    public void setCheckPwd(String checkPwd) {
+        this.checkPwd = checkPwd;
+    }
 }

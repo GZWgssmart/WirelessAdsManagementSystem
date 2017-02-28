@@ -75,6 +75,11 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDAO.updatePassword(customer);
     }
 
+    @Override
+    public int updateCheckPwd(Customer customer) {
+        return customerDAO.updateCheckPwd(customer);
+    }
+
     public List<Customer> queryByPagerAndCriteria(Pager pager, Customer customer) {
         return customerDAO.queryByPagerAndCriteria(pager, customer);
     }

@@ -65,6 +65,8 @@
        onclick="showEdit();">修改</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
        onclick="showUpdatePwd();">修改密码</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+       onclick="showUpdateCheckPwd();">修改审核密码</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
        onclick="inactive()">冻结</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
@@ -93,7 +95,7 @@
     </div>
 </div>
 
-<div class="easyui-window site_win_small input_big" id="addWin" data-options="title:'添加客户',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_normal input_big" id="addWin" data-options="title:'添加客户',resizable:false,mode:true,closed:true">
     <form:form id="addForm" modelAttribute="customer">
         <table>
             <tr>
@@ -104,6 +106,11 @@
             <tr>
                 <td>密码:</td>
                 <td><input type="password" name="password" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td>审核密码:</td>
+                <td><input type="password" name="checkPwd" class="easyui-validatebox easyui-textbox"
                            data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
             </tr>
             <tr>
@@ -185,6 +192,26 @@
                 <td></td>
                 <td>
                     <button type="button" onclick="updatePwd();">确认</button>
+                </td>
+            </tr>
+        </table>
+    </form:form>
+</div>
+
+<div class="easyui-window site_win_small input_big" id="editCheckPwdWin" data-options="title:'修改客户审核密码',resizable:false,mode:true,closed:true">
+    <div id="errMsg"></div>
+    <form:form id="editCheckPwdForm" method="post" modelAttribute="admin">
+        <input type="hidden" name="id" />
+        <table class="input_big">
+            <tr>
+                <td>新审核密码:</td>
+                <td><input id="update_checkPwd" type="password" name="checkPwd" class="easyui-validatebox easyui-textbox"
+                           data-options="required:true,validType:'length[6,20]',novalidate:true"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="updateCheckPwd();">确认</button>
                 </td>
             </tr>
         </table>

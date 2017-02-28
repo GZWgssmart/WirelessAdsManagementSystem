@@ -73,7 +73,7 @@ function showUpdatePwd() {
         $("#update_password").textbox("setValue", "");
         openWin("editPwdWin");
     } else {
-        $.messager.alert("提示", "请选择需要修改密码的管理员", "info");
+        $.messager.alert("提示", "请选择需要修改密码的客户", "info");
     }
 }
 
@@ -87,6 +87,44 @@ function updatePwd() {
                     function (data) {
                         if (data.result == "success") {
                             closeWin("editPwdWin");
+                            $.messager.alert("提示", data.message, "info", function () {
+                                // dataGridReload("list");
+                            });
+                        } else if (data.result == 'notLogin') {
+                            $.messager.alert("提示", data.message, "info", function() {
+                                toAdminLoginPage();
+                            });
+                        } else {
+                            $("#errMsg").html(data.message);
+                        }
+                    }
+                );
+            }
+        });
+    }
+}
+
+function showUpdateCheckPwd() {
+    var row = selectedRow("list");
+    if (row) {
+        $("#editCheckPwdWin").form("load", row);
+        $("#update_checkPwd").textbox("setValue", "");
+        openWin("editCheckPwdWin");
+    } else {
+        $.messager.alert("提示", "请选择需要修改审核密码的客户", "info");
+    }
+}
+
+function updateCheckPwd() {
+    toValidate("editCheckPwdForm");
+    if (validateForm("editCheckPwdForm")) {
+        $.messager.confirm("提示", "更新该客户审核密码，是否继续?", function(r) {
+            if (r) {
+                $.post(contextPath + "/customer/update_other_chkpwd",
+                    $("#editCheckPwdForm").serialize(),
+                    function (data) {
+                        if (data.result == "success") {
+                            closeWin("editCheckPwdWin");
                             $.messager.alert("提示", data.message, "info", function () {
                                 // dataGridReload("list");
                             });
