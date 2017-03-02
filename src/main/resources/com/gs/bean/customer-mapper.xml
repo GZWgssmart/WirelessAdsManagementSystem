@@ -73,6 +73,12 @@
         </if>
     </select>
 
+    <select id="queryCheckPwdByEmail" parameterType="string" resultType="string">
+        <![CDATA[
+        select check_pwd from t_customer where email = #{email}
+        ]]>
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="customer">
         <![CDATA[
         insert into t_customer(id, email, password, check_pwd, name, phone, address, company) values(uuid(), #{email}, #{password}, #{checkPwd}, #{name}, #{phone}, #{address}, #{company})

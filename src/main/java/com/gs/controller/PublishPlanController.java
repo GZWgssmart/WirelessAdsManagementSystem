@@ -7,11 +7,13 @@ import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.DateParseUtil;
+import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.net.parser.Common;
 import com.gs.net.server.ADSServer;
+import com.gs.service.CustomerService;
 import com.gs.service.PublishPlanService;
 import com.gs.service.PublishService;
 import org.apache.ibatis.annotations.Param;
@@ -44,6 +46,8 @@ public class PublishPlanController {
     private PublishPlanService publishPlanService;
     @Resource
     private PublishService publishService;
+    @Resource
+    private CustomerService customerService;
 
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -261,13 +265,19 @@ public class PublishPlanController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "check", method = RequestMethod.GET)
-    public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, HttpSession session) {
+    @RequestMapping(value = "check", method = RequestMethod.POST)
+    public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, @Param("checkPwd") String checkPwd, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
             if (checkStatus != null && checkStatus.equals("checking")) { // 提交审核
-                publishPlanService.check(id, checkStatus);
-                publishService.updatePublishLogByPlanId(id, PublishLog.SUBMIT_TO_CHECK); // 该计划下的所有device都设置成提交审核
-                return ControllerResult.getSuccessResult("计划已提交审核");
+                String checkPwdDB = customerService.queryCheckPwdByEmail(customer.getEmail());
+                if (checkPwdDB.equals(EncryptUtil.md5Encrypt(checkPwd))) {
+                    publishPlanService.check(id, checkStatus);
+                    publishService.updatePublishLogByPlanId(id, PublishLog.SUBMIT_TO_CHECK); // 该计划下的所有device都设置成提交审核
+                    return ControllerResult.getSuccessResult("计划已提交审核");
+                } else {
+                    return ControllerResult.getFailResult("审核密码不正确");
+                }
             } else if (checkStatus != null && checkStatus.equals("checked")){ // 审核
                 publishPlanService.check(id, checkStatus);
                 // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕

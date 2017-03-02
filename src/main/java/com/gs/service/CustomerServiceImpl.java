@@ -97,4 +97,9 @@ public class CustomerServiceImpl implements CustomerService {
     public int active(String id) {
         return customerDAO.active(id);
     }
+
+    @Override
+    public String queryCheckPwdByEmail(String email) {
+        return customerDAO.queryCheckPwdByEmail(email);
+    }
 }

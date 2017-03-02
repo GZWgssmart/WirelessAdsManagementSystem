@@ -21,4 +21,6 @@ public interface CustomerDAO extends BaseDAO<Customer,String> {
                                                 @Param("customer") Customer customer);
 
     public int countByCriteria(@Param("customer") Customer customer);
+
+    public String queryCheckPwdByEmail(String email);
 }

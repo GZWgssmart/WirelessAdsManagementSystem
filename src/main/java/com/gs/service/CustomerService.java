@@ -18,4 +18,6 @@ public interface CustomerService extends BaseService<Customer, String> {
 
     public int countByCriteria(Customer customer);
 
+    public String queryCheckPwdByEmail(String email);
+
 }
