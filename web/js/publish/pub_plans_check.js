@@ -23,7 +23,7 @@ function showPlanDetail() {
 function toCheck() {
     var row = selectedRow("list");
     if (row) {
-        $.get(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checked",
+        $.post(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checked",
             function (data) {
                 if (data.result == "success") {
                     $.messager.alert("提示", data.message, "info");
@@ -38,6 +38,27 @@ function toCheck() {
             });
     } else {
         $.messager.alert("提示", "请选择需要审核的计划", "info");
+    }
+}
+
+function rejectCheck() {
+    var row = selectedRow("list");
+    if (row) {
+        $.post(contextPath + "/pubplan/reject?id=" + row.id,
+            function (data) {
+                if (data.result == "success") {
+                    $.messager.alert("提示", data.message, "info");
+                    dataGridReload("list");
+                } else if (data.result == 'notLogin') {
+                    $.messager.alert("提示", data.message, "info", function() {
+                        toCustomerLoginPage();
+                    });
+                } else {
+                    $.messager.alert("提示", data.message, "info");
+                }
+            });
+    } else {
+        $.messager.alert("提示", "请选择需要驳回的计划", "info");
     }
 }
 

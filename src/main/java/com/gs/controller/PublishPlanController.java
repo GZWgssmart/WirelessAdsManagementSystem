@@ -295,6 +295,18 @@ public class PublishPlanController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "reject", method = RequestMethod.POST)
+    public ControllerResult reject(@Param("id")String id, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            publishPlanService.check(id, "not_submit");
+            publishService.updatePublishLogByPlanId(id, PublishLog.NOT_SUBMIT_TO_CHECK);
+            return ControllerResult.getSuccessResult("计划已驳回");
+        } else {
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
+        }
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -63,6 +63,8 @@
                onclick="showPlanDetail();">计划详情</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-tip" plain="true"
                onclick="toCheck();">审核</a>
+            <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-tip" plain="true"
+               onclick="rejectCheck();">驳回</a>
             <div class="input_small">
                 <form id="searchForm" modalAttribute="publishPlan">
                     <input type="hidden" name="checkStatus" value="checking" />
