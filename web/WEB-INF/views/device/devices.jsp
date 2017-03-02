@@ -261,7 +261,7 @@
         <thead>
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
-            <th field="name" width="100">资源名称</th>
+            <th field="name" width="200">资源名称</th>
             <th field="deleteStatus" width="100">删除状态</th>
             <th field="des" width="300">说明</th>
         </tr>
