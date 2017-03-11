@@ -11,6 +11,7 @@ import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.net.parser.Common;
+import com.gs.net.parser.DeleteType;
 import com.gs.net.server.ADSServer;
 import com.gs.service.PublishService;
 import org.apache.ibatis.annotations.Param;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.jms.Session;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -101,11 +103,19 @@ public class PublishController {
         }
     }
 
+    /**
+     * 从指定终端把指定的资源删除
+     *
+     * @param deviceId
+     * @param resIdss
+     * @param session
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "delete_res/{deviceId}/{resIds}", method = RequestMethod.GET)
     public ControllerResult deleteRes(@PathVariable("deviceId") String deviceId, @PathVariable("resIds") String resIdss, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
-            logger.info("delete resources which published");
+            logger.info("delete resources which published from specified device");
             String[] resIds = resIdss.split(",");
             List<Publish> publishes = publishService.queryByDevIdAndResIds(deviceId, resIds);
             String[] ids = new String[publishes.size()];
@@ -115,9 +125,68 @@ public class PublishController {
             publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
             ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
             for (Publish publish : publishes) {
-                adsServer.writeFileDelete(publish);
+                // TODO 这里可以改进为一个消息通知删除多个资源，而不需要分多个消息发送到终端
+                adsServer.writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
             }
             return ControllerResult.getSuccessResult("资源删除消息已经开始处理，请关注每个发布的发布日志！");
+        } else {
+            logger.info("can not show all the resource for the publish cause customer is not login");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
+        }
+    }
+
+    /**
+     * 从指定终端删除所有资源
+     *
+     * @param deviceId
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "delete_all_res/{deviceId}", method = RequestMethod.GET)
+    public ControllerResult deleteAllRes(@PathVariable("deviceId") String deviceId, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("delete all resources which published from specified device");
+            List<Publish> publishes = publishService.queryByDeviceId(deviceId);
+            String[] ids = new String[publishes.size()];
+            for (int i = 0; i < publishes.size(); i++) {
+                ids[i] = publishes.get(i).getId();
+            }
+            publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
+            ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
+            adsServer.writeFileDelete(publishes.get(0), DeleteType.DELETE_ALL_RES_FROM_DEVICE);
+            return ControllerResult.getSuccessResult("从此终端删除所有资源的消息已经开始处理！");
+        } else {
+            logger.info("can not show all the resource for the publish cause customer is not login");
+            return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
+        }
+    }
+
+    /**
+     * 把选择的资源从所有终端删除
+     *
+     * @param resIdss
+     * @param session
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "delete_res_from_all_dev/{resIds}", method = RequestMethod.GET)
+    public ControllerResult deleteResFromAllDev(@PathVariable("resIds") String resIdss, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            logger.info("delete resources which published from all device");
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            String[] resIds = resIdss.split(",");
+            List<Publish> publishes = publishService.queryByResIds(resIds, customer.getId());
+            String[] ids = new String[publishes.size()];
+            for (int i = 0; i < publishes.size(); i++) {
+                ids[i] = publishes.get(i).getId();
+            }
+            publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
+            ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
+            for (Publish publish : publishes) {
+                adsServer.writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
+            }
+            return ControllerResult.getSuccessResult("从所有终端删除选择资源的消息已经开始处理！");
         } else {
             logger.info("can not show all the resource for the publish cause customer is not login");
             return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");

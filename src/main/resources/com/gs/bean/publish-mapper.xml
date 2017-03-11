@@ -6,6 +6,7 @@
         <id property="id" column="id" />
         <result property="publishLog" column="publish_log" />
         <result property="publishTime" column="publish_time" />
+        <result property="deleteTime" column="delete_time" />
         <result property="publishPlanId" column="pub_plan_id" />
         <result property="area" column="area" />
         <result property="showType" column="show_type" />
@@ -74,6 +75,27 @@
          from t_publish p, t_device d, t_publish_plan pp, t_resource r
         where p.device_id = d.id and p.resource_id = r.id and d.code = #{code} and p.pub_plan_id = pp.id and pp.check_status = 'checked'
         ]]>
+    </select>
+
+    <select id="queryByDeviceId" parameterType="string" resultMap="publishResultMap">
+        <![CDATA[
+        select p.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name, r.file_name as r_file_name, r.ofile_name as r_ofile_name,
+         r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+         from t_publish p, t_device d, t_resource r
+        where p.device_id = d.id and p.resource_id = r.id and d.id = #{deviceId} and (p.publish_log = '发布消息成功' or p.publish_log = '删除资源失败')
+        ]]>
+    </select>
+
+    <select id="queryByResIds" resultType="list" resultMap="publishResultMap">
+        <![CDATA[
+        select p.*, d.id as d_id, d.code as d_code, r.id as r_id, r.name as r_name, r.file_name as r_file_name, r.ofile_name as r_ofile_name,
+         r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
+          from t_publish p, t_device d, t_resource r
+        where p.device_id = d.id and p.resource_id = r.id and d.customer_id = #{customerId} and (p.publish_log = '发布消息成功' or p.publish_log = '删除资源失败') and r.id in
+        ]]>
+        <foreach item="item" index="index" collection="resIds" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
     <select id="queryByPagerAndCustomerId" resultType="list" resultMap="publishResultMap">
@@ -150,9 +172,9 @@
     <select id="queryResByDevId" resultType="list" resultMap="publishResultMap">
         <![CDATA[
        select distinct p.*, r.id as r_id, r.name as r_name, r.file_name as r_file_name, r.ofile_name as r_ofile_name,
-       r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id
-          from t_publish p, t_resource r, t_device d
-        where p.resource_id = r.id and p.device_id = d.id and d.id = #{publish.deviceId}
+       r.file_size as r_file_size, r.path as r_path, r.resource_type_id as r_restype_id, rt.name as r_restype_name
+          from t_publish p, t_resource r, t_device d, t_resource_type rt
+        where p.resource_id = r.id and p.device_id = d.id and r.resource_type_id = rt.id and d.id = #{publish.deviceId}
         ]]>
         order by r.name
         limit #{pager.beginIndex}, #{pager.pageSize}
@@ -160,7 +182,7 @@
 
     <select id="countResByDevId" resultType="int" parameterType="string">
         <![CDATA[
-        select count(distinct r.id) from t_publish p, t_device d, t_resource r where p.device_id = d.id and d.id = #{deviceId} and p.resource_id = r.id
+        select count(r.id) from t_publish p, t_device d, t_resource r where p.device_id = d.id and d.id = #{deviceId} and p.resource_id = r.id
         ]]>
     </select>
 
@@ -188,8 +210,35 @@
 
     <update id="updatePublishLog" keyProperty="id">
         <![CDATA[
-        update t_publish set publish_log = #{publishLog} where id = #{id}
+        update t_publish set publish_log = #{publishLog}
         ]]>
+         <if test="publishLog == '删除资源成功'">
+         , delete_time = now()
+         </if>
+        <![CDATA[
+         where id = #{id}
+        ]]>
+    </update>
+
+    <update id="updatePublishLogByDevCode" keyProperty="id">
+        <![CDATA[
+        update t_publish set publish_log = #{publishLog}
+        ]]>
+         <if test="publishLog == '删除资源成功'">
+         , delete_time = now()
+         </if>
+        <![CDATA[
+         where device_id = (select id from t_device where code = #{devCode})
+        ]]>
+        <if test="publishLog == '资源正在删除'">
+            and (p.publish_log = '发布消息成功' or p.publish_log = '删除资源失败')
+        </if>
+        <if test="publishLog == '删除资源失败'">
+            and p.publish_log = '资源正在删除'
+        </if>
+        <if test="publishLog == '删除资源成功'">
+            and p.publish_log = '资源正在删除'
+        </if>
     </update>
 
     <update id="updatePublishLogs" keyProperty="id">

@@ -13,6 +13,7 @@ public class Common {
     public static final String TYPE_DOWNLOAD = "download";
     public static final String TYPE_PUBLISH = "publish";
     public static final String TYPE_DELETE = "delete";
+    public static final String TYPE_DELETE_ALL = "deleteAll";
 
     public static final String RESULT_Y = "Y";
     public static final String RESULT_N = "N";

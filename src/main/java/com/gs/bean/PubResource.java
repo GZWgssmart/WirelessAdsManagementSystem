@@ -1,5 +1,7 @@
 package com.gs.bean;
 
+import java.util.Date;
+
 /**
  * Created by WangGenshen on 10/9/16.
  */
@@ -17,6 +19,15 @@ public class PubResource {
     private String name;
     private String deleteStatus;
     private String des;
+
+    private String resType;
+    private Date startTime;
+    private Date endTime;
+    private String showType;
+    private String showCount;
+    private String stayTime;
+    private Date publishTime;
+    private Date deleteTime;
 
     public String getId() {
         return id;
@@ -48,6 +59,70 @@ public class PubResource {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public String getResType() {
+        return resType;
+    }
+
+    public void setResType(String resType) {
+        this.resType = resType;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getShowType() {
+        return showType;
+    }
+
+    public void setShowType(String showType) {
+        this.showType = showType;
+    }
+
+    public String getShowCount() {
+        return showCount;
+    }
+
+    public void setShowCount(String showCount) {
+        this.showCount = showCount;
+    }
+
+    public String getStayTime() {
+        return stayTime;
+    }
+
+    public void setStayTime(String stayTime) {
+        this.stayTime = stayTime;
+    }
+
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
     }
 
     @Override

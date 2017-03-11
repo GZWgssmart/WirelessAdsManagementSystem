@@ -215,6 +215,7 @@ CREATE TABLE t_publish(
   resource_id VARCHAR(128) COMMENT '资源id',
   publish_log VARCHAR(50) NOT NULL COMMENT '发布日志记录',
   publish_time DATETIME COMMENT '资源下发时间',
+  delete_time DATETIME NULL COMMENT '广告删除时间',
   pub_plan_id VARCHAR(128) NOT NULL COMMENT '发布计划编号',
   area INT NOT NULL COMMENT '屏幕区域',
   show_type VARCHAR(20) NOT NULL COMMENT '显示方式，包括即时显示,定时显示(定时),不定时显示(顺序)',

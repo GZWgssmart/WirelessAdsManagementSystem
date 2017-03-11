@@ -89,8 +89,8 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
-    public String queryByDeviceId(String id) {
-        return publishDAO.queryByDeviceId(id);
+    public List<Publish> queryByDeviceId(String deviceId) {
+        return publishDAO.queryByDeviceId(deviceId);
     }
 
     @Override
@@ -165,11 +165,40 @@ public class PublishServiceImpl implements PublishService {
     public List<PubResource> queryResByDevId(Pager pager, Publish publish) {
         List<Publish> publishes = publishDAO.queryResByDevId(pager, publish);
         List<PubResource> pubResources = new ArrayList<PubResource>();
+        /** 以下逻辑被弃用
         List<com.gs.bean.Resource> resources = getResources(publishes);
         pubResources.addAll(getCanDeleteResources(resources, publishes));
         pubResources.addAll(getDeletingResources(resources, publishes));
         pubResources.addAll(getDeletedResources(resources, publishes));
         pubResources.addAll(getCanNotDeleteResources(resources, publishes));
+         */
+        for (Publish p : publishes) {
+            PubResource pr = new PubResource();
+            pr.setId(p.getResource().getId());
+            pr.setName(p.getResource().getName());
+            pr.setPublishTime(p.getPublishTime());
+            pr.setStartTime(p.getStartTime());
+            pr.setEndTime(p.getEndTime());
+            pr.setResType(p.getResource().getResourceTypeName());
+            pr.setShowType(p.getShowType());
+            pr.setShowCount(p.getShowCount());
+            pr.setStayTime(p.getStayTime());
+            pr.setDeleteTime(p.getDeleteTime());
+            if (p.getPublishLog().equals(PublishLog.PUBLISHED) || p.getPublishLog().equals(PublishLog.RESOURCE_NOT_DELETED)) {
+                pr.setDeleteStatus(PubResource.CAN_DELETED);
+                pr.setDes("此资源已经完成发布，可以删除");
+            } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETED)) {
+                pr.setDeleteStatus(PubResource.DELETED);
+                pr.setDes("此资源已经删除，无需再次删除");
+            } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETING)) {
+                pr.setDeleteStatus(PubResource.CAN_NOT_DELETED);
+                pr.setDes("此资源正在删除，无需再次删除");
+            } else {
+                pr.setDeleteStatus(PubResource.CAN_NOT_DELETED);
+                pr.setDes("此资源还在发布过程中，不能删除");
+            }
+            pubResources.add(pr);
+        }
         return pubResources;
     }
 
@@ -281,5 +310,15 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public List<Publish> queryByDevIdAndResIds(String deviceId, String[] resIds) {
         return publishDAO.queryByDevIdAndResIds(deviceId, resIds);
+    }
+
+    @Override
+    public List<Publish> queryByResIds(String[] resIds, String customerId) {
+        return publishDAO.queryByResIds(resIds, customerId);
+    }
+
+    @Override
+    public int updatePublishLogByDevCode(String devCode, String publishLog) {
+        return publishDAO.updatePublishLogByDevCode(devCode, publishLog);
     }
 }

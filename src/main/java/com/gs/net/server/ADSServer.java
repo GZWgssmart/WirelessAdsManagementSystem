@@ -1,13 +1,19 @@
 package com.gs.net.server;
 
 import com.alibaba.fastjson.JSON;
-import com.gs.bean.*;
+import com.gs.bean.Device;
+import com.gs.bean.Publish;
+import com.gs.bean.PublishLog;
+import com.gs.bean.ResourceType;
 import com.gs.common.Constants;
 import com.gs.common.util.Config;
 import com.gs.common.util.DateFormatUtil;
 import com.gs.net.bean.ADSSocket;
 import com.gs.net.parser.*;
-import com.gs.service.*;
+import com.gs.service.DeviceService;
+import com.gs.service.PublishPlanService;
+import com.gs.service.PublishService;
+import com.gs.service.ResourceTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -140,6 +146,9 @@ public class ADSServer {
                         } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
                             logger.info("read file delete msg from device: " + msg);
                             readFileDelete(adsSocket, msg);
+                        } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                            logger.info("read file deleate all msg from device: " + msg);
+                            readFileDelete(adsSocket, msg);
                         } else {
                             logger.info("read other msg from device......");
                         }
@@ -236,10 +245,18 @@ public class ADSServer {
         logger.info("read the file delete from device......");
         FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
         handlingDevices.remove(fileDeleteClient.getDevcode());
-        if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
-            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
-        } else {
-            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+        if (fileDeleteClient.getType().equals(Common.TYPE_DELETE)) {
+            if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
+                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
+            } else {
+                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+            }
+        } else if (fileDeleteClient.getType().equals(Common.TYPE_DELETE_ALL)) {
+            if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
+                publishService.updatePublishLogByDevCode(fileDeleteClient.getDevcode(), PublishLog.RESOURCE_NOT_DELETED);
+            } else {
+                publishService.updatePublishLogByDevCode(fileDeleteClient.getDevcode(), PublishLog.RESOURCE_DELETED);
+            }
         }
     }
 
@@ -297,14 +314,19 @@ public class ADSServer {
         startWrite(publishServer.getPubid(), deviceCode, JSON.toJSONString(publishServer));
     }
 
-    public void writeFileDelete(Publish publish) {
+    public void writeFileDelete(Publish publish, int type) {
         String deviceCode = publish.getDevice().getCode();
         FileDeleteServer fileDeleteServer = new FileDeleteServer();
         fileDeleteServer.setDevcode(deviceCode);
         com.gs.bean.Resource resource = publish.getResource();
-        fileDeleteServer.setFilename(resource.getOfileName());
         fileDeleteServer.setPubid(publish.getId());
-        fileDeleteServer.setType(Common.TYPE_DELETE);
+        if (type == DeleteType.DELETE_RES_FROM_DEVICE) {
+            fileDeleteServer.setType(Common.TYPE_DELETE);
+            fileDeleteServer.setFilename(resource.getOfileName());
+        } else if (type == DeleteType.DELETE_ALL_RES_FROM_DEVICE) {
+            fileDeleteServer.setType(Common.TYPE_DELETE_ALL);
+            fileDeleteServer.setFilename("");
+        }
         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
         fileDeleteServer.setRestype(resourceType.getName());
         fileDeleteServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
@@ -338,7 +360,7 @@ public class ADSServer {
                 } else if (publishLog.equals(PublishLog.FILE_DOWNLOADED) || publishLog.equals(PublishLog.PUBLISHING) || publishLog.equals(PublishLog.NOT_PUBLISHED)) {
                     writePublish(publish);
                 } else if (publishLog.equals(PublishLog.SUBMIT_TO_DELETE) || publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
-                    writeFileDelete(publish);
+                    writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
                 }
             }
         }
@@ -389,6 +411,8 @@ public class ADSServer {
                         publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
                     } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
                         publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
+                    } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                        publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
                     }
                     boolean needRun = true;
                     try {

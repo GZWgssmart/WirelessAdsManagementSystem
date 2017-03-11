@@ -221,7 +221,10 @@ function refreshAllRes() {
     $("#resList").datagrid("reload");
 }
 
-function deleteRes() {
+/**
+ * 从终端删除选择的资源
+ */
+function deleteResFromDevice() {
     var rows = selectedRows("resList");
     if (rows && rows != undefined && rows != '') {
         var resIds = "";
@@ -255,4 +258,59 @@ function deleteRes() {
         $.messager.alert("提示", "请只选择可删除的资源", "info");
     }
 
+}
+
+/**
+ * 从终端删除所有资源
+ */
+function deleteAllResFromDevice() {
+    $.messager.confirm("提示", "确定从此终端上删除所有已经发布的资源?", function(r) {
+        if (r) {
+            $.get(contextPath + "/publish/delete_all_res/" + $("#deviceId").val(),
+                function (data) {
+                    if (data.result == "success") {
+                        $.messager.alert("提示", data.message, "info");
+                        dataGridReload("resList");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function () {
+                            toCustomerLoginPage();
+                        });
+                    }
+                });
+        }
+    });
+}
+
+/**
+ * 从所有终端删除选择的资源
+ */
+function deleteResFromAllDevice() {
+    $.messager.confirm("提示", "确定从所有终端上删除选择的资源?", function(r) {
+            if (r) {
+                var rows = selectedRows("resList");
+                if (rows && rows != undefined && rows != '') {
+                    var resIds = "";
+                    $.each(rows, function (index, row) {
+                        if (resIds == "") {
+                            resIds = row.id;
+                        } else {
+                            resIds += "," + row.id;
+                        }
+                    });
+                    $.get(contextPath + "/publish/delete_res_from_all_dev/" + resIds,
+                        function (data) {
+                            if (data.result == "success") {
+                                $.messager.alert("提示", data.message, "info");
+                                dataGridReload("resList");
+                            } else if (data.result == 'notLogin') {
+                                $.messager.alert("提示", data.message, "info", function () {
+                                    toCustomerLoginPage();
+                                });
+                            }
+                        });
+                } else {
+                    $.messager.alert("提示", "请选择要删除的资源", "info");
+                }
+            }
+        });
 }

@@ -262,14 +262,26 @@
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
             <th field="name" width="200">资源名称</th>
-            <th field="deleteStatus" width="100">删除状态</th>
+            <th field="resType" width="80">资源类型</th>
+            <th field="deleteStatus" width="60">删除状态</th>
+            <th field="publishTime" width="120" formatter="formatterDate">发布时间</th>
+            <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
+            <th field="showCount" width="80">播放次数</th>
+            <th field="stayTime" width="80">停留时间(S)</th>
+            <th field="startTime" width="80" formatter="formatterDate1">开始日期</th>
+            <th field="endTime" width="80" formatter="formatterDate1">结束日期</th>
+            <th field="deleteTime" width="120" formatter="formatterDate">删除时间</th>
             <th field="des" width="300">说明</th>
         </tr>
         </thead>
     </table>
     <div id="restb">
-        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
-           onclick="deleteRes();">删除选择的资源</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="deleteResFromDevice();">从终端删除选择的资源</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="deleteAllResFromDevice();">从终端删除所有资源</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="deleteResFromAllDevice();">从所有终端删除选择的资源</a>
         <div class="input_small">
             <input type="hidden" id="deviceId" name="deviceId" />
         </div>

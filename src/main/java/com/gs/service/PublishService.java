@@ -18,7 +18,7 @@ public interface PublishService extends BaseService<Publish, String> {
 
     public int countByCriteria(Publish publish);
 
-    public String queryByDeviceId(String id);
+    public List<Publish> queryByDeviceId(String deviceId);
 
     public Publish queryByDRId(String drid);
 
@@ -47,5 +47,9 @@ public interface PublishService extends BaseService<Publish, String> {
     public int countResByDevId(Publish publish);
 
     public List<Publish> queryByDevIdAndResIds(String deviceId, String[] resIds);
+
+    public List<Publish> queryByResIds(String[] resIds, String customerId);
+
+    public int updatePublishLogByDevCode(String devCode, String publishLog);
 
 }

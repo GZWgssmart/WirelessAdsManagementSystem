@@ -25,6 +25,7 @@ public class Publish {
     private String segments;
     private Date publishTime;
     private String publishLog;
+    private Date deleteTime;
 
     private String publishPlanId;
 
@@ -154,6 +155,14 @@ public class Publish {
 
     public void setPublishLog(String publishLog) {
         this.publishLog = publishLog;
+    }
+
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
     }
 
     public String getPublishPlanId() {
