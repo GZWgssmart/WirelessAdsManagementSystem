@@ -31,12 +31,12 @@
 
 </head>
 <body>
-<table id="info" class="site_table">
-    <caption style="font-size: 16px; font-weight: bold; padding-top:10px; padding-bottom: 10px;">我的基本信息</caption>
+<table id="info" class="site_table site_info_table">
+    <caption>我的基本信息</caption>
     <thead>
     <tr>
         <th>名称</th>
-        <th>值</th>
+        <th class="site_value_td">值</th>
     </tr>
     <tr>
         <td>邮箱</td>

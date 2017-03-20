@@ -33,7 +33,7 @@
 <body>
 <div id="errMsg"></div>
 <form:form id="updateForm" method="post" modelAttribute="admin">
-    <table class="input_big">
+    <table class="input_big site_info_table site_setting_table">
         <caption>修改账号密码</caption>
         <tr>
             <td>原密码：</td>

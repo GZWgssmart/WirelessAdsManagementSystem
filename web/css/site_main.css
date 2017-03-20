@@ -121,6 +121,13 @@ a:hover {
     min-width: 400px;
 }
 
+.site_info_table caption {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
 .site_table tr th {
     padding: 5px;
     border:1px dotted #ccc;
@@ -131,6 +138,14 @@ a:hover {
     padding: 5px;
     border:1px dotted #ccc;
     text-align: left;
+}
+
+.site_value_td {
+    min-width:150px;
+}
+
+.site_setting_table tr {
+    height:40px;
 }
 
 .site_table_td_title {
