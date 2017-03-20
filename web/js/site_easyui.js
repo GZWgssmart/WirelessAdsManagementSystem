@@ -240,6 +240,14 @@ function checkFile(name, index, type, size) {
     return true;
 }
 
+function getFileName(name, index, dest) {
+    var file = document.getElementsByName(name)[index].files[0];
+    if (file != undefined) {
+        var fileName = file.name.substr(0, file.name.lastIndexOf("."));
+        $("#" + dest).textbox("setValue", fileName);
+    }
+}
+
 //////////////////////////////////////
 
 function formatterDate(value) {
