@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-    <title>用户账号设置-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>用户账号设置-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>

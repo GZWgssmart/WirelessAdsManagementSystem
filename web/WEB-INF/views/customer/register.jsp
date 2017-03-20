@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>客户注册-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>客户注册-青岛宝瑞媒体发布系统</title>
     <style type="text/css">
         label{
             width:120px;

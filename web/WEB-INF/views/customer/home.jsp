@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>客户主页-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>客户主页-青岛宝瑞媒体发布系统</title>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
     <script type="text/javascript" src="<%=path %>/js/jquery.min.js"></script>
@@ -75,7 +75,7 @@
 </div>
 
 <div data-options="region:'south',border:false" style="padding:10px auto 10px auto;text-align:center;">
-    <br />青岛宝瑞液晶综合信息屏媒体系统V1.0<br /><br />
+    <br />青岛宝瑞媒体发布系统V1.0<br /><br />
     地址：山东省青岛市崂山区株洲路140号&nbsp;&nbsp;技术支持:0532-80678775/80678776<br /><br />
 </div>
 
