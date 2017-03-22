@@ -117,7 +117,7 @@
 				rownumbers:true,
 				singleSelect:true,
 				autoRowHeight:false,
-				pagination:true,
+				pagination:false,
 				border:false,
 				pageSize:20">
         <thead>
