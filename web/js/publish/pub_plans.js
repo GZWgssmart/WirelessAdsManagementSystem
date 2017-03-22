@@ -208,37 +208,22 @@ function toCheck() {
         if (row.checkStatus != "not_submit") {
             $.messager.alert("提示", "请选择未提交审核的计划", "info");
         } else {
-            $("#toCheckPlanId").val(row.id);
-            openWinFitPos("checkPwdWin");
+            $.post(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checking",
+                function (data) {
+                    if (data.result == "success") {
+                        $.messager.alert("提示", data.message, "info");
+                        dataGridReload("list");
+                    } else if (data.result == 'notLogin') {
+                        $.messager.alert("提示", data.message, "info", function () {
+                            toCustomerLoginPage();
+                        });
+                    } else {
+                        $.messager.alert("提示", data.message, "info");
+                    }
+                });
         }
     } else {
         $.messager.alert("提示", "请选择需要提交审核的计划", "info");
-    }
-}
-
-function cancelCheckPwd() {
-    closeWin("checkPwdWin");
-    $("#checkPwdForm").form("clear");
-}
-
-function conCheckPwd() {
-    toValidate("checkPwdForm");
-    if (validateForm("checkPwdForm")) {
-        $.post(contextPath + "/pubplan/check?checkStatus=checking",
-            $("#checkPwdForm").serialize(),
-            function (data) {
-                if (data.result == "success") {
-                    $.messager.alert("提示", data.message, "info");
-                    dataGridReload("list");
-                } else if (data.result == 'notLogin') {
-                    $.messager.alert("提示", data.message, "info", function () {
-                        toCustomerLoginPage();
-                    });
-                } else {
-                    $.messager.alert("提示", data.message, "info");
-                }
-            });
-        cancelCheckPwd();
     }
 }
 

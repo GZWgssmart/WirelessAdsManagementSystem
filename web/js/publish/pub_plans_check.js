@@ -23,7 +23,23 @@ function showPlanDetail() {
 function toCheck() {
     var row = selectedRow("list");
     if (row) {
-        $.post(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checked",
+        $("#toCheckPlanId").val(row.id);
+        openWinFitPos("checkPwdWin");
+    } else {
+        $.messager.alert("提示", "请选择需要审核的计划", "info");
+    }
+}
+
+function cancelCheckPwd() {
+    closeWin("checkPwdWin");
+    $("#checkPwdForm").form("clear");
+}
+
+function conCheckPwd() {
+    toValidate("checkPwdForm");
+    if (validateForm("checkPwdForm")) {
+        $.post(contextPath + "/pubplan/check?checkStatus=checked",
+            $("#checkPwdForm").serialize(),
             function (data) {
                 if (data.result == "success") {
                     $.messager.alert("提示", data.message, "info");
@@ -36,8 +52,7 @@ function toCheck() {
                     $.messager.alert("提示", data.message, "info");
                 }
             });
-    } else {
-        $.messager.alert("提示", "请选择需要审核的计划", "info");
+        cancelCheckPwd();
     }
 }
 
