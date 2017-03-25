@@ -52,8 +52,8 @@
         <th field="phone" width="95">手机号</th>
         <th field="company" width="100">公司</th>
         <th field="address" width="200">地址</th>
-        <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
-        <th field="loginTime" width="125" formatter="formatterDate">最近登录时间</th>
+        <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
+        <th field="loginTime" width="130" formatter="formatterDate">最近登录时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>

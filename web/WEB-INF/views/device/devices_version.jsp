@@ -47,7 +47,7 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="code" width="85">终端号</th>
+        <th field="code" width="100">终端号</th>
         <th field="version" width="50" formatter="formatterName">版本</th>
         <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
@@ -55,12 +55,12 @@
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
-        <th field="onlineTime" width="125" formatter="formatterDate">上线时间</th>
-        <th field="offlineTime" width="125" formatter="formatterDate">离线时间</th>
-        <th field="adsUpdateTime" width="125" formatter="formatterDate">广告更新时间</th>
+        <th field="onlineTime" width="130" formatter="formatterDate">上线时间</th>
+        <th field="offlineTime" width="130" formatter="formatterDate">离线时间</th>
+        <th field="adsUpdateTime" width="130" formatter="formatterDate">广告更新时间</th>
         <th field="installTimeStr" width="120">安装时间</th>
         <th field="des" width="100">描述</th>
-        <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
+        <th field="createTime" width="130 formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>

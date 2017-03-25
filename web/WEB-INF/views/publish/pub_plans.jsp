@@ -55,7 +55,7 @@
             <tr>
                 <th field="id" checkbox="true" width="50">用户ID</th>
                 <th field="planName" width="85">计划名称</th>
-                <th field="name" width="85">计划</th>
+                <th field="name" width="100">计划</th>
                 <th field="type" width="85" formatter="formatterPlanType">计划类型</th>
                 <th field="groupName" width="60">终端分组</th>
                 <th field="versionName" width="60">终端版本</th>
@@ -64,7 +64,7 @@
                 <th field="notFinishCount" width="60">未完成数</th>
                 <th field="des" width="100">描述</th>
                 <th field="checkStatus" width="60" formatter="formatterCheckStatus">审核状态</th>
-                <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
+                <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
                 <th field="status" width="50" formatter="formatterStatus">状态</th>
                 <th field="versionId" width="0"></th>
             </tr>
@@ -233,7 +233,7 @@
         <thead>
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
-            <th field="code" width="85">终端号</th>
+            <th field="code" width="100">终端号</th>
             <th field="version" width="50" formatter="formatterName">版本</th>
             <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
             <th field="driver" width="60">驾驶员</th>
@@ -241,12 +241,12 @@
             <th field="busNo" width="60">车路线</th>
             <th field="busPlateNo" width="75">车牌号</th>
             <th field="online" width="60" formatter="formatterOnline">在线状态</th>
-            <th field="onlineTime" width="125" formatter="formatterDate">上线时间</th>
-            <th field="offlineTime" width="125" formatter="formatterDate">离线时间</th>
-            <th field="adsUpdateTime" width="125" formatter="formatterDate">广告更新时间</th>
+            <th field="onlineTime" width="130" formatter="formatterDate">上线时间</th>
+            <th field="offlineTime" width="130" formatter="formatterDate">离线时间</th>
+            <th field="adsUpdateTime" width="130" formatter="formatterDate">广告更新时间</th>
             <th field="installTimeStr" width="125">安装时间</th>
             <th field="des" width="100">描述</th>
-            <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
+            <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
             <th field="status" width="50" formatter="formatterStatus">状态</th>
         </tr>
         </thead>
@@ -364,7 +364,7 @@
             <th field="path" width="200" formatter="formatterLong">路径</th>
             <th field="showDetailSetting" formatter="formatterYN">是否显示详情设置</th>
             <th field="des" width="100">描述</th>
-            <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
+            <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
             <th field="status" width="50" formatter="formatterStatus">状态</th>
         </tr>
         </thead>

@@ -50,8 +50,8 @@
         <th field="email" width="150">邮箱</th>
         <th field="name" width="60">姓名</th>
         <th field="phone" width="95">手机号</th>
-        <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
-        <th field="lastLoginTime" width="125" formatter="formatterDate">上一次登录时间</th>
+        <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
+        <th field="lastLoginTime" width="130" formatter="formatterDate">上一次登录时间</th>
         <th field="role" width="80" formatter="formatterRole">角色</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
