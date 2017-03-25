@@ -112,11 +112,11 @@ public class PublishPlanController {
         publish.setResourceId(detail.getResourceId());
         publish.setArea(detail.getArea());
         publish.setShowType(detail.getShowType());
-        if (detail.getStartTimeStr() != null) {
+        if (detail.getStartTimeStr() != null && !detail.getStartTimeStr().equals("")) {
             detail.setStartTime(DateParseUtil.parseDate(detail.getStartTimeStr(), "yyyy-MM-dd"));
         }
         publish.setStartTime(detail.getStartTime());
-        if (detail.getEndTimeStr() != null) {
+        if (detail.getEndTimeStr() != null && !detail.getEndTimeStr().equals("")) {
             detail.setEndTime(DateParseUtil.parseDate(detail.getEndTimeStr(), "yyyy-MM-dd"));
         }
         publish.setEndTime(detail.getEndTime());

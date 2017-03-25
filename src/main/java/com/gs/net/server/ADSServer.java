@@ -293,12 +293,16 @@ public class ADSServer {
         publishServer.setPubid(publish.getId());
         publishServer.setArea(publish.getArea());
         publishServer.setDevcode(deviceCode);
-        publishServer.setEnddate(DateFormatUtil.format(publish.getEndTime(), Common.DATE_PATTERN));
-        publishServer.setStartdate(DateFormatUtil.format(publish.getStartTime(), Common.DATE_PATTERN));
+        if (publish.getEndTime() != null) {
+            publishServer.setEnddate(DateFormatUtil.format(publish.getEndTime(), Common.DATE_PATTERN));
+        }
+        if (publish.getStartTime() != null) {
+            publishServer.setStartdate(DateFormatUtil.format(publish.getStartTime(), Common.DATE_PATTERN));
+        }
         publishServer.setFilename(resource.getOfileName());
         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
         publishServer.setRestype(resourceType.getName());
-        if (publish.getShowType().equals("segment")) {
+        if (publish.getShowType() != null && publish.getShowType().equals("segment")) {
             String[] segments = publish.getSegments().split(",");
             publishServer.setSegcount(segments.length);
             publishServer.setSegments(publish.getSegments());
