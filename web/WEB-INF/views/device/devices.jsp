@@ -56,14 +56,14 @@
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
-        <th field="onlineTime" width="120" formatter="formatterDate">上线时间</th>
-        <th field="offlineTime" width="120" formatter="formatterDate">离线时间</th>
-        <th field="adsUpdateTime" width="120" formatter="formatterDate">广告更新时间</th>
+        <th field="onlineTime" width="125" formatter="formatterDate">上线时间</th>
+        <th field="offlineTime" width="125" formatter="formatterDate">离线时间</th>
+        <th field="adsUpdateTime" width="125" formatter="formatterDate">广告更新时间</th>
         <!--
         <th field="installTimeStr" width="120">安装时间</th>
         -->
         <th field="des" width="100">描述</th>
-        <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+        <th field="createTime" width="125" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>
@@ -264,13 +264,13 @@
             <th field="name" width="200">资源名称</th>
             <th field="resType" width="80">资源类型</th>
             <th field="deleteStatus" width="60">删除状态</th>
-            <th field="publishTime" width="120" formatter="formatterDate">发布时间</th>
+            <th field="publishTime" width="125" formatter="formatterDate">发布时间</th>
             <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
             <th field="showCount" width="80">播放次数</th>
             <th field="stayTime" width="80">停留时间(S)</th>
             <th field="startTime" width="80" formatter="formatterDate1">开始日期</th>
             <th field="endTime" width="80" formatter="formatterDate1">结束日期</th>
-            <th field="deleteTime" width="120" formatter="formatterDate">删除时间</th>
+            <th field="deleteTime" width="125" formatter="formatterDate">删除时间</th>
             <th field="des" width="300">说明</th>
         </tr>
         </thead>
