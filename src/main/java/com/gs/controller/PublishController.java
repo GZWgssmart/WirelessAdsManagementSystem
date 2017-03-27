@@ -6,11 +6,9 @@ import com.gs.common.bean.ControllerResult;
 import com.gs.common.bean.Pager;
 import com.gs.common.bean.Pager4EasyUI;
 import com.gs.common.util.DateFormatUtil;
-import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
-import com.gs.net.parser.Common;
 import com.gs.net.parser.DeleteType;
 import com.gs.net.server.ADSServer;
 import com.gs.service.PublishService;
@@ -24,12 +22,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.jms.Session;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -124,8 +122,28 @@ public class PublishController {
             }
             publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
             ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
-            for (Publish publish : publishes) {
-                // TODO 这里可以改进为一个消息通知删除多个资源，而不需要分多个消息发送到终端
+            List<Publish> toDeletePublishes = new ArrayList<Publish>();
+            if (publishes.size() > 0) {
+                Publish currentPublish = publishes.get(0);
+                Iterator<Publish> iterator = publishes.iterator();
+                while (iterator.hasNext()) {
+                    Publish publish = iterator.next();
+                    // 如果资源类型一致
+                    if (currentPublish.getResource().getResourceTypeName().equals(publish.getResource().getResourceTypeName())) {
+                        String ofileName = currentPublish.getResource().getOfileName();
+                        String fileName = publish.getResource().getOfileName();
+                        if (!checkFileNameExist(ofileName, fileName)) {
+                            currentPublish.getResource().setOfileName(ofileName + "|" + fileName);
+                        }
+                        iterator.remove();
+                    } else {
+                        toDeletePublishes.add(currentPublish.copy());
+                        currentPublish = publish;
+                    }
+                }
+                toDeletePublishes.add(currentPublish);
+            }
+            for (Publish publish : toDeletePublishes) {
                 adsServer.writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
             }
             return ControllerResult.getSuccessResult("资源删除消息已经开始处理，请关注每个发布的发布日志！");
@@ -133,6 +151,16 @@ public class PublishController {
             logger.info("can not show all the resource for the publish cause customer is not login");
             return ControllerResult.getNotLoginResult("登录信息无效，请重新登录");
         }
+    }
+
+    private boolean checkFileNameExist(String ofileName, String fileName) {
+        String[] ofileNames = ofileName.split("[|]");
+        for (String name : ofileNames) {
+            if (name.equals(fileName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

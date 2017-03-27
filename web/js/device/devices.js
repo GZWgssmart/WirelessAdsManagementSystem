@@ -240,17 +240,21 @@ function deleteResFromDevice() {
             }
         });
         if (canDo) {
-            $.get(contextPath + "/publish/delete_res/" + $("#deviceId").val() + "/" + resIds,
-                function (data) {
-                    if (data.result == "success") {
-                        $.messager.alert("提示", data.message, "info");
-                        dataGridReload("resList");
-                    } else if (data.result == 'notLogin') {
-                        $.messager.alert("提示", data.message, "info", function() {
-                            toCustomerLoginPage();
+            $.messager.confirm("提示", "确定从此终端上删除选中的资源?", function(r) {
+                if (r) {
+                    $.get(contextPath + "/publish/delete_res/" + $("#deviceId").val() + "/" + resIds,
+                        function (data) {
+                            if (data.result == "success") {
+                                $.messager.alert("提示", data.message, "info");
+                                dataGridReload("resList");
+                            } else if (data.result == 'notLogin') {
+                                $.messager.alert("提示", data.message, "info", function() {
+                                    toCustomerLoginPage();
+                                });
+                            }
                         });
-                    }
-                });
+                }
+            });
         } else {
             $.messager.alert("提示", "请只选择可删除的资源", "info");
         }
