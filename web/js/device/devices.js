@@ -31,6 +31,7 @@ $(function() {
             }
         }
     });
+    $("#resList").datagrid("hideColumn", 'resId');
 });
 
 function showAdd() {
@@ -234,9 +235,11 @@ function deleteResFromDevice() {
                 canDo = false;
             }
             if (resIds == "") {
-                resIds = row.id;
+                resIds = row.resId;
             } else {
-                resIds += "," + row.id;
+                if (resIds.indexOf(row.resId) < 0) {
+                    resIds += "," + row.resId;
+                }
             }
         });
         if (canDo) {
@@ -296,9 +299,11 @@ function deleteResFromAllDevice() {
                     var resIds = "";
                     $.each(rows, function (index, row) {
                         if (resIds == "") {
-                            resIds = row.id;
+                            resIds = row.resId;
                         } else {
-                            resIds += "," + row.id;
+                            if (resIds.indexOf(row.resId) < 0) {
+                                resIds += "," + row.resId;
+                            }
                         }
                     });
                     $.get(contextPath + "/publish/delete_res_from_all_dev/" + resIds,

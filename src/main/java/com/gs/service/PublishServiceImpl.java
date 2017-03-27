@@ -174,7 +174,8 @@ public class PublishServiceImpl implements PublishService {
          */
         for (Publish p : publishes) {
             PubResource pr = new PubResource();
-            pr.setId(p.getResource().getId());
+            pr.setId(p.getId());
+            pr.setResId(p.getResource().getId());
             pr.setName(p.getResource().getName());
             pr.setPublishTime(p.getPublishTime());
             pr.setStartTime(p.getStartTime());

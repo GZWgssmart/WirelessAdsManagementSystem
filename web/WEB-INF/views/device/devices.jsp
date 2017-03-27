@@ -261,6 +261,7 @@
         <thead>
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
+            <th field="resId" width="50">资源ID</th>
             <th field="name" width="200">资源名称</th>
             <th field="resType" width="80">资源类型</th>
             <th field="deleteStatus" width="60">删除状态</th>

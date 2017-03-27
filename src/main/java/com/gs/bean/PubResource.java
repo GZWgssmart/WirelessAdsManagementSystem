@@ -16,6 +16,7 @@ public class PubResource {
     public static final String CAN_NOT_DELETE_MSG = "此资源没有完成发布或已提交删除或正在删除中或已删除，无需删除";
 
     private String id;
+    private String resId;
     private String name;
     private String deleteStatus;
     private String des;
@@ -35,6 +36,14 @@ public class PubResource {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getResId() {
+        return resId;
+    }
+
+    public void setResId(String resId) {
+        this.resId = resId;
     }
 
     public String getName() {
