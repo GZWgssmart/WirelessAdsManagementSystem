@@ -247,9 +247,13 @@ public class ADSServer {
         handlingDevices.remove(fileDeleteClient.getDevcode());
         if (fileDeleteClient.getType().equals(Common.TYPE_DELETE)) {
             if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
-                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
+                if (!fileDeleteClient.getFilename().contains("|")) {
+                    publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
+                }
             } else {
-                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+                if (!fileDeleteClient.getFilename().contains("|")) {
+                    publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+                }
             }
         } else if (fileDeleteClient.getType().equals(Common.TYPE_DELETE_ALL)) {
             if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
@@ -357,13 +361,15 @@ public class ADSServer {
             // 有消息发布还未处理完,则需要顺序处理这些消息发布
             logger.info("the device " + deviceCode + " begin to handle the publishes automatically......");
             for (Publish publish : publishes) {
-                logger.info("automatically handle publish id: " + publish.getId());
                 String publishLog = publish.getPublishLog();
                 if (publishLog.equals(PublishLog.SUBMIT_TO_CHECK) || publishLog.equals(PublishLog.FILE_DOWNLOADING) || publishLog.equals(PublishLog.FILE_NOT_DOWNLOADED)) {
+                    logger.info("automatically file download publish id: " + publish.getId());
                     writeFileDownload(publish);
                 } else if (publishLog.equals(PublishLog.FILE_DOWNLOADED) || publishLog.equals(PublishLog.PUBLISHING) || publishLog.equals(PublishLog.NOT_PUBLISHED)) {
+                    logger.info("automatically publish handle publish id: " + publish.getId());
                     writePublish(publish);
                 } else if (publishLog.equals(PublishLog.SUBMIT_TO_DELETE) || publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
+                    logger.info("automatically delete handle publish id: " + publish.getId());
                     writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
                 }
             }
