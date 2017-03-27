@@ -247,13 +247,9 @@ public class ADSServer {
         handlingDevices.remove(fileDeleteClient.getDevcode());
         if (fileDeleteClient.getType().equals(Common.TYPE_DELETE)) {
             if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
-                if (!fileDeleteClient.getFilename().contains("|")) {
-                    publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
-                }
+                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
             } else {
-                if (!fileDeleteClient.getFilename().contains("|")) {
-                    publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
-                }
+                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
             }
         } else if (fileDeleteClient.getType().equals(Common.TYPE_DELETE_ALL)) {
             if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
