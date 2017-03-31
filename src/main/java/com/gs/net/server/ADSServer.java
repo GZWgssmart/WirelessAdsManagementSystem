@@ -36,6 +36,7 @@ public class ADSServer {
     private static int port;
     private static String siteDomain;
     private static int offlineTimeout;
+    private static int sleepTime;
     private ServerSocket serverSocket;
     private Hashtable<String, ADSSocket> adsSockets;
 
@@ -58,6 +59,7 @@ public class ADSServer {
         port = config.getInt(Common.PORT);
         siteDomain = config.getString(Common.SITE_DOMAIN);
         offlineTimeout = config.getInt(Common.OFFLINE_TIMEOUT) * 1000;
+        sleepTime = config.getInt(Common.SLEEP_TIME) * 1000;
     }
 
     public ADSServer() {
@@ -442,7 +444,7 @@ public class ADSServer {
                                     } else { // 如果设备在处理中，则等待指定时间后继续执行此线程，一直执行到设备不在使用中
                                         logger.info("waiting the device for 5 seconds....");
                                         try {
-                                            Thread.sleep(5 * 1000);
+                                            Thread.sleep(sleepTime);
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
