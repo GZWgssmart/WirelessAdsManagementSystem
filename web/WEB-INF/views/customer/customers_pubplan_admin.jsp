@@ -52,10 +52,10 @@
                 <th field="id" checkbox="true" width="50">用户ID</th>
                 <th field="email" width="150">邮箱</th>
                 <th field="name" width="100">姓名</th>
-                <th field="phone" width="80">手机号</th>
+                <th field="phone" width="100">手机号</th>
                 <th field="address" width="200">地址</th>
-                <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
-                <th field="loginTime" width="130" formatter="formatterDate">最近登录时间</th>
+                <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
+                <th field="loginTime" width="135" formatter="formatterDate">最近登录时间</th>
                 <th field="status" width="50" formatter="formatterStatus">状态</th>
             </tr>
             </thead>

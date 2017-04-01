@@ -51,7 +51,7 @@
         <th field="extension" width="100">可用后缀</th>
         <th field="showDetailSetting" width="100" formatter="formatterYN">是否显示详情设置</th>
         <th field="des" width="100">描述</th>
-        <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
+        <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>

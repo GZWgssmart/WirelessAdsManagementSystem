@@ -63,7 +63,7 @@
                 <th field="notFinishCount" width="60">未完成数</th>
                 <th field="des" width="100">描述</th>
                 <th field="checkStatus" width="60" formatter="formatterCheckStatus">审核状态</th>
-                <th field="createTime" width="130" formatter="formatterDate">创建时间</th>
+                <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
                 <th field="status" width="50" formatter="formatterStatus">状态</th>
                 <th field="versionId" width="0"></th>
             </tr>
