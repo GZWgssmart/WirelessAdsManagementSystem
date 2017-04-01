@@ -15,7 +15,7 @@ $(function() {
 function doSearch(planId) {
     $("#list").datagrid({
         url:contextPath + '/publish/search_pager/' + planId,
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
@@ -25,7 +25,7 @@ function searchAll(planId) {
     $("#searchForm").form("clear");
     $("#list").datagrid({
         url:contextPath + '/publish/search_pager/' + planId,
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");

@@ -166,7 +166,7 @@ function active() {
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/device/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
@@ -176,7 +176,7 @@ function searchAll() {
     $("#searchForm").form("clear");
     $("#list").datagrid({
         url:contextPath + '/device/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
@@ -202,7 +202,7 @@ function showAllRes() {
 function doResSearch() {
     $("#resList").datagrid({
         url:contextPath + '/publish/search_res_pager_dev/' + $("#deviceId").val(),
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("resList", "ressearchForm")
     });
     setPagination("#resList");
@@ -212,7 +212,7 @@ function searchAllRes() {
     $("#ressearchForm").form("clear");
     $("#resList").datagrid({
         url:contextPath + '/publish/search_res_pager_dev/' + $("#deviceId").val(),
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("resList", "ressearchForm")
     });
     setPagination("#resList");

@@ -38,7 +38,8 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
+				pageList: [40, 50, 60, 70],
 				rowStyler: function(index,row){
 					if (row.role == 'super'){
 						return 'background-color:#ccc;';

@@ -37,7 +37,7 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 					if (row.status == 'N') {
 					    return 'color:red;';

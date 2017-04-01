@@ -41,7 +41,8 @@
                         autoRowHeight:false,
                         pagination:true,
                         border:false,
-                        pageSize:20,
+                        pageSize:50,
+                        pageList: [40, 50, 60, 70],
                         rowStyler: function(index,row){
                             if (row.status == 'N') {
                                 return 'color:red;';
@@ -222,7 +223,7 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 				    if (row.status == 'N') {
 					    return 'color:red;';
@@ -305,7 +306,7 @@
 				pagination:false,
 				border:false,
 				checkbox:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 					if (row.status == 'N') {
 					    return 'color:red;';
@@ -348,7 +349,7 @@
 				pagination:true,
 				border:false,
 				checkbox:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 					if (row.status == 'N') {
 					    return 'color:red;';

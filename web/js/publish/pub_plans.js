@@ -276,7 +276,7 @@ function active() {
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/pubplan/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
@@ -286,7 +286,7 @@ function searchAll() {
     $("#searchForm").form("clear");
     $("#list").datagrid({
         url:contextPath + '/pubplan/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
@@ -306,7 +306,7 @@ function showDevWin() {
 function doSearchDev() {
     $("#devList").datagrid({
         url:contextPath + '/device/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("devList", "devSearchForm")
     });
     setPagination("#devList");
@@ -316,7 +316,7 @@ function searchAllDev() {
     $("#devSearchForm").form("clear");
     $("#devList").datagrid({
         url:contextPath + '/device/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("devList", "devSearchForm")
     });
     setPagination("#devList");
@@ -639,7 +639,7 @@ function confirmAllResAndClose() {
 function doSearchRes() {
     $("#resList").datagrid({
         url:contextPath + '/res/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("resList", "resSearchForm")
     });
     setPagination("#list");
@@ -649,7 +649,7 @@ function searchAllRes() {
     $("#resSearchForm").form("clear");
     $("#resList").datagrid({
         url:contextPath + '/res/search_pager',
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("resList", "resSearchForm")
     });
     setPagination("#list");
