@@ -24,6 +24,8 @@
 <div data-options="region:'north',border:false" class="north">
     <img class="main_logo" src="<%=path %>/images/logo.jpg"/>
 
+    <div class="north welcome">欢迎使用青岛宝瑞媒体发布系统</div>
+
     <div class="north wel_msg">
         欢迎您:&nbsp;&nbsp;<b>${sessionScope.customer.email }</b>&nbsp;&nbsp;
         <a href="javascript:void(0);" onclick="toPage('<%=path %>/customer/home')">刷新主页</a>&nbsp;&nbsp;
