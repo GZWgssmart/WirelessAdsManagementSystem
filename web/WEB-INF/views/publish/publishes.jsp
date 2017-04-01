@@ -44,7 +44,7 @@
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="code" width="100" formatter="formatterCode">终端号</th>
-        <th field="resource" width="100" formatter="formatterName">资源名称</th>
+        <th field="resource" width="160" formatter="formatterName">资源名称</th>
         <th field="publishLog" width="100">发布日志</th>
         <th field="publishTime" width="135" formatter="formatterDate">发布时间</th>
         <th field="area" width="60" formatter="formatterArea">显示区域</th>

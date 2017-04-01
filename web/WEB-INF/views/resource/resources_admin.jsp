@@ -47,7 +47,7 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="name" width="80">名称</th>
+        <th field="name" width="160">名称</th>
         <th field="resourceType" width="80" formatter="formatterName">类型</th>
         <th field="ofileName" width="300">原始文件名</th>
         <th field="showDetailSetting" width="100" formatter="formatterYN">是否显示详情设置</th>
