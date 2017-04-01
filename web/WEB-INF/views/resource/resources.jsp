@@ -91,9 +91,9 @@
     </div>
 </div>
 
-<div class="easyui-window site_win_normal input_big" id="addWin" data-options="title:'添加资源',resizable:false,mode:true,closed:true">
+<div class="easyui-window site_win_normal input_big_wider" id="addWin" data-options="title:'添加资源',resizable:false,mode:true,closed:true">
     <form:form id="addForm" modelAttribute="resource" enctype="multipart/form-data">
-        <table>
+        <table class="site_setting_table">
             <tr>
                 <td>类型:</td>
                 <td>

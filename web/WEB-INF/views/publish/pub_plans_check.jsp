@@ -78,15 +78,17 @@
 <div class="easyui-window site_win_small input_big" id="checkPwdWin" data-options="title:'提交审核',resizable:false,mode:true,closed:true">
     <form id="checkPwdForm">
         <input id="toCheckPlanId" type="hidden" name="id" />
-        <table>
+        <table class="site_setting_table">
             <tr>
                 <td>审核密码:</td>
                 <td><input id="checkPwd" type="password" name="checkPwd" class="easyui-validatebox easyui-textbox" data-options="required:true,novalidate:true"/>
                 </td>
             </tr>
             <tr>
-                <td><button type="button" onclick="cancelCheckPwd();">取消</button></td>
+                <td></td>
                 <td>
+                    <button type="button" onclick="cancelCheckPwd();">取消</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" onclick="conCheckPwd();">确认</button>
                 </td>
             </tr>

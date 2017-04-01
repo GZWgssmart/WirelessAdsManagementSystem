@@ -130,7 +130,7 @@
                 <input id="addVersionName" type="hidden" name="versionName" />
                 <input id="resourceDetails" type="hidden" name="resourceDetails" />
                 <div id="resourceDetailDiv" style="display:none;"></div>
-                <table>
+                <table class="site_setting_table">
                     <tr>
                         <td>计划名称:</td>
                         <td><input type="text" name="planName" class="easyui-validatebox easyui-textbox" data-options="required:true,novalidate:true"/>
