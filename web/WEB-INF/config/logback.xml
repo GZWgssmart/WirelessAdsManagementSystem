@@ -10,8 +10,8 @@
     <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <File>${logbase}%d{yyyy-MM-dd}.log.html</File>
-            <FileNamePattern>${logbase}.%d{yyyy-MM-dd}.log.html.zip</FileNamePattern>
+            <File>${logbase}/%d{yyyy-MM-dd}.log.html</File>
+            <FileNamePattern>${logbase}/%d{yyyy-MM-dd}.log.html.zip</FileNamePattern>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <MaxFileSize>2MB</MaxFileSize>
@@ -21,7 +21,7 @@
         </layout>
     </appender>
     <root>
-        <level value="DEBUG" />
+        <level value="INFO" />
         <appender-ref ref="stdout"/>
         <appender-ref ref="logfile"/>
     </root>
