@@ -1,4 +1,5 @@
 var homeTabTitle = '主页';
+var defaultPageSize = 50;
 
 function addTab(title, url) {
     if ($('#tabs').tabs('exists', title)) {
@@ -135,14 +136,14 @@ $(function() {
 });
 
 function setPagination(tableId, pageSize) {
-    var ps = 20;
+    var ps = defaultPageSize;
     if (typeof pageSize === 'number') {
         ps = pageSize;
     }
     var p = $(tableId).datagrid('getPager');
     $(p).pagination({
         pageSize: ps,
-        pageList: [20, 30, 40, 50],
+        pageList: [40, 50, 60, 70],
         beforePageText: '第',
         afterPageText: '页    共 {pages} 页',
         displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
@@ -238,6 +239,14 @@ function checkFile(name, index, type, size) {
         }
     }
     return true;
+}
+
+function getFileName(name, index, dest) {
+    var file = document.getElementsByName(name)[index].files[0];
+    if (file != undefined) {
+        var fileName = file.name.substr(0, file.name.lastIndexOf("."));
+        $("#" + dest).textbox("setValue", fileName);
+    }
 }
 
 //////////////////////////////////////

@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>终端列表-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>终端列表-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -37,7 +37,7 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 				    if (row.status == 'N') {
 					    return 'color:red;';
@@ -48,22 +48,22 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="code" width="85">终端号</th>
+        <th field="code" width="100">终端号</th>
         <th field="version" width="50" formatter="formatterName">版本</th>
         <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
         <th field="driver" width="60">驾驶员</th>
-        <th field="phone" width="95">手机号</th>
+        <th field="phone" width="100">手机号</th>
         <th field="busNo" width="60">车路线</th>
         <th field="busPlateNo" width="75">车牌号</th>
         <th field="online" width="60" formatter="formatterOnline">在线状态</th>
-        <th field="onlineTime" width="120" formatter="formatterDate">上线时间</th>
-        <th field="offlineTime" width="120" formatter="formatterDate">离线时间</th>
-        <th field="adsUpdateTime" width="120" formatter="formatterDate">广告更新时间</th>
+        <th field="onlineTime" width="135" formatter="formatterDate">上线时间</th>
+        <th field="offlineTime" width="135" formatter="formatterDate">离线时间</th>
+        <th field="adsUpdateTime" width="135" formatter="formatterDate">广告更新时间</th>
         <!--
         <th field="installTimeStr" width="120">安装时间</th>
         -->
         <th field="des" width="100">描述</th>
-        <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+        <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>
@@ -252,7 +252,7 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
                 rowStyler: function(index,row){
 					if (row.deleteStatus == '可删除') {
 					    return 'color:green;';
@@ -261,15 +261,28 @@
         <thead>
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
-            <th field="name" width="100">资源名称</th>
-            <th field="deleteStatus" width="100">删除状态</th>
+            <th field="resId" width="50">资源ID</th>
+            <th field="name" width="200">资源名称</th>
+            <th field="resType" width="80">资源类型</th>
+            <th field="deleteStatus" width="60">删除状态</th>
+            <th field="publishTime" width="135" formatter="formatterDate">发布时间</th>
+            <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
+            <th field="showCount" width="80">播放次数</th>
+            <th field="stayTime" width="80">停留时间(S)</th>
+            <th field="startTime" width="80" formatter="formatterDate1">开始日期</th>
+            <th field="endTime" width="80" formatter="formatterDate1">结束日期</th>
+            <th field="deleteTime" width="135" formatter="formatterDate">删除时间</th>
             <th field="des" width="300">说明</th>
         </tr>
         </thead>
     </table>
     <div id="restb">
-        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true"
-           onclick="deleteRes();">删除选择的资源</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="deleteResFromDevice();">从终端删除选择的资源</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="deleteAllResFromDevice();">从终端删除所有资源</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           onclick="deleteResFromAllDevice();">从所有终端删除选择的资源</a>
         <div class="input_small">
             <input type="hidden" id="deviceId" name="deviceId" />
         </div>

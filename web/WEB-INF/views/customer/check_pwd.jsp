@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-    <title>用户审核密码修改-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>用户审核密码修改-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -33,7 +33,7 @@
 <body>
 <div id="errMsg"></div>
 <form:form id="updateForm" method="post" modelAttribute="customer">
-    <table class="input_big">
+    <table class="input_big site_info_table site_setting_table">
         <caption>修改审核密码</caption>
         <tr>
             <td>原密码：</td>

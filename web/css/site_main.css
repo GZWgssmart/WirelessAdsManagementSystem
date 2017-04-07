@@ -57,17 +57,31 @@ a:hover {
     width: 240px;
 }
 
+.input_big_wider input, .input_big_wider select {
+    width:320px;
+}
+
 .input_small input[type=checkbox], .input_normal input[type=checkbox], .input_big input[type=checkbox] {
     width:auto;
 }
 
 .main_logo {
+    float:left;
     width:100px;
     height:60px;
 }
 
 .north {
     height: 60px;
+}
+
+.north.welcome {
+    float:left;
+    margin-left:100px;
+    font-size:16px;
+    font-weight:bold;
+    height:60px;
+    line-height:60px;
 }
 
 .north.wel_msg {
@@ -121,6 +135,13 @@ a:hover {
     min-width: 400px;
 }
 
+.site_info_table caption {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
 .site_table tr th {
     padding: 5px;
     border:1px dotted #ccc;
@@ -131,6 +152,14 @@ a:hover {
     padding: 5px;
     border:1px dotted #ccc;
     text-align: left;
+}
+
+.site_value_td {
+    min-width:150px;
+}
+
+.site_setting_table tr {
+    height:40px;
 }
 
 .site_table_td_title {

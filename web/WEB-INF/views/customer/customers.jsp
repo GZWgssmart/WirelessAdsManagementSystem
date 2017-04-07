@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>客户列表-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>客户列表-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -36,7 +36,8 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
+				pageList: [40, 50, 60, 70],
 				rowStyler: function(index,row){
 					if (row.role == 'super'){
 						return 'background-color:#ccc;';
@@ -49,11 +50,11 @@
         <th field="id" checkbox="true" width="50">用户ID</th>
         <th field="email" width="150">邮箱</th>
         <th field="name" width="100">姓名</th>
-        <th field="phone" width="95">手机号</th>
+        <th field="phone" width="100">手机号</th>
         <th field="company" width="100">公司</th>
         <th field="address" width="200">地址</th>
-        <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
-        <th field="loginTime" width="120" formatter="formatterDate">最近登录时间</th>
+        <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
+        <th field="loginTime" width="135" formatter="formatterDate">最近登录时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>

@@ -1,13 +1,19 @@
 package com.gs.net.server;
 
 import com.alibaba.fastjson.JSON;
-import com.gs.bean.*;
+import com.gs.bean.Device;
+import com.gs.bean.Publish;
+import com.gs.bean.PublishLog;
+import com.gs.bean.ResourceType;
 import com.gs.common.Constants;
 import com.gs.common.util.Config;
 import com.gs.common.util.DateFormatUtil;
 import com.gs.net.bean.ADSSocket;
 import com.gs.net.parser.*;
-import com.gs.service.*;
+import com.gs.service.DeviceService;
+import com.gs.service.PublishPlanService;
+import com.gs.service.PublishService;
+import com.gs.service.ResourceTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -30,6 +36,7 @@ public class ADSServer {
     private static int port;
     private static String siteDomain;
     private static int offlineTimeout;
+    private static int sleepTime;
     private ServerSocket serverSocket;
     private Hashtable<String, ADSSocket> adsSockets;
 
@@ -52,6 +59,7 @@ public class ADSServer {
         port = config.getInt(Common.PORT);
         siteDomain = config.getString(Common.SITE_DOMAIN);
         offlineTimeout = config.getInt(Common.OFFLINE_TIMEOUT) * 1000;
+        sleepTime = config.getInt(Common.SLEEP_TIME) * 1000;
     }
 
     public ADSServer() {
@@ -96,7 +104,7 @@ public class ADSServer {
                 }
             } catch (SocketException e) {
                 stopServer();
-                logger.info("SocketExcpeption occured, the server connection shutdown......");
+                logger.info("SocketExcpeption occured when wait for devices, the server connection shutdown......");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -123,42 +131,51 @@ public class ADSServer {
                 try {
                     Socket socket = adsSocket.getSocket();
                     InputStream in = socket.getInputStream();
-                    byte[] bytes = new byte[4096];
-                    int total = in.read(bytes);
-                    if (total > 0) {
-                        String msg = StringUnicodeUtil.unicodeToString(new String(bytes, 0, total, Constants.DEFAULT_ENCODING));
-                        logger.info(msg);
-                        if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
-                            logger.info("read heart beat from device: " + msg);
-                            readHeartBeat(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                            logger.info("read file download msg from device: " + msg);
-                            readFileDownload(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                            logger.info("read publish msg from device: " + msg);
-                            readPublish(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                            logger.info("read file delete msg from device: " + msg);
-                            readFileDelete(adsSocket, msg);
+                    byte[] bytes = new byte[1024];
+                    int total = -1;
+                    String message = "";
+                    while ((total = in.read(bytes)) != -1) {
+                        message += StringUnicodeUtil.unicodeToString(new String(bytes, 0, total, Constants.DEFAULT_ENCODING));
+                        String[] msgs = getAllMsgs(message); // 获取所有的消息，包括最后可能的不完整的消息
+                        int length = msgs.length; // 所有消息数
+                        String lastMsg = msgs[length - 1]; // 最后一条消息
+                        if (lastMsg.lastIndexOf("}") < 0) { // 如果最后一条消息不以}结尾，则这条消息应该与socket后面接收到的消息拼接到一起，真正需要读取的消息数就应该等于length - 1
+                            message = lastMsg;
+                            length -= 1;
                         } else {
-                            logger.info("read other msg from device......");
+                            message = ""; // 如果最后一条消息是以}结尾的，则不需要与socket后面接收到的消息拼接到一起，真正读取的消息数就等于length
                         }
-                    } else {
-                        needRunning = false;
-                        logger.info("no data available, connection lost......");
-                        lostDeviceConnection(adsSocket);
+                        if (length > 0) { // 需要被读取的消息数大于0
+                            for (int i = 0; i < length; i++) {
+                                String msg = msgs[i];
+                                logger.info("read msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
+                                if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
+                                    readHeartBeat(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                                    readFileDownload(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                                    readPublish(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                                    readFileDelete(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                                    readFileDelete(adsSocket, msg);
+                                } else {
+                                    logger.info("read other msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
+                                }
+                            }
+                        }
                     }
                 } catch (SocketTimeoutException e) {
                     needRunning = false;
-                    logger.info("SocketTimeoutException occured when try to read msg from device, connection lost......");
+                    logger.info("SocketTimeoutException occured when try to read msg from device " + adsSocket.getDeviceCode() + ", connection lost......");
                     lostDeviceConnection(adsSocket);
                 } catch (SocketException e) {
                     needRunning = false;
-                    logger.info("SocketException occured when try to read msg from device, connection lost......");
+                    logger.info("SocketException occured when try to read msg from device " + adsSocket.getDeviceCode() + ", connection lost......");
                     lostDeviceConnection(adsSocket);
                 } catch (IOException e) {
                     needRunning = false;
-                    logger.info("IOException occured when try to read msg from device, connection lost......");
+                    logger.info("IOException occured when try to read msg from device " + adsSocket.getDeviceCode() + ", connection lost......");
                     lostDeviceConnection(adsSocket);
                 }
 
@@ -167,16 +184,26 @@ public class ADSServer {
         }
     }
 
+    private String[] getAllMsgs(String msg) {
+        String[] msgs = msg.split("}");
+        int len = msgs.length;
+        if (msg.lastIndexOf("}") < msg.length() - 1) { // 说明整个字符串并没有以}结尾，最后一条消息是不完整的消息
+            len -= 1; // 完整的消息条数是整个数组长度减去1
+        }
+        for (int i = 0; i < len; i++) {
+            msgs[i] += "}"; // 所有完整的消息都需要添加}结尾
+        }
+        return msgs;
+    }
+
     private void readHeartBeat(ADSSocket adsSocket, String msg) {
-        logger.info("begin to execute readHeartBeat method...");
         // 接收客户端心跳包并解析
-        logger.info("enter readHeartBeat synchronized...");
         HeartBeatClient heartBeatClient = JSON.parseObject(msg, HeartBeatClient.class);
         String deviceCode = heartBeatClient.getDevcode();
-        logger.info("read the heat beat from device....." + deviceCode);
+        logger.info("read the heart beat from device....." + deviceCode + ", the msg: " + msg);
         adsSocket.setDeviceCode(deviceCode);
         if (adsSockets.get(deviceCode) == null) { // 表示原先并没有连接上，是首次连接或重新连接，则需要把设备状态更新成在线状态
-            logger.info(deviceCode + " connect to the server first...");
+            logger.info(deviceCode + " connect to the server first time...");
             adsSockets.put(deviceCode, adsSocket);
             updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
         }
@@ -197,7 +224,7 @@ public class ADSServer {
     }
 
     private void readFileDownload(ADSSocket adsSocket, String msg) {
-        logger.info("read file download msg from device......");
+        logger.info("read file download msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
         FileDownloadClient fileDownloadClient = JSON.parseObject(msg, FileDownloadClient.class);
         handlingDevices.remove(fileDownloadClient.getDevcode());
         if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
@@ -211,7 +238,7 @@ public class ADSServer {
     }
 
     private void readPublish(ADSSocket adsSocket, String msg) {
-        logger.info("read publish msg from device......");
+        logger.info("read publish msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
         PublishClient publishClient = JSON.parseObject(msg, PublishClient.class);
         handlingDevices.remove(publishClient.getDevcode());
         if (publishClient.getResult().equals(Common.RESULT_N)) {
@@ -233,13 +260,21 @@ public class ADSServer {
     }
 
     private void readFileDelete(ADSSocket adsSocket, String msg) {
-        logger.info("read the file delete from device......");
+        logger.info("read the file delete from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
         FileDeleteClient fileDeleteClient = JSON.parseObject(msg, FileDeleteClient.class);
         handlingDevices.remove(fileDeleteClient.getDevcode());
-        if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
-            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
-        } else {
-            publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+        if (fileDeleteClient.getType().equals(Common.TYPE_DELETE)) {
+            if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
+                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_NOT_DELETED);
+            } else {
+                publishService.updatePublishLog(fileDeleteClient.getPubid(), PublishLog.RESOURCE_DELETED);
+            }
+        } else if (fileDeleteClient.getType().equals(Common.TYPE_DELETE_ALL)) {
+            if (fileDeleteClient.getResult().equals(Common.RESULT_N)) {
+                publishService.updatePublishLogByDevCode(fileDeleteClient.getDevcode(), PublishLog.RESOURCE_NOT_DELETED);
+            } else {
+                publishService.updatePublishLogByDevCode(fileDeleteClient.getDevcode(), PublishLog.RESOURCE_DELETED);
+            }
         }
     }
 
@@ -276,12 +311,16 @@ public class ADSServer {
         publishServer.setPubid(publish.getId());
         publishServer.setArea(publish.getArea());
         publishServer.setDevcode(deviceCode);
-        publishServer.setEnddate(DateFormatUtil.format(publish.getEndTime(), Common.DATE_PATTERN));
-        publishServer.setStartdate(DateFormatUtil.format(publish.getStartTime(), Common.DATE_PATTERN));
+        if (publish.getEndTime() != null) {
+            publishServer.setEnddate(DateFormatUtil.format(publish.getEndTime(), Common.DATE_PATTERN));
+        }
+        if (publish.getStartTime() != null) {
+            publishServer.setStartdate(DateFormatUtil.format(publish.getStartTime(), Common.DATE_PATTERN));
+        }
         publishServer.setFilename(resource.getOfileName());
         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
         publishServer.setRestype(resourceType.getName());
-        if (publish.getShowType().equals("segment")) {
+        if (publish.getShowType() != null && publish.getShowType().equals("segment")) {
             String[] segments = publish.getSegments().split(",");
             publishServer.setSegcount(segments.length);
             publishServer.setSegments(publish.getSegments());
@@ -297,14 +336,19 @@ public class ADSServer {
         startWrite(publishServer.getPubid(), deviceCode, JSON.toJSONString(publishServer));
     }
 
-    public void writeFileDelete(Publish publish) {
+    public void writeFileDelete(Publish publish, int type) {
         String deviceCode = publish.getDevice().getCode();
         FileDeleteServer fileDeleteServer = new FileDeleteServer();
         fileDeleteServer.setDevcode(deviceCode);
         com.gs.bean.Resource resource = publish.getResource();
-        fileDeleteServer.setFilename(resource.getOfileName());
         fileDeleteServer.setPubid(publish.getId());
-        fileDeleteServer.setType(Common.TYPE_DELETE);
+        if (type == DeleteType.DELETE_RES_FROM_DEVICE) {
+            fileDeleteServer.setType(Common.TYPE_DELETE);
+            fileDeleteServer.setFilename(resource.getOfileName());
+        } else if (type == DeleteType.DELETE_ALL_RES_FROM_DEVICE) {
+            fileDeleteServer.setType(Common.TYPE_DELETE_ALL);
+            fileDeleteServer.setFilename("");
+        }
         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
         fileDeleteServer.setRestype(resourceType.getName());
         fileDeleteServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
@@ -331,14 +375,16 @@ public class ADSServer {
             // 有消息发布还未处理完,则需要顺序处理这些消息发布
             logger.info("the device " + deviceCode + " begin to handle the publishes automatically......");
             for (Publish publish : publishes) {
-                logger.info("automatically handle publish id: " + publish.getId());
                 String publishLog = publish.getPublishLog();
                 if (publishLog.equals(PublishLog.SUBMIT_TO_CHECK) || publishLog.equals(PublishLog.FILE_DOWNLOADING) || publishLog.equals(PublishLog.FILE_NOT_DOWNLOADED)) {
+                    logger.info("automatically file download publish id: " + publish.getId());
                     writeFileDownload(publish);
                 } else if (publishLog.equals(PublishLog.FILE_DOWNLOADED) || publishLog.equals(PublishLog.PUBLISHING) || publishLog.equals(PublishLog.NOT_PUBLISHED)) {
+                    logger.info("automatically publish handle publish id: " + publish.getId());
                     writePublish(publish);
                 } else if (publishLog.equals(PublishLog.SUBMIT_TO_DELETE) || publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
-                    writeFileDelete(publish);
+                    logger.info("automatically delete handle publish id: " + publish.getId());
+                    writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
                 }
             }
         }
@@ -377,7 +423,7 @@ public class ADSServer {
          *
          */
         private void write() {
-            logger.info("begin to write, the msg: " + msg);
+            logger.info("begin to send msg to device " + deviceCode + ", the msg: " + msg);
             ADSSocket adsSocket = adsSockets.get(deviceCode);
             if (adsSocket != null) {
                 Socket socket = adsSocket.getSocket();
@@ -389,6 +435,8 @@ public class ADSServer {
                         publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
                     } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
                         publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
+                    } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                        publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
                     }
                     boolean needRun = true;
                     try {
@@ -398,7 +446,8 @@ public class ADSServer {
                                 if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) { // 如果是心跳消息，则直接及时回馈，不要判断当前终端是否在使用中
                                     handlingDevices.add(deviceCode);
                                     out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
-                                    logger.info("send msg to device: " + msg);
+                                    out.flush();
+                                    logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
                                     if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
                                         handlingDevices.remove(deviceCode);
                                     }
@@ -407,12 +456,13 @@ public class ADSServer {
                                     if (!handlingDevices.contains(deviceCode)) {
                                         handlingDevices.add(deviceCode);
                                         out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
-                                        logger.info("send msg to device: " + msg);
+                                        out.flush();
+                                        logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
                                         needRun = false;
                                     } else { // 如果设备在处理中，则等待指定时间后继续执行此线程，一直执行到设备不在使用中
-                                        logger.info("waiting the device for 5 seconds....");
+                                        logger.info("waiting the device " + deviceCode + " for " + sleepTime + " seconds....");
                                         try {
-                                            Thread.sleep(5 * 1000);
+                                            Thread.sleep(sleepTime);
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
@@ -420,21 +470,21 @@ public class ADSServer {
                                 }
                             } catch (SocketTimeoutException e) {
                                 needRun = false;
-                                logger.info("SocketTimeoutException occured when send msg to device, connection lost......");
+                                logger.info("SocketTimeoutException occured when send msg to device " + deviceCode + ", connection lost......");
                                 lostDeviceConnection(adsSocket);
                             } catch (SocketException e) {
                                 needRun = false;
-                                logger.info("SocketException occured when send msg to device, connection lost......");
+                                logger.info("SocketException occured when send msg to device " + deviceCode + ", connection lost......");
                                 lostDeviceConnection(adsSocket);
                             }
                         }
                     } catch (IOException e) {
-                        logger.info("IOException occured when send msg to device, connection lost......");
+                        logger.info("IOException occured when send msg to device " + deviceCode + ", connection lost......");
                         lostDeviceConnection(adsSocket);
                     }
                 }
             } else { // 没有连接，则不需要写出消息
-                logger.info("do not write cause the device is not connected...");
+                logger.info("do not write cause the device " + deviceCode + " is not connected...");
             }
         }
     }

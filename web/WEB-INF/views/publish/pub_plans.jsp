@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>消息发布列表-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>消息发布列表-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -41,7 +41,8 @@
                         autoRowHeight:false,
                         pagination:true,
                         border:false,
-                        pageSize:20,
+                        pageSize:50,
+                        pageList: [40, 50, 60, 70],
                         rowStyler: function(index,row){
                             if (row.status == 'N') {
                                 return 'color:red;';
@@ -55,7 +56,7 @@
             <tr>
                 <th field="id" checkbox="true" width="50">用户ID</th>
                 <th field="planName" width="85">计划名称</th>
-                <th field="name" width="85">计划</th>
+                <th field="name" width="100">计划</th>
                 <th field="type" width="85" formatter="formatterPlanType">计划类型</th>
                 <th field="groupName" width="60">终端分组</th>
                 <th field="versionName" width="60">终端版本</th>
@@ -64,7 +65,7 @@
                 <th field="notFinishCount" width="60">未完成数</th>
                 <th field="des" width="100">描述</th>
                 <th field="checkStatus" width="60" formatter="formatterCheckStatus">审核状态</th>
-                <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+                <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
                 <th field="status" width="50" formatter="formatterStatus">状态</th>
                 <th field="versionId" width="0"></th>
             </tr>
@@ -129,7 +130,7 @@
                 <input id="addVersionName" type="hidden" name="versionName" />
                 <input id="resourceDetails" type="hidden" name="resourceDetails" />
                 <div id="resourceDetailDiv" style="display:none;"></div>
-                <table>
+                <table class="site_setting_table">
                     <tr>
                         <td>计划名称:</td>
                         <td><input type="text" name="planName" class="easyui-validatebox easyui-textbox" data-options="required:true,novalidate:true"/>
@@ -222,7 +223,7 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 				    if (row.status == 'N') {
 					    return 'color:red;';
@@ -233,20 +234,20 @@
         <thead>
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
-            <th field="code" width="85">终端号</th>
+            <th field="code" width="100">终端号</th>
             <th field="version" width="50" formatter="formatterName">版本</th>
             <th field="deviceGroup" width="60" formatter="formatterName">终端分组</th>
             <th field="driver" width="60">驾驶员</th>
-            <th field="phone" width="80">手机号</th>
+            <th field="phone" width="100">手机号</th>
             <th field="busNo" width="60">车路线</th>
             <th field="busPlateNo" width="75">车牌号</th>
             <th field="online" width="60" formatter="formatterOnline">在线状态</th>
-            <th field="onlineTime" width="120" formatter="formatterDate">上线时间</th>
-            <th field="offlineTime" width="120" formatter="formatterDate">离线时间</th>
-            <th field="adsUpdateTime" width="120" formatter="formatterDate">广告更新时间</th>
-            <th field="installTimeStr" width="120">安装时间</th>
+            <th field="onlineTime" width="135" formatter="formatterDate">上线时间</th>
+            <th field="offlineTime" width="135" formatter="formatterDate">离线时间</th>
+            <th field="adsUpdateTime" width="135" formatter="formatterDate">广告更新时间</th>
+            <th field="installTimeStr" width="125">安装时间</th>
             <th field="des" width="100">描述</th>
-            <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+            <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
             <th field="status" width="50" formatter="formatterStatus">状态</th>
         </tr>
         </thead>
@@ -305,7 +306,7 @@
 				pagination:false,
 				border:false,
 				checkbox:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 					if (row.status == 'N') {
 					    return 'color:red;';
@@ -348,7 +349,7 @@
 				pagination:true,
 				border:false,
 				checkbox:false,
-				pageSize:20,
+				pageSize:50,
 				rowStyler: function(index,row){
 					if (row.status == 'N') {
 					    return 'color:red;';
@@ -364,7 +365,7 @@
             <th field="path" width="200" formatter="formatterLong">路径</th>
             <th field="showDetailSetting" formatter="formatterYN">是否显示详情设置</th>
             <th field="des" width="100">描述</th>
-            <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+            <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
             <th field="status" width="50" formatter="formatterStatus">状态</th>
         </tr>
         </thead>
@@ -622,25 +623,6 @@
                 </td>
                 <td>
                     <button id="moreSeg" type="button" onclick="moreSegment();">更多</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
-
-<div class="easyui-window site_win_small input_big" id="checkPwdWin" data-options="title:'提交审核',resizable:false,mode:true,closed:true">
-    <form id="checkPwdForm">
-        <input id="toCheckPlanId" type="hidden" name="id" />
-        <table>
-            <tr>
-                <td>审核密码:</td>
-                <td><input id="checkPwd" type="password" name="checkPwd" class="easyui-validatebox easyui-textbox" data-options="required:true,novalidate:true"/>
-                </td>
-            </tr>
-            <tr>
-                <td><button type="button" onclick="cancelCheckPwd();">取消</button></td>
-                <td>
-                    <button type="button" onclick="conCheckPwd();">确认</button>
                 </td>
             </tr>
         </table>

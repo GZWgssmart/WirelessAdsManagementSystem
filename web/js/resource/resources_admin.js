@@ -24,7 +24,7 @@ $(function() {
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/res/search_pager_admin/' + $("#customerId").val(),
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");
@@ -34,7 +34,7 @@ function searchAll() {
     $("#searchForm").form("clear");
     $("#list").datagrid({
         url:contextPath + '/res/search_pager_admin/' + $("#customerId").val(),
-        pageSize:20,
+        pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
     setPagination("#list");

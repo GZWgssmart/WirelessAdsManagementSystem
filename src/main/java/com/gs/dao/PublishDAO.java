@@ -20,8 +20,6 @@ public interface PublishDAO extends BaseDAO<Publish, String> {
 
     public int countByCriteria(Publish publish);
 
-    public String queryByDeviceId(String id);
-
     public Publish queryByDRId(String drId);
 
     public List<Publish> queryByCode(String code);
@@ -49,5 +47,11 @@ public interface PublishDAO extends BaseDAO<Publish, String> {
     public int countResByDevId(Publish publish);
 
     public List<Publish> queryByDevIdAndResIds(@Param("deviceId") String deviceId, @Param("resIds") String[] resIds);
+
+    public List<Publish> queryByDeviceId(String deviceId);
+
+    public List<Publish> queryByResIds(@Param("resIds") String[] resIds, @Param("customerId") String customerId);
+
+    public int updatePublishLogByDevCode(@Param("devCode") String devCode, @Param("publishLog") String publishLog);
 
 }

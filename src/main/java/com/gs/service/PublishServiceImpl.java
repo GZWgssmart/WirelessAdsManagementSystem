@@ -89,8 +89,8 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
-    public String queryByDeviceId(String id) {
-        return publishDAO.queryByDeviceId(id);
+    public List<Publish> queryByDeviceId(String deviceId) {
+        return publishDAO.queryByDeviceId(deviceId);
     }
 
     @Override
@@ -165,112 +165,59 @@ public class PublishServiceImpl implements PublishService {
     public List<PubResource> queryResByDevId(Pager pager, Publish publish) {
         List<Publish> publishes = publishDAO.queryResByDevId(pager, publish);
         List<PubResource> pubResources = new ArrayList<PubResource>();
-        List<com.gs.bean.Resource> resources = getResources(publishes);
-        pubResources.addAll(getCanDeleteResources(resources, publishes));
-        pubResources.addAll(getDeletingResources(resources, publishes));
-        pubResources.addAll(getDeletedResources(resources, publishes));
-        pubResources.addAll(getCanNotDeleteResources(resources, publishes));
-        return pubResources;
+        for (Publish p : publishes) {
+            PubResource pr = new PubResource();
+            pr.setId(p.getId());
+            pr.setResId(p.getResource().getId());
+            pr.setName(p.getResource().getName());
+            pr.setPublishTime(p.getPublishTime());
+            pr.setStartTime(p.getStartTime());
+            pr.setEndTime(p.getEndTime());
+            pr.setResType(p.getResource().getResourceTypeName());
+            pr.setShowType(p.getShowType());
+            pr.setShowCount(p.getShowCount());
+            pr.setStayTime(p.getStayTime());
+            pr.setDeleteTime(p.getDeleteTime());
+            if (p.getPublishLog().equals(PublishLog.PUBLISHED) || p.getPublishLog().equals(PublishLog.RESOURCE_NOT_DELETED)) {
+                pr.setDeleteStatus(PubResource.CAN_DELETED);
+                pr.setDes("此资源已经完成发布，可以删除");
+            } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETED)) {
+                pr.setDeleteStatus(PubResource.DELETED);
+                pr.setDes("此资源已经删除，无需再次删除");
+            } else if (p.getPublishLog().equals(PublishLog.RESOURCE_DELETING)) {
+                pr.setDeleteStatus(PubResource.CAN_NOT_DELETED);
+                pr.setDes("此资源正在删除，无需再次删除");
+            } else {
+                pr.setDeleteStatus(PubResource.CAN_NOT_DELETED);
+                pr.setDes("此资源还在发布过程中，不能删除");
+            }
+            pubResources.add(pr);
+        }
+        return order(pubResources);
     }
 
-    private List<PubResource> getCanDeleteResources(List<com.gs.bean.Resource> resources, List<Publish> publishes) {
-        List<PubResource> pubResources = new ArrayList<PubResource>();
-        Iterator<com.gs.bean.Resource> iterator = resources.iterator();
+    private List<PubResource> order(List<PubResource> pubResources) {
+        List<PubResource> canDeletePR = new ArrayList<PubResource>();
+        List<PubResource> deleteingPR = new ArrayList<PubResource>();
+        List<PubResource> canNotDeletePR = new ArrayList<PubResource>();
+        List<PubResource> deletedPR = new ArrayList<PubResource>();
+        Iterator<PubResource> iterator = pubResources.iterator();
         while (iterator.hasNext()) {
-            com.gs.bean.Resource resource = iterator.next();
-            boolean canDelete = true;
-            for (Publish p : publishes) {
-                if (p.getResource().getId().equals(resource.getId()) && (!p.getPublishLog().equals(PublishLog.PUBLISHED) && !p.getPublishLog().equals(PublishLog.RESOURCE_NOT_DELETED))) {
-                    canDelete = false;
-                }
-            }
-            if (canDelete) {
-                iterator.remove();
-                PubResource pubResource = new PubResource();
-                pubResource.setId(resource.getId());
-                pubResource.setName(resource.getName());
-                pubResource.setDeleteStatus(PubResource.CAN_DELETED);
-                pubResource.setDes(PubResource.CAN_DELETE_MSG);
-                pubResources.add(pubResource);
+            PubResource pr = iterator.next();
+            if (pr.getDeleteStatus().equals(PubResource.CAN_DELETED)) {
+                canDeletePR.add(pr);
+            } else if (pr.getDeleteStatus().equals(PubResource.DELETING)) {
+                deleteingPR.add(pr);
+            } else if (pr.getDeleteStatus().equals(PubResource.CAN_NOT_DELETED)) {
+                canNotDeletePR.add(pr);
+            } else if (pr.getDeleteStatus().equals(PubResource.DELETED)) {
+                deletedPR.add(pr);
             }
         }
-        return pubResources;
-    }
-
-    private List<PubResource> getDeletedResources(List<com.gs.bean.Resource> resources, List<Publish> publishes) {
-        List<PubResource> pubResources = new ArrayList<PubResource>();
-        Iterator<com.gs.bean.Resource> iterator = resources.iterator();
-        while (iterator.hasNext()) {
-            com.gs.bean.Resource resource = iterator.next();
-            boolean deleted = true;
-            for (Publish p : publishes) {
-                if (p.getResource().getId().equals(resource.getId()) && !p.getPublishLog().equals(PublishLog.RESOURCE_DELETED)) {
-                    deleted = false;
-                }
-            }
-            if (deleted) {
-                iterator.remove();
-                PubResource pubResource = new PubResource();
-                pubResource.setId(resource.getId());
-                pubResource.setName(resource.getName());
-                pubResource.setDeleteStatus(PubResource.DELETED);
-                pubResource.setDes(PubResource.CAN_NOT_DELETE_MSG);
-                pubResources.add(pubResource);
-            }
-        }
-        return pubResources;
-    }
-
-    private List<PubResource> getDeletingResources(List<com.gs.bean.Resource> resources, List<Publish> publishes) {
-        List<PubResource> pubResources = new ArrayList<PubResource>();
-        Iterator<com.gs.bean.Resource> iterator = resources.iterator();
-        while (iterator.hasNext()) {
-            com.gs.bean.Resource resource = iterator.next();
-            boolean deleting = true;
-            for (Publish p : publishes) {
-                if (p.getResource().getId().equals(resource.getId()) && !p.getPublishLog().equals(PublishLog.RESOURCE_DELETING)) {
-                    deleting = false;
-                }
-            }
-            if (deleting) {
-                iterator.remove();
-                PubResource pubResource = new PubResource();
-                pubResource.setId(resource.getId());
-                pubResource.setName(resource.getName());
-                pubResource.setDeleteStatus(PubResource.DELETING);
-                pubResource.setDes(PubResource.CAN_NOT_DELETE_MSG);
-                pubResources.add(pubResource);
-            }
-        }
-        return pubResources;
-    }
-
-    private List<PubResource> getCanNotDeleteResources(List<com.gs.bean.Resource> resources, List<Publish> publishes) {
-        List<PubResource> pubResources = new ArrayList<PubResource>();
-        Iterator<com.gs.bean.Resource> iterator = resources.iterator();
-        while (iterator.hasNext()) {
-            com.gs.bean.Resource resource = iterator.next();
-            PubResource pubResource = new PubResource();
-            pubResource.setId(resource.getId());
-            pubResource.setName(resource.getName());
-            pubResource.setDeleteStatus(PubResource.CAN_NOT_DELETED);
-            pubResource.setDes(PubResource.CAN_NOT_DELETE_MSG);
-            pubResources.add(pubResource);
-        }
-        return pubResources;
-    }
-
-    private List<com.gs.bean.Resource> getResources(List<Publish> publishes) {
-        List<com.gs.bean.Resource> resources = new ArrayList<com.gs.bean.Resource>();
-        if (publishes != null && publishes.size() > 0) {
-            for (Publish p : publishes) {
-                com.gs.bean.Resource resource = p.getResource();
-                if (!resources.contains(resource)) {
-                    resources.add(resource);
-                }
-            }
-        }
-        return resources;
+        canDeletePR.addAll(deleteingPR);
+        canDeletePR.addAll(canNotDeletePR);
+        canDeletePR.addAll(deletedPR);
+        return canDeletePR;
     }
 
     @Override
@@ -281,5 +228,15 @@ public class PublishServiceImpl implements PublishService {
     @Override
     public List<Publish> queryByDevIdAndResIds(String deviceId, String[] resIds) {
         return publishDAO.queryByDevIdAndResIds(deviceId, resIds);
+    }
+
+    @Override
+    public List<Publish> queryByResIds(String[] resIds, String customerId) {
+        return publishDAO.queryByResIds(resIds, customerId);
+    }
+
+    @Override
+    public int updatePublishLogByDevCode(String devCode, String publishLog) {
+        return publishDAO.updatePublishLogByDevCode(devCode, publishLog);
     }
 }

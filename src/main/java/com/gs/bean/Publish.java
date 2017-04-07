@@ -1,11 +1,12 @@
 package com.gs.bean;
 
+import java.io.*;
 import java.util.Date;
 
 /**
  * Created by WangGenshen on 5/17/16.
  */
-public class Publish {
+public class Publish implements Serializable {
 
     private String id;
     private String deviceId;
@@ -25,6 +26,7 @@ public class Publish {
     private String segments;
     private Date publishTime;
     private String publishLog;
+    private Date deleteTime;
 
     private String publishPlanId;
 
@@ -156,6 +158,14 @@ public class Publish {
         this.publishLog = publishLog;
     }
 
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
+    }
+
     public String getPublishPlanId() {
         return publishPlanId;
     }
@@ -178,5 +188,21 @@ public class Publish {
 
     public void setEndTimeStr(String endTimeStr) {
         this.endTimeStr = endTimeStr;
+    }
+
+    public Publish copy() {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (Publish) ois.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

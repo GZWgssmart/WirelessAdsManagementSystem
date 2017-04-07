@@ -13,6 +13,7 @@ public class Common {
     public static final String TYPE_DOWNLOAD = "download";
     public static final String TYPE_PUBLISH = "publish";
     public static final String TYPE_DELETE = "delete";
+    public static final String TYPE_DELETE_ALL = "deleteAll";
 
     public static final String RESULT_Y = "Y";
     public static final String RESULT_N = "N";
@@ -23,5 +24,6 @@ public class Common {
     public static final String PORT = "port";
     public static final String SITE_DOMAIN = "site_domain";
     public static final String  OFFLINE_TIMEOUT = "offline_timeout";
+    public static final String SLEEP_TIME = "sleep_time";
 
 }

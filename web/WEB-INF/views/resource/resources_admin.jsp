@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>资源列表-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>资源列表-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -37,7 +37,8 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20,
+				pageSize:50,
+				pageList: [40, 50, 60, 70],
 				rowStyler: function(index,row){
 					if (row.status == 'N') {
 					    return 'color:red;';
@@ -46,14 +47,14 @@
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="name" width="80">名称</th>
+        <th field="name" width="160">名称</th>
         <th field="resourceType" width="80" formatter="formatterName">类型</th>
         <th field="ofileName" width="300">原始文件名</th>
         <th field="showDetailSetting" width="100" formatter="formatterYN">是否显示详情设置</th>
         <th field="fileName" width="150" formatter="formatterLong">文件名</th>
         <th field="path" width="200" formatter="formatterLong">路径</th>
         <th field="des" width="100">描述</th>
-        <th field="createTime" width="120" formatter="formatterDate">创建时间</th>
+        <th field="createTime" width="135" formatter="formatterDate">创建时间</th>
         <th field="status" width="50" formatter="formatterStatus">状态</th>
     </tr>
     </thead>

@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>消息发布列表-青岛宝瑞液晶综合信息屏媒体系统</title>
+    <title>消息发布列表-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
@@ -38,21 +38,22 @@
 				autoRowHeight:false,
 				pagination:true,
 				border:false,
-				pageSize:20">
+				pageSize:50,
+                pageList: [40, 50, 60, 70]">
     <thead>
     <tr>
         <th field="id" checkbox="true" width="50">用户ID</th>
-        <th field="code" width="85" formatter="formatterCode">终端号</th>
-        <th field="resource" width="100" formatter="formatterName">资源名称</th>
+        <th field="code" width="100" formatter="formatterCode">终端号</th>
+        <th field="resource" width="160" formatter="formatterName">资源名称</th>
         <th field="publishLog" width="100">发布日志</th>
-        <th field="publishTime" width="120" formatter="formatterDate">发布时间</th>
+        <th field="publishTime" width="135" formatter="formatterDate">发布时间</th>
         <th field="area" width="60" formatter="formatterArea">显示区域</th>
         <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
-        <th field="startTime" width="120" formatter="formatterDate1">开始日期</th>
-        <th field="endTime" width="120" formatter="formatterDate1">结束日期</th>
+        <th field="startTime" width="80" formatter="formatterDate1">开始日期</th>
+        <th field="endTime" width="80" formatter="formatterDate1">结束日期</th>
         <th field="stayTime" width="70">停留时间(S)</th>
         <th field="showCount" width="70">播放次数</th>
-        <th field="segments" width="200" formatter="formatterLong">时段</th>
+        <th field="segments" width="240" formatter="formatterLong">时段</th>
     </tr>
     </thead>
 </table>
@@ -117,9 +118,9 @@
 				rownumbers:true,
 				singleSelect:true,
 				autoRowHeight:false,
-				pagination:true,
+				pagination:false,
 				border:false,
-				pageSize:20">
+				pageSize:50">
         <thead>
         <tr>
             <th field="id" checkbox="true" width="50">用户ID</th>
@@ -127,8 +128,8 @@
             <th field="resourceType" width="100" formatter="formatterTypeName">资源类型</th>
             <th field="area" width="60" formatter="formatterArea">显示区域</th>
             <th field="showType" width="80" formatter="formatterShowType">播放模式</th>
-            <th field="startTime" width="120" formatter="formatterDate1">开始日期</th>
-            <th field="endTime" width="120" formatter="formatterDate1">结束日期</th>
+            <th field="startTime" width="80" formatter="formatterDate1">开始日期</th>
+            <th field="endTime" width="80" formatter="formatterDate1">结束日期</th>
             <th field="stayTime" width="70">停留时间(S)</th>
             <th field="showCount" width="70">播放次数</th>
         </tr>
