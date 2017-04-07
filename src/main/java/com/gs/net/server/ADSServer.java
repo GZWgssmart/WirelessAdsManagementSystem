@@ -428,7 +428,6 @@ public class ADSServer {
             if (adsSocket != null) {
                 Socket socket = adsSocket.getSocket();
                 if (msg != null && msg.length() > 0) {
-                    logger.info("start to check if can send msg to device: " + deviceCode + ", thread: " + Thread.currentThread().getName());
                     if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
                         publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
                     } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
