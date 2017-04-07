@@ -131,28 +131,39 @@ public class ADSServer {
                 try {
                     Socket socket = adsSocket.getSocket();
                     InputStream in = socket.getInputStream();
-                    byte[] bytes = new byte[4096];
-                    int total = in.read(bytes);
-                    if (total > 0) {
-                        String msg = StringUnicodeUtil.unicodeToString(new String(bytes, 0, total, Constants.DEFAULT_ENCODING));
-                        logger.info(msg);
-                        if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
-                            readHeartBeat(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                            readFileDownload(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                            readPublish(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                            readFileDelete(adsSocket, msg);
-                        } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
-                            readFileDelete(adsSocket, msg);
+                    byte[] bytes = new byte[1024];
+                    int total = -1;
+                    String message = "";
+                    while ((total = in.read(bytes)) != -1) {
+                        message += StringUnicodeUtil.unicodeToString(new String(bytes, 0, total, Constants.DEFAULT_ENCODING));
+                        String[] msgs = getAllMsgs(message); // 获取所有的消息，包括最后可能的不完整的消息
+                        int length = msgs.length; // 所有消息数
+                        String lastMsg = msgs[length - 1]; // 最后一条消息
+                        if (lastMsg.lastIndexOf("}") < 0) { // 如果最后一条消息不以}结尾，则这条消息应该与socket后面接收到的消息拼接到一起，真正需要读取的消息数就应该等于length - 1
+                            message = lastMsg;
+                            length -= 1;
                         } else {
-                            logger.info("read other msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
+                            message = ""; // 如果最后一条消息是以}结尾的，则不需要与socket后面接收到的消息拼接到一起，真正读取的消息数就等于length
                         }
-                    } else {
-                        needRunning = false;
-                        logger.info("no data available when try to read from device " + adsSocket.getDeviceCode() + ", connection lost......");
-                        lostDeviceConnection(adsSocket);
+                        if (length > 0) { // 需要被读取的消息数大于0
+                            for (int i = 0; i < length; i++) {
+                                String msg = msgs[i];
+                                logger.info("read msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
+                                if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
+                                    readHeartBeat(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                                    readFileDownload(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                                    readPublish(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                                    readFileDelete(adsSocket, msg);
+                                } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                                    readFileDelete(adsSocket, msg);
+                                } else {
+                                    logger.info("read other msg from device " + adsSocket.getDeviceCode() + ", the msg: " + msg);
+                                }
+                            }
+                        }
                     }
                 } catch (SocketTimeoutException e) {
                     needRunning = false;
@@ -171,6 +182,18 @@ public class ADSServer {
             }
 
         }
+    }
+
+    private String[] getAllMsgs(String msg) {
+        String[] msgs = msg.split("}");
+        int len = msgs.length;
+        if (msg.lastIndexOf("}") < msg.length() - 1) { // 说明整个字符串并没有以}结尾，最后一条消息是不完整的消息
+            len -= 1; // 完整的消息条数是整个数组长度减去1
+        }
+        for (int i = 0; i < len; i++) {
+            msgs[i] += "}"; // 所有完整的消息都需要添加}结尾
+        }
+        return msgs;
     }
 
     private void readHeartBeat(ADSSocket adsSocket, String msg) {
@@ -423,6 +446,7 @@ public class ADSServer {
                                 if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) { // 如果是心跳消息，则直接及时回馈，不要判断当前终端是否在使用中
                                     handlingDevices.add(deviceCode);
                                     out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
+                                    out.flush();
                                     logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
                                     if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
                                         handlingDevices.remove(deviceCode);
@@ -432,6 +456,7 @@ public class ADSServer {
                                     if (!handlingDevices.contains(deviceCode)) {
                                         handlingDevices.add(deviceCode);
                                         out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
+                                        out.flush();
                                         logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
                                         needRun = false;
                                     } else { // 如果设备在处理中，则等待指定时间后继续执行此线程，一直执行到设备不在使用中
