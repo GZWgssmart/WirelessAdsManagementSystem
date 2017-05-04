@@ -8,17 +8,13 @@
         </layout>
     </appender>
     <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Encoding>UTF-8</Encoding>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <File>${logbase}/%d{yyyy-MM-dd}.log</File>
-            <FileNamePattern>${logbase}/%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+            <FileNamePattern>${logbase}/%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>60</MaxHistory>
         </rollingPolicy>
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <MaxFileSize>2MB</MaxFileSize>
-        </triggeringPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
+        <encoder charset="UTF-8">
             <pattern>%date %level %thread %10logger %file %line %msg%n</pattern>
-        </layout>
+        </encoder>
     </appender>
     <root>
         <level value="INFO" />
