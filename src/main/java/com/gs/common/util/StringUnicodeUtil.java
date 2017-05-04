@@ -1,4 +1,4 @@
-package com.gs.net.parser;
+package com.gs.common.util;
 
 import java.io.UnsupportedEncodingException;
 

@@ -8,6 +8,7 @@ import com.gs.bean.ResourceType;
 import com.gs.common.Constants;
 import com.gs.common.util.Config;
 import com.gs.common.util.DateFormatUtil;
+import com.gs.common.util.StringUnicodeUtil;
 import com.gs.net.bean.ADSSocket;
 import com.gs.net.parser.*;
 import com.gs.service.DeviceService;
