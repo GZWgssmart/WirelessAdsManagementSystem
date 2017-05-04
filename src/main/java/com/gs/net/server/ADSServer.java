@@ -37,6 +37,7 @@ public class ADSServer {
     private static String siteDomain;
     private static int offlineTimeout;
     private static int sleepTime;
+    private static int waitCount;
     private ServerSocket serverSocket;
     private Hashtable<String, ADSSocket> adsSockets;
 
@@ -60,6 +61,7 @@ public class ADSServer {
         siteDomain = config.getString(Common.SITE_DOMAIN);
         offlineTimeout = config.getInt(Common.OFFLINE_TIMEOUT) * 1000;
         sleepTime = config.getInt(Common.SLEEP_TIME) * 1000;
+        waitCount = config.getInt(Common.WAIT_COUNT);
     }
 
     public ADSServer() {
@@ -395,6 +397,7 @@ public class ADSServer {
         private String publishId;
         private String deviceCode;
         private String msg;
+        private int count;
 
         public WriteThread(String publishId, String deviceCode) {
             this.publishId = publishId;
@@ -438,48 +441,58 @@ public class ADSServer {
                         publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
                     }
                     boolean needRun = true;
+                    OutputStream out = null;
                     try {
-                        OutputStream out = socket.getOutputStream();
-                        while (needRun) {
-                            try {
-                                if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) { // 如果是心跳消息，则直接及时回馈，不要判断当前终端是否在使用中
+                        out = socket.getOutputStream();
+                    } catch (IOException e) {
+                        needRun = false;
+                        logger.info("IOException occured when try to get the OutputStream for " + deviceCode + ", connection lost......");
+                        lostDeviceConnection(adsSocket);
+                    }
+                    while (needRun) {
+                        try {
+                            if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) { // 如果是心跳消息，则直接及时回馈，不要判断当前终端是否在使用中
+                                handlingDevices.add(deviceCode);
+                                out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
+                                out.flush();
+                                logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
+                                if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
+                                    handlingDevices.remove(deviceCode);
+                                }
+                                needRun = false;
+                            } else { // 如果不是心跳消息，则需要等待终端有反馈后才能从服务端把消息发出去
+                                if (!handlingDevices.contains(deviceCode)) {
                                     handlingDevices.add(deviceCode);
                                     out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
                                     out.flush();
                                     logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
-                                    if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
-                                        handlingDevices.remove(deviceCode);
-                                    }
                                     needRun = false;
-                                } else { // 如果不是心跳消息，则需要等待终端有反馈后才能从服务端把消息发出去
-                                    if (!handlingDevices.contains(deviceCode)) {
-                                        handlingDevices.add(deviceCode);
-                                        out.write(StringUnicodeUtil.stringToUnicode(msg).getBytes(Constants.DEFAULT_ENCODING));
-                                        out.flush();
-                                        logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
+                                } else { // 如果设备在处理中，则等待指定时间后继续执行此线程，等待指定的次数
+                                    logger.info("waiting the device " + deviceCode + " for " + sleepTime + " seconds, the " + count + "th time....");
+                                    if (++count > waitCount) {
                                         needRun = false;
-                                    } else { // 如果设备在处理中，则等待指定时间后继续执行此线程，一直执行到设备不在使用中
-                                        logger.info("waiting the device " + deviceCode + " for " + sleepTime + " seconds....");
-                                        try {
-                                            Thread.sleep(sleepTime);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
+                                        logger.info("waiting the device " + deviceCode + " over " + count + " times, no need to run the write thread any more....");
+                                    }
+                                    try {
+                                        Thread.sleep(sleepTime);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
                                 }
-                            } catch (SocketTimeoutException e) {
-                                needRun = false;
-                                logger.info("SocketTimeoutException occured when send msg to device " + deviceCode + ", connection lost......");
-                                lostDeviceConnection(adsSocket);
-                            } catch (SocketException e) {
-                                needRun = false;
-                                logger.info("SocketException occured when send msg to device " + deviceCode + ", connection lost......");
-                                lostDeviceConnection(adsSocket);
                             }
+                        } catch (SocketTimeoutException e) {
+                            needRun = false;
+                            logger.info("SocketTimeoutException occured when send msg to device " + deviceCode + ", connection lost......");
+                            lostDeviceConnection(adsSocket);
+                        } catch (SocketException e) {
+                            needRun = false;
+                            logger.info("SocketException occured when send msg to device " + deviceCode + ", connection lost......");
+                            lostDeviceConnection(adsSocket);
+                        } catch (IOException e) {
+                            needRun = false;
+                            logger.info("IOException occured when send msg to device " + deviceCode + ", connection lost......");
+                            lostDeviceConnection(adsSocket);
                         }
-                    } catch (IOException e) {
-                        logger.info("IOException occured when send msg to device " + deviceCode + ", connection lost......");
-                        lostDeviceConnection(adsSocket);
                     }
                 }
             } else { // 没有连接，则不需要写出消息
