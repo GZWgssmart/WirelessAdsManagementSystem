@@ -29,7 +29,7 @@ import java.util.*;
 /**
  * Created by WangGenshen on 7/27/16.
  */
-@Component("adsServer")
+//@Component("adsServer")
 public class ADSServer {
 
     private static final Logger logger = LoggerFactory.getLogger(ADSServer.class);
