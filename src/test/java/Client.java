@@ -27,15 +27,19 @@ public class Client {
 
         @Override
         public void run() {
-            for (String devCode : devCodes) {
+            for (int i = 0; i < 2000; i++) {
                 try {
+                    Thread.sleep(1 * 1000);
                     Socket socket = new Socket("localhost", 8898);
-                    sockets.put(devCode, socket);
+                    sockets.put("code" + i, socket);
                     OutputStream out = socket.getOutputStream();
-                    out.write(StringUnicodeUtil.stringToUnicode(getFirstBeatString(devCode)).getBytes(Constants.DEFAULT_ENCODING));
-                    new Thread(new BeatThread(devCode)).start();
-                    new Thread(new ReadThread(devCode)).start();
+                    out.write(StringUnicodeUtil.stringToUnicode(getFirstBeatString("code" + i)).getBytes(Constants.DEFAULT_ENCODING));
+                    System.out.println("code" + i);
+                    new Thread(new BeatThread("code" + i)).start();
+                    new Thread(new ReadThread("code" + i)).start();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -70,7 +74,7 @@ public class Client {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(10 * 1000);
+                    Thread.sleep(130 * 1000);
                     OutputStream out = sockets.get(devCode).getOutputStream();
                     out.write(StringUnicodeUtil.stringToUnicode(getFirstBeatString(devCode)).getBytes(Constants.DEFAULT_ENCODING));
                 } catch (InterruptedException e) {
@@ -103,11 +107,12 @@ public class Client {
                         byte[] bytes = new byte[in.available()];
                         in.read(bytes);
                         String str = new String(bytes, Constants.DEFAULT_ENCODING);
-                        System.out.println("Unicode: " + str);
+                        //System.out.println("Unicode: " + str);
                         String msg = StringUnicodeUtil.unicodeToString(str);
-                        System.out.println("String: " + msg);
+                        //System.out.println("String: " + msg);
                         String firstPart = msg.substring(0, msg.indexOf("}") + 1);
                         String secondPart = msg.substring(msg.indexOf("}") + 1);
+                        /**
                         System.out.println("第一部分：" + firstPart);
                         System.out.println("第二部分：" + secondPart);
                         msg = firstPart;
@@ -140,6 +145,7 @@ public class Client {
                             out.write(StringUnicodeUtil.stringToUnicode(getDeleteString(fileDeleteServer.getPubid(), fileDeleteServer.getDevcode())).getBytes(Constants.DEFAULT_ENCODING));
                             System.out.println("pubid: " + fileDeleteServer.getPubid() + "devcode: " + devCode + ", delete");
                         }
+                         */
                     }
 
                 } catch (IOException e) {

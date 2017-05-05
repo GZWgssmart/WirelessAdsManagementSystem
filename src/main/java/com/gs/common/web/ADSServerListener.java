@@ -2,6 +2,7 @@ package com.gs.common.web;
 
 import com.gs.common.Constants;
 import com.gs.net.server.ADSServer;
+import com.gs.net.server.ADSServerV2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
@@ -24,7 +25,7 @@ public class ADSServerListener implements ServletContextListener {
         logger.info("Application initialized....ADSServer will be started，and saved to application context");
         ServletContext servletContext = servletContextEvent.getServletContext();
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-        ADSServer adsServer = (ADSServer) webApplicationContext.getBean("adsServer");
+        ADSServerV2 adsServer = (ADSServerV2) webApplicationContext.getBean("adsServerv2");
         adsServer.startServer();
         servletContextEvent.getServletContext().setAttribute(Constants.ADSSERVER, adsServer);
     }
