@@ -11,6 +11,7 @@ import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
 import com.gs.net.parser.DeleteType;
 import com.gs.net.server.ADSServer;
+import com.gs.net.server.ADSServerV2;
 import com.gs.service.PublishService;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -120,7 +121,7 @@ public class PublishController {
                 ids[i] = publishes.get(i).getId();
             }
             publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
-            ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
+            ADSServerV2 adsServer = ADSServerUtil.getADSServerFromServletContext();
             for (Publish publish : publishes) {
                 // TODO 这里可以改进为一个消息通知删除多个资源，而不需要分多个消息发送到终端
                 adsServer.writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
@@ -150,7 +151,7 @@ public class PublishController {
                 ids[i] = publishes.get(i).getId();
             }
             publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
-            ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
+            ADSServerV2 adsServer = ADSServerUtil.getADSServerFromServletContext();
             adsServer.writeFileDelete(publishes.get(0), DeleteType.DELETE_ALL_RES_FROM_DEVICE);
             return ControllerResult.getSuccessResult("从此终端删除所有资源的消息已经开始处理！");
         } else {
@@ -179,7 +180,7 @@ public class PublishController {
                 ids[i] = publishes.get(i).getId();
             }
             publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
-            ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
+            ADSServerV2 adsServer = ADSServerUtil.getADSServerFromServletContext();
             for (Publish publish : publishes) {
                 adsServer.writeFileDelete(publish, DeleteType.DELETE_RES_FROM_DEVICE);
             }
