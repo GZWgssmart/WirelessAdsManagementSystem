@@ -60,7 +60,7 @@ public class ADSServer {
         config.build("classpath:/conf/adsserver.properties");
         port = config.getInt(Common.PORT);
         siteDomain = config.getString(Common.SITE_DOMAIN);
-        offlineTimeout = config.getInt(Common.OFFLINE_TIMEOUT) * 1000;
+        offlineTimeout = config.getInt(Common.HEART_BEAT_TIME) * 2 * 1000;
         sleepTime = config.getInt(Common.SLEEP_TIME) * 1000;
         waitCount = config.getInt(Common.WAIT_COUNT);
     }
