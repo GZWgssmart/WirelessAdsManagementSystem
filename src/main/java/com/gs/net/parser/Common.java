@@ -23,7 +23,7 @@ public class Common {
 
     public static final String PORT = "port";
     public static final String SITE_DOMAIN = "site_domain";
-    public static final String  OFFLINE_TIMEOUT = "offline_timeout";
+    public static final String  HEART_BEAT_TIME = "heart_beat_time";
     public static final String SLEEP_TIME = "sleep_time";
     public static final String WAIT_COUNT = "wait_count";
 

@@ -39,7 +39,7 @@ public class ADSServerV2 {
 
     private static int port;
     private static String siteDomain;
-    private static int offlineTimeout;
+    private static int heartBeatTime;
     private static int sleepTime;
     private static int waitCount;
     private ServerSocket serverSocket;
@@ -66,7 +66,7 @@ public class ADSServerV2 {
         config.build("classpath:/conf/adsserver.properties");
         port = config.getInt(Common.PORT);
         siteDomain = config.getString(Common.SITE_DOMAIN);
-        offlineTimeout = config.getInt(Common.OFFLINE_TIMEOUT) * 1000;
+        heartBeatTime = config.getInt(Common.HEART_BEAT_TIME) * 2 * 1000;
         sleepTime = config.getInt(Common.SLEEP_TIME) * 1000;
         waitCount = config.getInt(Common.WAIT_COUNT);
     }
@@ -106,7 +106,8 @@ public class ADSServerV2 {
                     logger.info("the server is waiting connects from device...");
                     Socket socket = serverSocket.accept();
                     logger.info("one device has connected to the server......");
-                    socket.setSoTimeout(offlineTimeout); // 如果三分种读不到信息，则认为终端下线
+                    socket.setKeepAlive(true);
+                    socket.setSoTimeout(heartBeatTime); // 如果三分种读不到信息，则认为终端下线
                     InetAddress inetAddress = socket.getInetAddress();
                     ADSSocket adsSocket = new ADSSocket();
                     adsSocket.setDeviceIP(inetAddress.getHostAddress());
@@ -507,6 +508,18 @@ public class ADSServerV2 {
             } else { // 没有连接，则不需要写出消息
                 logger.info("do not write cause the device " + deviceCode + " is not connected...");
             }
+        }
+    }
+
+    private boolean isSocketClosed(Socket socket) {
+        try{
+            logger.debug("send urgent data to device!");
+            socket.sendUrgentData(0xFF);//发送1个字节的紧急数据，默认情况下，服务器端没有开启紧急数据处理，不影响正常通信
+            logger.debug("socket not closed!");
+            return false;
+        }catch(Exception se){
+            logger.debug("socket closed!");
+            return true;
         }
     }
 
