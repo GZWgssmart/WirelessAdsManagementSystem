@@ -55,7 +55,7 @@ public class ADSServer {
     private Hashtable<String, SocketChannel> adsSockets;
     private Hashtable<String, Long> lastBeatTime;
 
-    private List<Hashtable<String, SocketChannel>> socketChannelMaps;
+    private Vector<Hashtable<String, SocketChannel>> socketChannelMaps;
 
     @Resource
     private DeviceService deviceService;
@@ -81,7 +81,7 @@ public class ADSServer {
     public ADSServer() {
         adsSockets = new Hashtable<String, SocketChannel>();
         lastBeatTime = new Hashtable<String, Long>();
-        socketChannelMaps = new ArrayList<Hashtable<String, SocketChannel>>();
+        socketChannelMaps = new Vector<Hashtable<String, SocketChannel>>();
         checkCachedThreadPool = Executors.newCachedThreadPool();
     }
 
@@ -121,6 +121,9 @@ public class ADSServer {
 
     public void stopServer() {
         serverStarted = false;
+        lastBeatTime.clear();
+        socketChannelMaps.clear();
+        checkCachedThreadPool.shutdown();
         if (serverSocketChannel != null && serverSocketChannel.isOpen()) {
             try {
                 selector.close();
@@ -415,27 +418,19 @@ public class ADSServer {
     }
 
     private void addToCheck(String deviceCode, SocketChannel socketChannel) {
-        int size = socketChannelMaps.size();
-        if (size == 0) {
-            Hashtable<String, SocketChannel> socketChannelMap = new Hashtable<String, SocketChannel>();
-            socketChannelMap.put(deviceCode, socketChannel);
-            socketChannelMaps.add(socketChannelMap);
-            checkCachedThreadPool.execute(new CheckThread(socketChannelMap));
-        } else {
-            boolean added = false;
-            for (Hashtable<String, SocketChannel> socketChannelHashtable : socketChannelMaps) {
-                if (socketChannelHashtable.size() < totalDevicePerCheckThread) {
-                    socketChannelHashtable.put(deviceCode, socketChannel);
-                    added = true;
-                    break;
-                }
+        boolean added = false;
+        for (Hashtable<String, SocketChannel> socketChannelHashtable : socketChannelMaps) {
+            if (socketChannelHashtable.size() < totalDevicePerCheckThread) {
+                socketChannelHashtable.put(deviceCode, socketChannel);
+                added = true;
+                break;
             }
-            if (!added) {
-                Hashtable<String, SocketChannel> socketChannels = new Hashtable<String, SocketChannel>();
-                socketChannels.put(deviceCode, socketChannel);
-                socketChannelMaps.add(socketChannels);
-                checkCachedThreadPool.execute(new CheckThread(socketChannels));
-            }
+        }
+        if (!added) {
+            Hashtable<String, SocketChannel> socketChannelHashtable = new Hashtable<String, SocketChannel>();
+            socketChannelHashtable.put(deviceCode, socketChannel);
+            socketChannelMaps.add(socketChannelHashtable);
+            checkCachedThreadPool.execute(new CheckThread(socketChannelHashtable));
         }
     }
 
@@ -450,28 +445,28 @@ public class ADSServer {
 
         public void run() {
             while (needRun) {
-               Iterator<Map.Entry<String, SocketChannel>> entryIterator = socketChannelMap.entrySet().iterator();
-               while (entryIterator.hasNext()) {
-                   Map.Entry<String, SocketChannel> entry = entryIterator.next();
-                   String deviceCode = entry.getKey();
-                   SocketChannel socketChannel = entry.getValue();
-                   if (System.currentTimeMillis() - lastBeatTime.get(deviceCode) >= heartBeatTime) {
-                       logger.info("check the device " + deviceCode + ", offline!!!!!");
-                       lostDeviceConnection(deviceCode, socketChannel);
-                       entryIterator.remove();
-                       lastBeatTime.remove(deviceCode);
-                   } else {
-                       logger.info("check the device " + deviceCode + ", online!!!!!");
-                   }
-               }
-               if (socketChannelMap.size() == 0) {
-                   socketChannelMaps.remove(socketChannelMap);
-                   needRun = false;
-               }
                 try {
                     Thread.sleep(checkThreadSleepTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                Iterator<Map.Entry<String, SocketChannel>> entryIterator = socketChannelMap.entrySet().iterator();
+                while (entryIterator.hasNext()) {
+                    Map.Entry<String, SocketChannel> entry = entryIterator.next();
+                    String deviceCode = entry.getKey();
+                    SocketChannel socketChannel = entry.getValue();
+                    if (System.currentTimeMillis() - lastBeatTime.get(deviceCode) >= heartBeatTime) {
+                        logger.info("check the device " + deviceCode + ", offline!!!!!");
+                        lostDeviceConnection(deviceCode, socketChannel);
+                        entryIterator.remove();
+                        lastBeatTime.remove(deviceCode);
+                    } else {
+                        logger.info("check the device " + deviceCode + ", online!!!!!");
+                    }
+                }
+                if (socketChannelMap.size() == 0) {
+                    socketChannelMaps.remove(socketChannelMap);
+                    needRun = false;
                 }
             }
         }
