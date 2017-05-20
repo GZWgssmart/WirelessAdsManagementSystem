@@ -27,4 +27,7 @@ public class Common {
     public static final String SLEEP_TIME = "sleep_time";
     public static final String WAIT_COUNT = "wait_count";
 
+    public static final String TOTAL_DEVICE_PER_CHECK_THREAD = "total_device_per_check_thread";
+    public static final String CHECK_THREAD_SLEEP_TIME = "check_thread_sleep_time";
+
 }

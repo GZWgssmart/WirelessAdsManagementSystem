@@ -17,7 +17,6 @@ import com.gs.service.PublishService;
 import com.gs.service.ResourceTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -25,21 +24,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.*;
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by WangGenshen on 7/27/16.
  */
-//@Component("adsServerv2")
-public class ADSServerV2 {
+//@Component("adsServer")
+public class ADSServerV1 {
 
-    private static final Logger logger = LoggerFactory.getLogger(ADSServerV2.class);
+    private static final Logger logger = LoggerFactory.getLogger(ADSServerV1.class);
 
     private static int port;
     private static String siteDomain;
-    private static int heartBeatTime;
+    private static int offlineTimeout;
     private static int sleepTime;
     private static int waitCount;
     private ServerSocket serverSocket;
@@ -58,27 +54,19 @@ public class ADSServerV2 {
     @Resource
     private ResourceTypeService resourceTypeService;
 
-    private ExecutorService readCachedThreadPool; // 用于读取
-    private ExecutorService writeCachedThreadPool; // 用于写出
-
-    private ExecutorService checkCachedThreadPool; // 用于检测终端是否在线的线程
-
     static {
         Config config = new Config();
         config.build("classpath:/conf/adsserver.properties");
         port = config.getInt(Common.PORT);
         siteDomain = config.getString(Common.SITE_DOMAIN);
-        heartBeatTime = config.getInt(Common.HEART_BEAT_TIME) * 2 * 1000;
+        offlineTimeout = config.getInt(Common.HEART_BEAT_TIME) * 2 * 1000;
         sleepTime = config.getInt(Common.SLEEP_TIME) * 1000;
         waitCount = config.getInt(Common.WAIT_COUNT);
     }
 
-    public ADSServerV2() {
+    public ADSServerV1() {
         adsSockets = new Hashtable<String, ADSSocket>();
         handlingDevices = new Vector<String>();
-        readCachedThreadPool = Executors.newCachedThreadPool();
-        writeCachedThreadPool = Executors.newCachedThreadPool();
-        checkCachedThreadPool = Executors.newCachedThreadPool();
     }
 
     public void startServer() {
@@ -109,8 +97,7 @@ public class ADSServerV2 {
                     logger.info("the server is waiting connects from device...");
                     Socket socket = serverSocket.accept();
                     logger.info("one device has connected to the server......");
-                    socket.setKeepAlive(true);
-                    socket.setSoTimeout(heartBeatTime); // 如果三分种读不到信息，则认为终端下线
+                    socket.setSoTimeout(offlineTimeout); // 如果三分种读不到信息，则认为终端下线
                     InetAddress inetAddress = socket.getInetAddress();
                     ADSSocket adsSocket = new ADSSocket();
                     adsSocket.setDeviceIP(inetAddress.getHostAddress());
@@ -118,8 +105,8 @@ public class ADSServerV2 {
                     startRead(adsSocket); // 当设备连接上服务器后，服务器开始读设备发过来的信息
                 }
             } catch (SocketException e) {
-                logger.info("SocketExcpeption occured when wait for devices, the server connection shutdown......");
                 stopServer();
+                logger.info("SocketExcpeption occured when wait for devices, the server connection shutdown......");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -128,24 +115,20 @@ public class ADSServerV2 {
 
     private void startRead(ADSSocket adsSocket) {
         ReadThread readThread = new ReadThread(adsSocket);
-        readCachedThreadPool.execute(readThread);
+        new Thread(readThread).start(); // 读取设备的反馈信息
     }
 
-    public class ReadThread implements Runnable {
+    private class ReadThread implements Runnable {
 
         private ADSSocket adsSocket;
         private boolean needRunning = true;
 
         public ReadThread(ADSSocket adsSocket) {
             this.adsSocket = adsSocket;
-            adsSocket.setReadThread(this);
-        }
-
-        public void setNeedRunning(boolean needRunning) {
-            this.needRunning = needRunning;
         }
 
         public void run() {
+
             while (needRunning) {
                 try {
                     Socket socket = adsSocket.getSocket();
@@ -225,7 +208,6 @@ public class ADSServerV2 {
             logger.info(deviceCode + " connect to the server first time...");
             adsSockets.put(deviceCode, adsSocket);
             updateDeviceStatus(adsSocket, Common.DEVICE_ONLINE);
-            checkCachedThreadPool.execute(new CheckThread(adsSocket));
         }
         // 服务端反馈心跳到客户端
         writeHeartBeat(adsSocket);
@@ -306,7 +288,7 @@ public class ADSServerV2 {
     private void startWrite(String publishId, String deviceCode, String msg) {
         WriteThread writeThread = new WriteThread(publishId, deviceCode);
         writeThread.setMsg(msg);
-        writeCachedThreadPool.execute(writeThread);
+        new Thread(writeThread).start();
     }
 
     public void writeFileDownload(Publish publish) {
@@ -516,50 +498,6 @@ public class ADSServerV2 {
             } else { // 没有连接，则不需要写出消息
                 logger.info("do not write cause the device " + deviceCode + " is not connected...");
             }
-        }
-    }
-
-    private class CheckThread implements Runnable {
-
-        private ADSSocket adsSocket;
-        private  boolean needRun = true;
-
-        public CheckThread(ADSSocket adsSocket) {
-            this.adsSocket = adsSocket;
-        }
-
-        public void run() {
-            String deviceCode = adsSocket.getDeviceCode();
-            if (adsSocket != null) {
-                while (needRun) {
-                    try {
-                        Thread.sleep(heartBeatTime);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    logger.info("begin to check the device " + deviceCode);
-                    if (isSocketClosed(adsSocket.getSocket())) {
-                        logger.info("check the device " + deviceCode + ", offline!!!!!");
-                        needRun = false;
-                        adsSocket.getReadThread().setNeedRunning(false);
-                        lostDeviceConnection(adsSocket);
-                    } else {
-                        logger.info("check the device " + deviceCode + ", online!!!!!");
-                    }
-                }
-            }
-        }
-    }
-
-    private boolean isSocketClosed(Socket socket) {
-        try{
-            logger.debug("send urgent data to device!");
-            socket.sendUrgentData(0xFF);//发送1个字节的紧急数据，默认情况下，服务器端没有开启紧急数据处理，不影响正常通信
-            logger.debug("socket not closed!");
-            return false;
-        }catch(Exception se){
-            logger.debug("socket closed!");
-            return true;
         }
     }
 

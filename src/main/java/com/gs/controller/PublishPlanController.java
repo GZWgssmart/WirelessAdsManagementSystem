@@ -11,9 +11,7 @@ import com.gs.common.util.EncryptUtil;
 import com.gs.common.util.PagerUtil;
 import com.gs.common.web.ADSServerUtil;
 import com.gs.common.web.SessionUtil;
-import com.gs.net.parser.Common;
 import com.gs.net.server.ADSServer;
-import com.gs.net.server.ADSServerV2;
 import com.gs.service.CustomerService;
 import com.gs.service.PublishPlanService;
 import com.gs.service.PublishService;
@@ -281,9 +279,9 @@ public class PublishPlanController {
                     // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
                     // 查找单个计划，及此计划下的所有终端,每一个终端都要开始发送文件下载通知
                     List<Publish> publishs = publishService.queryByPlanId(id);
-                    ADSServerV2 adsServer = ADSServerUtil.getADSServerFromServletContext();
+                    ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
                     for (Publish publish : publishs) {
-                        adsServer.writeFileDownload(publish);
+                        adsServer.writeFileDownload(null, publish);
                     }
                     return ControllerResult.getSuccessResult("此计划已经开始处理,请关注计划下每个终端的发布日志");
                 } else {

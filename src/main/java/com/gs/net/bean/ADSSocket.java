@@ -1,5 +1,7 @@
 package com.gs.net.bean;
 
+import com.gs.net.server.ADSServerV2;
+
 import java.net.Socket;
 
 /**
@@ -11,6 +13,7 @@ public class ADSSocket {
     private String deviceCode;
     private String deviceIP;
     private Socket socket;
+    private ADSServerV2.ReadThread readThread;
 
     public String getDeviceId() {
         return deviceId;
@@ -42,6 +45,14 @@ public class ADSSocket {
 
     public void setSocket(Socket socket) {
         this.socket = socket;
+    }
+
+    public ADSServerV2.ReadThread getReadThread() {
+        return readThread;
+    }
+
+    public void setReadThread(ADSServerV2.ReadThread readThread) {
+        this.readThread = readThread;
     }
 
     @Override
