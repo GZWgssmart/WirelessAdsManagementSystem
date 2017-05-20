@@ -93,18 +93,26 @@ public class ADSServer {
             serverSocketChannel.socket().bind(new InetSocketAddress(port));
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-            while (selector.select() > 0) {
-                Iterator<SelectionKey> selectionKeyIterator = selector.selectedKeys().iterator();
-                while (selectionKeyIterator.hasNext()) {
-                    SelectionKey selectionKey = selectionKeyIterator.next();
-                    selectionKeyIterator.remove();
-                    if (selectionKey.isAcceptable()) {
-                        connect(selector, serverSocketChannel);
-                    } else if (selectionKey.isReadable()) {
-                        read(selectionKey);
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        while (selector.select() > 0) {
+                            Iterator<SelectionKey> selectionKeyIterator = selector.selectedKeys().iterator();
+                            while (selectionKeyIterator.hasNext()) {
+                                SelectionKey selectionKey = selectionKeyIterator.next();
+                                selectionKeyIterator.remove();
+                                if (selectionKey.isAcceptable()) {
+                                    connect(selector, serverSocketChannel);
+                                } else if (selectionKey.isReadable()) {
+                                    read(selectionKey);
+                                }
+                            }
+                        }
+                    } catch (IOException e) {
+                        logger.info("ADSServer IOException when try to select from selector.....");
                     }
                 }
-            }
+            }).start();
         } catch (IOException e) {
             logger.info("ADSServer IOException when try to receive connects.....");
         }
