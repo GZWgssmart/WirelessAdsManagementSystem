@@ -57,6 +57,8 @@ public class ADSServer {
 
     private Vector<Hashtable<String, SocketChannel>> socketChannelMaps;
 
+    private ExecutorService writeCachedThreadPool;
+
     @Resource
     private DeviceService deviceService;
     @Resource
@@ -65,8 +67,6 @@ public class ADSServer {
     private PublishPlanService publishPlanService;
     @Resource
     private ResourceTypeService resourceTypeService;
-
-    private ExecutorService checkCachedThreadPool; // 用于检测终端是否在线的线程
 
     static {
         Config config = new Config();
@@ -82,7 +82,7 @@ public class ADSServer {
         adsSockets = new Hashtable<String, SocketChannel>();
         lastBeatTime = new Hashtable<String, Long>();
         socketChannelMaps = new Vector<Hashtable<String, SocketChannel>>();
-        checkCachedThreadPool = Executors.newCachedThreadPool();
+        writeCachedThreadPool = Executors.newCachedThreadPool();
     }
 
     public void startServer() {
@@ -123,7 +123,7 @@ public class ADSServer {
         serverStarted = false;
         lastBeatTime.clear();
         socketChannelMaps.clear();
-        checkCachedThreadPool.shutdown();
+        writeCachedThreadPool.shutdown();
         if (serverSocketChannel != null && serverSocketChannel.isOpen()) {
             try {
                 selector.close();
@@ -233,7 +233,7 @@ public class ADSServer {
         heartBeatServer.setDevcode(deviceCode);
         heartBeatServer.setType(Common.TYPE_CHECK);
         heartBeatServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-        write(socketChannel, null, heartBeatServer.getDevcode(), JSON.toJSONString(heartBeatServer));
+        writeCachedThreadPool.execute(new WriteThread(socketChannel, null, heartBeatServer.getDevcode(), JSON.toJSONString(heartBeatServer)));
     }
 
     private void readFileDownload(SocketChannel socketChannel, String msg) {
@@ -291,28 +291,44 @@ public class ADSServer {
         }
     }
 
-    public void write(SocketChannel socketChannel, String publishId, String deviceCode, String msg) {
-        logger.info("begin to send msg to device " + deviceCode + ", the msg: " + msg);
-        if (msg != null && msg.length() > 0) {
-            if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
-            } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
-            } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
-            } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
-                publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
-            }
-            try {
-                socketChannel.write(charset.encode(StringUnicodeUtil.stringToUnicode(msg)));
-                logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-               lostDeviceConnection(deviceCode, socketChannel);
+    private class WriteThread implements Runnable {
+
+        private SocketChannel socketChannel;
+        private String publishId;
+        private String deviceCode;
+        private String msg;
+
+        public WriteThread(SocketChannel socketChannel, String publishId, String deviceCode, String msg) {
+            this.socketChannel = socketChannel;
+            this.publishId = publishId;
+            this.deviceCode = deviceCode;
+            this.msg = msg;
+        }
+
+        public void run() {
+            logger.info("begin to send msg to device " + deviceCode + ", the msg: " + msg);
+            if (msg != null && msg.length() > 0) {
+                if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                    publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
+                } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                    publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
+                } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                    publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
+                } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                    publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
+                }
+                try {
+                    socketChannel.write(charset.encode(StringUnicodeUtil.stringToUnicode(msg)));
+                    logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    lostDeviceConnection(deviceCode, socketChannel);
+                }
             }
         }
     }
+
 
     public void writeFileDownload(SocketChannel socketChannel, Publish publish) {
         String deviceCode = publish.getDevice().getCode();
@@ -328,7 +344,7 @@ public class ADSServer {
         fileDownloadServer.setFilesize(resource.getFileSize());
         fileDownloadServer.setUrl(siteDomain + "/" + resource.getPath());
         fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-        write(socketChannel, fileDownloadServer.getPubid(), deviceCode, JSON.toJSONString(fileDownloadServer));
+        writeCachedThreadPool.execute(new WriteThread(socketChannel, fileDownloadServer.getPubid(), deviceCode, JSON.toJSONString(fileDownloadServer)));
     }
 
     public void writePublish(SocketChannel socketChannel, Publish publish) {
@@ -361,7 +377,7 @@ public class ADSServer {
         String stayTime = publish.getStayTime();
         publishServer.setStaytime(stayTime != null && !stayTime.equals("") ? Integer.valueOf(stayTime) : 0);
         publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-        write(socketChannel, publishServer.getPubid(), deviceCode, JSON.toJSONString(publishServer));
+        writeCachedThreadPool.execute(new WriteThread(socketChannel, publishServer.getPubid(), deviceCode, JSON.toJSONString(publishServer)));
     }
 
     public void writeFileDelete(SocketChannel socketChannel, Publish publish, int type) {
@@ -383,7 +399,7 @@ public class ADSServer {
         ResourceType resourceType = resourceTypeService.queryById(resource.getResourceTypeId());
         fileDeleteServer.setRestype(resourceType.getName());
         fileDeleteServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-        write(socketChannel, fileDeleteServer.getPubid(), deviceCode, JSON.toJSONString(fileDeleteServer));
+        writeCachedThreadPool.execute(new WriteThread(socketChannel, fileDeleteServer.getPubid(), deviceCode, JSON.toJSONString(fileDeleteServer)));
     }
 
     /**
@@ -430,7 +446,7 @@ public class ADSServer {
             Hashtable<String, SocketChannel> socketChannelHashtable = new Hashtable<String, SocketChannel>();
             socketChannelHashtable.put(deviceCode, socketChannel);
             socketChannelMaps.add(socketChannelHashtable);
-            checkCachedThreadPool.execute(new CheckThread(socketChannelHashtable));
+            new Thread(new CheckThread(socketChannelHashtable)).start();
         }
     }
 
