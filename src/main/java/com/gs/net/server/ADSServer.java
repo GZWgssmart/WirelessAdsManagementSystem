@@ -23,10 +23,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -101,10 +98,16 @@ public class ADSServer {
                             while (selectionKeyIterator.hasNext()) {
                                 SelectionKey selectionKey = selectionKeyIterator.next();
                                 selectionKeyIterator.remove();
-                                if (selectionKey.isAcceptable()) {
-                                    connect(selector, serverSocketChannel);
-                                } else if (selectionKey.isReadable()) {
-                                    read(selectionKey);
+                                try {
+                                    if (selectionKey.isAcceptable()) {
+                                        connect(selector, serverSocketChannel);
+                                    } else if (selectionKey.isReadable()) {
+                                        read(selectionKey);
+                                    }
+                                } catch (CancelledKeyException e) {
+                                    selectionKey.cancel();
+                                    selectionKey.channel().close();
+                                    logger.info("ADSServer CancelledKeyException when try to select from selector.....");
                                 }
                             }
                         }
@@ -471,7 +474,8 @@ public class ADSServer {
                     Map.Entry<String, SocketChannel> entry = entryIterator.next();
                     String deviceCode = entry.getKey();
                     SocketChannel socketChannel = entry.getValue();
-                    if (System.currentTimeMillis() - lastBeatTime.get(deviceCode) >= heartBeatTime) {
+                    Long lastBeat = lastBeatTime.get(deviceCode);
+                    if (lastBeat != null && (System.currentTimeMillis() - lastBeat >= heartBeatTime)) {
                         logger.info("check the device " + deviceCode + ", offline!!!!!");
                         lostDeviceConnection(deviceCode, socketChannel);
                         entryIterator.remove();
