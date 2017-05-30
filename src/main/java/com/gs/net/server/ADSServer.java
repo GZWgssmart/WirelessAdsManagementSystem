@@ -163,7 +163,7 @@ public class ADSServer {
 
     private void read(SelectionKey selectionKey) {
         SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-        ByteBuffer buff = ByteBuffer.allocate(1024);
+        ByteBuffer buff = ByteBuffer.allocate(1024 * 10);
         String message = "";
         try {
             while (socketChannel.read(buff) > 0) {
@@ -181,7 +181,7 @@ public class ADSServer {
                 if (length > 0) { // 需要被读取的消息数大于0
                     for (int i = 0; i < length; i++) {
                         String msg = msgs[i];
-                        logger.info("read msg from device , the msg: " + msg);
+                        logger.info("read msg from device, the msg: " + msg);
                         if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
                             readHeartBeat(socketChannel, msg);
                         } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
@@ -264,6 +264,7 @@ public class ADSServer {
         logger.info("read file download msg from device " + deviceCode + ", the msg: " + msg);
         if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
             publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
+            handlingDevices.remove(deviceCode);
             startWrite(socketChannel, deviceCode, null, true); // 如果下载失败，则开始写出消息队列中的下一条消息
         } else {
             // 如果客户端成功下载文件，则需要进行发布操作
@@ -293,6 +294,7 @@ public class ADSServer {
             publishPlanService.updateCountByPubId(publishClient.getPubid());
             publishPlanService.finishByPubId(publishClient.getPubid());
         }
+        handlingDevices.remove(deviceCode);
         startWrite(socketChannel, deviceCode, null, true); // 开始写出消息队列中的下一条消息
     }
 
@@ -313,6 +315,7 @@ public class ADSServer {
                 publishService.updatePublishLogByDevCode(fileDeleteClient.getDevcode(), PublishLog.RESOURCE_DELETED);
             }
         }
+        handlingDevices.remove(deviceCode);
         startWrite(socketChannel, deviceCode, null, true); // 开始写出消息队列中的下一条消息
     }
 
@@ -348,13 +351,11 @@ public class ADSServer {
                         }
                     }
                 }
-                boolean isDownloadMsg = false;
                 if (msg != null && msg.length() > 0) {
                     logger.info("begin to send msg to device " + deviceCode + ", the msg: " + msg);
                     if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
                         String publishId = getPubIdFromMsg(msg);
                         publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
-                        isDownloadMsg = true;
                     } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
                         String publishId = getPubIdFromMsg(msg);
                         publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
@@ -367,9 +368,6 @@ public class ADSServer {
                     try {
                         socketChannel.write(charset.encode(StringUnicodeUtil.stringToUnicode(msg)));
                         logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
-                        if (!isDownloadMsg) {
-                            handlingDevices.remove(deviceCode);
-                        }
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
