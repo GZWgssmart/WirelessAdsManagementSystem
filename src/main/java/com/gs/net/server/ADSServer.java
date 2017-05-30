@@ -334,7 +334,7 @@ public class ADSServer {
         }
 
         public void run() {
-            synchronized (ADSServer.class) {
+            synchronized (adsSockets.get(deviceCode)) {
                 if (msg == null) { // 如果不是心跳消息
                     if (toCheckHandling) { // 如果需要检测设备是否在使用中
                         if (handlingDevices.get(deviceCode) == null) { // 如果设备不在使用中
