@@ -255,7 +255,7 @@ public class ADSServer {
         heartBeatServer.setDevcode(deviceCode);
         heartBeatServer.setType(Common.TYPE_CHECK);
         heartBeatServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
-        startWrite(socketChannel, heartBeatServer.getDevcode(), JSON.toJSONString(heartBeatServer));
+        startWrite(socketChannel, heartBeatServer.getDevcode(), JSON.toJSONString(heartBeatServer), false);
     }
 
     private void readFileDownload(SocketChannel socketChannel, String msg) {
@@ -264,12 +264,12 @@ public class ADSServer {
         logger.info("read file download msg from device " + deviceCode + ", the msg: " + msg);
         if (fileDownloadClient.getResult().equals(Common.RESULT_N)) {
             publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_NOT_DOWNLOADED);
-            startWrite(socketChannel, deviceCode, null); // 如果下载失败，则开始写出消息队列中的下一条消息
+            startWrite(socketChannel, deviceCode, null, true); // 如果下载失败，则开始写出消息队列中的下一条消息
         } else {
             // 如果客户端成功下载文件，则需要进行发布操作
             publishService.updatePublishLog(fileDownloadClient.getPubid(), PublishLog.FILE_DOWNLOADED);
             Publish publish = publishService.queryByDRId(fileDownloadClient.getPubid());
-            writePublish(socketChannel, publish, true); // 如果下载成功，则开始写出发布消息
+            writePublish(socketChannel, publish, true, false); // 如果下载成功，则开始写出发布消息
         }
     }
 
@@ -293,7 +293,7 @@ public class ADSServer {
             publishPlanService.updateCountByPubId(publishClient.getPubid());
             publishPlanService.finishByPubId(publishClient.getPubid());
         }
-        startWrite(socketChannel, deviceCode, null); // 开始写出消息队列中的下一条消息
+        startWrite(socketChannel, deviceCode, null, true); // 开始写出消息队列中的下一条消息
     }
 
     private void readFileDelete(SocketChannel socketChannel, String msg) {
@@ -313,7 +313,7 @@ public class ADSServer {
                 publishService.updatePublishLogByDevCode(fileDeleteClient.getDevcode(), PublishLog.RESOURCE_DELETED);
             }
         }
-        startWrite(socketChannel, deviceCode, null); // 开始写出消息队列中的下一条消息
+        startWrite(socketChannel, deviceCode, null, true); // 开始写出消息队列中的下一条消息
     }
 
     private class WriteThread implements Runnable {
@@ -321,40 +321,60 @@ public class ADSServer {
         private SocketChannel socketChannel;
         private String deviceCode;
         private String msg;
+        private boolean toCheckHandling;
 
-        public WriteThread(SocketChannel socketChannel, String deviceCode, String msg) {
+        public WriteThread(SocketChannel socketChannel, String deviceCode, String msg, boolean toCheckHandling) {
             this.socketChannel = socketChannel;
             this.deviceCode = deviceCode;
             this.msg = msg;
+            this.toCheckHandling = toCheckHandling;
         }
 
         public void run() {
-            if (msg == null && msgQueueTable.get(deviceCode) != null) {
-                handlingDevices.put(deviceCode, true);
-                msg = msgQueueTable.get(deviceCode).pop();
-            }
-            if (msg != null && msg.length() > 0) {
-                logger.info("begin to send msg to device " + deviceCode + ", the msg: " + msg);
-                if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
-                    String publishId = getPubIdFromMsg(msg);
-                    publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
-                } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
-                    String publishId = getPubIdFromMsg(msg);
-                    publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
-                } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
-                    String publishId = getPubIdFromMsg(msg);
-                    publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
-                } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
-                    publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
+            synchronized (ADSServer.class) {
+                if (msg == null) { // 如果不是心跳消息
+                    if (toCheckHandling) { // 如果需要检测设备是否在使用中
+                        if (handlingDevices.get(deviceCode) == null) { // 如果设备不在使用中
+                            if (msgQueueTable.get(deviceCode) != null) {
+                                handlingDevices.put(deviceCode, true);
+                                msg = msgQueueTable.get(deviceCode).pop();
+                            }
+                        } else { // 如果设备在使用中，则直接结束整个方法
+                            return;
+                        }
+                    } else { // 如果不需要检测设备在使用中，则直接把消息队列中的队头消息拿出来
+                        if (msgQueueTable.get(deviceCode) != null) {
+                            msg = msgQueueTable.get(deviceCode).pop();
+                        }
+                    }
                 }
-                try {
-                    socketChannel.write(charset.encode(StringUnicodeUtil.stringToUnicode(msg)));
-                    logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
-                    handlingDevices.put(deviceCode, false);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    lostDeviceConnection(deviceCode, socketChannel);
+                boolean isDownloadMsg = false;
+                if (msg != null && msg.length() > 0) {
+                    logger.info("begin to send msg to device " + deviceCode + ", the msg: " + msg);
+                    if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
+                        String publishId = getPubIdFromMsg(msg);
+                        publishService.updatePublishLog(publishId, PublishLog.FILE_DOWNLOADING);
+                        isDownloadMsg = true;
+                    } else if (msg.contains("\"" + Common.TYPE_PUBLISH + "\"")) {
+                        String publishId = getPubIdFromMsg(msg);
+                        publishService.updatePublishLog(publishId, PublishLog.PUBLISHING);
+                    } else if (msg.contains("\"" + Common.TYPE_DELETE + "\"")) {
+                        String publishId = getPubIdFromMsg(msg);
+                        publishService.updatePublishLog(publishId, PublishLog.RESOURCE_DELETING);
+                    } else if (msg.contains("\"" + Common.TYPE_DELETE_ALL + "\"")) {
+                        publishService.updatePublishLogByDevCode(deviceCode, PublishLog.RESOURCE_DELETING);
+                    }
+                    try {
+                        socketChannel.write(charset.encode(StringUnicodeUtil.stringToUnicode(msg)));
+                        logger.info("send msg to device " + deviceCode + ", the msg: " + msg);
+                        if (!isDownloadMsg) {
+                            handlingDevices.remove(deviceCode);
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        lostDeviceConnection(deviceCode, socketChannel);
+                    }
                 }
             }
         }
@@ -372,14 +392,8 @@ public class ADSServer {
      * @param deviceCode
      * @param heartBeatMsg 如果heartBeatMsg不为空，则说明是心跳消息，否则为其他消息，其他消息从设备各自的消息队列中获取
      */
-    private void startWrite(SocketChannel socketChannel, String deviceCode, String heartBeatMsg) {
-        if (heartBeatMsg != null) {
-            writeCachedThreadPool.execute(new WriteThread(socketChannel, deviceCode, heartBeatMsg));
-        } else {
-            if (handlingDevices.get(deviceCode) == null || !handlingDevices.get(deviceCode)) {
-                writeCachedThreadPool.execute(new WriteThread(socketChannel, deviceCode, null));
-            }
-        }
+    private void startWrite(SocketChannel socketChannel, String deviceCode, String heartBeatMsg, boolean toCheckHandling) {
+        writeCachedThreadPool.execute(new WriteThread(socketChannel, deviceCode, heartBeatMsg, toCheckHandling));
     }
 
     public void writeFileDownload(SocketChannel socketChannel, Publish publish) {
@@ -397,10 +411,10 @@ public class ADSServer {
         fileDownloadServer.setUrl(siteDomain + "/" + resource.getPath());
         fileDownloadServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
         addMsgToQueue(deviceCode, JSON.toJSONString(fileDownloadServer), false); // 添加消息到消息队列的队尾
-        startWrite(socketChannel, deviceCode, null); // 开始写出消息队列中的消息
+        startWrite(socketChannel, deviceCode, null, true); // 开始写出消息队列中的消息
     }
 
-    public void writePublish(SocketChannel socketChannel, Publish publish, boolean addToFirst) {
+    public void writePublish(SocketChannel socketChannel, Publish publish, boolean addToFirst, boolean autoPub) {
         String deviceCode = publish.getDevice().getCode();
         com.gs.bean.Resource resource = publish.getResource();
         PublishServer publishServer = new PublishServer();
@@ -431,7 +445,11 @@ public class ADSServer {
         publishServer.setStaytime(stayTime != null && !stayTime.equals("") ? Integer.valueOf(stayTime) : 0);
         publishServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
         addMsgToQueue(deviceCode, JSON.toJSONString(publishServer), addToFirst); // 将发布消息添加到队头
-        startWrite(socketChannel, deviceCode, null); // 开始写出发布消息，此发布消息放在消息队列的队头
+        boolean toCheckHandling = false;
+        if (autoPub) { // 如果是自动发布的消息，则需要检查当前设备是否在使用中，而如果是文件下载后的发布，则不需要检查当前设备是否在使用中
+            toCheckHandling = true;
+        }
+        startWrite(socketChannel, deviceCode, null, toCheckHandling); // 开始写出发布消息，此发布消息放在消息队列的队头
     }
 
     public void writeFileDelete(SocketChannel socketChannel, Publish publish, int type) {
@@ -454,7 +472,7 @@ public class ADSServer {
         fileDeleteServer.setRestype(resourceType.getName());
         fileDeleteServer.setTime(DateFormatUtil.format(Calendar.getInstance(), Common.DATE_TIME_PATTERN));
         addMsgToQueue(deviceCode, JSON.toJSONString(fileDeleteServer), false); // 添加消息到消息队列的队尾
-        startWrite(socketChannel, deviceCode, null); // 开始写出消息队列中的消息
+        startWrite(socketChannel, deviceCode, null, true); // 开始写出消息队列中的消息
     }
 
     /**
@@ -479,7 +497,7 @@ public class ADSServer {
                     writeFileDownload(socketChannel, publish);
                 } else if (publishLog.equals(PublishLog.FILE_DOWNLOADED) || publishLog.equals(PublishLog.PUBLISHING) || publishLog.equals(PublishLog.NOT_PUBLISHED)) {
                     logger.info("automatically publish handle publish id: " + publish.getId());
-                    writePublish(socketChannel, publish, false);
+                    writePublish(socketChannel, publish, false, true);
                 } else if (publishLog.equals(PublishLog.SUBMIT_TO_DELETE) || publishLog.equals(PublishLog.RESOURCE_DELETING) || publishLog.equals(PublishLog.RESOURCE_NOT_DELETED)) {
                     logger.info("automatically delete handle publish id: " + publish.getId());
                     writeFileDelete(socketChannel, publish, DeleteType.DELETE_RES_FROM_DEVICE);
