@@ -600,6 +600,7 @@ public class ADSServer {
         adsSockets.remove(deviceCode);
         lastBeatTime.remove(deviceCode);
         handlingDevices.remove(deviceCode);
+        msgQueueTable.remove(deviceCode);
         updateDeviceStatus(deviceCode, Common.DEVICE_OFFLINE);
         if (socketChannel.isConnected() && socketChannel.isOpen()) {
             try {
