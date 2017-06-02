@@ -165,7 +165,7 @@ public class ADSServer {
 
     private void read(SelectionKey selectionKey) {
         SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-        ByteBuffer buff = ByteBuffer.allocate(1024 * 10);
+        ByteBuffer buff = ByteBuffer.allocate(1024 * 2 * 10);
         try {
             while (socketChannel.read(buff) > 0) {
                 buff.flip();
