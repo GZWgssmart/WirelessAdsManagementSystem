@@ -58,6 +58,7 @@ public class ADSServer {
 
     private Hashtable<String, Deque<String>> msgQueueTable; // 存储每一个终端设备的消息队列
     private Hashtable<String, Boolean> handlingDevices;
+    private Hashtable<String, String> devMsgs;
 
     @Resource
     private DeviceService deviceService;
@@ -85,6 +86,7 @@ public class ADSServer {
         writeCachedThreadPool = Executors.newCachedThreadPool();
         msgQueueTable = new Hashtable<String, Deque<String>>();
         handlingDevices = new Hashtable<String, Boolean>();
+        devMsgs = new Hashtable<String, String>();
     }
 
     public void startServer() {
@@ -164,24 +166,28 @@ public class ADSServer {
     private void read(SelectionKey selectionKey) {
         SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
         ByteBuffer buff = ByteBuffer.allocate(1024 * 10);
-        String message = "";
         try {
             while (socketChannel.read(buff) > 0) {
                 buff.flip();
-                message += StringUnicodeUtil.unicodeToString("" + charset.decode(buff));
+                String message = StringUnicodeUtil.unicodeToString("" + charset.decode(buff));
+                logger.info("read msg from device, the msg: " + message);
+                String devcode = getDevcodeFromMsg(message);
+                String oldMsg = devMsgs.get(devcode);
+                if (oldMsg != null) {
+                    message = oldMsg + message;
+                }
                 String[] msgs = getAllMsgs(message); // 获取所有的消息，包括最后可能的不完整的消息
                 int length = msgs.length; // 所有消息数
                 String lastMsg = msgs[length - 1]; // 最后一条消息
                 if (lastMsg.lastIndexOf("}") < 0) { // 如果最后一条消息不以}结尾，则这条消息应该与socket后面接收到的消息拼接到一起，真正需要读取的消息数就应该等于length - 1
-                    message = lastMsg;
+                    devMsgs.put(devcode, lastMsg);
                     length -= 1;
                 } else {
-                    message = ""; // 如果最后一条消息是以}结尾的，则不需要与socket后面接收到的消息拼接到一起，真正读取的消息数就等于length
+                    devMsgs.remove(devcode); // 如果最后一条消息是以}结尾的，则不需要与socket后面接收到的消息拼接到一起，真正读取的消息数就等于length
                 }
                 if (length > 0) { // 需要被读取的消息数大于0
                     for (int i = 0; i < length; i++) {
                         String msg = msgs[i];
-                        logger.info("read msg from device, the msg: " + msg);
                         if (msg.contains("\"" + Common.TYPE_CHECK + "\"")) {
                             readHeartBeat(socketChannel, msg);
                         } else if (msg.contains("\"" + Common.TYPE_DOWNLOAD + "\"")) {
@@ -382,6 +388,12 @@ public class ADSServer {
         String pub = "\"pubid\":\"";
         int beginIdx = msg.indexOf(pub) + pub.length();
         return msg.substring(beginIdx, beginIdx + 36);
+    }
+
+    private String getDevcodeFromMsg(String msg) {
+        String dev = "\"devcode\":\"";
+        int beginIdx = msg.indexOf(dev) + dev.length();
+        return msg.substring(beginIdx, beginIdx + 13);
     }
 
     /**
