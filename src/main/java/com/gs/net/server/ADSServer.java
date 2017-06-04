@@ -137,6 +137,8 @@ public class ADSServer {
         serverStarted = false;
         lastBeatTime.clear();
         socketChannelMaps.clear();
+        handlingDevices.clear();
+        msgQueueTable.clear();
         writeCachedThreadPool.shutdown();
         if (serverSocketChannel != null && serverSocketChannel.isOpen()) {
             try {
@@ -245,6 +247,8 @@ public class ADSServer {
         if (heartBeatClient.getFirstbeat().equals(Common.RESULT_Y)) { // 表示原先并没有连接上，是首次连接或重新连接，则需要把设备状态更新成在线状态
             logger.info(deviceCode + " connect to the server first time...");
             adsSockets.put(deviceCode, socketChannel);
+            handlingDevices.remove(deviceCode);
+            msgQueueTable.remove(deviceCode);
             updateDeviceStatus(deviceCode, Common.DEVICE_ONLINE);
             addToCheck(deviceCode, socketChannel);
         }
