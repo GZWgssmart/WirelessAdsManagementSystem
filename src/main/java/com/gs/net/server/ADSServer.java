@@ -344,7 +344,7 @@ public class ADSServer {
         }
 
         public void run() {
-            synchronized (adsSockets.get(deviceCode)) {
+            synchronized (socketChannel) {
                 if (msg == null) { // 如果不是心跳消息
                     if (toCheckHandling) { // 如果需要检测设备是否在使用中
                         if (handlingDevices.get(deviceCode) == null) { // 如果设备不在使用中
@@ -407,7 +407,9 @@ public class ADSServer {
      * @param heartBeatMsg 如果heartBeatMsg不为空，则说明是心跳消息，否则为其他消息，其他消息从设备各自的消息队列中获取
      */
     private void startWrite(SocketChannel socketChannel, String deviceCode, String heartBeatMsg, boolean toCheckHandling) {
-        writeCachedThreadPool.execute(new WriteThread(socketChannel, deviceCode, heartBeatMsg, toCheckHandling));
+        if (socketChannel != null) {
+            writeCachedThreadPool.execute(new WriteThread(socketChannel, deviceCode, heartBeatMsg, toCheckHandling));
+        }
     }
 
     public void writeFileDownload(SocketChannel socketChannel, Publish publish) {

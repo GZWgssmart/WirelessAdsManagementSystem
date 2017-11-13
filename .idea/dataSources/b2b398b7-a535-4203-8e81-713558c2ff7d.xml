@@ -1,686 +1,828 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MySQL - ads_system@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
-    <schema id="1" name="ads_system">
-      <visible>1</visible>
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="ads_system">
+      <Current>1</Current>
+      <Visible>1</Visible>
     </schema>
-    <schema id="2" name="authority"/>
-    <schema id="3" name="information_schema"/>
-    <schema id="4" name="login_module"/>
-    <schema id="5" name="mysql"/>
-    <schema id="6" name="performance_schema"/>
-    <schema id="7" name="sys"/>
-    <schema id="8" name="zj"/>
-    <table id="9" parent="1" name="t_admin"/>
-    <table id="10" parent="1" name="t_customer"/>
-    <table id="11" parent="1" name="t_device"/>
-    <table id="12" parent="1" name="t_device_group"/>
-    <table id="13" parent="1" name="t_publish"/>
-    <table id="14" parent="1" name="t_publish_plan"/>
-    <table id="15" parent="1" name="t_resource"/>
-    <table id="16" parent="1" name="t_resource_type"/>
-    <table id="17" parent="1" name="t_version"/>
-    <column id="18" parent="9" name="id">
-      <comment>管理员id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <schema id="7" parent="1" name="auto_platform"/>
+    <schema id="8" parent="1" name="d_goods"/>
+    <schema id="9" parent="1" name="hospital"/>
+    <schema id="10" parent="1" name="sakila"/>
+    <schema id="11" parent="1" name="world"/>
+    <schema id="12" parent="1" name="home_decoration"/>
+    <table id="13" parent="2" name="t_admin"/>
+    <table id="14" parent="2" name="t_customer"/>
+    <table id="15" parent="2" name="t_device"/>
+    <table id="16" parent="2" name="t_device_group"/>
+    <table id="17" parent="2" name="t_publish"/>
+    <table id="18" parent="2" name="t_publish_plan"/>
+    <table id="19" parent="2" name="t_resource"/>
+    <table id="20" parent="2" name="t_resource_type"/>
+    <table id="21" parent="2" name="t_version"/>
+    <column id="22" parent="13" name="id">
+      <Position>1</Position>
+      <Comment>管理员id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="9" name="email">
-      <comment>登录邮箱</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(100)|0</data-type>
+    <column id="23" parent="13" name="email">
+      <Position>2</Position>
+      <Comment>登录邮箱</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="20" parent="9" name="password">
-      <comment>登录密码</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="24" parent="13" name="password">
+      <Position>3</Position>
+      <Comment>登录密码</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="21" parent="9" name="name">
-      <comment>姓名</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(20)|0</data-type>
+    <column id="25" parent="13" name="name">
+      <Position>4</Position>
+      <Comment>姓名</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="9" name="phone">
-      <comment>手机号</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(11)|0</data-type>
+    <column id="26" parent="13" name="phone">
+      <Position>5</Position>
+      <Comment>手机号</Comment>
+      <DataType>varchar(13)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="9" name="create_time">
-      <comment>创建时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="27" parent="13" name="create_time">
+      <Position>6</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="24" parent="9" name="last_login_time">
-      <comment>最近一次登录时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="28" parent="13" name="last_login_time">
+      <Position>7</Position>
+      <Comment>最近一次登录时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="25" parent="9" name="login_time">
-      <comment>登录时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="29" parent="13" name="login_time">
+      <Position>8</Position>
+      <Comment>登录时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="26" parent="9" name="role">
-      <comment>管理员角色</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(20)|0</data-type>
+    <column id="30" parent="13" name="role">
+      <Position>9</Position>
+      <Comment>管理员角色</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="9" name="status">
-      <comment>管理员是否可用</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="31" parent="13" name="status">
+      <Position>10</Position>
+      <Comment>管理员是否可用</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
     </column>
-    <index id="28" parent="9" name="email">
-      <columns>email</columns>
-      <desc-columns></desc-columns>
-      <unique>1</unique>
+    <index id="32" parent="13" name="email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
     </index>
-    <key id="29" parent="9" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="33" parent="13" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <key id="30" parent="9" name="email">
-      <columns>email</columns>
-      <underlying-index>email</underlying-index>
+    <key id="34" parent="13" name="email">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="31" parent="10" name="id">
-      <comment>客户id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="35" parent="14" name="id">
+      <Position>1</Position>
+      <Comment>客户id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="32" parent="10" name="email">
-      <comment>登录邮箱</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(100)|0</data-type>
+    <column id="36" parent="14" name="email">
+      <Position>2</Position>
+      <Comment>登录邮箱</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="10" name="password">
-      <comment>登录密码</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="37" parent="14" name="password">
+      <Position>3</Position>
+      <Comment>登录密码</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="10" name="name">
-      <comment>姓名</comment>
-      <data-type>varchar(20)|0</data-type>
+    <column id="38" parent="14" name="name">
+      <Position>4</Position>
+      <Comment>姓名</Comment>
+      <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="35" parent="10" name="address">
-      <comment>地址</comment>
-      <data-type>varchar(20)|0</data-type>
+    <column id="39" parent="14" name="address">
+      <Position>5</Position>
+      <Comment>地址</Comment>
+      <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="36" parent="10" name="phone">
-      <comment>手机号</comment>
-      <data-type>varchar(11)|0</data-type>
+    <column id="40" parent="14" name="phone">
+      <Position>6</Position>
+      <Comment>手机号</Comment>
+      <DataType>varchar(13)|0</DataType>
     </column>
-    <column id="37" parent="10" name="create_time">
-      <comment>创建时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="41" parent="14" name="create_time">
+      <Position>7</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="38" parent="10" name="last_login_time">
-      <comment>最近一次登录时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="42" parent="14" name="last_login_time">
+      <Position>8</Position>
+      <Comment>最近一次登录时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="39" parent="10" name="login_time">
-      <comment>登录时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="43" parent="14" name="login_time">
+      <Position>9</Position>
+      <Comment>登录时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="40" parent="10" name="last_update_time">
-      <comment>最近一次修改时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="44" parent="14" name="last_update_time">
+      <Position>10</Position>
+      <Comment>最近一次修改时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="41" parent="10" name="last_update_by_role">
-      <comment>最近一次被哪个角色修改,可选admin或self</comment>
-      <data-type>varchar(10)|0</data-type>
+    <column id="45" parent="14" name="last_update_by_role">
+      <Position>11</Position>
+      <Comment>最近一次被哪个角色修改,可选admin或self</Comment>
+      <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="42" parent="10" name="last_update_by_admin">
-      <comment>最近一次被哪个管理员修改</comment>
-      <data-type>varchar(128)|0</data-type>
+    <column id="46" parent="14" name="last_update_by_admin">
+      <Position>12</Position>
+      <Comment>最近一次被哪个管理员修改</Comment>
+      <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="43" parent="10" name="status">
-      <comment>客户是否在可用状态</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="47" parent="14" name="status">
+      <Position>13</Position>
+      <Comment>客户是否在可用状态</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
     </column>
-    <index id="44" parent="10" name="email">
-      <columns>email</columns>
-      <desc-columns></desc-columns>
-      <unique>1</unique>
+    <column id="48" parent="14" name="company">
+      <Position>14</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="49" parent="14" name="check_pwd">
+      <Position>15</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <index id="50" parent="14" name="email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
     </index>
-    <index id="45" parent="10" name="fk_last_update_by_admin">
-      <columns>last_update_by_admin</columns>
-      <desc-columns></desc-columns>
+    <index id="51" parent="14" name="fk_last_update_by_admin">
+      <ColNames>last_update_by_admin</ColNames>
     </index>
-    <key id="46" parent="10" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="52" parent="14" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <key id="47" parent="10" name="email">
-      <columns>email</columns>
-      <underlying-index>email</underlying-index>
+    <key id="53" parent="14" name="email">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <foreign-key id="48" parent="10" name="fk_last_update_by_admin">
-      <columns>last_update_by_admin</columns>
-      <ref-key>~.t_admin.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="54" parent="14" name="fk_last_update_by_admin">
+      <ColNames>last_update_by_admin</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_admin</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="49" parent="11" name="id">
-      <comment>终端设备id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="55" parent="15" name="id">
+      <Position>1</Position>
+      <Comment>终端设备id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="11" name="code">
-      <comment>终端号</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(200)|0</data-type>
+    <column id="56" parent="15" name="code">
+      <Position>2</Position>
+      <Comment>终端号</Comment>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="11" name="des">
-      <comment>终端设备描述信息</comment>
-      <data-type>varchar(500)|0</data-type>
+    <column id="57" parent="15" name="des">
+      <Position>3</Position>
+      <Comment>终端设备描述信息</Comment>
+      <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="52" parent="11" name="version_id">
-      <comment>终端设备的版本号</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="58" parent="15" name="version_id">
+      <Position>4</Position>
+      <Comment>终端设备的版本号</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="11" name="install_time">
-      <comment>安装时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="59" parent="15" name="install_time">
+      <Position>5</Position>
+      <Comment>安装时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="54" parent="11" name="bus_no">
-      <comment>公交车路数</comment>
-      <data-type>varchar(10)|0</data-type>
+    <column id="60" parent="15" name="bus_no">
+      <Position>6</Position>
+      <Comment>公交车路数</Comment>
+      <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="55" parent="11" name="bus_plate_no">
-      <comment>公交车牌号</comment>
-      <data-type>varchar(10)|0</data-type>
+    <column id="61" parent="15" name="bus_plate_no">
+      <Position>7</Position>
+      <Comment>公交车牌号</Comment>
+      <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="56" parent="11" name="driver">
-      <comment>驾驶员</comment>
-      <data-type>varchar(50)|0</data-type>
+    <column id="62" parent="15" name="driver">
+      <Position>8</Position>
+      <Comment>驾驶员</Comment>
+      <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="57" parent="11" name="phone">
-      <comment>手机号</comment>
-      <data-type>varchar(11)|0</data-type>
+    <column id="63" parent="15" name="phone">
+      <Position>9</Position>
+      <Comment>手机号</Comment>
+      <DataType>varchar(13)|0</DataType>
     </column>
-    <column id="58" parent="11" name="customer_id">
-      <comment>客户id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="64" parent="15" name="customer_id">
+      <Position>10</Position>
+      <Comment>客户id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="11" name="device_group_id">
-      <comment>终端设备分组id</comment>
-      <data-type>varchar(128)|0</data-type>
+    <column id="65" parent="15" name="device_group_id">
+      <Position>11</Position>
+      <Comment>终端设备分组id</Comment>
+      <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="60" parent="11" name="create_time">
-      <comment>终端添加时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="66" parent="15" name="create_time">
+      <Position>12</Position>
+      <Comment>终端添加时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="61" parent="11" name="ads_update_time">
-      <comment>广告最近一次更新时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="67" parent="15" name="ads_update_time">
+      <Position>13</Position>
+      <Comment>广告最近一次更新时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="62" parent="11" name="status">
-      <comment>终端是否可用</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="68" parent="15" name="status">
+      <Position>14</Position>
+      <Comment>终端是否可用</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
     </column>
-    <column id="63" parent="11" name="online">
-      <comment>终端是否在线,默认为不在线</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;N&apos;</default-expression>
+    <column id="69" parent="15" name="online">
+      <Position>15</Position>
+      <Comment>终端是否在线,默认为不在线</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;N&apos;</DefaultExpression>
     </column>
-    <column id="64" parent="11" name="online_time">
-      <comment>上线时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="70" parent="15" name="online_time">
+      <Position>16</Position>
+      <Comment>上线时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="65" parent="11" name="offline_time">
-      <comment>离线时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="71" parent="15" name="offline_time">
+      <Position>17</Position>
+      <Comment>离线时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <index id="66" parent="11" name="fk_device_customer_id">
-      <columns>customer_id</columns>
-      <desc-columns></desc-columns>
+    <index id="72" parent="15" name="fk_device_customer_id">
+      <ColNames>customer_id</ColNames>
     </index>
-    <index id="67" parent="11" name="fk_device_group_id">
-      <columns>device_group_id</columns>
-      <desc-columns></desc-columns>
+    <index id="73" parent="15" name="fk_device_group_id">
+      <ColNames>device_group_id</ColNames>
     </index>
-    <index id="68" parent="11" name="fk_device_version_id">
-      <columns>version_id</columns>
-      <desc-columns></desc-columns>
+    <index id="74" parent="15" name="fk_device_version_id">
+      <ColNames>version_id</ColNames>
     </index>
-    <key id="69" parent="11" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="75" parent="15" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <foreign-key id="70" parent="11" name="fk_device_version_id">
-      <columns>version_id</columns>
-      <ref-key>~.t_version.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="76" parent="15" name="fk_device_version_id">
+      <ColNames>version_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_version</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="71" parent="11" name="fk_device_customer_id">
-      <columns>customer_id</columns>
-      <ref-key>~.t_customer.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="77" parent="15" name="fk_device_customer_id">
+      <ColNames>customer_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_customer</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="72" parent="11" name="fk_device_group_id">
-      <columns>device_group_id</columns>
-      <ref-key>~.t_device_group.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="78" parent="15" name="fk_device_group_id">
+      <ColNames>device_group_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_device_group</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="73" parent="12" name="id">
-      <comment>终端分组</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="79" parent="16" name="id">
+      <Position>1</Position>
+      <Comment>终端分组</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="12" name="name">
-      <comment>终端分组名称</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="80" parent="16" name="name">
+      <Position>2</Position>
+      <Comment>终端分组名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="75" parent="12" name="des">
-      <comment>终端分组描述</comment>
-      <data-type>varchar(200)|0</data-type>
+    <column id="81" parent="16" name="des">
+      <Position>3</Position>
+      <Comment>终端分组描述</Comment>
+      <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="76" parent="12" name="customer_id">
-      <comment>终端分组属于哪个客户</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="82" parent="16" name="customer_id">
+      <Position>4</Position>
+      <Comment>终端分组属于哪个客户</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="12" name="create_time">
-      <comment>终端分组创建时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="83" parent="16" name="create_time">
+      <Position>5</Position>
+      <Comment>终端分组创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="78" parent="12" name="status">
-      <comment>设备分组是否可用</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="84" parent="16" name="status">
+      <Position>6</Position>
+      <Comment>设备分组是否可用</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
     </column>
-    <index id="79" parent="12" name="fk_device_group_customer_id">
-      <columns>customer_id</columns>
-      <desc-columns></desc-columns>
+    <index id="85" parent="16" name="fk_device_group_customer_id">
+      <ColNames>customer_id</ColNames>
     </index>
-    <key id="80" parent="12" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="86" parent="16" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <foreign-key id="81" parent="12" name="fk_device_group_customer_id">
-      <columns>customer_id</columns>
-      <ref-key>~.t_customer.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="87" parent="16" name="fk_device_group_customer_id">
+      <ColNames>customer_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_customer</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="82" parent="13" name="id">
-      <comment>终端设备与资源关联id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="88" parent="17" name="id">
+      <Position>1</Position>
+      <Comment>终端设备与资源关联id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="83" parent="13" name="device_id">
-      <comment>终端设备id</comment>
-      <data-type>varchar(128)|0</data-type>
+    <column id="89" parent="17" name="device_id">
+      <Position>2</Position>
+      <Comment>终端设备id</Comment>
+      <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="84" parent="13" name="publish_log">
-      <comment>发布日志记录</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="90" parent="17" name="publish_log">
+      <Position>4</Position>
+      <Comment>发布日志记录</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="85" parent="13" name="publish_time">
-      <comment>资源下发时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="91" parent="17" name="publish_time">
+      <Position>5</Position>
+      <Comment>资源下发时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="86" parent="13" name="pub_plan_id">
-      <comment>发布计划编号</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="92" parent="17" name="pub_plan_id">
+      <Position>6</Position>
+      <Comment>发布计划编号</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="13" name="area">
-      <comment>屏幕区域</comment>
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
+    <column id="93" parent="17" name="area">
+      <Position>7</Position>
+      <Comment>屏幕区域</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="88" parent="13" name="show_type">
-      <comment>显示方式，包括即时显示,定时显示(定时),不定时显示(顺序)</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(20)|0</data-type>
+    <column id="94" parent="17" name="show_type">
+      <Position>8</Position>
+      <Comment>显示方式，包括即时显示,定时显示(定时),不定时显示(顺序)</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="89" parent="13" name="start_time">
-      <comment>定时播放的开始时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="95" parent="17" name="start_time">
+      <Position>9</Position>
+      <Comment>定时播放的开始时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="90" parent="13" name="end_time">
-      <comment>定时播放的结束时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="96" parent="17" name="end_time">
+      <Position>10</Position>
+      <Comment>定时播放的结束时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="91" parent="13" name="stay_time">
-      <comment>停留时间,以秒为单位</comment>
-      <data-type>varchar(10)|0</data-type>
+    <column id="97" parent="17" name="stay_time">
+      <Position>11</Position>
+      <Comment>停留时间,以秒为单位</Comment>
+      <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="92" parent="13" name="resource_id">
-      <data-type>varchar(128)|0</data-type>
+    <column id="98" parent="17" name="resource_id">
+      <Position>3</Position>
+      <Comment>资源id</Comment>
+      <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="93" parent="13" name="segments">
-      <data-type>varchar(500)|0</data-type>
+    <column id="99" parent="17" name="segments">
+      <Position>13</Position>
+      <Comment>所有时段组成的字符串</Comment>
+      <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="94" parent="13" name="show_count">
-      <data-type>varchar(10)|0</data-type>
+    <column id="100" parent="17" name="show_count">
+      <Position>12</Position>
+      <Comment>播放次数</Comment>
+      <DataType>varchar(10)|0</DataType>
     </column>
-    <index id="95" parent="13" name="fk_publish_device_id">
-      <columns>device_id</columns>
-      <desc-columns></desc-columns>
+    <column id="101" parent="17" name="delete_time">
+      <Position>14</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <index id="102" parent="17" name="fk_publish_device_id">
+      <ColNames>device_id</ColNames>
     </index>
-    <index id="96" parent="13" name="fk_publish_pub_plan_id1">
-      <columns>pub_plan_id</columns>
-      <desc-columns></desc-columns>
+    <index id="103" parent="17" name="fk_publish_pub_plan_id">
+      <ColNames>pub_plan_id</ColNames>
     </index>
-    <key id="97" parent="13" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <index id="104" parent="17" name="fk_publish_resource_id">
+      <ColNames>resource_id</ColNames>
+    </index>
+    <key id="105" parent="17" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <foreign-key id="98" parent="13" name="fk_publish_device_id">
-      <columns>device_id</columns>
-      <ref-key>~.t_device.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="106" parent="17" name="fk_publish_device_id">
+      <ColNames>device_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_device</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="99" parent="13" name="fk_publish_pub_plan_id">
-      <columns>pub_plan_id</columns>
-      <ref-key>~.t_publish_plan.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="107" parent="17" name="fk_publish_resource_id">
+      <ColNames>resource_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_resource</RefTableName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="100" parent="13" name="fk_publish_pub_plan_id1">
-      <columns>pub_plan_id</columns>
-      <ref-key>~.t_publish_plan.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="108" parent="17" name="fk_publish_pub_plan_id">
+      <ColNames>pub_plan_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_publish_plan</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="101" parent="14" name="id">
-      <comment>发布计划编号</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="109" parent="18" name="id">
+      <Position>1</Position>
+      <Comment>发布计划编号</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="102" parent="14" name="customer_id">
-      <comment>客户id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="110" parent="18" name="customer_id">
+      <Position>4</Position>
+      <Comment>客户id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="103" parent="14" name="group_name">
-      <comment>终端分组名称</comment>
-      <data-type>varchar(50)|0</data-type>
+    <column id="111" parent="18" name="group_name">
+      <Position>5</Position>
+      <Comment>终端分组名称</Comment>
+      <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="104" parent="14" name="version_id">
-      <comment>终端版本号</comment>
-      <data-type>varchar(128)|0</data-type>
+    <column id="112" parent="18" name="version_id">
+      <Position>6</Position>
+      <Comment>终端版本号</Comment>
+      <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="105" parent="14" name="version_name">
-      <comment>版本名</comment>
-      <data-type>varchar(50)|0</data-type>
+    <column id="113" parent="18" name="version_name">
+      <Position>7</Position>
+      <Comment>版本名</Comment>
+      <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="106" parent="14" name="name">
-      <comment>发布计划的名称,如果是单个终端则为终端号,多个终端,分组终端和全部终端</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="114" parent="18" name="name">
+      <Position>3</Position>
+      <Comment>发布计划的名称,如果是单个终端则为终端号,多个终端,分组终端和全部终端</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="107" parent="14" name="type">
-      <comment>计划类型,单个终端,多个终端,分组终端,全部终端</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(20)|0</data-type>
+    <column id="115" parent="18" name="type">
+      <Position>8</Position>
+      <Comment>计划类型,单个终端,多个终端,分组终端,全部终端</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="108" parent="14" name="dev_count">
-      <comment>终端总数</comment>
-      <data-type>int(11)|0</data-type>
+    <column id="116" parent="18" name="dev_count">
+      <Position>9</Position>
+      <Comment>终端总数</Comment>
+      <DataType>int(11)|0</DataType>
     </column>
-    <column id="109" parent="14" name="finish_count">
-      <comment>完成消息发布终端总数</comment>
-      <data-type>int(11)|0</data-type>
+    <column id="117" parent="18" name="finish_count">
+      <Position>10</Position>
+      <Comment>完成消息发布终端总数</Comment>
+      <DataType>int(11)|0</DataType>
     </column>
-    <column id="110" parent="14" name="not_finish_count">
-      <comment>未完成消息发布终端总数</comment>
-      <data-type>int(11)|0</data-type>
+    <column id="118" parent="18" name="not_finish_count">
+      <Position>11</Position>
+      <Comment>未完成消息发布终端总数</Comment>
+      <DataType>int(11)|0</DataType>
     </column>
-    <column id="111" parent="14" name="des">
-      <comment>描述信息</comment>
-      <data-type>varchar(500)|0</data-type>
+    <column id="119" parent="18" name="des">
+      <Position>12</Position>
+      <Comment>描述信息</Comment>
+      <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="112" parent="14" name="submit_check_time">
-      <comment>审核提交时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="120" parent="18" name="submit_check_time">
+      <Position>13</Position>
+      <Comment>审核提交时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="113" parent="14" name="check_comment">
-      <comment>审核批注</comment>
-      <data-type>varchar(200)|0</data-type>
+    <column id="121" parent="18" name="check_comment">
+      <Position>14</Position>
+      <Comment>审核批注</Comment>
+      <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="114" parent="14" name="check_time">
-      <comment>审核时间</comment>
-      <data-type>datetime|0</data-type>
+    <column id="122" parent="18" name="check_time">
+      <Position>15</Position>
+      <Comment>审核时间</Comment>
+      <DataType>datetime|0</DataType>
     </column>
-    <column id="115" parent="14" name="check_status">
-      <comment>审核状态</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(10)|0</data-type>
-      <default-expression>&apos;not_submit&apos;</default-expression>
+    <column id="123" parent="18" name="check_status">
+      <Position>16</Position>
+      <Comment>审核状态</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;not_submit&apos;</DefaultExpression>
     </column>
-    <column id="116" parent="14" name="status">
-      <comment>是否在用或删除</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="124" parent="18" name="status">
+      <Position>17</Position>
+      <Comment>是否在用或删除</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
     </column>
-    <column id="117" parent="14" name="create_time">
-      <comment>创建时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="125" parent="18" name="create_time">
+      <Position>18</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="118" parent="14" name="plan_name">
-      <data-type>varchar(50)|0</data-type>
+    <column id="126" parent="18" name="plan_name">
+      <Position>2</Position>
+      <Comment>计划名称</Comment>
+      <DataType>varchar(50)|0</DataType>
     </column>
-    <index id="119" parent="14" name="fk_pub_plan_version_id">
-      <columns>version_id</columns>
-      <desc-columns></desc-columns>
+    <index id="127" parent="18" name="fk_pub_plan_version_id">
+      <ColNames>version_id</ColNames>
     </index>
-    <key id="120" parent="14" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <foreign-key id="121" parent="14" name="fk_pub_plan_version_id">
-      <columns>version_id</columns>
-      <ref-key>~.t_version.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
-    </foreign-key>
-    <column id="122" parent="15" name="id">
-      <comment>资源id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
-    </column>
-    <column id="123" parent="15" name="name">
-      <comment>资源名称</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(100)|0</data-type>
-    </column>
-    <column id="124" parent="15" name="resource_type_id">
-      <comment>资源类型id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
-    </column>
-    <column id="125" parent="15" name="path">
-      <comment>资源路径</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(500)|0</data-type>
-      <default-expression>&apos;无&apos;</default-expression>
-    </column>
-    <column id="126" parent="15" name="full_path">
-      <comment>完整路径</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(500)|0</data-type>
-      <default-expression>&apos;无&apos;</default-expression>
-    </column>
-    <column id="127" parent="15" name="file_name">
-      <comment>资源文件的名称</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(100)|0</data-type>
-      <default-expression>&apos;无&apos;</default-expression>
-    </column>
-    <column id="128" parent="15" name="file_size">
-      <comment>文件大小,以字节为单位</comment>
-      <mandatory>1</mandatory>
-      <data-type>bigint(20)|0</data-type>
-      <default-expression>&apos;0&apos;</default-expression>
-    </column>
-    <column id="129" parent="15" name="des">
-      <comment>资源描述,或者当用户选择文本信息时保存的文本</comment>
-      <data-type>varchar(500)|0</data-type>
-    </column>
-    <column id="130" parent="15" name="create_time">
-      <comment>资源添加的时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
-    </column>
-    <column id="131" parent="15" name="customer_id">
-      <comment>客户id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
-    </column>
-    <column id="132" parent="15" name="status">
-      <comment>资源是否可用</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
-    </column>
-    <column id="133" parent="15" name="ofile_name">
-      <data-type>varchar(100)|0</data-type>
-      <default-expression>&apos;无&apos;</default-expression>
-    </column>
-    <index id="134" parent="15" name="fk_resource_customer_id">
-      <columns>customer_id</columns>
-      <desc-columns></desc-columns>
+    <index id="128" parent="18" name="fk_pub_plan_customer_id">
+      <ColNames>customer_id</ColNames>
     </index>
-    <index id="135" parent="15" name="fk_resource_type_id">
-      <columns>resource_type_id</columns>
-      <desc-columns></desc-columns>
-    </index>
-    <key id="136" parent="15" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="129" parent="18" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <foreign-key id="137" parent="15" name="fk_resource_type_id">
-      <columns>resource_type_id</columns>
-      <ref-key>~.t_resource_type.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="130" parent="18" name="fk_pub_plan_customer_id">
+      <ColNames>customer_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_customer</RefTableName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="138" parent="15" name="fk_resource_customer_id">
-      <columns>customer_id</columns>
-      <ref-key>~.t_customer.PRIMARY</ref-key>
-      <cascade-update-rule>restrict</cascade-update-rule>
-      <cascade-delete-rule>restrict</cascade-delete-rule>
+    <foreign-key id="131" parent="18" name="fk_pub_plan_version_id">
+      <ColNames>version_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_version</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="139" parent="16" name="id">
-      <comment>资源类型id</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <column id="132" parent="19" name="id">
+      <Position>1</Position>
+      <Comment>资源id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="140" parent="16" name="name">
-      <comment>资源类型名称</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="133" parent="19" name="name">
+      <Position>2</Position>
+      <Comment>资源名称</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="141" parent="16" name="extension">
-      <comment>类型文件后缀</comment>
-      <data-type>varchar(100)|0</data-type>
+    <column id="134" parent="19" name="resource_type_id">
+      <Position>3</Position>
+      <Comment>资源类型id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="142" parent="16" name="des">
-      <comment>资源类型描述</comment>
-      <data-type>varchar(200)|0</data-type>
+    <column id="135" parent="19" name="path">
+      <Position>4</Position>
+      <Comment>资源路径</Comment>
+      <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;无&apos;</DefaultExpression>
     </column>
-    <column id="143" parent="16" name="create_time">
-      <comment>资源类型创建时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="136" parent="19" name="full_path">
+      <Position>5</Position>
+      <Comment>完整路径</Comment>
+      <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;无&apos;</DefaultExpression>
     </column>
-    <column id="144" parent="16" name="status">
-      <comment>资源类型是否在可用状态</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="137" parent="19" name="file_name">
+      <Position>7</Position>
+      <Comment>资源文件的名称</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;无&apos;</DefaultExpression>
     </column>
-    <column id="145" parent="16" name="show_detail_setting">
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="138" parent="19" name="file_size">
+      <Position>8</Position>
+      <Comment>文件大小,以字节为单位</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="146" parent="16" name="name">
-      <columns>name</columns>
-      <desc-columns></desc-columns>
-      <unique>1</unique>
+    <column id="139" parent="19" name="des">
+      <Position>9</Position>
+      <Comment>资源描述,或者当用户选择文本信息时保存的文本</Comment>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="140" parent="19" name="create_time">
+      <Position>10</Position>
+      <Comment>资源添加的时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="141" parent="19" name="customer_id">
+      <Position>11</Position>
+      <Comment>客户id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="142" parent="19" name="status">
+      <Position>12</Position>
+      <Comment>资源是否可用</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
+    </column>
+    <column id="143" parent="19" name="ofile_name">
+      <Position>6</Position>
+      <Comment>资源原件的原始名称</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;无&apos;</DefaultExpression>
+    </column>
+    <index id="144" parent="19" name="fk_resource_customer_id">
+      <ColNames>customer_id</ColNames>
     </index>
-    <key id="147" parent="16" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <index id="145" parent="19" name="fk_resource_type_id">
+      <ColNames>resource_type_id</ColNames>
+    </index>
+    <key id="146" parent="19" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <key id="148" parent="16" name="name">
-      <columns>name</columns>
-      <underlying-index>name</underlying-index>
+    <foreign-key id="147" parent="19" name="fk_resource_type_id">
+      <ColNames>resource_type_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_resource_type</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="148" parent="19" name="fk_resource_customer_id">
+      <ColNames>customer_id</ColNames>
+      <RefSchemaName>ads_system</RefSchemaName>
+      <RefTableName>t_customer</RefTableName>
+      <RefKeyName>PRIMARY</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="149" parent="20" name="id">
+      <Position>1</Position>
+      <Comment>资源类型id</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="150" parent="20" name="name">
+      <Position>2</Position>
+      <Comment>资源类型名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="151" parent="20" name="extension">
+      <Position>3</Position>
+      <Comment>类型文件后缀</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="152" parent="20" name="des">
+      <Position>4</Position>
+      <Comment>资源类型描述</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="153" parent="20" name="create_time">
+      <Position>6</Position>
+      <Comment>资源类型创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="154" parent="20" name="status">
+      <Position>7</Position>
+      <Comment>资源类型是否在可用状态</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
+    </column>
+    <column id="155" parent="20" name="show_detail_setting">
+      <Position>5</Position>
+      <Comment>是否显示设置详情</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
+    </column>
+    <index id="156" parent="20" name="name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="157" parent="20" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="149" parent="17" name="id">
-      <comment>版本编号</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(128)|0</data-type>
+    <key id="158" parent="20" name="name">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>name</UnderlyingIndexName>
+    </key>
+    <column id="159" parent="21" name="id">
+      <Position>1</Position>
+      <Comment>版本编号</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="150" parent="17" name="name">
-      <comment>版本名称</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(50)|0</data-type>
+    <column id="160" parent="21" name="name">
+      <Position>2</Position>
+      <Comment>版本名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="151" parent="17" name="area_count">
-      <comment>区域数</comment>
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
+    <column id="161" parent="21" name="area_count">
+      <Position>3</Position>
+      <Comment>区域数</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="152" parent="17" name="path">
-      <comment>区域说明图片路径</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(500)|0</data-type>
+    <column id="162" parent="21" name="path">
+      <Position>4</Position>
+      <Comment>区域说明图片路径</Comment>
+      <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="153" parent="17" name="full_path">
-      <comment>区域说明图片完整路径</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(500)|0</data-type>
+    <column id="163" parent="21" name="full_path">
+      <Position>5</Position>
+      <Comment>区域说明图片完整路径</Comment>
+      <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="154" parent="17" name="file_name">
-      <comment>区域说明图片的名称</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(100)|0</data-type>
+    <column id="164" parent="21" name="file_name">
+      <Position>7</Position>
+      <Comment>区域说明图片的名称</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="155" parent="17" name="des">
-      <comment>描述信息</comment>
-      <data-type>varchar(500)|0</data-type>
+    <column id="165" parent="21" name="des">
+      <Position>8</Position>
+      <Comment>描述信息</Comment>
+      <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="156" parent="17" name="create_time">
-      <comment>版本发布时间</comment>
-      <data-type>datetime|0</data-type>
-      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    <column id="166" parent="21" name="create_time">
+      <Position>9</Position>
+      <Comment>版本发布时间</Comment>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="157" parent="17" name="status">
-      <comment>版本是否可用</comment>
-      <mandatory>1</mandatory>
-      <data-type>varchar(2)|0</data-type>
-      <default-expression>&apos;Y&apos;</default-expression>
+    <column id="167" parent="21" name="status">
+      <Position>10</Position>
+      <Comment>版本是否可用</Comment>
+      <DataType>varchar(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Y&apos;</DefaultExpression>
     </column>
-    <column id="158" parent="17" name="ofile_name">
-      <data-type>varchar(100)|0</data-type>
-      <default-expression>&apos;无&apos;</default-expression>
+    <column id="168" parent="21" name="ofile_name">
+      <Position>6</Position>
+      <Comment>区域说明图片的原始名称</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;无&apos;</DefaultExpression>
     </column>
-    <key id="159" parent="17" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="169" parent="21" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
   </database-model>
 </dataSource>
