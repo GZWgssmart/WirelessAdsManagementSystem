@@ -37,7 +37,7 @@
         <if test="admin.status != null and admin.status != ''">
             and status = #{admin.status}
         </if>
-        order by create_time desc
+        order by status desc, create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>
