@@ -90,17 +90,17 @@ function showAdd() {
 function add() {
     toValidate("addForm");
     if (validateForm("addForm")) {
-        $("#addPlan").attr("disabled", "true");
         var resourceDetails = getResourceDetails();
         if (resourceDetails == '') {
             $.messager.alert("提示", "请先添加需要发布的资源", "info");
         } else {
+            $("#addPlan").attr("disabled", "true");
             $("#resourceDetails").val(resourceDetails);
             $.post(contextPath + '/pubplan/add',
                 $("#addForm").serialize(),
                 function (data) {
-                    $("#addPlan").removeAttr("disabled");
                     if (data.result == "success") {
+                        $("#addPlan").removeAttr("disabled");
                         $("#addWin").window("close");
                         dataGridReload("list");
                         $("#addForm").form("clear");
@@ -205,22 +205,26 @@ function showPlanDetail() {
 function toCheck() {
     var row = selectedRow("list");
     if (row) {
-        if (row.checkStatus != "not_submit") {
-            $.messager.alert("提示", "请选择未提交审核的计划", "info");
+        if(row.status != "Y") {
+            $.messager.alert("提示", "请选择未冻结的发布计划", "info");
         } else {
-            $.post(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checking",
-                function (data) {
-                    if (data.result == "success") {
-                        $.messager.alert("提示", data.message, "info");
-                        dataGridReload("list");
-                    } else if (data.result == 'notLogin') {
-                        $.messager.alert("提示", data.message, "info", function () {
-                            toCustomerLoginPage();
-                        });
-                    } else {
-                        $.messager.alert("提示", data.message, "info");
-                    }
-                });
+            if (row.checkStatus != "not_submit") {
+                $.messager.alert("提示", "请选择未提交审核的计划", "info");
+            } else {
+                $.post(contextPath + "/pubplan/check?id=" + row.id + "&checkStatus=checking",
+                    function (data) {
+                        if (data.result == "success") {
+                            $.messager.alert("提示", data.message, "info");
+                            dataGridReload("list");
+                        } else if (data.result == 'notLogin') {
+                            $.messager.alert("提示", data.message, "info", function () {
+                                toCustomerLoginPage();
+                            });
+                        } else {
+                            $.messager.alert("提示", data.message, "info");
+                        }
+                    });
+            }
         }
     } else {
         $.messager.alert("提示", "请选择需要提交审核的计划", "info");
