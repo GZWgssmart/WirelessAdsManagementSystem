@@ -51,7 +51,7 @@
         <if test="customer.status != null and customer.status != ''">
             and status = #{customer.status}
         </if>
-        order by create_time desc
+        order by status desc, create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>
