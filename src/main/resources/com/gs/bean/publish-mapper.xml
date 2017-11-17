@@ -176,7 +176,7 @@
           from t_publish p, t_resource r, t_device d, t_resource_type rt
         where p.resource_id = r.id and p.device_id = d.id and r.resource_type_id = rt.id and d.id = #{publish.deviceId}
         ]]>
-        order by p.publish_time
+        order by r.status desc, p.publish_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 
