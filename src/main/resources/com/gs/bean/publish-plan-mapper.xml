@@ -55,7 +55,7 @@
         <if test="publishPlan.status != null and publishPlan.status !=''">
             and pp.status = #{publishPlan.status}
         </if>
-        order by pp.create_time desc
+        order by pp.status desc, pp.create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>

@@ -28,7 +28,7 @@
     <select id="queryByCustomerAndGroupById" parameterType="string" resultType="list" resultMap="versionResultMap">
         <![CDATA[
         select v.* from t_device d, t_version v where d.customer_id = #{customerId} and d.version_id = v.id group by v.id
-        order by v.create_time desc
+        order by v.status desc, v.create_time desc
         ]]>
     </select>
 
@@ -42,7 +42,7 @@
         <if test="version.status != null and version.status != ''">
             and status = #{version.status}
         </if>
-        order by create_time desc
+        order by status desc, create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
 
     </select>

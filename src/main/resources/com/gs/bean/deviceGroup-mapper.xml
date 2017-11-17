@@ -16,7 +16,7 @@
     <select id="queryByPagerAndCustomerId" resultType="list" resultMap="deviceGroupResultMap">
         <![CDATA[
         select * from t_device_group where customer_id = #{customerId}
-        order by create_time desc
+        order by status desc, create_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
         ]]>
     </select>
