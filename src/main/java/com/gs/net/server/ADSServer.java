@@ -348,9 +348,12 @@ public class ADSServer {
                 if (msg == null) { // 如果不是心跳消息
                     if (toCheckHandling) { // 如果需要检测设备是否在使用中
                         if (handlingDevices.get(deviceCode) == null) { // 如果设备不在使用中
-                            if (msgQueueTable.get(deviceCode) != null) {
+                            Deque<String> msgQueue = msgQueueTable.get(deviceCode);
+                            if (msgQueue != null) {
                                 handlingDevices.put(deviceCode, true);
-                                msg = msgQueueTable.get(deviceCode).pop();
+                                if(msgQueue.size() > 0) {
+                                    msg = msgQueue.pop();
+                                }
                             }
                         } else { // 如果设备在使用中，则直接结束整个方法
                             return;
