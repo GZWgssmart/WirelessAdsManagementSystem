@@ -7,6 +7,7 @@ public final class PublishLog {
 
     public static final String NOT_SUBMIT_TO_CHECK = "未提交审核";
     public static final String SUBMIT_TO_CHECK = "已提交审核";
+    public static final String ALREADY_CHECKED = "已通过审核";
     public static final String FILE_DOWNLOADING = "正在下载文件";
     public static final String FILE_DOWNLOADED = "下载文件成功";
     public static final String FILE_NOT_DOWNLOADED = "下载文件失败";

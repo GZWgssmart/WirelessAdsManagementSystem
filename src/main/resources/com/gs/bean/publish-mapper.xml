@@ -75,6 +75,7 @@
          from t_publish p, t_device d, t_publish_plan pp, t_resource r
         where p.device_id = d.id and p.resource_id = r.id and d.code = #{code} and p.pub_plan_id = pp.id and
         (pp.check_status = 'checked' or (pp.check_status = 'finish' and (p.publish_log = '已提交删除' or p.publish_log = '资源正在删除' or p.publish_log = '删除资源失败')))
+        order by pp.check_time
         ]]>
     </select>
 

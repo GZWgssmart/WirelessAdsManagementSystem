@@ -268,14 +268,15 @@ public class PublishPlanController {
     public ControllerResult check(@Param("id")String id, @Param("checkStatus") String checkStatus, @Param("checkPwd") String checkPwd, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
-            if (checkStatus != null && checkStatus.equals("checking")) { // 提交审核
+            if (checkStatus != null && checkStatus.equals("checking")) { // 正在审核中
                 publishPlanService.check(id, checkStatus);
                 publishService.updatePublishLogByPlanId(id, PublishLog.SUBMIT_TO_CHECK); // 该计划下的所有device都设置成提交审核
                 return ControllerResult.getSuccessResult("计划已提交审核");
-            } else if (checkStatus != null && checkStatus.equals("checked")){ // 审核
+            } else if (checkStatus != null && checkStatus.equals("checked")){ // 已审核通过
                 String checkPwdDB = customerService.queryCheckPwdByEmail(customer.getEmail());
                 if (checkPwdDB.equals(EncryptUtil.md5Encrypt(checkPwd))) {
                     publishPlanService.check(id, checkStatus);
+                    publishService.updatePublishLogByPlanId(id, PublishLog.ALREADY_CHECKED); // 该计划下的所有device都设置成提交审核
                     // 一旦审核,则需要通知客户端下载文件,并完成发布操作，只有完成发布操作后，整个审核才算完毕
                     // 查找单个计划，及此计划下的所有终端,每一个终端都要开始发送文件下载通知
                     List<Publish> publishs = publishService.queryByPlanId(id);
@@ -283,7 +284,7 @@ public class PublishPlanController {
                     for (Publish publish : publishs) {
                         adsServer.writeFileDownload(null, publish);
                     }
-                    return ControllerResult.getSuccessResult("此计划已经开始处理,请关注计划下每个终端的发布日志");
+                    return ControllerResult.getSuccessResult("此计划已经审核通过并开始处理消息,请关注计划下每个终端的发布日志");
                 } else {
                     return ControllerResult.getFailResult("审核密码不正确");
                 }
