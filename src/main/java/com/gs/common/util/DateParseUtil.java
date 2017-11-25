@@ -17,11 +17,13 @@ public class DateParseUtil {
     }
 
     public static Date parseDate(String dateStr, String pattern) {
-        DateFormat df = new SimpleDateFormat(pattern);
-        try {
-            return df.parse(dateStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if(!dateStr.equals("")) {
+            DateFormat df = new SimpleDateFormat(pattern);
+            try {
+                return df.parse(dateStr);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
