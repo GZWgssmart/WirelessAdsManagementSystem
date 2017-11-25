@@ -151,9 +151,9 @@ public class DeviceController {
         if (SessionUtil.isCustomer(session)) {
             List<Device> devices = deviceService.queryByCodeNotSelf(device);
             if (devices == null || devices.size() == 0) {
-                logger.info("update device info");
                 device.setInstallTime(DateParseUtil.parseDate(device.getInstallTimeStr() == null ? "" : device.getInstallTimeStr(), Constants.DATETIME_PATTERN));
                 deviceService.update(device);
+                logger.info("update device info");
                 return ControllerResult.getSuccessResult("成功更新终端设备");
             } else {
                 return ControllerResult.getFailResult("已经存在该终端号的设备");
