@@ -13,7 +13,7 @@ public class Resource {
     private String fullPath;
     private String ofileName;
     private String fileName;
-    private long fileSize;
+    private Long fileSize;
     private String des;
     private String customerId;
     private String resourceTypeId;
@@ -71,11 +71,11 @@ public class Resource {
         this.fileName = fileName;
     }
 
-    public long getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(long fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 
