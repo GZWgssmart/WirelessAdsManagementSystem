@@ -72,7 +72,7 @@ public class ResourceController {
                     resource.setFileName("无");
                     resource.setPath("无");
                     resource.setFullPath("无");
-                    resource.setFileSize(0);
+                    resource.setFileSize(0L);
                 }
                 resourceService.insert(resource);
                 return ControllerResult.getSuccessResult("成功添加资源");
