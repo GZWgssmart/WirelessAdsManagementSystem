@@ -7,14 +7,211 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/images/passwordbox_close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/images/passwordbox_open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/images/tagbox_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/images/passwordbox_close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/images/passwordbox_open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/images/tagbox_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/images/passwordbox_close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/images/passwordbox_open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/images/tagbox_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/images/passwordbox_close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/images/passwordbox_open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/images/tagbox_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/Thumbs.db" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/accordion_arrows.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/blank.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/calendar_arrows.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/combo_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/datagrid_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/datebox_arrow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/layout_arrows.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/linkbutton_bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/loading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/menu_arrows.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/messager_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/pagination_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/panel_tools.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/passwordbox_close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/passwordbox_open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/searchbox_button.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/slider_handle.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/spinner_arrows.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/tabs_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/tagbox_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/tree_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/validatebox_warning.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/images/passwordbox_close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/images/passwordbox_open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/images/tagbox_icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.mobile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/angular.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/checkbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/passwordbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/radiobutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/tagbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/checkbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/passwordbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/radiobutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/tagbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/checkbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/passwordbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/radiobutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/tagbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/checkbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/passwordbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/radiobutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/tagbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/accordion.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/calendar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/checkbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/combo.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/combobox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/datagrid.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/datalist.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/datebox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/dialog.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/easyui.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/filebox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/layout.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/linkbutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/menu.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/menubutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/messager.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/numberbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/pagination.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/panel.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/passwordbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/progressbar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/propertygrid.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/radiobutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/searchbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/slider.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/spinner.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/splitbutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/switchbutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/tabs.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/tagbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/textbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/tooltip.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/tree.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/validatebox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/window.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/checkbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/passwordbox.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/radiobutton.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/tagbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/images/spinner_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/images/spinner_arrows.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/images/spinner_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/images/spinner_arrows.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/images/spinner_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/images/spinner_arrows.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/images/spinner_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/images/spinner_arrows.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/images/spinner_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/images/spinner_arrows.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/bean/PublishLog.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/bean/PublishLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/common/util/StringUnicodeUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/common/util/StringUnicodeUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/net/server/ADSServer.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/net/server/ADSServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/Client.java" afterPath="$PROJECT_DIR$/src/test/java/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/config/spring-mybatis.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/config/spring-mybatis.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/changelog.txt" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/changelog.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/easyloader.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/easyloader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.min.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/license_freeware.txt" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/license_freeware.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/locale/easyui-lang-en.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/locale/easyui-lang-en.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/locale/easyui-lang-zh_CN.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/locale/easyui-lang-zh_CN.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/readme.txt" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/accordion.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/accordion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/calendar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/combo.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/combo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/combobox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/combobox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/datagrid.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/datagrid.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/datebox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/datebox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/dialog.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/dialog.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/easyui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/layout.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/messager.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/messager.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/numberbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/numberbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/pagination.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/pagination.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/panel.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/panel.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/progressbar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/searchbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/searchbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/spinner.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/textbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/textbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/tree.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/tree.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/window.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/accordion.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/accordion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/calendar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/combo.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/combo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/combobox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/combobox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/datagrid.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/datagrid.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/datebox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/datebox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/dialog.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/dialog.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/easyui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/layout.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/messager.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/messager.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/numberbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/numberbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/pagination.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/pagination.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/panel.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/panel.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/progressbar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/searchbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/searchbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/spinner.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/textbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/textbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/tree.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/tree.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/window.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/color.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/color.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/accordion.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/accordion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/calendar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/combo.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/combo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/combobox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/combobox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/datagrid.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/datagrid.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/datebox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/datebox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/dialog.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/dialog.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/easyui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/layout.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/messager.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/messager.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/numberbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/numberbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/pagination.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/pagination.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/panel.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/panel.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/progressbar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/searchbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/searchbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/spinner.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/textbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/textbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/tree.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/tree.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/window.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/accordion.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/accordion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/calendar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/combo.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/combo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/combobox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/combobox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/datagrid.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/datagrid.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/datebox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/datebox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/dialog.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/dialog.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/easyui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/layout.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/messager.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/messager.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/numberbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/numberbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/pagination.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/pagination.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/panel.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/panel.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/progressbar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/searchbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/searchbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/spinner.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/textbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/textbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/tree.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/tree.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/window.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/accordion.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/accordion.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/calendar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/combo.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/combo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/combobox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/combobox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/datagrid.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/datagrid.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/datebox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/datebox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/dialog.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/dialog.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/easyui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/layout.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/layout.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/messager.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/messager.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/numberbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/numberbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/pagination.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/pagination.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/panel.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/panel.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/progressbar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/searchbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/searchbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/spinner.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/textbox.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/textbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/tree.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/tree.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/window.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/mobile.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/mobile.css" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,15 +268,26 @@
     <favorites_list name="WirelessAdsManagementSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="device_groups.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/device_groups.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-824">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Singleton" />
         <option value="JavaScript File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -136,11 +344,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/device/devices_choose.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/device/devices_version.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resource_types.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/version/versions.jsp" />
-        <option value="$PROJECT_DIR$/web/js/device/devices.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_admin.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_checked.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_finish.jsp" />
@@ -155,7 +358,6 @@
         <option value="$PROJECT_DIR$/web/WEB-INF/views/device/devices_admin.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources_admin.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
         <option value="$PROJECT_DIR$/web/css/site_main.css" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_check.jsp" />
@@ -187,6 +389,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gs/net/server/ADSServer.java" />
         <option value="$PROJECT_DIR$/documents/ADSServer服务端注意事项.txt" />
         <option value="$PROJECT_DIR$/documents/消息发布日志.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/common/util/EncryptUtil.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/easyui_mobile_test.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceController.java" />
       </list>
     </option>
   </component>
@@ -219,10 +427,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-14" />
-    <option name="y" value="-14" />
-    <option name="width" value="2586" />
-    <option name="height" value="1546" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -239,6 +446,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,154 +457,6 @@
             <path>
               <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="documents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-              <item name="parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gs" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -410,16 +470,23 @@
               <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WirelessAdsManagementSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WirelessAdsManagementSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="device" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -437,11 +504,12 @@
     <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\development\GitHub\WirelessAdsManagementSystem\src" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF/views" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/js/jquery-easyui" />
+      <recent name="$PROJECT_DIR$/web/WEB-INF/views/publish" />
+      <recent name="$PROJECT_DIR$/web/WEB-INF/views/resource" />
       <recent name="$PROJECT_DIR$/web/js" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF/views/customer" />
+      <recent name="$PROJECT_DIR$/documents" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.gs.net.bean" />
@@ -450,12 +518,11 @@
       <recent name="com.gs.dao" />
       <recent name="com.gs.controller" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/WEB-INF/views/publish" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF/views/resource" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\development\GitHub\WirelessAdsManagementSystem\src" />
+      <recent name="$PROJECT_DIR$/web/WEB-INF/views" />
       <recent name="$PROJECT_DIR$/web/js" />
-      <recent name="$PROJECT_DIR$/documents" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/gs/bean" />
+      <recent name="$PROJECT_DIR$/web/WEB-INF/views/customer" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -496,6 +563,25 @@
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="WirelessAdsManagementSystem" />
+      <envs />
+    </configuration>
+    <configuration name="EncryptUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.gs.common.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.gs.common.util.EncryptUtil" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -640,53 +726,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
     </configuration>
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
       <setting name="vmparams" value="" />
@@ -899,6 +938,53 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1007,17 +1093,19 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat" />
       <item index="1" class="java.lang.String" itemvalue="Application.StringUnicodeUtil" />
       <item index="2" class="java.lang.String" itemvalue="Application.Client" />
       <item index="3" class="java.lang.String" itemvalue="Application.ADSServer" />
+      <item index="4" class="java.lang.String" itemvalue="Application.EncryptUtil" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.Client" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ADSServer" />
-        <item index="2" class="java.lang.String" itemvalue="Application.StringUnicodeUtil" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.EncryptUtil" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Client" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ADSServer" />
+        <item index="3" class="java.lang.String" itemvalue="Application.StringUnicodeUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -1142,11 +1230,16 @@
       <workItem from="1510563315514" duration="4139000" />
       <workItem from="1510719224667" duration="41000" />
       <workItem from="1511418147976" duration="9891000" />
+      <workItem from="1511782832544" duration="318000" />
+      <workItem from="1512220012776" duration="790000" />
+      <workItem from="1519368119069" duration="2808000" />
+      <workItem from="1519633575410" duration="3529000" />
+      <workItem from="1520232702108" duration="294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1491964000" />
+    <option name="totallyTimeSpent" value="1499703000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1158,7 +1251,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1293" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="777" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8956044" sideWeight="0.550813" order="8" side_tool="true" content_ui="tabs" />
@@ -1166,22 +1260,22 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24858299" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18414634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42150706" sideWeight="0.47415185" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4208211" sideWeight="0.47415185" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288854" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31711146" sideWeight="0.46097562" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.49676898" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70800626" sideWeight="0.44918698" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32810047" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70674485" sideWeight="0.44918698" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2680162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27625203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1190,7 +1284,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31711146" sideWeight="0.46097562" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24858299" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8394104" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1215,7 +1309,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42150706" sideWeight="0.47415185" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4208211" sideWeight="0.47415185" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288854" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31711146" sideWeight="0.46097562" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1223,13 +1317,13 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.49676898" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70800626" sideWeight="0.44918698" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70674485" sideWeight="0.44918698" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32810047" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8394104" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2680162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27625203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6954474" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1254,7 +1348,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="107" />
+      <option name="time" value="109" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1263,99 +1357,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../../maven/org/springframework/spring-jdbc/4.2.6.RELEASE/spring-jdbc-4.2.6.RELEASE.jar!/org/springframework/jdbc/datasource/DataSourceTransactionManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3036">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../maven/com/cloudhopper/proxool/proxool/0.9.1/proxool-0.9.1.jar!/org/logicalcobwebs/proxool/PrototyperThread.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/SessionUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/config/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/Socket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="1062" column="16" lean-forward="false" selection-start-line="1062" selection-start-column="16" selection-end-line="1062" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/ServletContextUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/net/bean/ADSSocketV3.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/net/bean/ADSSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/ADSServerUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="11" column="98" lean-forward="false" selection-start-line="11" selection-start-column="98" selection-end-line="11" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/net/server/ADSServerV1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="61" column="68" lean-forward="false" selection-start-line="61" selection-start-column="68" selection-end-line="61" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/net/server/ADSServerV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2937">
-          <caret line="116" column="29" lean-forward="false" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/web/ADSServerListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/ConsoleActivity.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/PublishPlan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1154">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/net/parser/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1089">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/bddb0471/b2b398b7-a535-4203-8e81-713558c2ff7d/ads_system.t_publish_plan" />
     <entry file="file://$PROJECT_DIR$/src/test/java/Client.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1443,33 +1444,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/customer-mapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1581">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1510903804648" expanded="true" signature="733:772" ph="select * fro... t_customer" />
-            <marker date="1510903804648" expanded="true" signature="905:994" ph="select * fro... t_customer" />
-            <marker date="1510903804648" expanded="true" signature="1123:1147" ph="select * fro... t_customer" />
-            <marker date="1510903804648" expanded="true" signature="1321:1378" ph="select * fro... t_customer" />
-            <marker date="1510903804648" expanded="true" signature="1522:2227" ph="select * fro... t_customer" />
-            <marker date="1510903804648" expanded="true" signature="3056:3111" ph="select check... t_customer" />
-            <marker date="1510903804648" expanded="true" signature="3256:3435" ph="insert into t_customer... " />
-            <marker date="1510903804648" expanded="true" signature="3563:3662" ph="update t_cus... " />
-            <marker date="1510903804648" expanded="true" signature="3783:3936" ph="update t_cus... " />
-            <marker date="1510903804648" expanded="true" signature="4065:4126" ph="update t_cus... " />
-            <marker date="1510903804648" expanded="true" signature="4255:4317" ph="update t_cus... " />
-            <marker date="1510903804648" expanded="true" signature="4438:4489" ph="update t_cus... " />
-            <marker date="1510903804648" expanded="true" signature="4608:4659" ph="update t_cus... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1477,7 +1455,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1485,7 +1462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="96" column="16" lean-forward="false" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1493,21 +1469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="154" column="13" lean-forward="true" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
-          <folding>
-            <marker date="1511421091453" expanded="true" signature="1678:1719" ph="select * fro... t_device" />
-            <marker date="1511421091453" expanded="true" signature="1856:1927" ph="select * fro... t_device" />
-            <marker date="1511421091453" expanded="true" signature="2071:2261" ph="select d.*, t_device" />
-            <marker date="1511421091453" expanded="true" signature="2403:3544" ph="select d.*, t_device" />
-            <marker date="1511421091453" expanded="true" signature="3664:3723" ph="select devic... t_device" />
-            <marker date="1511421091453" expanded="true" signature="3869:3957" ph="select id fr... t_device" />
-            <marker date="1511421091453" expanded="true" signature="4106:4193" ph="select id fr... t_device" />
-            <marker date="1511421091453" expanded="true" signature="5331:5640" ph="insert into t_device... " />
-            <marker date="1511421091453" expanded="true" signature="5759:5978" ph="update t_dev... " />
-            <marker date="1511421091453" expanded="true" signature="6099:6148" ph="update t_dev... " />
-            <marker date="1511421091453" expanded="true" signature="6267:6316" ph="update t_dev... " />
-            <marker date="1511421091453" expanded="true" signature="6441:6710" ph="update t_dev... " />
-            <marker date="1511421091453" expanded="true" signature="6828:6903" ph="update t_dev... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1515,19 +1476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-513">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1510903804660" expanded="true" signature="1178:1235" ph="select * fro... t_resource" />
-            <marker date="1510903804660" expanded="true" signature="1381:1573" ph="select r.*, t_resource" />
-            <marker date="1510903804660" expanded="true" signature="1710:1753" ph="select * fro... t_resource" />
-            <marker date="1510903804660" expanded="true" signature="1878:1953" ph="select * fro... t_resource" />
-            <marker date="1510903804660" expanded="true" signature="2092:2169" ph="select * fro... t_resource" />
-            <marker date="1510903804660" expanded="true" signature="2313:3055" ph="select r.*, t_resource" />
-            <marker date="1510903804660" expanded="true" signature="3177:3241" ph="select resou... t_resource" />
-            <marker date="1510903804660" expanded="true" signature="3988:4275" ph="insert into t_resource... " />
-            <marker date="1510903804660" expanded="true" signature="4396:4952" ph="update t_res... " />
-            <marker date="1510903804660" expanded="true" signature="5061:5112" ph="update t_res... " />
-            <marker date="1510903804660" expanded="true" signature="5231:5282" ph="update t_res... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1535,7 +1483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1543,7 +1490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1551,7 +1497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1559,7 +1504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="59" column="76" lean-forward="false" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1567,21 +1511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16">
           <caret line="113" column="34" lean-forward="false" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="34" />
-          <folding>
-            <marker date="1510903804656" expanded="true" signature="1396:1448" ph="select pp.* t_publish_plan" />
-            <marker date="1510903804656" expanded="true" signature="1513:1601" ph="select disti... t_publish_plan" />
-            <marker date="1510903804656" expanded="true" signature="1661:1774" ph="select disti... t_publish_plan" />
-            <marker date="1510903804656" expanded="true" signature="2801:2897" ph="select count... t_publish_plan" />
-            <marker date="1510903804656" expanded="true" signature="2956:3077" ph="select count... t_publish_plan" />
-            <marker date="1510903804656" expanded="true" signature="4520:4723" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="4852:4985" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="5116:5318" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="5439:5494" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="5613:5668" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="5763:5835" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="5938:6087" ph="update t_pub... " />
-            <marker date="1510903804656" expanded="true" signature="6033:6086" ph="select pub_p... t_publish" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1589,10 +1518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
           <caret line="137" column="15" lean-forward="false" selection-start-line="137" selection-start-column="15" selection-end-line="137" selection-end-column="15" />
-          <folding>
-            <element signature="e#3868#3869#0" expanded="true" />
-            <element signature="e#3931#3932#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1600,15 +1525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="24" column="25" lean-forward="false" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="188" column="12" lean-forward="false" selection-start-line="188" selection-start-column="2" selection-end-line="188" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1616,7 +1532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1624,25 +1539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="72" column="57" lean-forward="true" selection-start-line="72" selection-start-column="57" selection-end-line="72" selection-end-column="57" />
-          <folding>
-            <marker date="1511426713702" expanded="true" signature="1908:2272" ph="select p.*, t_publish" />
-            <marker date="1511426713702" expanded="true" signature="3055:3137" ph="select disti... t_publish" />
-            <marker date="1511426713702" expanded="true" signature="3273:3625" ph="select p.*, t_publish" />
-            <marker date="1511426713702" expanded="true" signature="3761:4320" ph="select p.*, t_publish" />
-            <marker date="1511426713702" expanded="true" signature="3761:4351" ph="select p.*, t_publish" />
-            <marker date="1511426713702" expanded="true" signature="4491:4906" ph="select p.*, t_publish" />
-            <marker date="1511426713702" expanded="true" signature="5759:5861" ph="select * fro... t_publish" />
-            <marker date="1511426713702" expanded="true" signature="6004:7313" ph="select disti... t_publish" />
-            <marker date="1511426713702" expanded="true" signature="7436:7825" ph="select p.*, t_publish" />
-            <marker date="1511426713702" expanded="true" signature="8877:9029" ph="select count... t_publish" />
-            <marker date="1511426713702" expanded="true" signature="9163:9698" ph="select disti... t_publish" />
-            <marker date="1511426713702" expanded="true" signature="9814:9948" ph="select count... t_publish" />
-            <marker date="1511426713702" expanded="true" signature="11275:11469" ph="update t_pub... " />
-            <marker date="1511426713702" expanded="true" signature="11781:11828" ph="select id fr... t_device" />
-            <marker date="1511426713702" expanded="true" signature="12567:12648" ph="update t_pub... " />
-            <marker date="1511426713702" expanded="true" signature="12781:12877" ph="update t_pub... " />
-            <marker date="1511426713702" expanded="true" signature="12987:13038" ph="delete from " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1650,10 +1546,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="102" column="32" lean-forward="false" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
-          <folding>
-            <element signature="e#2332#2333#0" expanded="true" />
-            <element signature="e#2383#2384#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1661,7 +1553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1669,7 +1560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1677,7 +1567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="286" column="78" lean-forward="false" selection-start-line="286" selection-start-column="78" selection-end-line="286" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1685,19 +1574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1563">
           <caret line="467" column="55" lean-forward="false" selection-start-line="467" selection-start-column="55" selection-end-line="467" selection-end-column="55" />
-          <folding>
-            <element signature="e#25260#25283#0" expanded="true" />
-            <element signature="e#28634#28635#0" expanded="true" />
-            <element signature="e#28702#28703#0" expanded="true" />
-            <element signature="e#28751#28752#0" expanded="true" />
-            <element signature="e#28822#28823#0" expanded="true" />
-            <element signature="e#28870#28871#0" expanded="true" />
-            <element signature="e#28940#28941#0" expanded="true" />
-            <element signature="e#28987#28988#0" expanded="true" />
-            <element signature="e#29056#29057#0" expanded="true" />
-            <element signature="e#29106#29107#0" expanded="true" />
-            <element signature="e#29179#29180#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1705,6 +1581,139 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documents/ads_system.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/config/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/common/util/EncryptUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/jquery-easyui/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/jquery-easyui/changelog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="25" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish/publishes.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="62" lean-forward="false" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3915">
+          <caret line="291" column="0" lean-forward="false" selection-start-line="291" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2775">
+          <caret line="216" column="0" lean-forward="false" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
+          <folding>
+            <marker date="1520232556926" expanded="true" signature="9846:10048" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.mobile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/easyui_mobile_test.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/device_groups.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-824">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
