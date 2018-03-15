@@ -19,11 +19,24 @@ public class IndexController {
         return "customer/login";
     }
 
+    @RequestMapping(value = "mob/index",method = RequestMethod.GET)
+    public String homeMob(Model model) {
+        model.addAttribute(new Customer());
+        return "customer-mobile/login";
+    }
+
     @RequestMapping(value = "redirect_index",method = RequestMethod.GET)
     public String redirectHome(Model model) {
         model.addAttribute(new Customer());
         model.addAttribute("redirect", "redirect");
         return "customer/login";
+    }
+
+    @RequestMapping(value = "mob/redirect_index",method = RequestMethod.GET)
+    public String redirectHomeMob(Model model) {
+        model.addAttribute(new Customer());
+        model.addAttribute("redirect", "redirect");
+        return "customer-mobile/login";
     }
 
 }

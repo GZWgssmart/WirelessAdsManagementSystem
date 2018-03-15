@@ -52,6 +52,17 @@ public class PublishController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page/{planId}", method = RequestMethod.GET)
+    public ModelAndView toListPageMob(@PathVariable("planId") String planId, HttpSession session) {
+        if (SessionUtil.isCustomer(session) || SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("publish-mobile/publishes");
+            mav.addObject("planId", planId);
+            return mav;
+        } else {
+            return new ModelAndView("redirect:/mob/redirect_index");
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "search_pager/{planId}", method = RequestMethod.GET)
     public Pager4EasyUI<Publish> searchPager(@Param("page")String page, @Param("rows")String rows, @PathVariable("planId") String planId, Publish publish, HttpSession session) {

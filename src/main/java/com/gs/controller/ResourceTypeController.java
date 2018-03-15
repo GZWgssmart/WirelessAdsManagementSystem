@@ -63,6 +63,15 @@ public class ResourceTypeController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session)) {
+            return "resource-mobile/resource_types";
+        } else {
+            return "redirect:/admin/mob/redirect_login_page";
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "list_combo/{status}", method = RequestMethod.GET)
     public List<ComboBox4EasyUI> list4Combobox(@PathVariable("status") String status, HttpSession session) {

@@ -24,7 +24,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script src="<%=path %>/js/publish/pub_plans_admin.js"></script>
+    <script src="<%=path %>/js/publish/pub_plans_admin-mobile.js"></script>
 </head>
 <body>
 <div id="planAdminLayer" class="layer"></div>

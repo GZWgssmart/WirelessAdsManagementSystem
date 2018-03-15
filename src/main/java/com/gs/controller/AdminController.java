@@ -46,11 +46,24 @@ public class AdminController {
         return "admin/login";
     }
 
+    @RequestMapping(value = "mob/login_page", method = RequestMethod.GET)
+    public String toLoginPageMob(Model model) {
+        model.addAttribute(new Admin());
+        return "admin-mobile/login";
+    }
+
     @RequestMapping(value = "redirect_login_page", method = RequestMethod.GET)
     public String redirectLoginPage(Model model) {
         model.addAttribute(new Admin());
         model.addAttribute("redirect", "redirect");
         return "admin/login";
+    }
+
+    @RequestMapping(value = "mob/redirect_login_page", method = RequestMethod.GET)
+    public String redirectLoginPageMob(Model model) {
+        model.addAttribute(new Admin());
+        model.addAttribute("redirect", "redirect");
+        return "admin-mobile/login";
     }
 
     @ResponseBody
@@ -81,6 +94,12 @@ public class AdminController {
         return "redirect:login_page";
     }
 
+    @RequestMapping(value = "mob/logout", method = RequestMethod.GET)
+    public String logoutMob(HttpSession session) {
+        session.removeAttribute(Constants.SESSION_ADMIN);
+        return "redirect:login_page";
+    }
+
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ControllerResult add(Admin admin, HttpSession session) {
@@ -103,10 +122,28 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "mob/home", method = RequestMethod.GET)
+    public String homeMob(HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            return "admin-mobile/home";
+        } else {
+            return "redirect:login_page";
+        }
+    }
+
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
     public String toListPage(HttpSession session) {
         if (SessionUtil.isSuperAdmin(session)) {
             return "admin/admins";
+        } else {
+            return "redirect:redirect_login_page";
+        }
+    }
+
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session)) {
+            return "admin-mobile/admins";
         } else {
             return "redirect:redirect_login_page";
         }
@@ -160,6 +197,17 @@ public class AdminController {
         return new ModelAndView("redirect:/admin/redirect_login_page");
     }
 
+    @RequestMapping(value = "mob/query/{id}", method = RequestMethod.GET)
+    public ModelAndView queryByIdMob(@PathVariable("id") String id, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("admin-mobile/info");
+            Admin admin = adminService.queryById(id);
+            mav.addObject("admin", admin);
+            return mav;
+        }
+        return new ModelAndView("redirect:/admin/mob/redirect_login_page");
+    }
+
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Admin admin, HttpSession session) {
@@ -176,6 +224,15 @@ public class AdminController {
     public String settingPage(Admin admin, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             return "admin/setting";
+        } else {
+            return "redirect:redirect_login_page";
+        }
+    }
+
+    @RequestMapping(value = "mob/setting_page", method = RequestMethod.GET)
+    public String settingPageMob(Admin admin, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            return "admin-mobile/setting";
         } else {
             return "redirect:redirect_login_page";
         }

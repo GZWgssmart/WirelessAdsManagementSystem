@@ -134,12 +134,30 @@ public class PublishPlanController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "publish-mobile/pub_plans";
+        } else {
+            return "redirect:/mob/redirect_index";
+        }
+    }
+
     @RequestMapping(value = "list_page_checking", method = RequestMethod.GET)
     public String toListPageChecking(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_check";
         } else {
             return "redirect:/redirect_index";
+        }
+    }
+
+    @RequestMapping(value = "mob/list_page_checking", method = RequestMethod.GET)
+    public String toListPageCheckingMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "publish-mobile/pub_plans_check";
+        } else {
+            return "redirect:/mob/redirect_index";
         }
     }
 
@@ -152,10 +170,28 @@ public class PublishPlanController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page_checked", method = RequestMethod.GET)
+    public String toListPageCheckedMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "publish-mobile/pub_plans_checked";
+        } else {
+            return "redirect:/mob/redirect_index";
+        }
+    }
+
     @RequestMapping(value = "list_page_finish", method = RequestMethod.GET)
     public String toListPageFinish(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             return "publish/pub_plans_finish";
+        } else {
+            return "redirect:/redirect_index";
+        }
+    }
+
+    @RequestMapping(value = "mob/list_page_finish", method = RequestMethod.GET)
+    public String toListPageFinishMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "publish-mobile/pub_plans_finish";
         } else {
             return "redirect:/redirect_index";
         }

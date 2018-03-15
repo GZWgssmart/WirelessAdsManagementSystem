@@ -158,6 +158,10 @@ function openWin(id) {
     $("#" + id).window("open");
 }
 
+function openDlg(id) {
+    $("#" + id).dialog("open");
+}
+
 function openWinFitPos(id) {
     var top = ($(document.body).height() - $("#" + id).height()) / 2 - 28;
     var left = ($(document.body).width() - $("#" + id).width()) / 2 - 18;
@@ -170,6 +174,10 @@ function openWinFitPos(id) {
 
 function closeWin(id) {
     $("#" + id).window("close");
+}
+
+function closeDlg(id) {
+    $("#" + id).dialog("close");
 }
 
 function selectedRow(id) {
@@ -400,3 +408,7 @@ function formatterYN(value) {
     }
 }
 /////////////////////////////////////
+
+function goBack() {
+    window.history.back();
+}

@@ -92,6 +92,15 @@ public class ResourceController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "resource-mobile/resources";
+        } else {
+            return "redirect:/mob/redirect_index";
+        }
+    }
+
     @RequestMapping(value = "list_page_admin/{customerId}", method = RequestMethod.GET)
     public ModelAndView toListPageAdmin(@PathVariable("customerId") String customerId, HttpSession session) {
         if (SessionUtil.isAdmin(session)) {

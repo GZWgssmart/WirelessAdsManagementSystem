@@ -42,7 +42,7 @@ function showAdd() {
         textField:'text',
         panelHeight:'auto'
     });
-    openWinFitPos('addWin');
+    openWin('addWin');
 }
 
 function add() {
@@ -193,7 +193,7 @@ function showAllRes() {
         $("#resList").datagrid({
             url: contextPath + '/publish/search_res_pager_dev/' + row.id
         });
-        openWinFitPos("allResWin");
+        openWin("allResWin");
     } else {
         $.messager.alert("提示", "请先选择需要要查看资源的设备", "info");
     }

@@ -146,7 +146,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><img id="addVersionImg"/></td>
+                        <td><img id="addVersionImg" onclick="openWin('imgWin');"/></td>
                     </tr>
                     <tr>
                         <td>区域资源:</td>
@@ -191,7 +191,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><img id="editVersionImg"/></td>
+                        <td><img id="editVersionImg" onclick="openWin('imgWin');"/></td>
                     </tr>
                     <tr>
                         <td>区域资源:</td>
@@ -211,6 +211,12 @@
                 </table>
             </form>
         </div>
+    </div>
+</div>
+<div class="easyui-window site_win_big" id="imgWin" data-options="title:'查看大图',resizable:false,mode:true,closed:true">
+    <a href="javascript:void(0);" class="easyui-linkbutton" onclick="closeWin('imgWin');">关闭</a>
+    <div style="text-align: center; width: 100%;">
+        <img id="bigPic" style="max-width: 400px; max-height: 400px;">
     </div>
 </div>
 <div class="easyui-window site_win_big_wider input_big" id="devWin" style="padding:0;" data-options="title:'选择设备',resizable:false,mode:true,closed:true">
@@ -306,12 +312,7 @@
 				pagination:false,
 				border:false,
 				checkbox:false,
-				pageSize:50,
-				rowStyler: function(index,row){
-					if (row.status == 'N') {
-					    return 'color:red;';
-					}
-				}
+				pageSize:50
                 ">
         <thead>
         <tr>
@@ -491,141 +492,140 @@
             <tr style="display:none;">
                 <td>时段7:</td>
                 <td>
-                    <input id="startTime6" name="segments[6].startTime"/>
+                    <input id="startTime6" name="segments[6].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime6" name="segments[6].endTime"/>
+                    <input id="endTime6" name="segments[6].endTime" style="width:120px;"/>
                 </td>
                 <td>时段8:</td>
                 <td>
-                    <input id="startTime7" name="segments[7].startTime" />
+                    <input id="startTime7" name="segments[7].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime7" name="segments[7].endTime" />
+                    <input id="endTime7" name="segments[7].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段9:</td>
                 <td>
-                    <input id="startTime8" name="segments[8].startTime" />
+                    <input id="startTime8" name="segments[8].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime8" name="segments[8].endTime" />
+                    <input id="endTime8" name="segments[8].endTime" style="width:120px;"/>
                 </td>
                 <td>时段10:</td>
                 <td>
-                    <input id="startTime9" name="segments[9].startTime" />
+                    <input id="startTime9" name="segments[9].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime9" name="segments[9].endTime" />
+                    <input id="endTime9" name="segments[9].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段11:</td>
                 <td>
-                    <input id="startTime10" name="segments[10].startTime" />
+                    <input id="startTime10" name="segments[10].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime10" name="segments[10].endTime" />
+                    <input id="endTime10" name="segments[10].endTime" style="width:120px;"/>
                 </td>
                 <td>时段12:</td>
                 <td>
-                    <input id="startTime11" name="segments[11].startTime" />
+                    <input id="startTime11" name="segments[11].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime11" name="segments[11].endTime" />
+                    <input id="endTime11" name="segments[11].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段13:</td>
                 <td>
-                    <input id="startTime12" name="segments[12].startTime" />
+                    <input id="startTime12" name="segments[12].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime12" name="segments[12].endTime" />
+                    <input id="endTime12" name="segments[12].endTime" style="width:120px;"/>
                 </td>
                 <td>时段14:</td>
                 <td>
-                    <input id="startTime13" name="segments[13].startTime" />
+                    <input id="startTime13" name="segments[13].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime13" name="segments[13].endTime" />
+                    <input id="endTime13" name="segments[13].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段15:</td>
                 <td>
-                    <input id="startTime14" name="segments[14].startTime" />
+                    <input id="startTime14" name="segments[14].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime14" name="segments[14].endTime" />
+                    <input id="endTime14" name="segments[14].endTime" style="width:120px;"/>
                 </td>
                 <td>时段16:</td>
                 <td>
-                    <input id="startTime15" name="segments[15].startTime" />
+                    <input id="startTime15" name="segments[15].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime15" name="segments[15].endTime" />
+                    <input id="endTime15" name="segments[15].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段17:</td>
                 <td>
-                    <input id="startTime16" name="segments[16].startTime" />
+                    <input id="startTime16" name="segments[16].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime16" name="segments[16].endTime" />
+                    <input id="endTime16" name="segments[16].endTime" style="width:120px;"/>
                 </td>
                 <td>时段18:</td>
                 <td>
-                    <input id="startTime17" name="segments[17].startTime" />
+                    <input id="startTime17" name="segments[17].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime17" name="segments[17].endTime" />
+                    <input id="endTime17" name="segments[17].endTime" style="width:120px;" />
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段19:</td>
                 <td>
-                    <input id="startTime18" name="segments[18].startTime" />
+                    <input id="startTime18" name="segments[18].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime18" name="segments[18].endTime" />
+                    <input id="endTime18" name="segments[18].endTime" style="width:120px;"/>
                 </td>
                 <td>时段20:</td>
                 <td>
-                    <input id="startTime19" name="segments[19].startTime" />
+                    <input id="startTime19" name="segments[19].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime19" name="segments[19].endTime" />
+                    <input id="endTime19" name="segments[19].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段21:</td>
                 <td>
-                    <input id="startTime20" name="segments[20].startTime" />
+                    <input id="startTime20" name="segments[20].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime20" name="segments[20].endTime" />
+                    <input id="endTime20" name="segments[20].endTime" style="width:120px;"/>
                 </td>
                 <td>时段22:</td>
                 <td>
-                    <input id="startTime21" name="segments[21].startTime" />
+                    <input id="startTime21" name="segments[21].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime21" name="segments[21].endTime" />
+                    <input id="endTime21" name="segments[21].endTime" style="width:120px;"/>
                 </td>
             </tr>
             <tr style="display:none;">
                 <td>时段23:</td>
                 <td>
-                    <input id="startTime22" name="segments[22].startTime" />
+                    <input id="startTime22" name="segments[22].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime22" name="segments[22].endTime" />
+                    <input id="endTime22" name="segments[22].endTime" style="width:120px;"/>
                 </td>
                 <td>时段24:</td>
                 <td>
-                    <input id="startTime23" name="segments[23].startTime" />
+                    <input id="startTime23" name="segments[23].startTime" style="width:120px;"/>
                     -
-                    <input id="endTime23" name="segments[23].endTime" />
+                    <input id="endTime23" name="segments[23].endTime" style="width:120px;"/>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <button id="confirmSeg" type="button" onclick="confirmSegment();">确认</button>
-                </td>
-                <td>
-                    <button id="cancelSeg" type="button" onclick="cancelSegment();">取消</button>
-                </td>
-                <td>
-                    <button id="moreSeg" type="button" onclick="moreSegment();">更多</button>
-                </td>
-            </tr>
+
         </table>
+        <div>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" onclick="confirmSegment();">确认</a>
+            &nbsp;&nbsp;
+
+                    <a href="javascript:void(0);" class="easyui-linkbutton" onclick="cancelSegment();">取消</a>
+            &nbsp;&nbsp;
+                    <a href="javascript:void(0);" class="easyui-linkbutton" onclick="moreSegment();">更多</a>
+
+        </div>
     </form>
 </div>
 

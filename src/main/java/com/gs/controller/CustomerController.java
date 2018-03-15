@@ -86,6 +86,12 @@ public class CustomerController {
         return "redirect:/index";
     }
 
+    @RequestMapping(value = "mob/logout", method = RequestMethod.GET)
+    public String logoutMob(HttpSession session) {
+        session.removeAttribute(Constants.SESSION_CUSTOMER);
+        return "redirect:/mob/index";
+    }
+
     @RequestMapping(value = "reg_page", method = RequestMethod.GET)
     public String toRegPage(Model model) {
         model.addAttribute(new Customer());
@@ -125,12 +131,34 @@ public class CustomerController {
         }
     }
 
+    @RequestMapping(value = "mob/home", method = RequestMethod.GET)
+    public ModelAndView homeMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            Customer customer = (Customer) session.getAttribute(Constants.SESSION_CUSTOMER);
+            ModelAndView mav = new ModelAndView("customer-mobile/home");
+            List<Version> versions = versionService.queryByCustomerAndGroupById(customer.getId()); // 只需要查询该客户下的所有终端版本
+            mav.addObject("versions", versions);
+            return mav;
+        } else {
+            return new ModelAndView("redirect:/mob/index");
+        }
+    }
+
     @RequestMapping(value = "list_page", method = RequestMethod.GET)
     public String toListPage(HttpSession session) {
         if (SessionUtil.isAdmin(session)) {
             return "customer/customers";
         } else {
             return "redirect:/admin/redirect_login_page";
+        }
+    }
+
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            return "customer-mobile/customers";
+        } else {
+            return "redirect:/admin/mob/redirect_login_page";
         }
     }
 
@@ -148,6 +176,22 @@ public class CustomerController {
             }
         }
         return "redirect:/admin/redirect_login_page";
+    }
+
+    @RequestMapping(value = "/mob/list_page_admin/{type}", method = RequestMethod.GET)
+    public String toListPageAdminMob(@PathVariable("type") String type, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            if (type.equals("res")) {
+                return "customer-mobile/customers_res_admin";
+            } else if (type.equals("dev")) {
+                return "customer-mobile/customers_dev_admin";
+            } else if(type.equals("devgroup")) {
+                return "customer-mobile/customers_devg_admin";
+            } else if (type.equals("pub")) {
+                return "customer-mobile/customers_pubplan_admin";
+            }
+        }
+        return "redirect:/admin/mob/redirect_login_page";
     }
 
     @ResponseBody
@@ -177,6 +221,18 @@ public class CustomerController {
         return new ModelAndView("redirect:/index");
     }
 
+    @RequestMapping(value = "mob/query/{id}", method = RequestMethod.GET)
+    public ModelAndView queryByIdMob(@PathVariable("id") String id, HttpSession session) {
+        if (SessionUtil.isSuperAdmin(session) || SessionUtil.isAdmin(session) || SessionUtil.isCustomer(session)) {
+            logger.info("query customer info by id: " + id);
+            ModelAndView mav = new ModelAndView("customer-mobile/info");
+            Customer customer = customerService.queryById(id);
+            mav.addObject("customer", customer);
+            return mav;
+        }
+        return new ModelAndView("redirect:/mob/index");
+    }
+
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ControllerResult update(Customer customer, HttpSession session) {
@@ -198,12 +254,30 @@ public class CustomerController {
         }
     }
 
+    @RequestMapping(value = "mob/setting_page", method = RequestMethod.GET)
+    public String settingPageMob(Customer customer, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "customer-mobile/setting";
+        } else {
+            return "redirect:/mob/redirect_index";
+        }
+    }
+
     @RequestMapping(value = "check_pwd_page", method = RequestMethod.GET)
     public String checkPwdPage(Customer customer, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {
             return "customer/check_pwd";
         } else {
             return "redirect:/redirect_index";
+        }
+    }
+
+    @RequestMapping(value = "mob/check_pwd_page", method = RequestMethod.GET)
+    public String checkPwdPageMob(Customer customer, HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "customer-mobile/check_pwd";
+        } else {
+            return "redirect:/mob/redirect_index";
         }
     }
 

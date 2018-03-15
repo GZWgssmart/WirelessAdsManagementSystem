@@ -2,7 +2,7 @@ function showAddSegmentWin() {
     var v = $("#showType").combobox("getValue");
     if (v == "segment") {
         showAlreadySegments($("#segments").val())
-        openWinFitPos("addSegment");
+        openWin("addSegment");
     } else {
         $.messager.alert("提示", "时段播放模式才可设置时段", "info");
     }
@@ -86,7 +86,7 @@ function showSegments() {
     if (row) {
         if (row.showType == "segment") {
             showAlreadySegments(row.segments);
-            openWinFitPos("addSegment")
+            openWin("addSegment")
         } else {
             $.messager.alert("提示", "请选择时段播放的计划查看", "info");
         }

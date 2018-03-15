@@ -73,6 +73,15 @@ public class DeviceController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isCustomer(session)) {
+            return "device-mobile/devices";
+        } else {
+            return "redirect:/mob/redirect_index";
+        }
+    }
+
     @RequestMapping(value = "list_page_version/{versionId}", method = RequestMethod.GET)
     public ModelAndView toListPageVersion(@PathVariable("versionId") String versionId, HttpSession session) {
         if (SessionUtil.isCustomer(session)) {

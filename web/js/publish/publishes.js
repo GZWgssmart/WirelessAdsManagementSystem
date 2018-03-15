@@ -39,7 +39,7 @@ function showAllRes(planId) {
     $("#resList").datagrid({
         url:contextPath + '/publish/search_res_pager/' + planId
     });
-    openWinFitPos("allResWin");
+    openWin("allResWin");
 }
 
 function formatterTypeName(value, row, index) {

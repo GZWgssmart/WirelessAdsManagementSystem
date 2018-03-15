@@ -53,7 +53,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button type="button" onclick="login();">登录</button>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" onclick="loginMob();">登录</a>
                         </td>
                     </tr>
                 </table>

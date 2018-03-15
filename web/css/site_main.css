@@ -185,3 +185,11 @@ a:hover {
     left:0px;
 }
 
+.mob-form {
+    padding: 10px;
+}
+
+.mob-form div {
+    margin-bottom: 10px;
+}
+

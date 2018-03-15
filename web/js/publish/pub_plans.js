@@ -84,7 +84,7 @@ function showAdd() {
     $("#confirmSeg").removeAttr("disabled");
     $("#cancelSeg").removeAttr("disabled");
     $("#moreSeg").removeAttr("disabled");
-    openWinFitPos('addWin');
+    openWin('addWin');
 }
 
 function add() {
@@ -202,6 +202,15 @@ function showPlanDetail() {
     }
 }
 
+function showPlanDetailMob() {
+    var row = selectedRow("list");
+    if (row) {
+        addTab(row.planName + " 计划详情", contextPath + "/publish/mob/list_page/" + row.id);
+    } else {
+        $.messager.alert("提示", "请先选择计划", "info");
+    }
+}
+
 function toCheck() {
     var row = selectedRow("list");
     if (row) {
@@ -304,7 +313,7 @@ function showDevWin() {
     $("#devList").datagrid({
         url:contextPath + '/device/search_pager'
     });
-    openWinFitPos("devWin");
+    openWin("devWin");
 }
 
 function doSearchDev() {
@@ -433,8 +442,9 @@ function showArea(planId, versionId) {
                 if (data != null && data != "") {
                     $("#addVersionImg").attr("src", "/" + data);
                     $("#editVersionImg").attr("src", "/" + data);
-                    $("#addVersionImg").attr("style", "max-width:200px; max-height:200px;");
-                    $("#editVersionImg").attr("style", "max-width:200px; max-height:200px;");
+                    $("#addVersionImg").attr("style", "max-width:50px; max-height:50px;");
+                    $("#editVersionImg").attr("style", "max-width:50px; max-height:50px;");
+                    $("#bigPic").attr("src", "/" + data);
                 }
             });
             $.each(data, function(idx, item) {
@@ -472,14 +482,14 @@ function showChosenResWin(planId, area) {
         }
         $("#chresList").datagrid("loadData", rowsJSON);
     }
-    openWinFitPos("chosenResWin");
+    openWin("chosenResWin");
 }
 
 function showResWin() {
     $("#resList").datagrid({
         url:contextPath + '/res/search_pager'
     });
-    openWinFitPos("resWin");
+    openWin("resWin");
 }
 
 function addResourceToArea() {
@@ -505,7 +515,7 @@ function addResourceToArea() {
                 $.messager.alert("提示", "不能重复添加资源到设备中", "info");
             } else {
                 if (row.showDetailSetting == "Y") {
-                    openWinFitPos("detailWin");
+                    openWin("detailWin");
                 } else {
                     confirmAddResourceToArea(false);
                 }
@@ -590,7 +600,7 @@ function showResEdit() {
             showShowCount();
         }
         $("#segments").val(row.segments);
-        openWinFitPos("detailWin");
+        openWin("detailWin");
     } else {
         $.messager.alert("提示", "请选择需要修改的资源", "info");
     }

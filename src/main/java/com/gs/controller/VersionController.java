@@ -89,6 +89,15 @@ public class VersionController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page", method = RequestMethod.GET)
+    public String toListPageMob(HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            return "version-mobile/versions";
+        } else {
+            return "redirect:/admin/mob/redirect_login_page";
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<Version> searchPager(@Param("page")String page, @Param("rows")String rows, Version version, HttpSession session) {
