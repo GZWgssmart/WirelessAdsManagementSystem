@@ -81,6 +81,17 @@ public class DeviceGroupController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdminMob(@PathVariable("customerId") String customerId, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("device-mobile/device_groups_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return new ModelAndView("redirect:/admin/mob/redirect_login_page");
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "list_pager", method = RequestMethod.GET)
     public Pager4EasyUI<DeviceGroup> listPager(@Param("page")String page, @Param("rows")String rows, HttpSession session) {

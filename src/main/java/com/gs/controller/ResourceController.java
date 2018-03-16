@@ -112,6 +112,17 @@ public class ResourceController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdminMob(@PathVariable("customerId") String customerId, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("resource-mobile/resources_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return new ModelAndView("redirect:/admin/mob/redirect_login_page");
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<com.gs.bean.Resource> searchPager(@Param("page")String page, @Param("rows")String rows, com.gs.bean.Resource resource, HttpSession session) {

@@ -25,6 +25,16 @@ function showPubPlan() {
     }
 }
 
+function showPubPlanMob() {
+    var row = selectedRow("list");
+    if (row) {
+        // addTab(row.email + "的计划列表", contextPath + "/pubplan/mob/list_page_admin/" + row.id);
+        toPage(contextPath + "/pubplan/mob/list_page_admin/" + row.id);
+    } else {
+        $.messager.alert("提示", "请先选择客户", "info");
+    }
+}
+
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/customer/search_pager',

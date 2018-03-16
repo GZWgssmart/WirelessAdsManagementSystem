@@ -49,8 +49,7 @@
             </div>
         </div>
     </header>
-    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
-        <div title="选择客户">
+
             <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"
                    data-options="
             url:'<%=path %>/customer/search_pager',
@@ -84,7 +83,7 @@
             </table>
             <div id="tb">
                 <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-                   onclick="showRes()">查看资源列表</a>
+                   onclick="showResMob()">查看资源列表</a>
                 <div class="input_small">
                     <form id="searchForm" modalAttribute="customer">
                         邮箱:<input type="email" name="email" class="easyui-textbox"/>
@@ -108,8 +107,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
     <footer style="padding:2px 3px;text-align: center;">
         青岛宝瑞媒体发布系统V1.0<br />
         地址：山东省青岛市崂山区株洲路140号&nbsp;&nbsp;<br />技术支持:0532-80678775/80678776

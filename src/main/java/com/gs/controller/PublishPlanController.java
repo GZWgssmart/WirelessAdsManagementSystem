@@ -208,6 +208,17 @@ public class PublishPlanController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdminMob(@PathVariable("customerId") String customerId, HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("publish-mobile/pub_plans_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return new ModelAndView("redirect:/admin/mob/redirect_login_page");
+        }
+    }
+
     @ResponseBody
     @RequestMapping(value = "search_pager", method = RequestMethod.GET)
     public Pager4EasyUI<PublishPlan> searchPager(@Param("page")String page, @Param("rows")String rows, PublishPlan publishPlan, HttpSession session) {

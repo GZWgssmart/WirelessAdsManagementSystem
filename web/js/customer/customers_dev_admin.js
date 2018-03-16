@@ -25,6 +25,16 @@ function showDev() {
     }
 }
 
+function showDevMob() {
+    var row = selectedRow("list");
+    if (row) {
+        // addTab(row.email + "的终端列表", contextPath + "/device/mob/list_page_admin/" + row.id);
+        toPage(contextPath + "/device/mob/list_page_admin/" + row.id);
+    } else {
+        $.messager.alert("提示", "请先选择客户", "info");
+    }
+}
+
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/customer/search_pager',

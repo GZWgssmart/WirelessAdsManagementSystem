@@ -104,6 +104,17 @@ public class DeviceController {
         }
     }
 
+    @RequestMapping(value = "mob/list_page_admin/{customerId}", method = RequestMethod.GET)
+    public ModelAndView toListPageAdminMob(@PathVariable("customerId") String customerId,  HttpSession session) {
+        if (SessionUtil.isAdmin(session)) {
+            ModelAndView mav = new ModelAndView("device-mobile/devices_admin");
+            mav.addObject("customerId", customerId);
+            return mav;
+        } else {
+            return new ModelAndView("redirect:/admin/mob/redirect_login_page");
+        }
+    }
+
     @RequestMapping(value = "list_page_choose", method = RequestMethod.GET)
     public String toListChoosePage(HttpSession session) {
         if (SessionUtil.isCustomer(session)) {

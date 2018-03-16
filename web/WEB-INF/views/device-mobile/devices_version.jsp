@@ -14,13 +14,16 @@
 <head>
     <title>终端列表-青岛宝瑞媒体发布系统</title>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/mobile.css"/>
     <link rel="stylesheet" href="<%=path %>/js/jquery-easyui/themes/icon.css"/>
     <link rel="stylesheet" href="<%=path %>/css/site_main.css"/>
 
     <script src="<%=path %>/js/jquery.min.js"></script>
     <script src="<%=path %>/js/jquery.form.js"></script>
     <script src="<%=path %>/js/jquery-easyui/jquery.easyui.min.js"></script>
+    <script src="<%=path %>/js/jquery-easyui/jquery.easyui.mobile.js"></script>
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 

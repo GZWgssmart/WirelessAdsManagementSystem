@@ -34,6 +34,16 @@ function showPlanDetail() {
     }
 }
 
+function showPlanDetailMob() {
+    var row = selectedRow("list");
+    if (row) {
+        // addTab(row.planName + " 计划详情", contextPath + "/publish/list_page/" + row.id);
+        toPage(contextPath + "/publish/mob/list_page/" + row.id);
+    } else {
+        $.messager.alert("提示", "请先选择计划", "info");
+    }
+}
+
 function doSearch() {
     $("#list").datagrid({
         url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
