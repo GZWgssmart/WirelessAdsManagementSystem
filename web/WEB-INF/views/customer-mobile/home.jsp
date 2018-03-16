@@ -39,10 +39,10 @@
         </div>
         <div id="mm" class="easyui-menu" style="width:150px;">
             <div>
-                <a href="javascript:void(0);" onclick="toPage('<%=path %>/mob/home')">刷新主页</a>
+                <a href="javascript:void(0);" onclick="toPage('<%=path %>/customer/mob/home')">刷新主页</a>
             </div>
             <div>
-                <a href="<%=path %>/mob/logout">安全退出</a>
+                <a href="<%=path %>/customer/mob/logout">安全退出</a>
             </div>
         </div>
     </header>
