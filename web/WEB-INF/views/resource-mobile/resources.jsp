@@ -48,9 +48,6 @@
             <div>
                 <a href="javascript:void(0);" onclick="toPage('<%=path %>/mob/home')">刷新主页</a>
             </div>
-            <div>
-                <a href="<%=path %>/mob/logout">安全退出</a>
-            </div>
         </div>
     </header>
     <table id="list" class="easyui-datagrid" toolbar="#tb" style="height:100%;"

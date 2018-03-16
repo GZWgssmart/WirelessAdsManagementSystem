@@ -7,103 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d6bbbaf-b9be-4f6d-a3f1-7478c17c62fe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/home.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/info.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/setting.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/check_pwd.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_dev_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_devg_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_pubplan_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_res_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/home.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/info.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/register.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices_choose.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices_version.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/publishes.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources_admin.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/WEB-INF/views/version-mobile/versions.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans-mobile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans_admin-mobile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/accordion_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/accordion_arrows.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/layout_arrows.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/layout_arrows.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/tabs_icons.png" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/images/tabs_icons.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/AdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceGroupController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceGroupController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/gs/controller/VersionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/gs/controller/VersionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/admins.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/info.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/info.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin/login.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_admin.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_admin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/site_main.css" afterPath="$PROJECT_DIR$/web/css/site_main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/admin/info.js" afterPath="$PROJECT_DIR$/web/js/admin/info.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/admin/login.js" afterPath="$PROJECT_DIR$/web/js/admin/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/customer/info.js" afterPath="$PROJECT_DIR$/web/js/customer/info.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/customer/login.js" afterPath="$PROJECT_DIR$/web/js/customer/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/device/devices.js" afterPath="$PROJECT_DIR$/web/js/device/devices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/changelog.txt" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/changelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/easyloader.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/easyloader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.min.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.mobile.js" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/jquery.easyui.mobile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/readme.txt" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/readme.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/easyui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/progressbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/black/window.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/easyui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/progressbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/bootstrap/window.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/easyui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/progressbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/default/window.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/easyui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/progressbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/gray/window.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/easyui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/progressbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/material/window.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/easyui.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/easyui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/progressbar.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/progressbar.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/spinner.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/spinner.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/window.css" afterPath="$PROJECT_DIR$/web/js/jquery-easyui/themes/metro/window.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/pub_plans.js" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/pub_plans_check.js" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans_check.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/pub_plans_checked.js" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans_checked.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/pub_plans_finish.js" afterPath="$PROJECT_DIR$/web/js/publish/pub_plans_finish.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/publishes.js" afterPath="$PROJECT_DIR$/web/js/publish/publishes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/publish/segment.js" afterPath="$PROJECT_DIR$/web/js/publish/segment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/site_easyui.js" afterPath="$PROJECT_DIR$/web/js/site_easyui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/info.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/info.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/setting.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/setting.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/check_pwd.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/check_pwd.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_dev_admin.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_dev_admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_devg_admin.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_devg_admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_pubplan_admin.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_pubplan_admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_res_admin.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_res_admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/info.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/info.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp" afterPath="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp" />
     </list>
     <ignored path="WirelessAdsManagementSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -226,57 +148,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/info.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/version-mobile/versions.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceTypeController.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_dev_admin.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_devg_admin.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_pubplan_admin.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_res_admin.jsp" />
         <option value="$PROJECT_DIR$/web/js/customer/login.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/IndexController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/login.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/home.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/home.jsp" />
         <option value="$PROJECT_DIR$/web/js/customer/info.js" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/info.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/setting.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/check_pwd.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/check_pwd.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/ResourceController.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceGroupController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishPlanController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp" />
         <option value="$PROJECT_DIR$/web/css/site_main.css" />
         <option value="$PROJECT_DIR$/web/js/device/devices.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java" />
         <option value="$PROJECT_DIR$/web/js/publish/segment.js" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/publishes.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/gs/controller/PublishController.java" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans_admin.js" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans_checked.js" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans_finish.js" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans-mobile.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/publishes.jsp" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans_check.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans_admin.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans_admin-mobile.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/customer/login.jsp" />
         <option value="$PROJECT_DIR$/web/js/publish/pub_plans.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish/pub_plans.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/setting.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/info.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/check_pwd.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_dev_admin.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_devg_admin.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_pubplan_admin.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_res_admin.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/info.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp" />
       </list>
     </option>
   </component>
@@ -1254,12 +1176,12 @@
       <workItem from="1520232702108" duration="5192000" />
       <workItem from="1520579344696" duration="549000" />
       <workItem from="1520580801299" duration="597000" />
-      <workItem from="1520649593813" duration="37133000" />
+      <workItem from="1520649593813" duration="39428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1542880000" />
+    <option name="totallyTimeSpent" value="1545175000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1376,208 +1298,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="149" column="22" lean-forward="true" selection-start-line="145" selection-start-column="16" selection-end-line="149" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource/resources.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2130">
-          <caret line="142" column="17" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-          <folding>
-            <marker date="1521027793337" expanded="true" signature="7277:7284" ph="..." />
-            <marker date="1521027793337" expanded="true" signature="7277:7293" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="79" column="4" lean-forward="true" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="80" column="33" lean-forward="false" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/DeviceGroupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="68" column="33" lean-forward="false" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/bean/Resource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/gs/bean/publish-mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="66" lean-forward="true" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/dao/PublishDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="44" column="40" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/service/PublishServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="165" column="52" lean-forward="false" selection-start-line="165" selection-start-column="52" selection-end-line="165" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/net/server/ADSServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="168" column="6" lean-forward="true" selection-start-line="164" selection-start-column="4" selection-end-line="168" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="56" column="40" lean-forward="true" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups_admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-373">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/device/device_groups.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="28" column="9" lean-forward="false" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="103" column="18" lean-forward="true" selection-start-line="99" selection-start-column="12" selection-end-line="103" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#form#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/site_main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="184" column="13" lean-forward="true" selection-start-line="184" selection-start-column="13" selection-end-line="184" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device/devices.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="85" column="62" lean-forward="false" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="206" column="56" lean-forward="true" selection-start-line="206" selection-start-column="56" selection-end-line="206" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/gs/controller/CustomerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="91" column="29" lean-forward="false" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/device/devices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/version/versions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="114" column="9" lean-forward="false" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="229" column="70" lean-forward="false" selection-start-line="229" selection-start-column="63" selection-end-line="229" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#select#0;n#div#2;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#3;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#4;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#5;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#6;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#7;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#select#0;n#div#1;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#select#0;n#div#2;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#3;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#4;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#5;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#6;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#7;n#form#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#table#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/publish/publishes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1602,45 +1322,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="89" column="45" lean-forward="false" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/publish/pub_plans_finish.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="84" column="24" lean-forward="true" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/publishes.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="319" column="20" lean-forward="false" selection-start-line="319" selection-start-column="20" selection-end-line="319" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#table#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/home.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="63" column="60" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -1653,28 +1338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="90" column="35" lean-forward="false" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/publish/pub_plans_check.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="35" column="15" lean-forward="false" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1707,24 +1374,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="39" column="66" lean-forward="false" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/version-mobile/versions.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="163" column="14" lean-forward="false" selection-start-line="161" selection-start-column="8" selection-end-line="163" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="49" column="108" lean-forward="false" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="108" />
           <folding />
         </state>
       </provider>
@@ -1808,7 +1457,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1829,10 +1478,252 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans.jsp">
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/admins.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/setting.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/admin-mobile/info.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="47" column="18" lean-forward="false" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/check_pwd.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="52" column="18" lean-forward="false" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_dev_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_devg_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_pubplan_admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
-          <caret line="267" column="47" lean-forward="false" selection-start-line="267" selection-start-column="47" selection-end-line="267" selection-end-column="47" />
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/customers_res_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="63" column="60" lean-forward="false" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/info.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="49" column="108" lean-forward="false" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/customer-mobile/setting.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="52" column="18" lean-forward="false" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/device_groups_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-373">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices_choose.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/device-mobile/devices_version.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-449">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="50" column="18" lean-forward="false" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_check.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1487">
+          <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_checked.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/pub_plans_finish.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/publish-mobile/publishes.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4785">
+          <caret line="319" column="20" lean-forward="false" selection-start-line="319" selection-start-column="20" selection-end-line="319" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resource_types.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="49" column="18" lean-forward="false" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/resource-mobile/resources_admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-392">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/views/version-mobile/versions.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2152">
+          <caret line="163" column="14" lean-forward="false" selection-start-line="161" selection-start-column="8" selection-end-line="163" selection-end-column="14" />
           <folding />
         </state>
       </provider>

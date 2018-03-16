@@ -52,9 +52,6 @@
             <div>
                 <a href="javascript:void(0);" onclick="toPage('<%=path %>/admin/mob/home')">刷新主页</a>
             </div>
-            <div>
-                <a href="<%=path %>/admin/mob/logout">安全退出</a>
-            </div>
         </div>
     </header>
     <div id="errMsg"></div>
