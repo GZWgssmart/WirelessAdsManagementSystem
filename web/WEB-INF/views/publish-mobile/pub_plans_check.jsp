@@ -27,7 +27,7 @@
     <script src="<%=path %>/js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="<%=path %>/js/site_easyui.js"></script>
 
-    <script src="<%=path %>/js/publish/pub_plans_check.js"></script>
+    <script src="<%=path %>/js/publish/pub_plans_check-mobile.js"></script>
 </head>
 <body>
 <div id="planCheckLayer" class="layer"></div>
