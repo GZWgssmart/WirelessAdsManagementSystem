@@ -136,7 +136,7 @@
 
     <div class="easyui-dialog" id="editWin" data-options="title:'修改版本',resizable:false,mode:true,closed:true">
         <div id="errMsg"></div>
-        <form id="editForm" method="post" modelAttribute="resource" enctype="multipart/form-data">
+        <form id="editForm" method="post" modelAttribute="resource" enctype="multipart/form-data" class="mob-form">
             <input type="hidden" name="id" />
             <div><input type="text" name="name" label="名称" class="easyui-validatebox easyui-textbox"
                         data-options="required:true,novalidate:true" style="width: 100%;"/>

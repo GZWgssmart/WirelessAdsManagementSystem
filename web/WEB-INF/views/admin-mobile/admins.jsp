@@ -115,7 +115,7 @@
     </div>
 
     <div class="easyui-dialog" id="addWin" data-options="title:'添加管理员',resizable:false,mode:true,closed:true">
-        <form:form id="addForm" modelAttribute="admin">
+        <form:form id="addForm" modelAttribute="admin" cssClass="mob-form">
             <div><input type="text" name="email" label="邮箱：" class="easyui-validatebox easyui-textbox"
                                data-options="required:true,validType:'email',novalidate:true" style="width: 100%;"/>
             </div>

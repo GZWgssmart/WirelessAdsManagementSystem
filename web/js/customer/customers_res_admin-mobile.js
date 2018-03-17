@@ -4,16 +4,7 @@ $(function() {
     setPagination("#list");
     $('#list').datagrid({
         onDblClickCell: function(rowIndex, rowData){
-            showPlanDetailMob();
-        }
-    });
-    $("#list").datagrid("hideColumn", 'versionId');
-    $("#planAdminLayer").remove();
-    $("#checkSearch").combobox({
-        onChange:function(n, o){
-            if (n != o) {
-                doSearch();
-            }
+            showResMob();
         }
     });
     $("#statusSearch").combobox({
@@ -25,28 +16,29 @@ $(function() {
     });
 });
 
-function showPlanDetail() {
+function showRes() {
     var row = selectedRow("list");
     if (row) {
-        addTab(row.planName + " 计划详情", contextPath + "/publish/list_page/" + row.id);
+        addTab(row.email + "的资源列表", contextPath + "/res/list_page_admin/" + row.id);
     } else {
-        $.messager.alert("提示", "请先选择计划", "info");
+        $.messager.alert("提示", "请先选择客户", "info");
     }
 }
 
-function showPlanDetailMob() {
+
+function showResMob() {
     var row = selectedRow("list");
     if (row) {
-        // addTab(row.planName + " 计划详情", contextPath + "/publish/mob/list_page/" + row.id);
-        toPage(contextPath + "/publish/mob/list_page/" + row.id);
+        // addTab(row.email + "的资源列表", contextPath + "/res/mob/list_page_admin/" + row.id);
+        toPage(contextPath + "/res/mob/list_page_admin/" + row.id);
     } else {
-        $.messager.alert("提示", "请先选择计划", "info");
+        $.messager.alert("提示", "请先选择客户", "info");
     }
 }
 
 function doSearch() {
     $("#list").datagrid({
-        url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
+        url:contextPath + '/customer/search_pager',
         pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
@@ -56,7 +48,7 @@ function doSearch() {
 function searchAll() {
     $("#searchForm").form("clear");
     $("#list").datagrid({
-        url:contextPath + '/pubplan/search_pager_admin/' + $("#customerId").val(),
+        url:contextPath + '/customer/search_pager',
         pageSize:defaultPageSize,
         queryParams:getQueryParams("list", "searchForm")
     });
