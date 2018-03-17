@@ -133,6 +133,7 @@
                         style="width: 100%;"></select>
                 </div>
                 <div><input name="des" label="描述：" class="easyui-textbox" data-options="multiline:true" style="height:100px;width:100%;"/>
+                </div>
             <div>
                 <a href="javascript:void(0);" class="easyui-linkbutton" onclick="closeWin('editWin');">取消</a>
                 &nbsp;&nbsp;
