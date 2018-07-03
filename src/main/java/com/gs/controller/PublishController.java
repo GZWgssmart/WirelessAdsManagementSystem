@@ -132,9 +132,13 @@ public class PublishController {
             }
             publishService.updatePublishLogs(ids, PublishLog.SUBMIT_TO_DELETE);
             ADSServer adsServer = ADSServerUtil.getADSServerFromServletContext();
+            // 需要把同一个终端中的相同资源的多个发布只保留一个
+            List<String> alreadyWriteResList = new ArrayList<>();
             for (Publish publish : publishes) {
-                // TODO 这里可以改进为一个消息通知删除多个资源，而不需要分多个消息发送到终端
-                adsServer.writeFileDelete(null, publish, DeleteType.DELETE_RES_FROM_DEVICE);
+                if (!alreadyWriteResList.contains(publish.getResourceId())) {
+                    alreadyWriteResList.add(publish.getResourceId()); // 此资源已经写出删除消息，下次不需要再生产写出
+                    adsServer.writeFileDelete(null, publish, DeleteType.DELETE_RES_FROM_DEVICE);
+                }
             }
             return ControllerResult.getSuccessResult("资源删除消息已经开始处理，请关注每个发布的发布日志！");
         } else {
