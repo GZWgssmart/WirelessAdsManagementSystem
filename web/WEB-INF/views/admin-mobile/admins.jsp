@@ -94,6 +94,7 @@
             <form id="searchForm" modalAttribute="admin">
                 邮箱:<input type="email" name="email" class="easyui-textbox"/>
                 姓名:<input type="text" name="name" class="easyui-textbox"/>
+                <br/>
                 手机:<input type="text" name="phone" class="easyui-textbox"/>
                 状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                         data: [{
@@ -104,6 +105,7 @@
                             text: '不可用'
                         }]">
             </select>
+                <br/>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                    onclick="doSearch();">搜索</a>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

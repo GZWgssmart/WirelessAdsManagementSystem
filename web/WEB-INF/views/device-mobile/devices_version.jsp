@@ -83,6 +83,8 @@
             终端号:<input type="text" name="code" class="easyui-textbox"/>
             分组:<select name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+
+            <br/>
             是否在线:<select name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                     data: [{
                         id: 'Y',
@@ -101,6 +103,7 @@
                         text: '不可用'
                     }]">
         </select>
+            <br/>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                onclick="doSearch();">搜索</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

@@ -97,6 +97,7 @@
                 <form id="searchForm" modalAttribute="pubplan">
                     终端号:<input type="text" name="deviceCode" class="easyui-textbox"/>
                     资源名称:<input type="text" name="resourceName" class="easyui-textbox"/>
+                    <br/>
                     审核状态:<select id="checkSearch" name="checkStatus" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                             data: [{
                                 id: 'not_submit',
@@ -121,6 +122,7 @@
                                 text: '不可用'
                             }]">
                 </select>
+                    <br/>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                        onclick="doSearch();">搜索</a>
                     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

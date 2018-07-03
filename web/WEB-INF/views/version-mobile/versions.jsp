@@ -104,6 +104,7 @@
                             text: '不可用'
                         }]">
             </select>
+                <br/>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                    onclick="doSearch();">搜索</a>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

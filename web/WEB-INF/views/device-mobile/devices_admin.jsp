@@ -95,10 +95,13 @@
             <form id="searchForm" modalAttribute="device">
                 终端号:<input type="text" name="code" class="easyui-textbox"/>
                 车牌号:<input type="text" name="busPlateNo" class="easyui-textbox"/>
+                <br/>
                 分组:<select id="groupSearch" name="deviceGroupId" class="easyui-combobox"
                            data-options="url:'<%=path %>/devgroup/list_combo_admin/${customerId }/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
                 版本:<select id="versionSearch" name="versionId" class="easyui-combobox"
                            data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+
+                <br/>
                 是否在线:<select id="onlineSearch" name="online" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                         data: [{
                             id: 'Y',
@@ -117,6 +120,7 @@
                             text: '不可用'
                         }]">
             </select>
+                <br/>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                    onclick="doSearch();">搜索</a>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

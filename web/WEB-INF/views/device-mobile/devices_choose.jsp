@@ -65,6 +65,7 @@
             终端号:<input type="text" name="code" class="easyui-textbox"/>
             分组:<select id="deviceGroupId" name="deviceGroupId" class="easyui-combobox"
                        data-options="url:'<%=path %>/devgroup/list_combo/all/search',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+            <br/>
             版本:<select id="versionId" name="versionId" class="easyui-combobox"
                        data-options="url:'<%=path %>/version/list_combo/0/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
             <%--
@@ -88,6 +89,7 @@
                     }]">
         </select>
         --%>
+            <br/>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                onclick="doSearchDev();">搜索</a>
             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"

@@ -50,8 +50,8 @@
             <div style="margin-left: 25%;">
                 <img src="<%=path %>/captcha" onclick="this.src='<%=path %>/captcha?time=Math.random();'"/>
             </div>
-            <div>
-                <a href="javascript:void(0);" class="easyui-linkbutton" onclick="loginMob();">登录</a>
+            <div style="width:80px; margin-right:10px;float:right;">
+                <a href="javascript:void(0);" class="easyui-linkbutton" onclick="loginMob();" style="width:80px;height:35px;">登录</a>
             </div>
         </form:form>
     </div>

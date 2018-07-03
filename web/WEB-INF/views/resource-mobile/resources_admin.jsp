@@ -88,6 +88,7 @@
                 名称:<input type="text" name="name" class="easyui-textbox"/>
                 类型:<select id="resTypeSearch" name="resourceTypeId" class="easyui-combobox"
                            data-options="url:'<%=path %>/restype/list_combo/all',method:'get',valueField:'id',textField:'text',panelHeight:'auto',editable:false"></select>
+                <br/>
                 状态:<select id="statusSearch" name="status" class="easyui-combobox" data-options="valueField: 'id',textField: 'text',panelHeight:'auto',
                         data: [{
                             id: 'Y',
@@ -97,6 +98,7 @@
                             text: '不可用'
                         }]">
             </select>
+                <br/>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                    onclick="doSearch();">搜索</a>
                 <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
