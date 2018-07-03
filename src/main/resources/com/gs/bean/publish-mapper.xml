@@ -233,13 +233,13 @@
          where device_id = (select id from t_device where code = #{devCode})
         ]]>
         <if test="publishLog == '资源正在删除'">
-            and (p.publish_log = '发布消息成功' or p.publish_log = '删除资源失败')
+            and publish_log = '已提交删除'
         </if>
         <if test="publishLog == '删除资源失败'">
-            and p.publish_log = '资源正在删除'
+            and publish_log = '资源正在删除'
         </if>
         <if test="publishLog == '删除资源成功'">
-            and p.publish_log = '资源正在删除'
+            and publish_log = '资源正在删除'
         </if>
     </update>
 
@@ -251,7 +251,7 @@
             #{item}
         </foreach>
         <if test="publishLog == '已提交删除'">
-            and (p.publish_log = '发布消息成功' or p.publish_log = '删除资源失败')
+            and (publish_log = '发布消息成功' or publish_log = '删除资源失败')
         </if>
     </update>
 

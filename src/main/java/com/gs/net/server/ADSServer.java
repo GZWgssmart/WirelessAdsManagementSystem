@@ -596,6 +596,7 @@ public class ADSServer {
         handlingDevices.remove(deviceCode);
         msgQueueTable.remove(deviceCode);
         updateDeviceStatus(deviceCode, Common.DEVICE_OFFLINE);
+        logger.error("device {} lost connection....", deviceCode);
         if (socketChannel.isConnected() && socketChannel.isOpen()) {
             try {
                 socketChannel.close();
