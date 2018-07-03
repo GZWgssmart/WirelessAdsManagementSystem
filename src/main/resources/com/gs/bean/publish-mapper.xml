@@ -250,6 +250,9 @@
         <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
             #{item}
         </foreach>
+        <if test="publishLog == '已提交删除'">
+            and (p.publish_log = '发布消息成功' or p.publish_log = '删除资源失败')
+        </if>
     </update>
 
     <update id="updatePublishLogByPlanId" keyProperty="id">
